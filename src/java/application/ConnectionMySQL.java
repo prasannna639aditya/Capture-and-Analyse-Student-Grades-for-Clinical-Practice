@@ -20,13 +20,13 @@ import java.sql.Statement;
 public class ConnectionMySQL {
     public static void main(String args[]){
         try{
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/timetable_scheduler_db","root","");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
             //System.out.println("successful");
-            String query = ("SELECT * FROM users");
+            String query = ("SELECT * FROM Students WHERE StudentID = '1'");
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(query);
             while(rs.next()){
-                System.out.println("User ID:"+rs.getString("user_id"));
+                System.out.println("User ID:"+rs.getString("StudentName"));
             }
         }
         catch(Exception e){
