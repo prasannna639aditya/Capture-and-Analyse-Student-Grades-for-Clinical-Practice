@@ -22,11 +22,11 @@ public class ConnectionMySQL {
         try{
             Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
             //System.out.println("successful");
-            String query = ("SELECT * FROM Students WHERE StudentID = '1'");
+            String query = ("SELECT * FROM Students WHERE StudentID = '112445898'");
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(query);
             while(rs.next()){
-                System.out.println("User ID:"+rs.getString("StudentName"));
+                System.out.println("User ID:"+rs.getString("FirstName"));
             }
         }
         catch(Exception e){
