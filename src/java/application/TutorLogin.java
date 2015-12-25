@@ -12,34 +12,35 @@ import javax.servlet.http.HttpServletRequest;
  *
  * @author Delaney
  */
-public class StudentLogin {
-    private String StudentID; 
+public class TutorLogin {
+    private String TutorID; 
     private String password;
     private String firstName;
     private String lastName;
+    private String department;
     private String[] result;
     /**
      * Constructor for the class
      */
-    public StudentLogin(){
-        this.StudentID = "";
+    public TutorLogin(){
+        this.TutorID = "";
         this.password = "";
         this.firstName = "";
         this.result = new String[10];
     }
     /**
-    * Getter method for the user's StudentID.
-    * @return StudentID (string)
+    * Getter method for the user's TutorID.
+    * @return TutorID (string)
     **/
-    public String getStudentID() {
-        return StudentID;
+    public String getTutorID() {
+        return TutorID;
     }
     /**
-     * Setter method for the user's StudentID
-     * @param StudentID (string)
+     * Setter method for the user's TutorID
+     * @param TutorID (string)
      */
-    public void setStudentID(String StudentID) {
-        this.StudentID = StudentID;
+    public void setTutorID(String TutorID) {
+        this.TutorID = TutorID;
     }
     /**
      * Getter method for the user's first name
@@ -67,10 +68,10 @@ public class StudentLogin {
 
         
         
-        StudentID = request.getParameter( "StudentID" );
+        TutorID = request.getParameter( "TutorID" );
         password = request.getParameter( "password" );
         
-        result = database.SelectRow( "SELECT * FROM Students WHERE StudentID = '" + StudentID + 
+        result = database.SelectRow( "SELECT * FROM Tutors WHERE TutorID = '" + TutorID + 
                                      "' AND Password = '" + password  + "';" );
         
         if( result.length != 0 ) {
@@ -88,13 +89,13 @@ public class StudentLogin {
     }
     /**
      * Function to validate if the user's log in credentials are correct. ie. they match
-     * the StudentID and password stored in the database
+     * the TutorID and password stored in the database
      * @return true if correct and false if otherwise.
      */
     public boolean validateLogin( ){
         boolean isValid = true;
         
-        if( StudentID.equals( "" ) ) {
+        if( TutorID.equals( "" ) ) {
             isValid = false;
         }
         if( password.equals( "" ) ) {
@@ -110,8 +111,8 @@ public class StudentLogin {
     /**
     public String loginForm( ) {
         String form = "<form name=\"login_form\" action=\"studentLogin.jsp\" method=\"POST\">\n";
-               form += "<label for=\"StudentID\">Student ID:</label>\n";
-               form += "<input type=\"text\" name=\"StudentID\" value=\"" + StudentID + "\"placeholder=\"Enter StudentID\" /><br/>\n";
+               form += "<label for=\"TutorID\">Student ID:</label>\n";
+               form += "<input type=\"text\" name=\"TutorID\" value=\"" + TutorID + "\"placeholder=\"Enter TutorID\" /><br/>\n";
                form += "<label for=\"Password\">Password:</label>\n";
                form += "<input type=\"password\" name=\"password\" placeholder=\"Enter Password\"/><br />\n";
                
@@ -120,13 +121,27 @@ public class StudentLogin {
         return form;
     } **/
     
-    public String studentLoginForm( ) {
+    /**
+     * public String loginForm( ) {
+        String form = "<form name=\"login_form\" action=\"studentLogin.jsp\" method=\"POST\">\n";
+               form += "<label for=\"TutorID\">Student ID:</label>\n";
+               form += "<input type=\"text\" name=\"TutorID\" value=\"" + TutorID + "\"placeholder=\"Enter TutorID\" /><br/>\n";
+               form += "<label for=\"Password\">Password:</label>\n";
+               form += "<input type=\"password\" name=\"password\" placeholder=\"Enter Password\"/><br/>\n";
+               
+               form += "<input type=\"submit\" value=\"Login\" name=\"submit\" /><br/>\n";
+               form += "</form>";
+        return form;
+    }
+     * @return
+     */
+    public String tutorLoginForm( ) {
         String form = "<div class=\"modal-dialog\">\n";
                form += "<div class=\"loginmodal-container\">\n";
                form += "<h1>Login to Your Account</h1><br>\n";
-               form += "<form name=\"login_form\" action=\"studentLogin.jsp\" method=\"POST\">\n";
-               form += "<label for=\"StudentID\">Student ID:</label>\n";
-               form += "<input type=\"text\" name=\"StudentID\" value=\"" + StudentID + "\"placeholder=\"StudentID\" /><br/>\n";
+               form += "<form name=\"login_form\" action=\"tutorLogin.jsp\" method=\"POST\">\n";
+               form += "<label for=\"TutorID\">Tutor ID:</label>\n";
+               form += "<input type=\"text\" name=\"TutorID\" value=\"" + TutorID + "\"placeholder=\"TutorID\" /><br/>\n";
                form += "<label for=\"Password\">Password:</label>\n";
                form += "<input type=\"password\" name=\"password\" placeholder=\"Password\"/><br />\n";
                form += "<input type=\"submit\" value=\"Login\" name=\"submit\" /><br />\n";
@@ -140,4 +155,3 @@ public class StudentLogin {
     }
  
 }
-

@@ -11,6 +11,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+         <link href="css/loginform.css" rel="stylesheet">
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="css/landing-page.css" rel="stylesheet">
         <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -39,7 +40,7 @@
                                 <a href="studentLogin.jsp" class="btn btn-default btn-lg"><img border="0" alt="W3Schools" src="http://findicons.com/files/icons/1773/free/256/person.png" width="25" height="25"> <span class="network-name">Student</span></a>
                             </li>
                             <li>
-                                <a href="https://github.com/IronSummitMedia/startbootstrap" class="btn btn-default btn-lg"><img border="0" alt="W3Schools" src="http://icons.iconarchive.com/icons/icons-land/vista-people/256/Office-Customer-Male-Light-icon.png" width="25" height="25"> <span class="network-name">Tutor</span></a>
+                                <a href="tutorLogin.jsp" class="btn btn-default btn-lg"><img border="0" alt="W3Schools" src="http://icons.iconarchive.com/icons/icons-land/vista-people/256/Office-Customer-Male-Light-icon.png" width="25" height="25"> <span class="network-name">Tutor</span></a>
                             </li>
                         </ul>
                     </div>
