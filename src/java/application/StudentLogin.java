@@ -6,7 +6,12 @@
 package application;
 
 import dbpackage.DatabaseClass;
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
 import javax.servlet.http.HttpServletRequest;
+import passwordhash.PasswordHash;
+import static passwordhash.PasswordHash.validatePassword;
+import sun.security.util.Password;
 
 /**
  *
@@ -61,7 +66,7 @@ public class StudentLogin {
      * @param request (HttpServletRequest)
      * @return true if logged in and false if otherwise.
      */
-    public boolean loginUser( HttpServletRequest request ) {
+    public boolean loginUser( HttpServletRequest request ) throws NoSuchAlgorithmException, InvalidKeySpecException {
         DatabaseClass database = new DatabaseClass( );
         database.setup( "localhost", "final_year_project", "root", "" );
 
@@ -69,9 +74,10 @@ public class StudentLogin {
         
         StudentID = request.getParameter( "StudentID" );
         password = request.getParameter( "password" );
+       
         
         result = database.SelectRow( "SELECT * FROM Students WHERE StudentID = '" + StudentID + 
-                                     "' AND Password = '" + password  + "';" );
+                                     "' AND '" + validatePassword( password, "'Password'")  + "';" );
         
         if( result.length != 0 ) {
             firstName = result[2];

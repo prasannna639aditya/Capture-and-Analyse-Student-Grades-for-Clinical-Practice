@@ -18,6 +18,7 @@ public class TutorLogin {
     private String firstName;
     private String lastName;
     private String department;
+    private String picture;
     private String[] result;
     /**
      * Constructor for the class
@@ -26,6 +27,9 @@ public class TutorLogin {
         this.TutorID = "";
         this.password = "";
         this.firstName = "";
+        this.lastName = "";
+        this.department = "";
+        this.picture = "";
         this.result = new String[10];
     }
     /**
@@ -55,6 +59,14 @@ public class TutorLogin {
      */
     public String getLastName( ) {
         return lastName;
+    }
+    
+    public String getDepartment( ){
+        return department;
+    }
+    
+    public String getPicture ( ){
+        return picture;
     }
     /**
      * Function used to log the user into the system, giving them access to view timetables,
