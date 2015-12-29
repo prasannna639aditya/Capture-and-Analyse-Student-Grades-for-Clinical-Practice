@@ -29,7 +29,7 @@
                     out.print( login.studentLoginForm() );
                 }
                 else{
-                    if( login.loginUser( request )) {
+                    if( login.loginStudent( request )) {
                         session.setAttribute( "Authenticated", login.getStudentID( ) );
                         session.setAttribute("firstName", login.getFirstName( ) );
                         session.setAttribute("lastName", login.getLastName( ) );

@@ -66,7 +66,7 @@ public class StudentLogin {
      * @param request (HttpServletRequest)
      * @return true if logged in and false if otherwise.
      */
-    public boolean loginUser( HttpServletRequest request ) throws NoSuchAlgorithmException, InvalidKeySpecException {
+    public boolean loginStudent( HttpServletRequest request ) {
         DatabaseClass database = new DatabaseClass( );
         database.setup( "localhost", "final_year_project", "root", "" );
 
@@ -74,14 +74,14 @@ public class StudentLogin {
         
         StudentID = request.getParameter( "StudentID" );
         password = request.getParameter( "password" );
-       
+        
         
         result = database.SelectRow( "SELECT * FROM Students WHERE StudentID = '" + StudentID + 
-                                     "' AND '" + validatePassword( password, "'Password'")  + "';" );
+                                     "' AND Password = '" + password + "';" );
         
         if( result.length != 0 ) {
             firstName = result[2];
-            lastName = result[4];
+            lastName = result[3];
         }
         
         if( ! validateLogin( ) ){

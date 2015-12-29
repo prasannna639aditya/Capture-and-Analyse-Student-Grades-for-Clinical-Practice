@@ -50,7 +50,7 @@ public class GUI {
     }
     
 
-        
+   /**     
         public String header(boolean printName, String firstName, String lastName) {
         form = "<nav class=\"navbar navbar-default navbar-fixed-top topnav\" role=\"navigation\">\n";
         form += "<div class=\"container topnav\">\n";
@@ -82,6 +82,7 @@ public class GUI {
         form += "</nav>\n";
         return form;
     }
+        **/
         
     public String tutorNavigation(boolean printName, String firstName, String lastName) {
         form = "<div id=\"wrapper\">\n";
@@ -117,6 +118,39 @@ public class GUI {
         return form;
     }
     
+        public String studentNavigation(boolean printName, String firstName, String lastName) {
+        form = "<div id=\"wrapper\">\n";
+        form += "<div id=\"sidebar-wrapper\">\n";
+        form += "<ul class=\"sidebar-nav\">\n";
+        form += "<li class=\"sidebar-brand\">\n"; 
+        if(printName) {
+            form += "<h3 id=\"welcomeH\">Welcome "+firstName+" "+lastName+"</h3>";
+        }
+        form += "<a href=\"index.jsp\">Logout</a>\n";
+        form += "</li>\n";
+        form += "<li><a href=\"tutorWelcome.jsp\">Home</a></li>\n";
+        form += "<li><a href=\"#\">Dashboard</a></li>\n";
+        form += "<li><a href=\"#\">Dashboard</a></li>\n";
+        form += "<li><a href=\"#\">Dashboard</a></li>\n";
+        form += "</ul>\n";        
+        form += "</div>\n";
+        form += "<div id=\"page-content-wrapper\">\n";  
+        form += "<div class=\"container-fluid\">\n";
+        form += "<div class=\"row\">\n";
+        form += "<div class=\"col-lg-12\">\n";
+        form += "<a href=\"#menu-toggle\" class=\"btn btn-default\" id=\"menu-toggle\">Toggle Menu</a>\n";
+        form += "<h1>Simple Sidebar</h1>\n";
+        form += "<p></p>\n";
+        form += "</div>\n";
+        form += "</div>\n";
+        form += "</div>\n";
+        form += "</div>\n";
+        form += "<script src=\"js/jquery.js\"></script>\n";
+        form += "<script src=\"js/bootstrap.min.js\"></script>\n";
+        form += "    <script>$(\"#menu-toggle\").click(function(e) {e.preventDefault();$(\"#wrapper\").toggleClass(\"toggled\");});</script>\n";
+        return form;
+    }
+    
         public String navigation() {
         form = "<div id=\"wrapper\">\n";
         form += "<div id=\"sidebar-wrapper\">\n";
@@ -140,4 +174,6 @@ public class GUI {
         form += "    <script>$(\"#menu-toggle\").click(function(e) {e.preventDefault();$(\"#wrapper\").toggleClass(\"toggled\");});</script>\n";
         return form;
     }
+        
+    
 }

@@ -29,7 +29,7 @@
                     out.print( login.tutorLoginForm() );
                 }
                 else{
-                    if( login.loginUser( request )) {
+                    if( login.loginTutor( request )) {
                         session.setAttribute( "Authenticated", login.getTutorID( ) );
                         session.setAttribute("firstName", login.getFirstName( ) );
                         session.setAttribute("lastName", login.getLastName( ) );

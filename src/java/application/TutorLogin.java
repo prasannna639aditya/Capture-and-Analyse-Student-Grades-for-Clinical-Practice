@@ -74,7 +74,7 @@ public class TutorLogin {
      * @param request (HttpServletRequest)
      * @return true if logged in and false if otherwise.
      */
-    public boolean loginUser( HttpServletRequest request ) {
+    public boolean loginTutor( HttpServletRequest request ) {
         DatabaseClass database = new DatabaseClass( );
         database.setup( "localhost", "final_year_project", "root", "" );
 
