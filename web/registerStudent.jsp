@@ -17,6 +17,7 @@
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="css/landing-page.css" rel="stylesheet">
         <link href="css/simple-sidebar.css" rel="stylesheet">
+        
         <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
         <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
         <title>JSP Page</title>
@@ -26,6 +27,8 @@
         <div class="login-card">          
             <jsp:useBean id="register" class="application.RegisterStudent" scope="request" />
             <jsp:setProperty name="register" property="*" />
+            
+            
         
             <%
                 GUI gui = new GUI( );
@@ -38,8 +41,6 @@
                 else {
                     if( register.validateRegForm( ) ) {
                         session.setAttribute( "Authenticated", register.getStudentID( ) );
-                        session.setAttribute( "firstName", register.getFirstName( ) );
-                        session.setAttribute( "lastName", register.getLastName( ) );
                         out.print( "<p>You have successfully registered a student!</p>" );
                         out.print( "<p><a href='tutorWelcome.jsp'>Back to home!</a></p>" );
                     }
@@ -49,6 +50,7 @@
                     }
                 }
             %>
+           
         </div>    
         </div>
         </div>

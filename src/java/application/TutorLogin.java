@@ -87,8 +87,11 @@ public class TutorLogin {
                                      "' AND Password = '" + password  + "';" );
         
         if( result.length != 0 ) {
-            firstName = result[2];
-            lastName = result[4];
+            firstName = result[1];
+            lastName = result[2];
+            department = result[3];
+            picture = result[5];
+            
         }
         
         if( ! validateLogin( ) ){
@@ -116,53 +119,16 @@ public class TutorLogin {
         
         return isValid;
     }  
-    /**
-     * Form used by the user to log into the system
-     * @return form (string)
-     */
-    /**
-    public String loginForm( ) {
-        String form = "<form name=\"login_form\" action=\"studentLogin.jsp\" method=\"POST\">\n";
-               form += "<label for=\"TutorID\">Student ID:</label>\n";
-               form += "<input type=\"text\" name=\"TutorID\" value=\"" + TutorID + "\"placeholder=\"Enter TutorID\" /><br/>\n";
-               form += "<label for=\"Password\">Password:</label>\n";
-               form += "<input type=\"password\" name=\"password\" placeholder=\"Enter Password\"/><br />\n";
-               
-               form += "<input type=\"submit\" value=\"Login\" name=\"submit\" /><br />\n";
-               form += "</form>";
-        return form;
-    } **/
     
-    /**
-     * public String loginForm( ) {
-        String form = "<form name=\"login_form\" action=\"studentLogin.jsp\" method=\"POST\">\n";
-               form += "<label for=\"TutorID\">Student ID:</label>\n";
-               form += "<input type=\"text\" name=\"TutorID\" value=\"" + TutorID + "\"placeholder=\"Enter TutorID\" /><br/>\n";
-               form += "<label for=\"Password\">Password:</label>\n";
-               form += "<input type=\"password\" name=\"password\" placeholder=\"Enter Password\"/><br/>\n";
-               
-               form += "<input type=\"submit\" value=\"Login\" name=\"submit\" /><br/>\n";
-               form += "</form>";
-        return form;
-    }
-     * @return
-     */
+    
     public String tutorLoginForm( ) {
-        String form = "<div class=\"modal-dialog\">\n";
-               form += "<div class=\"loginmodal-container\">\n";
-               form += "<h1>Login to Your Account</h1><br>\n";
-               form += "<form name=\"login_form\" action=\"tutorLogin.jsp\" method=\"POST\">\n";
+        String form = "<form name=\"login_form\" action=\"tutorLogin.jsp\" method=\"POST\">\n";
                form += "<label for=\"TutorID\">Tutor ID:</label>\n";
                form += "<input type=\"text\" name=\"TutorID\" value=\"" + TutorID + "\"placeholder=\"TutorID\" /><br/>\n";
                form += "<label for=\"Password\">Password:</label>\n";
-               form += "<input type=\"password\" name=\"password\" placeholder=\"Password\"/><br />\n";
+               form += "<input type=\"password\" name=\"password\" placeholder=\"Enter Password\"/><br />\n";
                form += "<input type=\"submit\" value=\"Login\" name=\"submit\" /><br />\n";
-               form += "</form>\n";
-               form += "<div class=\"login-help\">\n";
-               form += "<a href=\"#\">Register</a> - <a href=\"#\">Forgot Password</a>\n";
-               form += "</div>\n";
-               form += "</div>\n";
-               form += "</div>\n";
+               form += "</form>";
         return form;
     }
  

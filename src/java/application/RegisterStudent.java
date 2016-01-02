@@ -11,7 +11,6 @@ import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 import java.util.ArrayList;
 import passwordhash.PasswordHash;
-import static passwordhash.PasswordHash.createHash;
 
 /**
  *
@@ -44,7 +43,7 @@ public class RegisterStudent {
         database.setup( "localhost", "final_year_project", "root", "" );
     }
     
-        public String getStudentID( ) {
+    public String getStudentID( ) {
         return studentID;
     }
 
@@ -144,7 +143,7 @@ public class RegisterStudent {
      * Ensures the form is filled out correctly by the user.
      * @return true if form is filled out correctly and false if otherwise.
      */
-    public boolean validateRegForm( ) throws NoSuchAlgorithmException, InvalidKeySpecException {
+    public boolean validateRegForm( ) throws NoSuchAlgorithmException, InvalidKeySpecException, Exception {
         boolean isValid = true;
         
         if(doesUserExist(studentID)) {
@@ -218,9 +217,10 @@ public class RegisterStudent {
     /**
      * Function to register the new student into the database.
      */
-    public void registerNewUser(  ) throws NoSuchAlgorithmException, InvalidKeySpecException {
+    public void registerNewUser(  ) throws NoSuchAlgorithmException, InvalidKeySpecException, Exception {
+       
         database.Insert( "INSERT INTO Students( StudentID, Password, FirstName, LastName, email )" +
-                         "VALUES( '" + studentID + "', '" + createHash(password2)  + "', '" + firstName + "', '" + lastName+ "', '" + email + "');" );
+                         "VALUES( '" + studentID + "', '" + PasswordHash.getSaltedHash(password2)  + "', '" + firstName + "', '" + lastName+ "', '" + email + "');" );
         
         database.Insert( "INSERT INTO StudentClass( StudentID, YearID, GroupID )" +
                          "VALUES( '" + studentID + "', '" + yearID + "','" + groupID + "' );" );

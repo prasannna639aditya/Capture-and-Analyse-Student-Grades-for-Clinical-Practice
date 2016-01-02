@@ -28,8 +28,7 @@ public class GUI {
         form += "<span class=\"icon-bar\"></span>\n";
         form += "<span class=\"icon-bar\"></span>\n";
         form += "</button>\n";        
-        form += "<a class=\"navbar-brand topnav\" href=\"#\">Start Bootstrap</a>\n";
-        form += "<a class=\"navbar-brand topnav\" href=\"#\">Start Bootstrap</a>\n";
+        form += "<a class=\"navbar-brand topnav\" href=\"#\">Cork University Dental Hospital</a>\n";
         form += "</div>\n";
         form += "<div class=\"collapse navbar-collapse\" id=\"bs-example-navbar-collapse-1\">\n";  
         form += "<ul class=\"nav navbar-nav navbar-right\">\n";
@@ -84,14 +83,12 @@ public class GUI {
     }
         **/
         
-    public String tutorNavigation(boolean printName, String firstName, String lastName) {
+    public String tutorNavigation(boolean printName, String firstName, String lastName, String department, String picture) {
         form = "<div id=\"wrapper\">\n";
         form += "<div id=\"sidebar-wrapper\">\n";
         form += "<ul class=\"sidebar-nav\">\n";
         form += "<li class=\"sidebar-brand\">\n"; 
-        if(printName) {
-            form += "<h3 id=\"welcomeH\">Welcome "+firstName+" "+lastName+"</h3>";
-        }
+
         form += "<a href=\"index.jsp\">Logout</a>\n";
         form += "</li>\n";
         form += "<li><a href=\"tutorWelcome.jsp\">Home</a></li>\n";
@@ -106,8 +103,12 @@ public class GUI {
         form += "<div class=\"row\">\n";
         form += "<div class=\"col-lg-12\">\n";
         form += "<a href=\"#menu-toggle\" class=\"btn btn-default\" id=\"menu-toggle\">Toggle Menu</a>\n";
-        form += "<h1>Simple Sidebar</h1>\n";
-        form += "<p>This template has a responsive menu toggling system. The menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will appear/disappear. On small screens, the page content will be pushed off canvas.</p>\n";
+        if(printName) {
+            form += "<h1 id=\"welcomeH\">Welcome "+firstName+" "+lastName+"</h1>";
+            form += "<h1>Department:</h1><h3>"+department+"</h3>";
+            form += "<img>"+picture+"</img>";
+            
+        }
         form += "</div>\n";
         form += "</div>\n";
         form += "</div>\n";
@@ -123,9 +124,6 @@ public class GUI {
         form += "<div id=\"sidebar-wrapper\">\n";
         form += "<ul class=\"sidebar-nav\">\n";
         form += "<li class=\"sidebar-brand\">\n"; 
-        if(printName) {
-            form += "<h3 id=\"welcomeH\">Welcome "+firstName+" "+lastName+"</h3>";
-        }
         form += "<a href=\"index.jsp\">Logout</a>\n";
         form += "</li>\n";
         form += "<li><a href=\"tutorWelcome.jsp\">Home</a></li>\n";
@@ -139,7 +137,9 @@ public class GUI {
         form += "<div class=\"row\">\n";
         form += "<div class=\"col-lg-12\">\n";
         form += "<a href=\"#menu-toggle\" class=\"btn btn-default\" id=\"menu-toggle\">Toggle Menu</a>\n";
-        form += "<h1>Simple Sidebar</h1>\n";
+        if(printName) {
+            form += "<h1 id=\"welcomeH\">Welcome "+firstName+" "+lastName+"</h1>";
+        }
         form += "<p></p>\n";
         form += "</div>\n";
         form += "</div>\n";
@@ -156,8 +156,8 @@ public class GUI {
         form += "<div id=\"sidebar-wrapper\">\n";
         form += "<ul class=\"sidebar-nav\">\n";
         form += "<li class=\"sidebar-brand\">\n"; 
-        form += "</li>\n";
         form += "<a href=\"index.jsp\">Logout</a>\n";
+        form += "</li>\n";
         form += "<li><a href=\"tutorWelcome.jsp\">Home</a></li>\n";
         form += "<li><a href=\"registerStudent.jsp\">Register a Student</a></li>\n";
         form += "<li><a href=\"#\">Dashboard</a></li>\n";
