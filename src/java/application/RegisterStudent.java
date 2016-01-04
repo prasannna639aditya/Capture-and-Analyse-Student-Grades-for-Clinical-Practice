@@ -49,7 +49,6 @@ public class RegisterStudent {
 
         
     public void setStudentID( final String studentID ) {
-        System.out.println("test test");
         this.studentID = studentID;
     }
 

@@ -93,7 +93,7 @@ public class GUI {
         form += "</li>\n";
         form += "<li><a href=\"tutorWelcome.jsp\">Home</a></li>\n";
         form += "<li><a href=\"registerStudent.jsp\">Register a Student</a></li>\n";
-        form += "<li><a href=\"#\">Dashboard</a></li>\n";
+        form += "<li><a href=\"markStudent.jsp\">Grade Student</a></li>\n";
         form += "<li><a href=\"#\">Dashboard</a></li>\n";
         form += "<li><a href=\"#\">Dashboard</a></li>\n";
         form += "</ul>\n";        
