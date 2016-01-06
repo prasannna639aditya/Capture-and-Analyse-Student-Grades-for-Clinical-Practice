@@ -42,7 +42,7 @@
                 String department = (String) session.getAttribute( "department" );
                 String picture = (String) session.getAttribute( "picture" );
                 out.print(gui.tutorNavigation(true, firstName, lastName, department, picture));
-                out.print(look.printName());
+                out.print(look.fetchNames());
           }
         %>
         
