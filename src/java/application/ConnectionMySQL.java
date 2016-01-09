@@ -22,7 +22,9 @@ public class ConnectionMySQL {
         try{
             Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
             //System.out.println("successful");
-            String query = ("SELECT * FROM Students WHERE StudentID = '112445898'");
+            String query = ("SELECT Students.StudentID, Students.FirstName, Students.LastName, Students.Picture, CourseYear.ProgrammeYear, StudentGroups.GroupDescriptor"
+                            + " FROM Students JOIN StudentGroups JOIN StudentClass JOIN CourseYear"
+                            + " ON Students.StudentID = StudentClass.StudentID AND StudentClass.GroupID = StudentGroups.GroupID AND StudentClass.YearID = CourseYear.YearID");
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(query);
             while(rs.next()){

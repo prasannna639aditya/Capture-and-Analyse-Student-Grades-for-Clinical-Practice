@@ -51,7 +51,6 @@ public class CoreSkills {
         studentID = "";
         patientID = "";
         tutorID = "";
-        treatmentID = "";
         abilToEstDiag = "";
         abilToFormTrtPlan = "";
         ensInfCons = "";
@@ -71,6 +70,7 @@ public class CoreSkills {
         approUseOfMirror = "";
         approFingerSupport = "";
         dateAdded = "";
+        treatmentID = "";
         errors = new ArrayList<>( );
         database = new DatabaseClass( );
         database.setup( "localhost", "final_year_project", "root", "" );
@@ -283,20 +283,19 @@ public class CoreSkills {
         this.dateAdded = dateAdded;
     }
     
-    public boolean validateMarkingForm( ) throws NoSuchAlgorithmException, InvalidKeySpecException, Exception {
+    public boolean validateMarkingForm( ) {
         boolean isValid = true; 
         
-        if(hasBeenGraded(studentID, treatmentID)) {
-            errors.add( "User already exists" );
-            isValid = false;
-            studentID = "";
-        }
+        
+        if( isValid ) {
+            markStudent( );
+        }  
         
         return isValid;
     }
     
     
-    public boolean hasBeenGraded(String studentID, String treatmentID) {
+    /**public boolean hasBeenGraded(String studentID, String treatmentID) {
         String[] dbResult = database.SelectRow( "SELECT StudentID FROM TBICoreSkills WHERE StudentID = '" + studentID + 
                                                "AND TreatmentID = '" + treatmentID + "';" );
         
@@ -304,7 +303,7 @@ public class CoreSkills {
             return true;
         }
         return false;
-    }
+    }**/
     
     /**
      * Function to print any error messages that may have been collected throughout the 
@@ -321,6 +320,20 @@ public class CoreSkills {
         errorList += "</ul>";
         
         return errorList;
+    }
+    
+    public void markStudent(  ) {
+       
+        database.Insert( "INSERT INTO TBICoreSkills( ID,StudentID, PatientID, TutorID, AbilityToEstablishDiagnosis, AbilityToFormulateATreatmentPlan, EnsuringInformedConsent, EquipmentPreparationSelection,"
+                + "ExaminationIntraOralHardTissues, ExaminationIntraOralSoftTissues, ExtraOralExamination, InfectionControl, InterpretationOfSpeciaInvestigations, LocalAnaesthesiaBlock, LocalAnaesthesiaInfiltration,"
+                + "ManagementOfComplications, MaterialSelectionAndHandling, AppropriatePatientPosition, AppropriateOperatorPosition, AppropriateLightPosition, AppropriateUseOfMirror, AppropriateFingerSupport,"
+                + "DateAdded,TreatmentID )"
+                +"VALUES( NULL,'" + studentID + "', '" + patientID + "', '" + tutorID + "', '" + abilToEstDiag + "', '" + abilToFormTrtPlan + "', '" + ensInfCons + "', '" + equipPrep + "','" + examIntraOralHard + "','" + examIntraOralSoft + "','" + extraOralExam + "','" + infectionControl + "','" + interpOfSpecInves + "','" + localAnaesthesiaBlock + "','" + localAnaesthesiaInfiltration + "','" + managementofComplications + "','" + matSelecHandling + "','" + approPatPos + "','" + approOpPos + "','" + approLightPos + "','" + approUseOfMirror + "','" + approFingerSupport + "','" + dateAdded + "','" + treatmentID + "' );" );
+        
+        /**database.Insert( "INSERT INTO StudentClass( StudentID, YearID, GroupID )" +
+                         "VALUES( '" + studentID + "', '" + yearID + "','" + groupID + "' );" );**/
+        
+        database.Close();
     }
     
     public String markingForm( ) throws SQLException {
@@ -395,7 +408,7 @@ public class CoreSkills {
                     "  <option value=\"5\">5</option>\n" +
                     "  <option value=\"5\">6</option>\n" +
                 "</select><br />";
-        form += "<label for='extraOralExam'>Extra oral examination:</label>\n";;
+        form += "<label for='extraOralExam'>Extra oral examination:</label>\n";
         form += "<select name=\"extraOralExam\"id='dropdown' >\n" +
                     "  <option value=\"1\" selected>1</option>\n" +
                     "  <option value=\"2\">2</option>\n" +
@@ -404,7 +417,7 @@ public class CoreSkills {
                     "  <option value=\"5\">5</option>\n" +
                     "  <option value=\"5\">6</option>\n" +
                 "</select><br />";
-        form += "<label for='infectionControl'>Infection control:</label>\n";;
+        form += "<label for='infectionControl'>Infection control:</label>\n";
         form += "<select name=\"infectionControl\"id='dropdown' >\n" +
                     "  <option value=\"1\" selected>1</option>\n" +
                     "  <option value=\"2\">2</option>\n" +
@@ -413,7 +426,7 @@ public class CoreSkills {
                     "  <option value=\"5\">5</option>\n" +
                     "  <option value=\"5\">6</option>\n" +
                 "</select><br />";
-        form += "<label for='interpOfSpecInves'>Interpretation of special investigations:</label>\n";;
+        form += "<label for='interpOfSpecInves'>Interpretation of special investigations:</label>\n";
         form += "<select name=\"interpOfSpecInves\"id='dropdown' >\n" +
                     "  <option value=\"1\" selected>1</option>\n" +
                     "  <option value=\"2\">2</option>\n" +
@@ -422,7 +435,7 @@ public class CoreSkills {
                     "  <option value=\"5\">5</option>\n" +
                     "  <option value=\"5\">6</option>\n" +
                 "</select><br />";
-        form += "<label for='localAnaesthesiaBlock'>Local anaesthesia (Block):</label>\n";;
+        form += "<label for='localAnaesthesiaBlock'>Local anaesthesia (Block):</label>\n";
         form += "<select name=\"localAnaesthesiaBlock\"id='dropdown' >\n" +
                     "  <option value=\"1\" selected>1</option>\n" +
                     "  <option value=\"2\">2</option>\n" +
@@ -431,7 +444,7 @@ public class CoreSkills {
                     "  <option value=\"5\">5</option>\n" +
                     "  <option value=\"5\">6</option>\n" +
                 "</select><br />";
-        form += "<label for='localAnaesthesiaInfiltration'>Local anaesthesia (Infiltration):</label>\n";;
+        form += "<label for='localAnaesthesiaInfiltration'>Local anaesthesia (Infiltration):</label>\n";
         form += "<select name=\"localAnaesthesiaInfiltration\"id='dropdown' >\n" +
                     "  <option value=\"1\" selected>1</option>\n" +
                     "  <option value=\"2\">2</option>\n" +
@@ -440,7 +453,7 @@ public class CoreSkills {
                     "  <option value=\"5\">5</option>\n" +
                     "  <option value=\"5\">6</option>\n" +
                 "</select><br />";
-        form += "<label for='managementofComplications'>Management of complications:</label>\n";;
+        form += "<label for='managementofComplications'>Management of complications:</label>\n";
         form += "<select name=\"managementofComplications\"id='dropdown' >\n" +
                     "  <option value=\"1\" selected>1</option>\n" +
                     "  <option value=\"2\">2</option>\n" +
@@ -449,7 +462,7 @@ public class CoreSkills {
                     "  <option value=\"5\">5</option>\n" +
                     "  <option value=\"5\">6</option>\n" +
                 "</select><br />";
-        form += "<label for='matSelecHandling'>Material selection and handling:</label>\n";;
+        form += "<label for='matSelecHandling'>Material selection and handling:</label>\n";
         form += "<select name=\"matSelecHandling\"id='dropdown' >\n" +
                     "  <option value=\"1\" selected>1</option>\n" +
                     "  <option value=\"2\">2</option>\n" +
@@ -458,7 +471,7 @@ public class CoreSkills {
                     "  <option value=\"5\">5</option>\n" +
                     "  <option value=\"5\">6</option>\n" +
                 "</select><br />";
-        form += "<label for='approPatPos'>Appropriate patient position:</label>\n";;
+        form += "<label for='approPatPos'>Appropriate patient position:</label>\n";
         form += "<select name=\"approPatPos\"id='dropdown' >\n" +
                     "  <option value=\"1\" selected>1</option>\n" +
                     "  <option value=\"2\">2</option>\n" +
@@ -467,7 +480,7 @@ public class CoreSkills {
                     "  <option value=\"5\">5</option>\n" +
                     "  <option value=\"5\">6</option>\n" +
                 "</select><br />";
-        form += "<label for='approOpPos'>Appropriate operator position:</label>\n";;
+        form += "<label for='approOpPos'>Appropriate operator position:</label>\n";
         form += "<select name=\"approOpPos\"id='dropdown' >\n" +
                     "  <option value=\"1\" selected>1</option>\n" +
                     "  <option value=\"2\">2</option>\n" +
@@ -476,7 +489,7 @@ public class CoreSkills {
                     "  <option value=\"5\">5</option>\n" +
                     "  <option value=\"5\">6</option>\n" +
                 "</select><br />";
-        form += "<label for='approLightPos'>Appropriate light position:</label>\n";;
+        form += "<label for='approLightPos'>Appropriate light position:</label>\n";
         form += "<select name=\"approLightPos\"id='dropdown' >\n" +
                     "  <option value=\"1\" selected>1</option>\n" +
                     "  <option value=\"2\">2</option>\n" +
@@ -485,7 +498,7 @@ public class CoreSkills {
                     "  <option value=\"5\">5</option>\n" +
                     "  <option value=\"5\">6</option>\n" +
                 "</select><br />";
-        form += "<label for='approUseOfMirror'>Appropriate use of mirror:</label>\n";;
+        form += "<label for='approUseOfMirror'>Appropriate use of mirror:</label>\n";
         form += "<select name=\"approUseOfMirror\"id='dropdown' >\n" +
                     "  <option value=\"1\" selected>1</option>\n" +
                     "  <option value=\"2\">2</option>\n" +
@@ -494,7 +507,7 @@ public class CoreSkills {
                     "  <option value=\"5\">5</option>\n" +
                     "  <option value=\"5\">6</option>\n" +
                 "</select><br />";
-        form += "<label for='approFingerSupport'>Appropriate finger support:</label>\n";;
+        form += "<label for='approFingerSupport'>Appropriate finger support:</label>\n";
         form += "<select name=\"approFingerSupport\"id='dropdown' >\n" +
                     "  <option value=\"1\" selected>1</option>\n" +
                     "  <option value=\"2\">2</option>\n" +
@@ -503,9 +516,8 @@ public class CoreSkills {
                     "  <option value=\"5\">5</option>\n" +
                     "  <option value=\"5\">6</option>\n" +
                 "</select><br />";
-        form +=    "<label for=\"dateAdded\">Date:</label>\n"
-                        + "<input type=\"text\" class=\"datepicker\" name=\"endDate\" value=\"" + dateAdded + "\" placeholder=\"2016/01/31\"/><br />\n";
-        
+        form +=    "<label for=\"dateAdded\">Date:</label>\n";
+        form += "<input type='dateAdded' name='dateAdded' value='" + dateAdded +  "' placeholder='54321'  /><br />\n";
         form += "<input type='submit' value='Submit' name='submit' /><br />\n";
         form += "</form>\n";
         conn.close();

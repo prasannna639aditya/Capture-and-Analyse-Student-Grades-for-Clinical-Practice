@@ -26,13 +26,13 @@
     <body>
         
         <div class="login-card">          
-            
+            <jsp:useBean id="core" class="application.CoreSkills" scope="request" />
+            <jsp:setProperty name="core" property="*" />
             
             
         
             <%
                 GUI gui = new GUI( );
-                CoreSkills core = new CoreSkills();
                 out.print( gui.navigation( ));
                 
                 if( request.getParameter( "submit" ) == null ) {

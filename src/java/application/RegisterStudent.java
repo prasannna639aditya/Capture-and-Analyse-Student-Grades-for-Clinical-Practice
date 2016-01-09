@@ -64,7 +64,7 @@ public class RegisterStudent {
         return groupID;
     }
 
-    public void setGroupID( final String GroupID ) {
+    public void setGroupID( final String groupID ) {
         this.groupID = groupID;
     }
 
@@ -151,7 +151,7 @@ public class RegisterStudent {
             studentID = "";
         }
         
-         if( studentID.equals( "" ) || studentID.length( ) != 9 || ! isInteger( studentID )) {
+        if( studentID.equals( "" ) || studentID.length( ) != 9 || ! isInteger( studentID )) {
             errors.add( "User ID required. Must be valid ID and 9 digits in length" );
             isValid = false;
             studentID = "";
@@ -218,7 +218,7 @@ public class RegisterStudent {
      */
     public void registerNewUser(  ) throws NoSuchAlgorithmException, InvalidKeySpecException, Exception {
        
-        database.Insert( "INSERT INTO Students( StudentID, Password, FirstName, LastName, email )" +
+        database.Insert( "INSERT INTO Students( StudentID, Password, FirstName, LastName, Email )" +
                          "VALUES( '" + studentID + "', '" + PasswordHash.getSaltedHash(password2)  + "', '" + firstName + "', '" + lastName+ "', '" + email + "');" );
         
         database.Insert( "INSERT INTO StudentClass( StudentID, YearID, GroupID )" +
