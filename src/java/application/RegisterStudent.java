@@ -157,30 +157,30 @@ public class RegisterStudent {
             studentID = "";
         }
         
-        if( firstName.equals( "" )  ) {
+        if( firstName.equals( "" ) || isInteger( firstName ) ) {
             errors.add( "First Name required." );
             isValid = false;
             firstName = "";
         }
       
-        if( lastName.equals( "" )  ) {
+        if( lastName.equals( "" ) || isInteger( lastName ) ) {
             errors.add( "Last Name required." );
             isValid = false;
             lastName = "";
         }
         
         if( email.equals( "" ) || ! email.contains( "@" ) || ! email.contains( "." ) ) {
-            errors.add( "Email required. Must be valid email address" );
+            errors.add( "Please enter a valid email address." );
             isValid = false;
             email = "";
         }
         
-        if( password1.equals( "" ) ) {
+        if( password1.equals( "" ) || password1.length() < 6 ) {
             errors.add( "Password required. Min length is 6 characters" );
             isValid = false;
         }
         
-        if( password2.equals( "" ) ) {
+        if( password2.equals( "" ) || password2.length() < 6 ) {
             errors.add( "Confirm Password required." );
             isValid = false;
         }
@@ -257,14 +257,6 @@ public class RegisterStudent {
         return true;
     }
 
-
-
-    public String[] getStudent( String studentID ) {
-        String[] dbResult = database.SelectRow( "SELECT * FROM Students WHERE StudentID = '" + studentID + "';" );
-        
-        database.Close();
-        return dbResult;
-    }
 
     
      public String registrationForm( ) {

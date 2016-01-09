@@ -6,6 +6,11 @@
 package application;
 
 import dbpackage.DatabaseClass;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import javax.servlet.http.HttpServletRequest;
 
 /**
@@ -68,6 +73,7 @@ public class TutorLogin {
     public String getPicture ( ){
         return picture;
     }
+
     /**
      * Function used to log the user into the system, giving them access to view timetables,
      * add events and use the system.
@@ -87,6 +93,7 @@ public class TutorLogin {
                                      "' AND Password = '" + password  + "';" );
         
         if( result.length != 0 ) {
+            TutorID = result[0];
             firstName = result[1];
             lastName = result[2];
             department = result[3];

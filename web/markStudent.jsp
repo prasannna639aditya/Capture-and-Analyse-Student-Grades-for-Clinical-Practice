@@ -41,7 +41,8 @@
                 }
                 else {
                     if( core.validateMarkingForm( ) ) {
-                        out.print( "<p>You have successfully graded a student!</p>" );
+                        core.getStudentID();
+                        out.print( "<p>You have successfully graded </p>" + core.getStudentID() + ".</p>"  );
                         out.print( "<p><a href='tutorWelcome.jsp'>Back to home!</a></p>" );
                     }
                     else{

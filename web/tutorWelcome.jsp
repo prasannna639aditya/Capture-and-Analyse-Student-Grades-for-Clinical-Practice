@@ -4,6 +4,7 @@
     Author     : Delaney
 --%>
 
+<%@page import="application.TutorLogin"%>
 <%@page import="application.StudentLookup"%>
 <%@page import="guipackage.GUI"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -31,6 +32,7 @@
     <body>
         <%
           GUI gui = new GUI( );
+          TutorLogin tutor = new TutorLogin();
           StudentLookup look = new StudentLookup();
           if( session.getAttribute( "Authenticated" ) == null ) {
                 response.sendRedirect( "index.jsp" );
@@ -38,10 +40,11 @@
             else {
                 String username = (String) session.getAttribute( "Authenticated" );
                 String firstName = (String) session.getAttribute( "firstName" );
+                String TutorID = (String) session.getAttribute( "TutorID" );
                 String lastName = (String) session.getAttribute( "lastName" );
                 String department = (String) session.getAttribute( "department" );
                 String picture = (String) session.getAttribute( "picture" );
-                out.print(gui.tutorNavigation(true, firstName, lastName, department, picture));
+                out.print(gui.tutorNavigation(true, TutorID, firstName, lastName, department, picture));
                 out.print(look.fetchNames());
           }
         %>

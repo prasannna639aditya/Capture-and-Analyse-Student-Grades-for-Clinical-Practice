@@ -14,13 +14,18 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 /**
  *
  * @author Delaney
  */
 public class CoreSkills {
+    String date = new SimpleDateFormat("dd-MM-yyyy").format(Calendar.getInstance().getTime());
+    String time = new SimpleDateFormat("HH:mm:ss").format(Calendar.getInstance().getTime());
+    
     private String studentID;
     private String patientID;
     private String tutorID;  
@@ -43,7 +48,7 @@ public class CoreSkills {
     private String approUseOfMirror;
     private String approFingerSupport;
     private String treatmentID;
-    private String dateAdded;
+    private int treatmentResult;
     private DatabaseClass database;
     private final ArrayList<String> errors;
     
@@ -69,8 +74,8 @@ public class CoreSkills {
         approLightPos = "";
         approUseOfMirror = "";
         approFingerSupport = "";
-        dateAdded = "";
         treatmentID = "";
+        treatmentResult = 0;
         errors = new ArrayList<>( );
         database = new DatabaseClass( );
         database.setup( "localhost", "final_year_project", "root", "" );
@@ -272,22 +277,28 @@ public class CoreSkills {
         this.treatmentID = treatmentID;
     }
     
-    public String getDateAdded( ) {
-        return dateAdded;
-    } 
-    /**
-     * Setter method for the end date of the event
-     * @param dateAdded (string)
-     */
-    public void setDateAdded( final String dateAdded ) {
-        this.dateAdded = dateAdded;
-    }
     
     public boolean validateMarkingForm( ) {
         boolean isValid = true; 
         
+        if( ! isInteger( treatmentID ) && treatmentID.length() > 8){
+            errors.add( "Please enter a valid Treatment ID" );
+            isValid = false;
+        }
         
+        if( ! isInteger( tutorID ) && tutorID.length() > 8){
+            errors.add( "Please enter a valid Tutor" );
+            isValid = false;
+        }
+        
+        if( ! isInteger( patientID ) && patientID.length() > 8){
+            errors.add( "Please enter a valid Patient" );
+            isValid = false;
+        }
+         
         if( isValid ) {
+            treatmentResult = score( abilToEstDiag, abilToFormTrtPlan , ensInfCons , equipPrep, examIntraOralHard, examIntraOralSoft, extraOralExam, infectionControl, interpOfSpecInves, localAnaesthesiaBlock, localAnaesthesiaInfiltration, managementofComplications, matSelecHandling, approPatPos, approOpPos , approLightPos , approUseOfMirror, approFingerSupport );
+            getStudent( studentID );
             markStudent( );
         }  
         
@@ -295,16 +306,7 @@ public class CoreSkills {
     }
     
     
-    /**public boolean hasBeenGraded(String studentID, String treatmentID) {
-        String[] dbResult = database.SelectRow( "SELECT StudentID FROM TBICoreSkills WHERE StudentID = '" + studentID + 
-                                               "AND TreatmentID = '" + treatmentID + "';" );
-        
-        if(dbResult.length != 0) {
-            return true;
-        }
-        return false;
-    }**/
-    
+ 
     /**
      * Function to print any error messages that may have been collected throughout the 
      * registration process
@@ -322,15 +324,67 @@ public class CoreSkills {
         return errorList;
     }
     
+        /**
+     * Function to check if a string can be parsed to an integer.
+     * @param value
+     * @return true if the string is a string representation of an integer and false if otherwise
+     */
+    public boolean isInteger( String value ) {
+        try { 
+            Integer.parseInt( value ); 
+        } 
+        catch( NumberFormatException exception ) { 
+            return false; 
+        }
+        return true;
+    }
+    
+    public int score( String abilToEstDiag, String abilToFormTrtPlan , String ensInfCons , String equipPrep, String examIntraOralHard, String examIntraOralSoft, String extraOralExam, String infectionControl, String interpOfSpecInves, String localAnaesthesiaBlock, String localAnaesthesiaInfiltration, String managementofComplications, String matSelecHandling, String approPatPos, String approOpPos , String approLightPos , String approUseOfMirror, String approFingerSupport ){
+        int result = 0;
+        int sum = 0;
+        
+        int abilToEstDiagInt = Integer.parseInt(abilToEstDiag);
+        int abilToFormTrtPlanInt = Integer.parseInt(abilToFormTrtPlan);
+        int ensInfConsInt = Integer.parseInt(ensInfCons);
+        int equipPrepInt = Integer.parseInt(equipPrep);
+        int examIntraOralHardInt = Integer.parseInt(examIntraOralHard);
+        int examIntraOralSoftInt = Integer.parseInt(examIntraOralSoft);
+        int extraOralExamInt = Integer.parseInt(extraOralExam);
+        int infectionControlInt = Integer.parseInt(infectionControl);
+        int interpOfSpecInvesInt = Integer.parseInt(interpOfSpecInves);
+        int localAnaesthesiaBlockInt = Integer.parseInt(localAnaesthesiaBlock);
+        int localAnaesthesiaInfiltrationInt = Integer.parseInt(localAnaesthesiaInfiltration);
+        int managementofComplicationsInt = Integer.parseInt(managementofComplications);
+        int matSelecHandlingInt = Integer.parseInt(matSelecHandling);
+        int approPatPosInt = Integer.parseInt(approPatPos);
+        int approOpPosInt = Integer.parseInt(approOpPos);
+        int approLightPosInt = Integer.parseInt(approLightPos);
+        int approUseOfMirrorInt = Integer.parseInt(approUseOfMirror);
+        int approFingerSupportInt = Integer.parseInt(approFingerSupport);
+        
+        sum = abilToEstDiagInt + abilToFormTrtPlanInt + ensInfConsInt + equipPrepInt + examIntraOralHardInt + examIntraOralSoftInt + extraOralExamInt + infectionControlInt + interpOfSpecInvesInt + localAnaesthesiaBlockInt + localAnaesthesiaInfiltrationInt + managementofComplicationsInt + matSelecHandlingInt + approPatPosInt + approOpPosInt + approLightPosInt + approUseOfMirrorInt + approFingerSupportInt ; 
+        result = sum/18;
+        
+        return result;
+    }
+    
+    public String[] getStudent( String studentID ) {
+        String[] dbResult = database.SelectRow( "SELECT * FROM Students WHERE StudentID = '" + studentID + "';" );
+        
+        database.Close();
+        return dbResult;
+    }
+    
+    
     public void markStudent(  ) {
        
-        database.Insert( "INSERT INTO TBICoreSkills( ID,StudentID, PatientID, TutorID, AbilityToEstablishDiagnosis, AbilityToFormulateATreatmentPlan, EnsuringInformedConsent, EquipmentPreparationSelection,"
+        database.Insert( "INSERT INTO TBICoreSkills( StudentID, PatientID, TutorID, AbilityToEstablishDiagnosis, AbilityToFormulateATreatmentPlan, EnsuringInformedConsent, EquipmentPreparationSelection,"
                 + "ExaminationIntraOralHardTissues, ExaminationIntraOralSoftTissues, ExtraOralExamination, InfectionControl, InterpretationOfSpeciaInvestigations, LocalAnaesthesiaBlock, LocalAnaesthesiaInfiltration,"
                 + "ManagementOfComplications, MaterialSelectionAndHandling, AppropriatePatientPosition, AppropriateOperatorPosition, AppropriateLightPosition, AppropriateUseOfMirror, AppropriateFingerSupport,"
-                + "DateAdded,TreatmentID )"
-                +"VALUES( NULL,'" + studentID + "', '" + patientID + "', '" + tutorID + "', '" + abilToEstDiag + "', '" + abilToFormTrtPlan + "', '" + ensInfCons + "', '" + equipPrep + "','" + examIntraOralHard + "','" + examIntraOralSoft + "','" + extraOralExam + "','" + infectionControl + "','" + interpOfSpecInves + "','" + localAnaesthesiaBlock + "','" + localAnaesthesiaInfiltration + "','" + managementofComplications + "','" + matSelecHandling + "','" + approPatPos + "','" + approOpPos + "','" + approLightPos + "','" + approUseOfMirror + "','" + approFingerSupport + "','" + dateAdded + "','" + treatmentID + "' );" );
+                + "DateAdded, TreatmentID, Time, TreatmentScore )"
+                +"VALUES( '" + studentID + "', '" + patientID + "', '" + tutorID + "', '" + abilToEstDiag + "', '" + abilToFormTrtPlan + "', '" + ensInfCons + "', '" + equipPrep + "','" + examIntraOralHard + "','" + examIntraOralSoft + "','" + extraOralExam + "','" + infectionControl + "','" + interpOfSpecInves + "','" + localAnaesthesiaBlock + "','" + localAnaesthesiaInfiltration + "','" + managementofComplications + "','" + matSelecHandling + "','" + approPatPos + "','" + approOpPos + "','" + approLightPos + "','" + approUseOfMirror + "','" + approFingerSupport + "','" + date + "','" + treatmentID + "','" + time + "','" + treatmentResult + "' );" );
         
-        /**database.Insert( "INSERT INTO StudentClass( StudentID, YearID, GroupID )" +
+        /**database.Insert( "INSERT INTO TreatmentPlanEntries( TreatmentPlanID, TreatmentItem, GroupID )" +
                          "VALUES( '" + studentID + "', '" + yearID + "','" + groupID + "' );" );**/
         
         database.Close();
@@ -340,7 +394,7 @@ public class CoreSkills {
         Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
         Statement stmt = conn.createStatement();
         ResultSet rsStudent; 
-        rsStudent = stmt.executeQuery("SELECT StudentID, FirstName, LastName FROM Students"); 
+        rsStudent = stmt.executeQuery("SELECT StudentID, FirstName, LastName FROM Students");
         
         String form = "<form name='marking_form' action='markStudent.jsp' method='POST'>\n";
         form += "<label for='studentID'>Student:</label>\n";
@@ -352,7 +406,7 @@ public class CoreSkills {
         form += "<input type='patientID' name='patientID' value='" + patientID +  "' placeholder='1234'  /><br />\n";
         form += "<label for='tutorID'>Tutor:</label>\n";
         form += "<input type='tutorID' name='tutorID' value='" + tutorID +  "' placeholder='54321'  /><br />\n";
-        form += "<label for='treatmentID'>Treatment:</label>\n";
+        form += "<label for='treatmentID'>Treatment ID:</label>\n";
         form += "<input type='treatmentID' name='treatmentID' value='" + treatmentID +  "' placeholder='54321'  /><br />\n";
         form += "<label for='abilToEstDiag'>Ability to establish diagnosis(es):</label>\n";
         form += "<select name=\"abilToEstDiag\"id='dropdown' >\n" +
@@ -516,8 +570,8 @@ public class CoreSkills {
                     "  <option value=\"5\">5</option>\n" +
                     "  <option value=\"5\">6</option>\n" +
                 "</select><br />";
-        form +=    "<label for=\"dateAdded\">Date:</label>\n";
-        form += "<input type='dateAdded' name='dateAdded' value='" + dateAdded +  "' placeholder='54321'  /><br />\n";
+        /**form +=    "<label for=\"dateAdded\">Date:</label>\n";
+        form += "<input type='dateAdded' name='dateAdded' value='" + timeStamp +  "' placeholder='54321'  /><br />\n";**/
         form += "<input type='submit' value='Submit' name='submit' /><br />\n";
         form += "</form>\n";
         conn.close();

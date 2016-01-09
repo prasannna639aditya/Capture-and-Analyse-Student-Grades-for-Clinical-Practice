@@ -83,7 +83,7 @@ public class GUI {
     }
         **/
         
-    public String tutorNavigation(boolean printName, String firstName, String lastName, String department, String picture) {
+    public String tutorNavigation(boolean printName, String TutorID, String firstName, String lastName, String department, String picture) {
         form = "<div id=\"wrapper\">\n";
         form += "<div id=\"sidebar-wrapper\">\n";
         form += "<ul class=\"sidebar-nav\">\n";
@@ -104,9 +104,29 @@ public class GUI {
         form += "<div class=\"col-lg-12\">\n";
         form += "<a href=\"#menu-toggle\" class=\"btn btn-default\" id=\"menu-toggle\">Toggle Menu</a>\n";
         if(printName) {
-            form += "<h1 id=\"welcomeH\">Welcome "+firstName+" "+lastName+"</h1>";
-            form += "<h1>Department:</h1><h3>"+department+"</h3>";
-            form += "<img>"+picture+"</img>";
+            
+                   form += "<div class=\"table-responsive\">\n";
+                   form += "<table class=\"table\">\n";
+                   form += "<thead>\n";
+                   form += "<tr>\n";
+                   form += "<th>Picture</th>\n";
+                   form += "<th>Tutor ID</th>\n";
+                   form += "<th>First Name</th>\n";
+                   form += "<th>Surname</th>\n";
+                   form += "<th>Department</th>\n";
+                   form += "</tr>\n";
+                   form += "<tbody>\n";
+                   form += "<tr>\n";
+                   form += "<tr>\n";
+                   form += "<td><img src=\"" + picture + "\"</td>\n";
+                   form += "<td>" + TutorID + "</td>\n";
+                   form += "<td>" + firstName + "</td>\n";
+                   form += "<td>" + lastName + "</td>\n";
+                   form += "<td>" + department + "</td>\n";
+                   form += "</tr>\n";
+                   form += "</tbody>\n";
+                   form += "</table>\n";
+                   form += "</div>\n";
             
         }
         form += "</div>\n";

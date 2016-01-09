@@ -34,8 +34,11 @@
                 else{
                     if( login.loginTutor( request )) {
                         session.setAttribute( "Authenticated", login.getTutorID( ) );
+                        session.setAttribute("TutorID", login.getTutorID( ) );
                         session.setAttribute("firstName", login.getFirstName( ) );
                         session.setAttribute("lastName", login.getLastName( ) );
+                        session.setAttribute("department", login.getDepartment( ) );
+                        session.setAttribute("picture", login.getPicture( ) );
                         response.sendRedirect( "tutorWelcome.jsp" );
                     }
                     out.print( login.tutorLoginForm( ) );
