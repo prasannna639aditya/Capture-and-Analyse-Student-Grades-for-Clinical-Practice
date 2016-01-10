@@ -34,10 +34,10 @@
             <%
                 GUI gui = new GUI( );
                 out.print( gui.navigation( ));
+                String TutorID = (String) session.getAttribute( "TutorID" );
                 
                 if( request.getParameter( "submit" ) == null ) {
-
-                    out.print( core.markingForm( ) );
+                    out.print( core.markingForm( TutorID ) );
                 }
                 else {
                     if( core.validateMarkingForm( ) ) {
@@ -46,7 +46,7 @@
                         out.print( "<p><a href='tutorWelcome.jsp'>Back to home!</a></p>" );
                     }
                     else{
-                        out.print( core.markingForm( ) );
+                        out.print( core.markingForm( TutorID ) );
                         out.print( core.printErrors( ) );
                     }
                 }

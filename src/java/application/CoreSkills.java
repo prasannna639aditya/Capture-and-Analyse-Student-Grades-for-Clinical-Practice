@@ -390,7 +390,7 @@ public class CoreSkills {
         database.Close();
     }
     
-    public String markingForm( ) throws SQLException {
+    public String markingForm( String TutorID) throws SQLException {
         Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
         Statement stmt = conn.createStatement();
         ResultSet rsStudent; 
@@ -402,10 +402,14 @@ public class CoreSkills {
         while ( rsStudent.next() ) {
         form += "<option value=\"" + rsStudent.getString("StudentID") + "\" >" + rsStudent.getString("FirstName") + " " + rsStudent.getString("LastName") + "</option>\n";
         }
+        form += "</select><br />";
         form += "<label for='patientID'>Patient:</label>\n";
         form += "<input type='patientID' name='patientID' value='" + patientID +  "' placeholder='1234'  /><br />\n";
-        form += "<label for='tutorID'>Tutor:</label>\n";
-        form += "<input type='tutorID' name='tutorID' value='" + tutorID +  "' placeholder='54321'  /><br />\n";
+        form += "<label for='tutorID'>Tutor ID:</label>\n"
+                        + "<select name=\"tutorID\" id='dropdown'>\n" 
+                        + "  <option value=\"" + TutorID + "\" selected>" + TutorID + "</option>\n" 
+                        + "</select><br />"; 
+       
         form += "<label for='treatmentID'>Treatment ID:</label>\n";
         form += "<input type='treatmentID' name='treatmentID' value='" + treatmentID +  "' placeholder='54321'  /><br />\n";
         form += "<label for='abilToEstDiag'>Ability to establish diagnosis(es):</label>\n";
