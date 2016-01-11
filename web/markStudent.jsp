@@ -33,7 +33,7 @@
         
             <%
                 GUI gui = new GUI( );
-                out.print( gui.navigation( ));
+                out.print( gui.tutorNavigation( ));
                 String TutorID = (String) session.getAttribute( "TutorID" );
                 
                 if( request.getParameter( "submit" ) == null ) {

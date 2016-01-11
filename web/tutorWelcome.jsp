@@ -21,10 +21,7 @@
         <link href="css/simple-sidebar.css" rel="stylesheet">
         <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
         <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
-        <title>JSP Page</title>
-           
-
-    <title>Simple Sidebar - Start Bootstrap Template</title>
+        <title>Welcome Tutor</title>
 
    
     
@@ -44,8 +41,7 @@
                 String lastName = (String) session.getAttribute( "lastName" );
                 String department = (String) session.getAttribute( "department" );
                 String picture = (String) session.getAttribute( "picture" );
-                out.print(gui.tutorNavigation(true, TutorID, firstName, lastName, department, picture));
-                out.print(look.fetchNames());
+                out.print(gui.tutorWelcomeNavigation(true, TutorID, firstName, lastName, department, picture));
           }
         %>
         

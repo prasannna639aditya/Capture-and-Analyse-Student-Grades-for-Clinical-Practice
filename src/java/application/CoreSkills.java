@@ -574,8 +574,6 @@ public class CoreSkills {
                     "  <option value=\"5\">5</option>\n" +
                     "  <option value=\"5\">6</option>\n" +
                 "</select><br />";
-        /**form +=    "<label for=\"dateAdded\">Date:</label>\n";
-        form += "<input type='dateAdded' name='dateAdded' value='" + timeStamp +  "' placeholder='54321'  /><br />\n";**/
         form += "<input type='submit' value='Submit' name='submit' /><br />\n";
         form += "</form>\n";
         conn.close();

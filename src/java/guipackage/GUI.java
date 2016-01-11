@@ -83,7 +83,7 @@ public class GUI {
     }
         **/
         
-    public String tutorNavigation(boolean printName, String TutorID, String firstName, String lastName, String department, String picture) {
+    public String tutorWelcomeNavigation(boolean printName, String TutorID, String firstName, String lastName, String department, String picture) {
         form = "<div id=\"wrapper\">\n";
         form += "<div id=\"sidebar-wrapper\">\n";
         form += "<ul class=\"sidebar-nav\">\n";
@@ -92,6 +92,7 @@ public class GUI {
         form += "<a href=\"index.jsp\">Logout</a>\n";
         form += "</li>\n";
         form += "<li><a href=\"tutorWelcome.jsp\">Home</a></li>\n";
+        form += "<li><a href=\"students.jsp\">Students</a></li>\n";
         form += "<li><a href=\"registerStudent.jsp\">Register a Student</a></li>\n";
         form += "<li><a href=\"markStudent.jsp\">Grade Student</a></li>\n";
         form += "<li><a href=\"#\">Dashboard</a></li>\n";
@@ -139,6 +140,33 @@ public class GUI {
         return form;
     }
     
+    public String tutorNavigation() {
+        form = "<div id=\"wrapper\">\n";
+        form += "<div id=\"sidebar-wrapper\">\n";
+        form += "<ul class=\"sidebar-nav\">\n";
+        form += "<li class=\"sidebar-brand\">\n"; 
+
+        form += "<a href=\"index.jsp\">Logout</a>\n";
+        form += "</li>\n";
+        form += "<li><a href=\"tutorWelcome.jsp\">Home</a></li>\n";
+        form += "<li><a href=\"students.jsp\">Students</a></li>\n";
+        form += "<li><a href=\"registerStudent.jsp\">Register a Student</a></li>\n";
+        form += "<li><a href=\"markStudent.jsp\">Grade Student</a></li>\n";
+        form += "<li><a href=\"#\">Dashboard</a></li>\n";
+        form += "<li><a href=\"#\">Dashboard</a></li>\n";
+        form += "</ul>\n";        
+        form += "</div>\n";
+        form += "<div id=\"page-content-wrapper\">\n";  
+        form += "<div class=\"container-fluid\">\n";
+        form += "<div class=\"row\">\n";
+        form += "<div class=\"col-lg-12\">\n";
+        form += "<a href=\"#menu-toggle\" class=\"btn btn-default\" id=\"menu-toggle\">Toggle Menu</a>\n";
+        form += "<script src=\"js/jquery.js\"></script>\n";
+        form += "<script src=\"js/bootstrap.min.js\"></script>\n";
+        form += "    <script>$(\"#menu-toggle\").click(function(e) {e.preventDefault();$(\"#wrapper\").toggleClass(\"toggled\");});</script>\n";
+        return form;
+    }
+    
         public String studentNavigation(boolean printName, String firstName, String lastName) {
         form = "<div id=\"wrapper\">\n";
         form += "<div id=\"sidebar-wrapper\">\n";
@@ -157,10 +185,6 @@ public class GUI {
         form += "<div class=\"row\">\n";
         form += "<div class=\"col-lg-12\">\n";
         form += "<a href=\"#menu-toggle\" class=\"btn btn-default\" id=\"menu-toggle\">Toggle Menu</a>\n";
-        if(printName) {
-            form += "<h1 id=\"welcomeH\">Welcome "+firstName+" "+lastName+"</h1>";
-        }
-        form += "<p></p>\n";
         form += "</div>\n";
         form += "</div>\n";
         form += "</div>\n";

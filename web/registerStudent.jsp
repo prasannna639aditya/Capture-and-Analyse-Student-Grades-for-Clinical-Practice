@@ -32,7 +32,7 @@
         
             <%
                 GUI gui = new GUI( );
-                out.print( gui.navigation( ));
+                out.print( gui.tutorNavigation( ));
                 
                 if( request.getParameter( "submit" ) == null ) {
 
@@ -53,8 +53,8 @@
            
         </div>    
         </div>
-        </div>
-</div>
-</div>
+       </div>
+     </div>
+    </div>
     </body>
 </html>

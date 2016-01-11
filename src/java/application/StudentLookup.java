@@ -55,11 +55,11 @@ public class StudentLookup {
                    form += "</tr>\n";
                    form += "<tbody>\n";
                    form += "<tr>\n";
-                   
+               
             while(rs.next()){
                 form += "<tr>\n";
-                form += "<td><img src=\"" + rs.getString("Students.Picture") + "\"</td>\n";
-                form += "<td>" + rs.getString("Students.StudentID") + "</td>\n";
+                form += "<td><a href=\"markStudent.jsp\"><img src=\"" + rs.getString("Students.Picture") + "\"</a></td>\n";
+                form += "<td><a href=\"markStudent.jsp\">" + rs.getString("Students.StudentID") + "</a></td>\n";
                 form += "<td>" + rs.getString("Students.FirstName") + "</td>\n";
                 form += "<td>" + rs.getString("Students.LastName") + "</td>\n";
                 form += "<td>" + rs.getString("CourseYear.ProgrammeYear") + "</td>\n";
