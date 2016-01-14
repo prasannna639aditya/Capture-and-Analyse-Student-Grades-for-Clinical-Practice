@@ -371,7 +371,7 @@ public class CoreSkills {
     public String[] getStudent( String studentID ) {
         String[] dbResult = database.SelectRow( "SELECT * FROM Students WHERE StudentID = '" + studentID + "';" );
         
-        database.Close();
+        
         return dbResult;
     }
     
@@ -390,19 +390,22 @@ public class CoreSkills {
         database.Close();
     }
     
-    public String markingForm( String TutorID) throws SQLException {
+    public String markingForm( String TutorID, String StudentID) throws SQLException {
         Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
         Statement stmt = conn.createStatement();
         ResultSet rsStudent; 
         rsStudent = stmt.executeQuery("SELECT StudentID, FirstName, LastName FROM Students");
         
         String form = "<form name='marking_form' action='markStudent.jsp' method='POST'>\n";
-        form += "<label for='studentID'>Student:</label>\n";
-        form += "<select name=\"studentID\"id='dropdown' >\n";
+        form += "<label for='studentID'>Student:</label>\n"
+                + "<select name=\"studentID\" id='dropdown'>\n" 
+                        + "  <option value=\"" + StudentID + "\" selected>" + StudentID + "</option>\n" 
+                        + "</select><br />"; 
+        /**form += "<select name=\"studentID\"id='dropdown' >\n";
         while ( rsStudent.next() ) {
         form += "<option value=\"" + rsStudent.getString("StudentID") + "\" >" + rsStudent.getString("FirstName") + " " + rsStudent.getString("LastName") + "</option>\n";
         }
-        form += "</select><br />";
+        form += "</select><br />";**/
         form += "<label for='patientID'>Patient:</label>\n";
         form += "<input type='patientID' name='patientID' value='" + patientID +  "' placeholder='1234'  /><br />\n";
         form += "<label for='tutorID'>Tutor ID:</label>\n"

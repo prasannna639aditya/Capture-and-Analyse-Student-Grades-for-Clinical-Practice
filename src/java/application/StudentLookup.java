@@ -10,6 +10,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  *
@@ -29,6 +30,15 @@ public class StudentLookup {
         this.lastName = "";
         this.result = new String[10];
     }
+    
+    public String getStudentID() {
+        return studentID;
+    }
+    
+    public void setStudentID(String studentID) {
+        this.studentID = studentID;
+    }
+
     
     public String fetchNames() throws SQLException{
         
@@ -59,13 +69,15 @@ public class StudentLookup {
             while(rs.next()){
                 form += "<tr>\n";
                 form += "<td><a href=\"markStudent.jsp\"><img src=\"" + rs.getString("Students.Picture") + "\"</a></td>\n";
-                form += "<td><a href=\"markStudent.jsp\">" + rs.getString("Students.StudentID") + "</a></td>\n";
+                form += "<td><form name='grade' action='markStudent.jsp' method='POST'><input type='text' value='" + rs.getString("Students.StudentID") + "' name='studentID' /><input type=\"submit\" value=\"submit\"><br /></form></td>\n";
                 form += "<td>" + rs.getString("Students.FirstName") + "</td>\n";
                 form += "<td>" + rs.getString("Students.LastName") + "</td>\n";
                 form += "<td>" + rs.getString("CourseYear.ProgrammeYear") + "</td>\n";
                 form += "<td>" + rs.getString("StudentGroups.GroupDescriptor") + "</td>\n";
                 form += "</tr>\n";
             }
+            
+            
             
             form += "</tbody>\n";
             form += "</table>\n";
