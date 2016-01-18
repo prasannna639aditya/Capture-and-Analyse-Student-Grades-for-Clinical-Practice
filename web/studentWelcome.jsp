@@ -31,7 +31,9 @@
                 String username = (String) session.getAttribute( "Authenticated" );
                 String firstName = (String) session.getAttribute( "firstName" );
                 String lastName = (String) session.getAttribute( "lastName" );
-                out.print(gui.studentNavigation(true, firstName, lastName));
+                String picture = (String) session.getAttribute( "picture" );
+                String StudentID = (String) session.getAttribute( "StudentID" );
+                out.print(gui.studentWelcomeNavigation(true, StudentID, firstName, lastName, picture));
           }
         %>
     </body>

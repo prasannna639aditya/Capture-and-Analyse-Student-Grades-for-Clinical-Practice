@@ -62,18 +62,23 @@ public class StudentLookup {
                    form += "<th>Surname</th>\n";
                    form += "<th>Programme Year</th>\n";
                    form += "<th>Course Year</th>\n";
+                   form += "<th>View Treatment Items</th>\n";
                    form += "</tr>\n";
                    form += "<tbody>\n";
                    form += "<tr>\n";
                
             while(rs.next()){
                 form += "<tr>\n";
-                form += "<td><a href=\"markStudent.jsp\"><img src=\"" + rs.getString("Students.Picture") + "\"</a></td>\n";
-                form += "<td><form name='grade' action='markStudent.jsp' method='POST'><input type='text' value='" + rs.getString("Students.StudentID") + "' name='studentID' /><input type=\"submit\" value=\"submit\"><br /></form></td>\n";
+                form += "<td><img id='studnetID' src=\"" + rs.getString("Students.Picture") + "\"</td>\n";
+                form += "<td><form name='treatments' action='treatmentItems.jsp' method='POST'>"
+                        + "<select name=\"studentID\" id='dropdown'>"
+                        + "<option value=\"" + rs.getString("Students.StudentID") + "\" selected>" + rs.getString("Students.StudentID") + "</option>"
+                        + "</select><br /></td>\n";
                 form += "<td>" + rs.getString("Students.FirstName") + "</td>\n";
                 form += "<td>" + rs.getString("Students.LastName") + "</td>\n";
                 form += "<td>" + rs.getString("CourseYear.ProgrammeYear") + "</td>\n";
                 form += "<td>" + rs.getString("StudentGroups.GroupDescriptor") + "</td>\n";
+                form += "<td><input type=\"submit\" value=\"View Treatments\" class=\"btn-style\"></form></td>";
                 form += "</tr>\n";
             }
             

@@ -36,6 +36,8 @@
                         session.setAttribute( "Authenticated", login.getStudentID( ) );
                         session.setAttribute("firstName", login.getFirstName( ) );
                         session.setAttribute("lastName", login.getLastName( ) );
+                        session.setAttribute("picture", login.getPicture( ) );
+                        session.setAttribute("StudentID", login.getStudentID( ) );
                         response.sendRedirect( "studentWelcome.jsp" );
                     }
                     out.print( login.studentLoginForm( ) );

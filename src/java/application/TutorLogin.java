@@ -6,12 +6,15 @@
 package application;
 
 import dbpackage.DatabaseClass;
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import javax.servlet.http.HttpServletRequest;
+import passwordhash.PasswordHash;
 
 /**
  *
@@ -24,6 +27,7 @@ public class TutorLogin {
     private String lastName;
     private String department;
     private String picture;
+    private String passwordToCheck;
     private String[] result;
     /**
      * Constructor for the class
@@ -35,6 +39,7 @@ public class TutorLogin {
         this.lastName = "";
         this.department = "";
         this.picture = "";
+        this.passwordToCheck = "";
         this.result = new String[10];
     }
     /**
@@ -73,6 +78,14 @@ public class TutorLogin {
     public String getPicture ( ){
         return picture;
     }
+    
+    public String getpasswordToCheck( ) {
+        return passwordToCheck;
+    }
+    
+    public void setPasswordToCheck(String passwordToCheck) {
+        this.passwordToCheck = passwordToCheck;
+    }
 
     /**
      * Function used to log the user into the system, giving them access to view timetables,
@@ -80,7 +93,7 @@ public class TutorLogin {
      * @param request (HttpServletRequest)
      * @return true if logged in and false if otherwise.
      */
-    public boolean loginTutor( HttpServletRequest request ) {
+    public boolean loginTutor( HttpServletRequest request ) throws NoSuchAlgorithmException, InvalidKeySpecException, Exception  {
         DatabaseClass database = new DatabaseClass( );
         database.setup( "localhost", "final_year_project", "root", "" );
 
@@ -89,14 +102,14 @@ public class TutorLogin {
         TutorID = request.getParameter( "TutorID" );
         password = request.getParameter( "password" );
         
-        result = database.SelectRow( "SELECT * FROM Tutors WHERE TutorID = '" + TutorID + 
-                                     "' AND Password = '" + password  + "';" );
+        result = database.SelectRow( "SELECT * FROM Tutors WHERE TutorID = '" + TutorID + "';" );
         
         if( result.length != 0 ) {
             TutorID = result[0];
             firstName = result[1];
             lastName = result[2];
             department = result[3];
+            passwordToCheck = result[4];
             picture = result[5];
             
         }
@@ -114,7 +127,7 @@ public class TutorLogin {
      * the TutorID and password stored in the database
      * @return true if correct and false if otherwise.
      */
-    public boolean validateLogin( ){
+    public boolean validateLogin( ) throws Exception{
         boolean isValid = true;
         
         if( TutorID.equals( "" ) ) {
@@ -122,6 +135,10 @@ public class TutorLogin {
         }
         if( password.equals( "" ) ) {
             isValid = false;
+        }
+        
+        if( PasswordHash.check( password, passwordToCheck) == false){
+           isValid = false;
         }
         
         return isValid;

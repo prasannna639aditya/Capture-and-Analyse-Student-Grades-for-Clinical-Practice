@@ -21,6 +21,8 @@ public class StudentLogin {
     private String password;
     private String firstName;
     private String lastName;
+    private String picture;
+    private String passwordToCheck;
     private String hashCheck;
     private String[] result;
     /**
@@ -31,6 +33,8 @@ public class StudentLogin {
         this.password = "";
         this.firstName = "";
         this.hashCheck = "";
+        this.picture = "";
+        this.passwordToCheck = "";
         this.result = new String[10];
     }
     /**
@@ -54,6 +58,10 @@ public class StudentLogin {
     public String getFirstName( ) {
         return firstName;
     }
+    
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
     /**
      * Getter method for the user's last name (surname)
      * @return the variable lastName (string)
@@ -61,12 +69,27 @@ public class StudentLogin {
     public String getLastName( ) {
         return lastName;
     }
-    /**
-     * Function used to log the user into the system, giving them access to view timetables,
-     * add events and use the system.
-     * @param request (HttpServletRequest)
-     * @return true if logged in and false if otherwise.
-     */
+    
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+    
+    public String getPicture( ) {
+        return picture;
+    }
+    
+    public void setPicture(String picture) {
+        this.picture = picture;
+    }
+    
+    public String getpasswordToCheck( ) {
+        return passwordToCheck;
+    }
+    
+    public void setPasswordToCheck(String passwordToCheck) {
+        this.passwordToCheck = passwordToCheck;
+    }
+    
     public boolean loginStudent( HttpServletRequest request ) throws NoSuchAlgorithmException, InvalidKeySpecException, Exception {
         DatabaseClass database = new DatabaseClass( );
         database.setup( "localhost", "final_year_project", "root", "" );
@@ -75,19 +98,21 @@ public class StudentLogin {
 
         StudentID = request.getParameter( "StudentID" );
         password = request.getParameter( "password" );
-        hashCheck = PasswordHash.getSaltedHash( password );
         
         
-        
-        result = database.SelectRow( "SELECT * FROM Students WHERE StudentID = '" + StudentID + 
-                                     "' AND '" + PasswordHash.check(password, "Password") + ";" );
+        result = database.SelectRow( "SELECT * FROM Students WHERE StudentID = '" + StudentID + "';" );
         
             
         
         if( result.length != 0 ) {
+            StudentID = result[0];
+            passwordToCheck = result[1];
             firstName = result[2];
             lastName = result[3];
+            picture = result[5]; 
         }
+        
+        
         
         
         if( ! validateLogin( ) ){
@@ -104,7 +129,7 @@ public class StudentLogin {
      * the StudentID and password stored in the database
      * @return true if correct and false if otherwise.
      */
-    public boolean validateLogin( ){
+    public boolean validateLogin( ) throws Exception{
         boolean isValid = true;
         
         if( StudentID.equals( "" ) ) {
@@ -113,6 +138,10 @@ public class StudentLogin {
         if( password.equals( "" ) ) {
             isValid = false;
         }
+        if( PasswordHash.check( password, passwordToCheck) == false){
+           isValid = false;
+        }
+        
         
         return isValid;
     }  

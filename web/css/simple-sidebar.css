@@ -27,7 +27,7 @@
     height: 100%;
     margin-left: -250px;
     overflow-y: auto;
-    background: #000;
+    background: #E1E2E3;
     -webkit-transition: all 0.5s ease;
     -moz-transition: all 0.5s ease;
     -o-transition: all 0.5s ease;
@@ -47,11 +47,11 @@
 
 #wrapper.toggled #page-content-wrapper{
     position: absolute;
-    margin-right: -250px;
+    margin-right: -50px;
 }
 
 #menu-toggle{
-    float:right;
+    float:left;
 }
 /* Sidebar Styles */
 
@@ -72,13 +72,15 @@
 .sidebar-nav li a {
     display: block;
     text-decoration: none;
-    color: #999999;
+    color: #1C9EC9;
 }
+
+
 
 .sidebar-nav li a:hover {
     text-decoration: none;
     color: #fff;
-    background: rgba(255,255,255,0.2);
+    background: #1C9EC9;
 }
 
 .sidebar-nav li a:active,

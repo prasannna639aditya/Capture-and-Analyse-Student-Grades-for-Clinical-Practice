@@ -20,6 +20,7 @@
         <link href="css/landing-page.css" rel="stylesheet">
         <link href="css/simple-sidebar.css" rel="stylesheet">
         
+        
         <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
         <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
     
@@ -32,6 +33,8 @@
             <jsp:setProperty name="core" property="*" />
             <jsp:useBean id="lookup" class="application.StudentLookup" scope="request" />
             <jsp:setProperty name="lookup" property="*" />
+            <jsp:useBean id="treatment" class="application.TreatmentItems" scope="request" />
+            <jsp:setProperty name="treatment" property="*" />
             
             
         
@@ -40,13 +43,11 @@
                 StudentLookup studentLookup = new StudentLookup();
                 out.print( gui.tutorNavigation( ));
                 String TutorID = (String) session.getAttribute( "TutorID" );
-                request.setAttribute("studentID",request.getParameter("studentID"));
-                String StudentID = (String) session.getAttribute( "studentID" );
                 
                 
                 if( request.getParameter( "submit" ) == null ) {
                     
-                    out.print( core.markingForm( TutorID, lookup.getStudentID() ) );
+                    out.print( core.markingForm( TutorID, treatment.getStudentID(), treatment.getTreatmentID()) );
                 }
                 else {
                     if( core.validateMarkingForm( ) ) {
@@ -54,7 +55,7 @@
                         out.print( "<p><a href='tutorWelcome.jsp'>Back to home!</a></p>" );
                     }
                     else{
-                        out.print( core.markingForm( TutorID, lookup.getStudentID() ) );
+                        out.print( core.markingForm( TutorID, treatment.getStudentID(),treatment.getTreatmentID() ) );
                         out.print( core.printErrors( ) );
                     }
                 }

@@ -390,31 +390,35 @@ public class CoreSkills {
         database.Close();
     }
     
-    public String markingForm( String TutorID, String StudentID) throws SQLException {
+    public String markingForm( String TutorID, String StudentID, String TreatmentID) throws SQLException {
         Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
         Statement stmt = conn.createStatement();
-        ResultSet rsStudent; 
-        rsStudent = stmt.executeQuery("SELECT StudentID, FirstName, LastName FROM Students");
+        ResultSet rsPatient; 
+        rsPatient = stmt.executeQuery("SELECT PatientID, FirstName, LastName, DOB FROM Patients");
         
         String form = "<form name='marking_form' action='markStudent.jsp' method='POST'>\n";
         form += "<label for='studentID'>Student:</label>\n"
                 + "<select name=\"studentID\" id='dropdown'>\n" 
                         + "  <option value=\"" + StudentID + "\" selected>" + StudentID + "</option>\n" 
                         + "</select><br />"; 
-        /**form += "<select name=\"studentID\"id='dropdown' >\n";
-        while ( rsStudent.next() ) {
-        form += "<option value=\"" + rsStudent.getString("StudentID") + "\" >" + rsStudent.getString("FirstName") + " " + rsStudent.getString("LastName") + "</option>\n";
-        }
-        form += "</select><br />";**/
+        
         form += "<label for='patientID'>Patient:</label>\n";
-        form += "<input type='patientID' name='patientID' value='" + patientID +  "' placeholder='1234'  /><br />\n";
+        form += "<select name=\"patientID\"id='dropdown' >\n";
+        while ( rsPatient.next() ) {
+            form += "<option value=\"" + rsPatient.getString("PatientID") + "\" >" + rsPatient.getString("FirstName") + " " + rsPatient.getString("LastName") +  "</option>\n";
+        }
+        form += "</select><br />";
+        
         form += "<label for='tutorID'>Tutor ID:</label>\n"
                         + "<select name=\"tutorID\" id='dropdown'>\n" 
                         + "  <option value=\"" + TutorID + "\" selected>" + TutorID + "</option>\n" 
                         + "</select><br />"; 
-       
-        form += "<label for='treatmentID'>Treatment ID:</label>\n";
-        form += "<input type='treatmentID' name='treatmentID' value='" + treatmentID +  "' placeholder='54321'  /><br />\n";
+        
+        form += "<label for='treatmentID'>Treatment:</label>\n"
+                        + "<select name=\"treatmentID\" id='dropdown'>\n" 
+                        + "  <option value=\"" + TreatmentID + "\" selected>" + TreatmentID + "</option>\n" 
+                        + "</select><br />"; 
+        
         form += "<label for='abilToEstDiag'>Ability to establish diagnosis(es):</label>\n";
         form += "<select name=\"abilToEstDiag\"id='dropdown' >\n" +
                     "  <option value=\"1\" selected>1</option>\n" +
