@@ -44,7 +44,7 @@ public class TreatmentItems {
         this.treatmentID = treatmentID;
     }
     
-    public boolean hasBeenGraded( String StudentID ) {
+    public boolean hasBeenGraded( String StudentID, String TreatmentID ) {
         DatabaseClass database = new DatabaseClass( );
         database.setup( "localhost", "final_year_project", "root", "" );
         boolean isGraded = false;
@@ -52,7 +52,7 @@ public class TreatmentItems {
         
         
         
-        result = database.SelectRow( "SELECT TreatmentID FROM TBICoreSkills WHERE StudentID = '" + StudentID + "';" );
+        result = database.SelectRow( "SELECT * FROM TBICoreSkills JOIN TreatmentItems WHERE StudentID = TBICoreSkills.'" + StudentID + "' AND TBICoreSkills.'" + TreatmentID + "' = TreatmentItems.'" + TreatmentID + "';" );
         
         if( result.length != 0 ) {
             isGraded = true;
@@ -61,7 +61,7 @@ public class TreatmentItems {
         
         //database.Close();
   
-        return result.length != 0;
+        return isGraded;
     }
 
     
@@ -106,10 +106,10 @@ public class TreatmentItems {
                 form += "<td>" + rs.getString("TreatmentItems.DomainID") + "</td>\n";
                 form += "<td>" + rs.getString("TreatmentItems.RequirementsGroupID") + "</td>\n";
                 form += "<td>" + rs.getString("TreatmentItems.RequirementsWeighting") + "</td>\n";
-                if( hasBeenGraded( StudentID ) == false){
+                if( hasBeenGraded( StudentID, rs.getString("TreatmentItems.TreatmentItemID") ) == true){
                     form += "<td>already graded</td>\n";
                 }
-                else{
+               else{
                 form += "<td><input type=\"submit\" value=\"Grade\" class=\"btn-style\"></td></form>\n";
                 }
                 form += "</tr>\n";

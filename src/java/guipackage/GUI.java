@@ -67,8 +67,8 @@ public class GUI {
         form += "<div id=\"page-content-wrapper\">\n";  
         form += "<div class=\"container-fluid\">\n";
         form += "<div class=\"row\">\n";
-        form += "<div class=\"col-lg-12\">\n";
         form += "<a href=\"#menu-toggle\" class=\"btn btn-default\" id=\"menu-toggle\">Toggle Menu</a>\n";
+        form += "<div class=\"col-lg-12\">\n";
         if(printName) {
             
                    form += "<div class=\"table-responsive\">\n";
@@ -122,8 +122,8 @@ public class GUI {
         form += "<div id=\"page-content-wrapper\">\n";  
         form += "<div class=\"container-fluid\">\n";
         form += "<div class=\"row\">\n";
-        form += "<div class=\"col-lg-12\">\n";
         form += "<a href=\"#menu-toggle\" class=\"btn btn-default\" id=\"menu-toggle\">Toggle Menu</a>\n";
+        form += "<div class=\"col-lg-12\">\n";
         form += "<script src=\"js/jquery.js\"></script>\n";
         form += "<script src=\"js/bootstrap.min.js\"></script>\n";
         form += "    <script>$(\"#menu-toggle\").click(function(e) {e.preventDefault();$(\"#wrapper\").toggleClass(\"toggled\");});</script>\n";
