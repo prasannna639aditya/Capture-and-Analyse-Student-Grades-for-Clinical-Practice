@@ -49,6 +49,7 @@ public class CoreSkills {
     private String approFingerSupport;
     private String treatmentID;
     private int treatmentResult;
+    private String comment;
     private DatabaseClass database;
     private final ArrayList<String> errors;
     
@@ -76,6 +77,7 @@ public class CoreSkills {
         approFingerSupport = "";
         treatmentID = "";
         treatmentResult = 0;
+        comment = "";
         errors = new ArrayList<>( );
         database = new DatabaseClass( );
         database.setup( "localhost", "final_year_project", "root", "" );
@@ -277,6 +279,17 @@ public class CoreSkills {
         this.treatmentID = treatmentID;
     }
     
+    public String getComment( ) {
+        return comment;
+    }
+
+        
+    public void setComment( final String comment ) {
+        this.comment = comment;
+    }
+    
+    
+    
     
     public boolean validateMarkingForm( ) {
         boolean isValid = true; 
@@ -381,8 +394,8 @@ public class CoreSkills {
         database.Insert( "INSERT INTO TBICoreSkills( StudentID, PatientID, TutorID, AbilityToEstablishDiagnosis, AbilityToFormulateATreatmentPlan, EnsuringInformedConsent, EquipmentPreparationSelection,"
                 + "ExaminationIntraOralHardTissues, ExaminationIntraOralSoftTissues, ExtraOralExamination, InfectionControl, InterpretationOfSpeciaInvestigations, LocalAnaesthesiaBlock, LocalAnaesthesiaInfiltration,"
                 + "ManagementOfComplications, MaterialSelectionAndHandling, AppropriatePatientPosition, AppropriateOperatorPosition, AppropriateLightPosition, AppropriateUseOfMirror, AppropriateFingerSupport,"
-                + "DateAdded, TreatmentID, Time, TreatmentScore )"
-                +"VALUES( '" + studentID + "', '" + patientID + "', '" + tutorID + "', '" + abilToEstDiag + "', '" + abilToFormTrtPlan + "', '" + ensInfCons + "', '" + equipPrep + "','" + examIntraOralHard + "','" + examIntraOralSoft + "','" + extraOralExam + "','" + infectionControl + "','" + interpOfSpecInves + "','" + localAnaesthesiaBlock + "','" + localAnaesthesiaInfiltration + "','" + managementofComplications + "','" + matSelecHandling + "','" + approPatPos + "','" + approOpPos + "','" + approLightPos + "','" + approUseOfMirror + "','" + approFingerSupport + "','" + date + "','" + treatmentID + "','" + time + "','" + treatmentResult + "' );" );
+                + "DateAdded, TreatmentID, Time, TreatmentScore, Comment )"
+                +"VALUES( '" + studentID + "', '" + patientID + "', '" + tutorID + "', '" + abilToEstDiag + "', '" + abilToFormTrtPlan + "', '" + ensInfCons + "', '" + equipPrep + "','" + examIntraOralHard + "','" + examIntraOralSoft + "','" + extraOralExam + "','" + infectionControl + "','" + interpOfSpecInves + "','" + localAnaesthesiaBlock + "','" + localAnaesthesiaInfiltration + "','" + managementofComplications + "','" + matSelecHandling + "','" + approPatPos + "','" + approOpPos + "','" + approLightPos + "','" + approUseOfMirror + "','" + approFingerSupport + "','" + date + "','" + treatmentID + "','" + time + "','" + treatmentResult + "','" + comment + "' );" );
         
         /**database.Insert( "INSERT INTO TreatmentPlanEntries( TreatmentPlanID, TreatmentItem, GroupID )" +
                          "VALUES( '" + studentID + "', '" + yearID + "','" + groupID + "' );" );**/
@@ -581,6 +594,10 @@ public class CoreSkills {
                     "  <option value=\"5\">5</option>\n" +
                     "  <option value=\"5\">6</option>\n" +
                 "</select><br />";
+        form += "<label for='comment'>Comment:</label>\n" +
+                "<textarea name='comment' value='comment' id='comment'>Please comment on the students performance.</textarea>\n" +
+                "</select><br />";
+                
         form += "<input type='submit' value='Submit' name='submit' /><br />\n";
         form += "</form>\n";
         conn.close();

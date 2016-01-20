@@ -11,7 +11,6 @@ and open the template in the editor.
    font-size: 1em;
    margin-bottom: 3%;
    margin-top: 2%;
-   color: grey;
    -webkit-appearance: none;
    -moz-appearance: none;
    appearance: none;
@@ -48,4 +47,16 @@ img{
 	background : linear-gradient(top, #ffffff 0%, #f1f1f1 49%, #e1e1e1 51%, #f6f6f6 100%);
 	filter : progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f6f6f6',GradientType=0 );
 
+}
+
+
+.red
+{
+    text-align: center;
+}
+
+.graded
+{
+    background-color:#31b0d5;
+    color:white;
 }

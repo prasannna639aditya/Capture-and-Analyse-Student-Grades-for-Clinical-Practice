@@ -52,7 +52,7 @@ public class TreatmentItems {
         
         
         
-        result = database.SelectRow( "SELECT * FROM TBICoreSkills JOIN TreatmentItems WHERE StudentID = TBICoreSkills.'" + StudentID + "' AND TBICoreSkills.'" + TreatmentID + "' = TreatmentItems.'" + TreatmentID + "';" );
+        result = database.SelectRow( "SELECT * FROM TBICoreSkills WHERE StudentID = '" + StudentID + "' AND TreatmentID = '" + TreatmentID + "';" );
         
         if( result.length != 0 ) {
             isGraded = true;
@@ -63,7 +63,26 @@ public class TreatmentItems {
   
         return isGraded;
     }
-
+    
+    public String showGrade( String StudentID, String TreatmentID ) {
+        DatabaseClass database = new DatabaseClass( );
+        database.setup( "localhost", "final_year_project", "root", "" );
+        String grade = "";
+        
+        
+        
+        
+        result = database.SelectRow( "SELECT * FROM TBICoreSkills WHERE StudentID = '" + StudentID + "' AND TreatmentID = '" + TreatmentID + "';" );
+        
+        if( result.length != 0 ) {
+            grade = result[25];
+        }
+        
+        
+        //database.Close();
+  
+        return grade;
+    }
     
     public String fetchTreatments( String StudentID) throws SQLException{
         
@@ -93,8 +112,9 @@ public class TreatmentItems {
                    form += "<tr>\n";
                
             while(rs.next()){
-                form += "<tr>\n";
-                form += "<td><form name='grade' action='markStudent.jsp' method='POST'>"
+                if( hasBeenGraded( StudentID, rs.getString("TreatmentItems.TreatmentItemID") ) == true){
+                    form += "<tr class='graded'>\n";
+                    form += "<td><form name='grade' action='markStudent.jsp' method='POST'>"
                         + "<select name=\"studentID\" id='dropdown'>"
                         + "<option value=\"" + StudentID + "\" selected>" + StudentID + "</option>"
                         + "</select><br /></td>"
@@ -102,20 +122,34 @@ public class TreatmentItems {
                         + "<option value=\"" + rs.getString("TreatmentItems.TreatmentItemID") + "\" selected>" + rs.getString("TreatmentItems.TreatmentItemID") + "</option>"
                         + "</select><br />"
                         + "</td>\n";
-                form += "<td>" + rs.getString("TreatmentItems.TreatmentName") + "</td>\n";
-                form += "<td>" + rs.getString("TreatmentItems.DomainID") + "</td>\n";
-                form += "<td>" + rs.getString("TreatmentItems.RequirementsGroupID") + "</td>\n";
-                form += "<td>" + rs.getString("TreatmentItems.RequirementsWeighting") + "</td>\n";
-                if( hasBeenGraded( StudentID, rs.getString("TreatmentItems.TreatmentItemID") ) == true){
-                    form += "<td>already graded</td>\n";
+                    form += "<td>" + rs.getString("TreatmentItems.TreatmentName") + "</td>\n";
+                    form += "<td>" + rs.getString("TreatmentItems.DomainID") + "</td>\n";
+                    form += "<td>" + rs.getString("TreatmentItems.RequirementsGroupID") + "</td>\n";
+                    form += "<td>" + rs.getString("TreatmentItems.RequirementsWeighting") + "</td>\n";
+                    form += "<td class='red'>" + showGrade( StudentID,rs.getString("TreatmentItems.TreatmentItemID") ) + "</td>\n";
+                    form += "</tr>\n";
                 }
+                
                else{
-                form += "<td><input type=\"submit\" value=\"Grade\" class=\"btn-style\"></td></form>\n";
+                    form += "<tr>\n";
+                    form += "<td><form name='grade' action='markStudent.jsp' method='POST'>"
+                            + "<select name=\"studentID\" id='dropdown'>"
+                            + "<option value=\"" + StudentID + "\" selected>" + StudentID + "</option>"
+                            + "</select><br /></td>"
+                            + "<td><select name=\"treatmentID\" id='dropdown'>"
+                            + "<option value=\"" + rs.getString("TreatmentItems.TreatmentItemID") + "\" selected>" + rs.getString("TreatmentItems.TreatmentItemID") + "</option>"
+                            + "</select><br />"
+                            + "</td>\n";
+                    form += "<td>" + rs.getString("TreatmentItems.TreatmentName") + "</td>\n";
+                    form += "<td>" + rs.getString("TreatmentItems.DomainID") + "</td>\n";
+                    form += "<td>" + rs.getString("TreatmentItems.RequirementsGroupID") + "</td>\n";
+                    form += "<td>" + rs.getString("TreatmentItems.RequirementsWeighting") + "</td>\n";
+                    form += "<td><input type=\"submit\" value=\"Grade\" class=\"btn-style\"></td></form>\n";
+                    form += "</tr>\n";
                 }
-                form += "</tr>\n";
+                
             }
-            
-            
+        
             
             form += "</tbody>\n";
             form += "</table>\n";
