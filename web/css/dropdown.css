@@ -49,7 +49,6 @@ img{
 
 }
 
-
 .red
 {
     text-align: center;
@@ -59,4 +58,14 @@ img{
 {
     background-color:#31b0d5;
     color:white;
+}
+
+.years_container ul{
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+.years_container ul li{
+    text-decoration: none;
 }

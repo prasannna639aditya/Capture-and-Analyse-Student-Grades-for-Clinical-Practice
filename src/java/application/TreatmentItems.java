@@ -114,7 +114,7 @@ public class TreatmentItems {
             while(rs.next()){
                 if( hasBeenGraded( StudentID, rs.getString("TreatmentItems.TreatmentItemID") ) == true){
                     form += "<tr class='graded'>\n";
-                    form += "<td><form name='grade' action='markStudent.jsp' method='POST'>"
+                    form += "<td><form name='grade' action='viewScore.jsp' method='POST'>"
                         + "<select name=\"studentID\" id='dropdown'>"
                         + "<option value=\"" + StudentID + "\" selected>" + StudentID + "</option>"
                         + "</select><br /></td>"
@@ -126,7 +126,8 @@ public class TreatmentItems {
                     form += "<td>" + rs.getString("TreatmentItems.DomainID") + "</td>\n";
                     form += "<td>" + rs.getString("TreatmentItems.RequirementsGroupID") + "</td>\n";
                     form += "<td>" + rs.getString("TreatmentItems.RequirementsWeighting") + "</td>\n";
-                    form += "<td class='red'>" + showGrade( StudentID,rs.getString("TreatmentItems.TreatmentItemID") ) + "</td>\n";
+                    //form += "<td class='red'>" + showGrade( StudentID,rs.getString("TreatmentItems.TreatmentItemID") ) + "</td>\n";
+                    form += "<td><input type=\"submit\" value=\"View Score\" class=\"btn-style\"></td></form>\n";
                     form += "</tr>\n";
                 }
                 
@@ -159,6 +160,93 @@ public class TreatmentItems {
         return form;
     }
     
+    
+    public String fetchScore( String StudentID) throws SQLException{
+        
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
+            //System.out.println("successful");
+            String query = ("SELECT StudentID, PatientID, TutorID, AbilityToEstablishDiagnosis, AbilityToFormulateATreatmentPlan, EnsuringInformedConsent, EquipmentPreparationSelection,"
+                + "ExaminationIntraOralHardTissues, ExaminationIntraOralSoftTissues, ExtraOralExamination, InfectionControl, InterpretationOfSpeciaInvestigations, LocalAnaesthesiaBlock, LocalAnaesthesiaInfiltration,"
+                + "ManagementOfComplications, MaterialSelectionAndHandling, AppropriatePatientPosition, AppropriateOperatorPosition, AppropriateLightPosition, AppropriateUseOfMirror, AppropriateFingerSupport,"
+                + "DateAdded, TreatmentID, Time, TreatmentScore, Comment"
+                + "FROM TBICoreSkills WHERE StudentID=" + StudentID + ";");
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+
+            
+            
+            String form = "<div>Please see the treatments that " + StudentID + " has and has not been graded for\n";
+             /**      form += "<div class=\"table-responsive\">\n";
+                   form += "<table class=\"table\">\n";
+                   form += "<thead>\n";
+                   form += "<tr>\n";
+                   form += "<th>Student ID</th>\n";
+                   form += "<th>Treatment ID</th>\n";
+                   form += "<th>Treatment Name</th>\n";
+                   form += "<th>Domain ID</th>\n";
+                   form += "<th>Requirements Group ID</th>\n";
+                   form += "<th>Requirements Weighting</th>\n";
+                   form += "<th>Grade</th>";
+                   form += "</tr>\n";
+                   form += "<tbody>\n";
+                   form += "<tr>\n";
+               
+            while(rs.next()){
+                if( hasBeenGraded( StudentID, rs.getString("TreatmentItems.TreatmentItemID") ) == true){
+                    form += "<tr class='graded'>\n";
+                    form += "<td><form name='grade' action='viewScore.jsp' method='POST'>"
+                        + "<select name=\"studentID\" id='dropdown'>"
+                        + "<option value=\"" + StudentID + "\" selected>" + StudentID + "</option>"
+                        + "</select><br /></td>"
+                        + "<td><select name=\"treatmentID\" id='dropdown'>"
+                        + "<option value=\"" + rs.getString("TreatmentItems.TreatmentItemID") + "\" selected>" + rs.getString("TreatmentItems.TreatmentItemID") + "</option>"
+                        + "</select><br />"
+                        + "</td>\n";
+                    form += "<td>" + rs.getString("TreatmentItems.TreatmentName") + "</td>\n";
+                    form += "<td>" + rs.getString("TreatmentItems.DomainID") + "</td>\n";
+                    form += "<td>" + rs.getString("TreatmentItems.RequirementsGroupID") + "</td>\n";
+                    form += "<td>" + rs.getString("TreatmentItems.RequirementsWeighting") + "</td>\n";
+                    //form += "<td class='red'>" + showGrade( StudentID,rs.getString("TreatmentItems.TreatmentItemID") ) + "</td>\n";
+                    form += "<td><input type=\"submit\" value=\"View Score\" class=\"btn-style\"></td></form>\n";
+                    form += "</tr>\n";
+                }
+                
+               else{
+                    form += "<tr>\n";
+                    form += "<td><form name='grade' action='markStudent.jsp' method='POST'>"
+                            + "<select name=\"studentID\" id='dropdown'>"
+                            + "<option value=\"" + StudentID + "\" selected>" + StudentID + "</option>"
+                            + "</select><br /></td>"
+                            + "<td><select name=\"treatmentID\" id='dropdown'>"
+                            + "<option value=\"" + rs.getString("TreatmentItems.TreatmentItemID") + "\" selected>" + rs.getString("TreatmentItems.TreatmentItemID") + "</option>"
+                            + "</select><br />"
+                            + "</td>\n";
+                    form += "<td>" + rs.getString("TreatmentItems.TreatmentName") + "</td>\n";
+                    form += "<td>" + rs.getString("TreatmentItems.DomainID") + "</td>\n";
+                    form += "<td>" + rs.getString("TreatmentItems.RequirementsGroupID") + "</td>\n";
+                    form += "<td>" + rs.getString("TreatmentItems.RequirementsWeighting") + "</td>\n";
+                    form += "<td><input type=\"submit\" value=\"Grade\" class=\"btn-style\"></td></form>\n";
+                    form += "</tr>\n";
+                }
+                
+            }
+             
+        
+            
+            form += "</tbody>\n";
+            form += "</table>\n";
+            form += "</div>\n";
+            **/
+        conn.close();
+        return form; 
+    }
+    
 
 }
+
+    
+
+
+
+
 

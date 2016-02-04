@@ -50,9 +50,14 @@ public class StudentLookup {
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(query);
 
+            String form = "<li><a href=\"students.jsp\">All Students</a>";      
+                   form += "<li><a href=\"student-years/BDS3.jsp\">BDS3</a>";
+                   form += "<li><a href=\"student-years/BDS4.jsp\">BDS4</a>";
+                   form += "<li><a href=\"student-years/BDS5.jsp\">BDS5</a>";
+                   form += "<li><a href=\"student-years/HYG1.jsp\">HYG1</a>";
+                   form += "<li><a href=\"student-years/HYG2.jsp\">HYG2</a>";
             
-            
-            String form = "<div class=\"table-responsive\">\n";
+                   form += "<div class=\"table-responsive\">\n";
                    form += "<table class=\"table\">\n";
                    form += "<thead>\n";
                    form += "<tr>\n";
@@ -69,8 +74,67 @@ public class StudentLookup {
                
             while(rs.next()){
                 form += "<tr>\n";
-                form += "<td><img id='studnetID' src=\"" + rs.getString("Students.Picture") + "\"</td>\n";
+                form += "<td><img id='studnetID' src=\"img/" + rs.getString("Students.Picture") + "\"</td>\n";
                 form += "<td><form name='treatments' action='treatmentItems.jsp' method='POST'>"
+                        + "<select name=\"studentID\" id='dropdown'>"
+                        + "<option value=\"" + rs.getString("Students.StudentID") + "\" selected>" + rs.getString("Students.StudentID") + "</option>"
+                        + "</select><br /></td>\n";
+                form += "<td>" + rs.getString("Students.FirstName") + "</td>\n";
+                form += "<td>" + rs.getString("Students.LastName") + "</td>\n";
+                form += "<td>" + rs.getString("CourseYear.ProgrammeYear") + "</td>\n";
+                form += "<td>" + rs.getString("StudentGroups.GroupDescriptor") + "</td>\n";
+                form += "<td><input type=\"submit\" value=\"View Treatments\" class=\"btn-style\"></form></td>";
+                form += "</tr>\n";
+            }
+            
+            
+            
+            form += "</tbody>\n";
+            form += "</table>\n";
+            form += "</div>\n";
+            
+        conn.close();
+        return form;
+    }
+    
+    public String fetchYearNames(String year) throws SQLException{
+        
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
+            //System.out.println("successful");
+            String query = ("SELECT Students.StudentID, Students.FirstName, Students.LastName, Students.Picture, CourseYear.ProgrammeYear, StudentGroups.GroupDescriptor"
+                            + " FROM Students JOIN StudentGroups JOIN StudentClass JOIN CourseYear"
+                            + " ON Students.StudentID = StudentClass.StudentID AND StudentClass.GroupID = StudentGroups.GroupID AND StudentClass.YearID = CourseYear.YearID"
+                            + " WHERE CourseYear.YearID =" + year + ";" );
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+
+            String form = "<div class=\"years_container\"><ul><li><a href=\"../students.jsp\">All Students</a>";      
+                   form += "<li><a href=\"BDS3.jsp\">BDS3</a>";
+                   form += "<li><a href=\"BDS4.jsp\">BDS4</a>";
+                   form += "<li><a href=\"BDS5.jsp\">BDS5</a>";
+                   form += "<li><a href=\"HYG1.jsp\">HYG1</a>";
+                   form += "<li><a href=\"HYG2.jsp\">HYG2</a>";
+                   form += "</ul></div>";
+            
+                   form += "<div class=\"table-responsive\">\n";
+                   form += "<table class=\"table\">\n";
+                   form += "<thead>\n";
+                   form += "<tr>\n";
+                   form += "<th>Picture</th>\n";
+                   form += "<th>Student ID</th>\n";
+                   form += "<th>First Name</th>\n";
+                   form += "<th>Surname</th>\n";
+                   form += "<th>Programme Year</th>\n";
+                   form += "<th>Course Year</th>\n";
+                   form += "<th>View Treatment Items</th>\n";
+                   form += "</tr>\n";
+                   form += "<tbody>\n";
+                   form += "<tr>\n";
+               
+            while(rs.next()){
+                form += "<tr>\n";
+                form += "<td><img id='studnetID' src=\"../img/" + rs.getString("Students.Picture") + "\"</td>\n";
+                form += "<td><form name='treatments' action='../treatmentItems.jsp' method='POST'>"
                         + "<select name=\"studentID\" id='dropdown'>"
                         + "<option value=\"" + rs.getString("Students.StudentID") + "\" selected>" + rs.getString("Students.StudentID") + "</option>"
                         + "</select><br /></td>\n";

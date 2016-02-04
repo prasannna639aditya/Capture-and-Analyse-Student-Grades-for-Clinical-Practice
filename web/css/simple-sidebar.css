@@ -102,7 +102,6 @@
     color: #fff;
     background: none;
 }
-
 @media(min-width:768px) {
     #wrapper {
         padding-left: 250px;
@@ -129,5 +128,4 @@
         position: relative;
         margin-right: 0;
     }
-    
 }
