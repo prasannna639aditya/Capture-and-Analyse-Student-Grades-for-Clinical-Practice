@@ -4,6 +4,7 @@
     Author     : Delaney
 --%>
 
+<%@page import="application.TreatmentItems"%>
 <%@page import="application.StudentLookup"%>
 <%@page import="application.CoreSkills"%>
 <%@page import="guipackage.GUI"%>
@@ -29,28 +30,24 @@
     <body>
         
         <div class="login-card">          
-            <jsp:useBean id="core" class="application.CoreSkills" scope="request" />
-            <jsp:setProperty name="core" property="*" />
-            <jsp:useBean id="lookup" class="application.StudentLookup" scope="request" />
-            <jsp:setProperty name="lookup" property="*" />
-            <jsp:useBean id="treatment" class="application.TreatmentItems" scope="request" />
-            <jsp:setProperty name="treatment" property="*" />
-            
-            
+         
+         
+        <jsp:useBean id="lookup" class="application.StudentLookup" scope="request" />
+        <jsp:setProperty name="lookup" property="*" />
         
-            <%
-                GUI gui = new GUI( );
-                StudentLookup studentLookup = new StudentLookup();
-                out.print( gui.tutorNavigation( ));
-                String TutorID = (String) session.getAttribute( "TutorID" );
-                
-                
-                if( request.getParameter( "submit" ) == null ) {
-                    
-                    out.print( core.markingForm( TutorID, treatment.getStudentID(), treatment.getTreatmentID()) );
-                }
-                
-            %>
+        <%
+          GUI gui = new GUI( );
+          TreatmentItems treatmentItem = new TreatmentItems( );
+            if( session.getAttribute( "Authenticated" ) == null ) {
+                response.sendRedirect( "index.jsp" );
+            }
+            else {
+                out.print(gui.tutorNavigation());
+                out.print( treatmentItem.fetchScore( lookup.getStudentID(), treatmentItem.fetchStudentName(lookup.getStudentID())) );
+              }
+                        
+                        
+        %>
            
         </div>    
         </div>
