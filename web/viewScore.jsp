@@ -34,19 +34,24 @@
          
         <jsp:useBean id="lookup" class="application.StudentLookup" scope="request" />
         <jsp:setProperty name="lookup" property="*" />
+        <jsp:useBean id="treatmentItem" class="application.TreatmentItems" scope="request" />
+        <jsp:setProperty name="treatmentItem" property="*" />
         
         <%
           GUI gui = new GUI( );
-          TreatmentItems treatmentItem = new TreatmentItems( );
-            if( session.getAttribute( "Authenticated" ) == null ) {
+          //TreatmentItems treatmentItem = new TreatmentItems( );
+            /**if( session.getAttribute( "Authenticated" ) == null ) {
                 response.sendRedirect( "index.jsp" );
             }
             else {
                 out.print(gui.tutorNavigation());
-                out.print( treatmentItem.fetchScore( lookup.getStudentID(), treatmentItem.fetchStudentName(lookup.getStudentID())) );
-              }
-                        
-                        
+                out.print( treatmentItem.fetchScore( lookup.getStudentID(), treatmentItem.fetchStudentName(lookup.getStudentID()), treatmentItem.getTreatmentID()) );
+            }**/
+        if( request.getParameter( "submit" ) == null ) {
+             out.print(gui.tutorNavigation());
+                out.print( treatmentItem.fetchScore( lookup.getStudentID(), treatmentItem.fetchStudentName(lookup.getStudentID()), treatmentItem.getTreatmentID()) );       
+           
+        }                 
         %>
            
         </div>    

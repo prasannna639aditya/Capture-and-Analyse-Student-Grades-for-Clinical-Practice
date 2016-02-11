@@ -59,9 +59,9 @@ public class GUI {
         form += "<a href=\"index.jsp\">Logout</a>\n";
         form += "</li>\n";
         form += "<li><a href=\"tutorWelcome.jsp\">Home</a></li>\n";
-        form += "<li><a href=\"students.jsp\">Students</a></li>\n";
         form += "<li><a href=\"registerStudent.jsp\">Register a Student</a></li>\n";
         form += "<li><a href=\"markStudent.jsp\">Grade Student</a></li>\n";
+        form += "<li><a href=\"student-years/students.jsp\">Students</a></li>\n";
         form += "</ul>\n";        
         form += "</div>\n";
         form += "<div id=\"page-content-wrapper\">\n";  
@@ -114,9 +114,9 @@ public class GUI {
         form += "<a href=\"index.jsp\">Logout</a>\n";
         form += "</li>\n";
         form += "<li><a href=\"tutorWelcome.jsp\">Home</a></li>\n";
-        form += "<li><a href=\"students.jsp\">Students</a></li>\n";
         form += "<li><a href=\"registerStudent.jsp\">Register a Student</a></li>\n";
         form += "<li><a href=\"markStudent.jsp\">Grade Student</a></li>\n";
+        form += "<li><a href=\"student-years/students.jsp\">Students</a></li>\n";
         form += "</ul>\n";        
         form += "</div>\n";
         form += "<div id=\"page-content-wrapper\">\n";  

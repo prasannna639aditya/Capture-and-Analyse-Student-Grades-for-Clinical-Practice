@@ -50,14 +50,7 @@ public class StudentLookup {
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(query);
 
-            String form = "<li><a href=\"students.jsp\">All Students</a>";      
-                   form += "<li><a href=\"student-years/BDS3.jsp\">BDS3</a>";
-                   form += "<li><a href=\"student-years/BDS4.jsp\">BDS4</a>";
-                   form += "<li><a href=\"student-years/BDS5.jsp\">BDS5</a>";
-                   form += "<li><a href=\"student-years/HYG1.jsp\">HYG1</a>";
-                   form += "<li><a href=\"student-years/HYG2.jsp\">HYG2</a>";
-            
-                   form += "<div class=\"table-responsive\">\n";
+            String form = "<div class=\"table-responsive\">\n";
                    form += "<table class=\"table\">\n";
                    form += "<thead>\n";
                    form += "<tr>\n";
@@ -74,8 +67,8 @@ public class StudentLookup {
                
             while(rs.next()){
                 form += "<tr>\n";
-                form += "<td><img id='studnetID' src=\"img/" + rs.getString("Students.Picture") + "\"</td>\n";
-                form += "<td><form name='treatments' action='treatmentItems.jsp' method='POST'>"
+                form += "<td><img id='studnetID' src=\"../img/" + rs.getString("Students.Picture") + "\"</td>\n";
+                form += "<td><form name='treatments' action='../treatments/treatmentItems.jsp' method='POST'>"
                         + "<select name=\"studentID\" id='dropdown'>"
                         + "<option value=\"" + rs.getString("Students.StudentID") + "\" selected>" + rs.getString("Students.StudentID") + "</option>"
                         + "</select><br /></td>\n";
@@ -108,15 +101,7 @@ public class StudentLookup {
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(query);
 
-            String form = "<div class=\"years_container\"><ul><li><a href=\"../students.jsp\">All Students</a>";      
-                   form += "<li><a href=\"BDS3.jsp\">BDS3</a>";
-                   form += "<li><a href=\"BDS4.jsp\">BDS4</a>";
-                   form += "<li><a href=\"BDS5.jsp\">BDS5</a>";
-                   form += "<li><a href=\"HYG1.jsp\">HYG1</a>";
-                   form += "<li><a href=\"HYG2.jsp\">HYG2</a>";
-                   form += "</ul></div>";
-            
-                   form += "<div class=\"table-responsive\">\n";
+            String form = "<div class=\"table-responsive\">\n";
                    form += "<table class=\"table\">\n";
                    form += "<thead>\n";
                    form += "<tr>\n";
@@ -134,7 +119,7 @@ public class StudentLookup {
             while(rs.next()){
                 form += "<tr>\n";
                 form += "<td><img id='studnetID' src=\"../img/" + rs.getString("Students.Picture") + "\"</td>\n";
-                form += "<td><form name='treatments' action='../treatmentItems.jsp' method='POST'>"
+                form += "<td><form name='treatments' action='../treatments/treatmentItems.jsp' method='POST'>"
                         + "<select name=\"studentID\" id='dropdown'>"
                         + "<option value=\"" + rs.getString("Students.StudentID") + "\" selected>" + rs.getString("Students.StudentID") + "</option>"
                         + "</select><br /></td>\n";
