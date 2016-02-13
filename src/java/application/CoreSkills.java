@@ -17,6 +17,8 @@ import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import javax.servlet.http.HttpServletRequest;
+import passwordhash.PasswordHash;
 
 /**
  *
@@ -50,6 +52,12 @@ public class CoreSkills {
     private String treatmentID;
     private int treatmentResult;
     private String comment;
+    private String[] result;
+    private String password;
+    private String passwordToCheck;
+    private String treatmentPlanID;
+    private String treatmentScore;
+    private String checkbox;
     private DatabaseClass database;
     private final ArrayList<String> errors;
     
@@ -78,6 +86,12 @@ public class CoreSkills {
         treatmentID = "";
         treatmentResult = 0;
         comment = "";
+        password = "";
+        passwordToCheck = "";
+        this.treatmentScore = "";
+        this.treatmentPlanID = "";
+        this.checkbox = "";
+        this.result = new String[10];
         errors = new ArrayList<>( );
         database = new DatabaseClass( );
         database.setup( "localhost", "final_year_project", "root", "" );
@@ -288,10 +302,69 @@ public class CoreSkills {
         this.comment = comment;
     }
     
+    public String getPasswordToCheck( ) {
+        return passwordToCheck;
+    }
+    
+    public void setPasswordToCheck(String passwordToCheck) {
+        this.passwordToCheck = passwordToCheck;
+    }
+    
+    public String getPassword( ) {
+        return password;
+    }
+    
+    public void setPassword(String password) {
+        this.password = password;
+    }
+    
+    public String getTreatmentScore( ) {
+        return treatmentScore;
+    }
+ 
+    public void setTreatmentScore( final String treamentScore ) {
+        this.treatmentScore = treatmentScore;
+    }
+    
+    public String getTreatmentPlanID( ) {
+        return treatmentPlanID;
+    }
+ 
+    public void setTreatmentPlanID( final String treamentPlanID ) {
+        this.treatmentPlanID = treatmentPlanID;
+    }
+    /**
+    public boolean checkPassword( HttpServletRequest request ) throws NoSuchAlgorithmException, InvalidKeySpecException, Exception  {
+        DatabaseClass database = new DatabaseClass( );
+        //database.setup( "ec2-52-48-85-26.eu-west-1.compute.amazonaws.com", "final_year_project", "root", "IPNTclyv43" );
+        database.setup( "localhost", "final_year_project", "root", "" );
+
+        
+        
+        tutorID = request.getParameter( "TutorID" );
+        
+        
+        result = database.SelectRow( "SELECT * FROM Tutors WHERE TutorID = '" + tutorID + "';" );
+        
+        if( result.length != 0 ) {
+            tutorID = result[0];
+            passwordToCheck = result[4];
+            
+        }
+        
+        if( ! validateMarkingForm( ) ){
+            return false;
+        }
+        System.out.println(passwordToCheck);
+        System.out.println(password);
+        //database.Close();
+  
+        return result.length != 0;
+    }**/
     
     
     
-    public boolean validateMarkingForm( ) {
+    public boolean validateMarkingForm( ) throws Exception {
         boolean isValid = true; 
         
         if( ! isInteger( treatmentID ) && treatmentID.length() > 8){
@@ -308,6 +381,15 @@ public class CoreSkills {
             errors.add( "Please enter a valid Patient" );
             isValid = false;
         }
+        
+        /**
+        if( password.equals( "" ) ) {
+            isValid = false;
+        }
+        
+        if( PasswordHash.check( password, passwordToCheck) == false){
+           isValid = false;
+        }**/
          
         if( isValid ) {
             treatmentResult = score( abilToEstDiag, abilToFormTrtPlan , ensInfCons , equipPrep, examIntraOralHard, examIntraOralSoft, extraOralExam, infectionControl, interpOfSpecInves, localAnaesthesiaBlock, localAnaesthesiaInfiltration, managementofComplications, matSelecHandling, approPatPos, approOpPos , approLightPos , approUseOfMirror, approFingerSupport );
@@ -402,6 +484,15 @@ public class CoreSkills {
         
         database.Close();
     }
+    
+    /**
+    public void clinical() throws SQLException{
+        TreatmentItems treatment = new TreatmentItems();
+        database.Insert( "INSERT INTO TreatmentPlanEntries( TreatmentPlanID, TreatmentItem, TreatmentScore, ClinicalAlert, Comment)"
+                + "VALUES ( '" + treatmentPlanID + "', '" + treatment.fetchTreatmentName(treatmentID) + "', '" + treatmentScore + "', '" + checkbox + "', '" + comment + "');");
+    
+        database.Close();
+    }**/
     
     public String markingForm( String TutorID, String StudentID, String TreatmentID) throws SQLException {
         Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
@@ -595,9 +686,11 @@ public class CoreSkills {
                     "  <option value=\"5\">6</option>\n" +
                 "</select><br />";
         form += "<label for='comment'>Comment:</label>\n" +
-                "<textarea name='comment' value='comment' id='comment'>Please comment on the students performance.</textarea>\n" +
+                "<textarea name='comment' placeholder=\"Please comment on the students performance\" value='comment' id='comment'></textarea>\n" +
                 "</select><br />";
-                
+        
+        //form += "<label for='password'>Password:</label>\n";
+        //form += "<input type=\"password\" name=\"password\" placeholder=\"Enter Password\"/><br />";
         form += "<input type='submit' value='Submit' name='submit' /><br />\n";
         form += "</form>\n";
         conn.close();

@@ -42,7 +42,17 @@
                         
                         
         %>
-                   
+         
+        <img id="clickMeId" src="img/derek.jpg" onclick="show('comment')"/>&nbsp;&nbsp;<div id="comment" style="float:left;display:none;"><input type="password" name="password" placeholder="Enter Password"/><br />&nbsp;<a href="#" class="buttonintable">Submit</a></div>
+
+        <script>function show(target){
+        document.getElementById(target).style.display = 'block';
+        document.getElementById("clickMeId").style.display = 'none';
+        }
+        function hide(target){
+        document.getElementById(target).style.display = 'none';
+        document.getElementById("clickMeId").style.display = 'block';
+        }</script>
          </div>    
         </div>
        </div>
