@@ -1,6 +1,6 @@
 <%-- 
-    Document   : viewGrade
-    Created on : 04-Feb-2016, 22:32:42
+    Document   : viewStudentScore
+    Created on : 14-Feb-2016, 17:49:15
     Author     : Delaney
 --%>
 
@@ -48,7 +48,7 @@
                 out.print( treatmentItem.fetchScore( lookup.getStudentID(), treatmentItem.fetchStudentName(lookup.getStudentID()), treatmentItem.getTreatmentID()) );
             }**/
         if( request.getParameter( "submit" ) == null ) {
-             out.print(gui.tutorNavigation());
+             out.print(gui.navigation());
              //out.print( treatmentItem.fetchScore( lookup.getStudentID(), treatmentItem.fetchStudentName(lookup.getStudentID()), treatmentItem.getTreatmentID()) );       
              out.print( treatmentItem.showScore(lookup.getStudentID(),treatmentItem.getTreatmentID()));
         }                 

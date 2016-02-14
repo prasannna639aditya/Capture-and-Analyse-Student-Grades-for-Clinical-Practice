@@ -18,17 +18,24 @@
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="css/landing-page.css" rel="stylesheet">
         <link href="css/simple-sidebar.css" rel="stylesheet">
+        <link href="css/dropdown.css" rel="stylesheet">
         <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
         <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
         <title>View your current grades</title>
     </head>
     <body>
+        
+        <jsp:useBean id="treatmentItem" class="application.TreatmentItems" scope="request" />
+        <jsp:setProperty name="treatmentItem" property="*" />
+        
         <%
-          GUI gui = new GUI( );
-          StudentGrades grades = new StudentGrades(); 
+                GUI gui = new GUI( );
+                StudentGrades grades = new StudentGrades(); 
           
+                out.print(gui.navigation());
                 String StudentID = (String) session.getAttribute( "StudentID" );
-                grades.fetchTreatments(StudentID); 
+                out.print( treatmentItem.fetchMyTreatments( StudentID ) );
+                
           
         %>
     </body>
