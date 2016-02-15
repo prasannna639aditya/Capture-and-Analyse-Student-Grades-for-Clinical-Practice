@@ -697,4 +697,45 @@ public class CoreSkills {
         return form;
     }
     
+    public String markingDescriptors(){
+            String form = "<div class=\"table-responsive\">\n";
+                   form += "<table class=\"table\">\n";
+                   form += "<thead>\n";
+                   form += "<th rowspan=\"2\">Descriptor. For cases appropriate for year of study of dental programme</th>\n";
+                   form += "<tr>";
+                   form += "<td>Currently UNABLE to meet the outcome with the required quality.</td>\n";
+                   form += "<td>Currently UNABLE to meet the outcome with the required quality.</td>\n";
+                   form += "<td>ABLE to meet the outcome at the required quality.</td>\n";
+                   form += "<td>ABLE to meet the outcome at the required quality.</td>\n";
+                   form += "<td>ABLE to meet the outcome INDEPENDANTLY at the required quality.</td>\n";
+                   form += "<td>ABLE to meet the outcome INDEPENDANTLY exceeding the required quality.</td>\n";
+                   form += "</tr>\n";
+                   form += "<tr>\n";
+                   form += "<th></th>\n";
+                   form += "<td>Has caused harm or does not seek essential guidance</td>\n";
+                   form += "<td>Requires major corrective(procedural) intervention from the tutor.</td>\n";
+                   form += "<td>Minor corrective intervention(procedural) from the tutor.</td>\n";
+                   form += "<td>Minor corrective intervention(verbal) from the tutor.</td>\n";
+                   form += "<td>Confirmatory advice from the tutor.</td>\n";
+                   form += "<td>Confirmatory advice from the tutor.</td>\n";
+                   form += "</tr>\n";
+                   form += "<th rowspan=\"1\">Development Indicator/ Grade</th>\n";
+                   form += "<tr>\n";
+                   form += "<td>1</td>"
+                           + "<td>2</td>"
+                           + "<td>3</td>"
+                           + "<td>4</td>"
+                           + "<td>5</td>"
+                           + "<td>6</td>\n";
+                   form += "</tr>\n";
+                   form += "<tr>\n";
+                   form += "<th>Feedback</th>";
+                   form += "<td colspan=\"3\">Instruct students on their development needs and how to achieve them.</td>\n";
+                   form += 
+                   form += "</tr>\n";
+                   form += "</tbody>\n";
+                   form += "</table>\n";
+                   
+        return form;
+    }
 }
