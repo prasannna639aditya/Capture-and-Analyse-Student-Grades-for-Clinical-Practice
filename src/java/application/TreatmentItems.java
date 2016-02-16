@@ -138,6 +138,21 @@ public class TreatmentItems {
         String AppropriateUseOfMirror = "";
         String AppropriateFingerSupport = "";
         String Comment = "";
+        String Punctuality = "";
+        String ProfessionalApproach = "";
+        String SelfAwareness = "";
+        String StudentInsight = "";
+        String abilToEstPatientHistory = "";
+        String abilToEnsureInformedConsent = "";
+        String abilToReqSpecialInvestigations = "";
+        String abilToWritePerscription = "";
+        String communicationWithDentalTeam = "";
+        String communicationWithPatientAndFamily = "";
+        String communicationWithTutor = "";
+        String outlineOfReferalLetter = "";
+        String patientRecordKeeping = "";
+        String charting = "";
+        String presentationOfCase = "";        
 
         result = database.SelectRow( "SELECT * FROM TBICoreSkills WHERE StudentID = '" + StudentID + "' AND TreatmentID = '" + TreatmentID + "';" );
         
@@ -166,6 +181,21 @@ public class TreatmentItems {
             AppropriateUseOfMirror = result[20];
             AppropriateFingerSupport = result[21];
             Comment = result[26];
+            Punctuality = result[27];
+            ProfessionalApproach = result[28];
+            SelfAwareness = result[29];
+            StudentInsight = result[30];
+            abilToEstPatientHistory = result[31];
+            abilToEnsureInformedConsent = result[32];
+            abilToReqSpecialInvestigations = result[33];
+            abilToWritePerscription = result[34];
+            communicationWithDentalTeam = result[35];
+            communicationWithPatientAndFamily = result[36];
+            communicationWithTutor = result[37];
+            outlineOfReferalLetter = result[38];
+            patientRecordKeeping = result[39];
+            charting = result[40];
+            presentationOfCase = result[41];
         }
         
         TreatmentItems score = new TreatmentItems();
@@ -174,6 +204,7 @@ public class TreatmentItems {
                    form += "<table class=\"table\">\n";
                    form += "<thead>\n";
                    
+                   form += "<th><h1>Overview</h1></th>\n";
                    form += "<tr>\n";
                    form += "<th>Student</th>\n";
                    form += "<td>" + score.fetchStudentName(StudentID) + "</td>\n";
@@ -194,7 +225,15 @@ public class TreatmentItems {
                    form += "<th>Treatment</th>\n";
                    form += "<td>" + score.fetchTreatmentName(treatmentID) + "</td>\n";
                    form += "</tr>\n";
+                   form += "<th>Tutors Comments</th>\n";
+                   form += "<td>" + Comment + "</td>\n";
+                   form += "</tr>\n"; 
                    form += "<tr>\n";
+                   form += "<th>Aggregated score</th>\n";
+                   form += "<td>" + treatmentScore + "</td>\n";
+                   form += "</tr>\n";
+                   
+                   form += "<th><h1>Core Skills Generic</h1></th>\n";
                    form += "<tr>";
                    form += "<th>Ability to establish diagnosis</th>\n";
                    form += "<td>" + AbilityToEstablishDiagnosis + "</td>\n";
@@ -247,6 +286,8 @@ public class TreatmentItems {
                    form += "<th>Material selection and handling</th>\n";
                    form += "<td>" + MaterialSelectionAndHandling + "</td>\n";
                    form += "</tr>\n";
+                   
+                   form += "<th><h1>Basic Operative Skills</h1></th>\n";
                    form += "<tr>\n";
                    form += "<th>Appropriate patient position</th>\n";
                    form += "<td>" + AppropriatePatientPosition + "</td>\n";
@@ -267,14 +308,72 @@ public class TreatmentItems {
                    form += "<th>Appropriate finger support</th>\n";
                    form += "<td>" + AppropriateFingerSupport + "</td>\n";
                    form += "</tr>\n";
+                   
+                   form += "<th><h1>Professionalism</h1></th>\n";
                    form += "<tr>\n";
-                   form += "<th>Tutors Comments</th>\n";
-                   form += "<td>" + Comment + "</td>\n";
-                   form += "</tr>\n"; 
-                   form += "<tr>\n";
-                   form += "<th>Aggregated score</th>\n";
-                   form += "<td>" + treatmentScore + "</td>\n";
+                   form += "<th>Punctuality</th>\n";
+                   form += "<td>" + Punctuality + "</td>\n";
                    form += "</tr>\n";
+                   form += "<tr>\n";
+                   form += "<th>Professional Approach</th>\n";
+                   form += "<td>" + ProfessionalApproach + "</td>\n";
+                   form += "</tr>\n";
+                   form += "<tr>\n";
+                   form += "<th>Self Awareness</th>\n";
+                   form += "<td>" + SelfAwareness + "</td>\n";
+                   form += "</tr>\n";
+                   form += "<tr>\n";
+                   form += "<th>Student Insight</th>\n";
+                   form += "<td>" + StudentInsight + "</td>\n";
+                   form += "</tr>\n";
+                   
+                   form += "<th><h1>Communication</h1></th>\n";
+                   form += "<tr>\n";
+                   form += "<th>Ability to establish patient history</th>\n";
+                   form += "<td>" + abilToEstPatientHistory + "</td>\n";
+                   form += "</tr>\n";
+                   form += "<tr>\n";
+                   form += "<th>Ability to ensure informed consent</th>\n";
+                   form += "<td>" + abilToEnsureInformedConsent + "</td>\n";
+                   form += "</tr>\n";
+                   form += "<tr>\n";
+                   form += "<th>Ability to request special investigations</th>\n";
+                   form += "<td>" + abilToReqSpecialInvestigations + "</td>\n";
+                   form += "</tr>\n";
+                   form += "<tr>\n";
+                   form += "<th>Ability to write perscription</th>\n";
+                   form += "<td>" + abilToWritePerscription + "</td>\n";
+                   form += "</tr>\n";
+                   form += "<tr>\n";
+                   form += "<th>Communication with dental team</th>\n";
+                   form += "<td>" + communicationWithDentalTeam + "</td>\n";
+                   form += "</tr>\n";
+                   form += "<tr>\n";
+                   form += "<th>Communication with patient/family members</th>\n";
+                   form += "<td>" + communicationWithPatientAndFamily + "</td>\n";
+                   form += "</tr>\n";
+                   form += "<tr>\n";
+                   form += "<th>Communication with tutor</th>\n";
+                   form += "<td>" + communicationWithTutor + "</td>\n";
+                   form += "</tr>\n";
+                   form += "<tr>\n";
+                   form += "<th>Outline of referal letter</th>\n";
+                   form += "<td>" + outlineOfReferalLetter + "</td>\n";
+                   form += "</tr>\n";
+                   form += "<tr>\n";
+                   form += "<th>Patient record keeping</th>\n";
+                   form += "<td>" + patientRecordKeeping + "</td>\n";
+                   form += "</tr>\n";
+                   form += "<tr>\n";
+                   form += "<th>Charting</th>\n";
+                   form += "<td>" + charting + "</td>\n";
+                   form += "</tr>\n";
+                   form += "<tr>\n";
+                   form += "<th>Presentation of case</th>\n";
+                   form += "<td>" + presentationOfCase + "</td>\n";
+                   form += "</tr>\n";
+                   
+                   
                    
                    form += "<tbody>\n";
                    form += "<tr>\n";
@@ -475,6 +574,7 @@ public class TreatmentItems {
             
             return form;       
     }
+    
     
     /**
     public String clinicalAlert( String StudentID, String TreatmentID) throws SQLException{
