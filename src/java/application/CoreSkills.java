@@ -25,7 +25,7 @@ import passwordhash.PasswordHash;
  * @author Delaney
  */
 public class CoreSkills {
-    String date = new SimpleDateFormat("dd-MM-yyyy").format(Calendar.getInstance().getTime());
+    String date = new SimpleDateFormat("yyyy/MM/dd").format(Calendar.getInstance().getTime());
     String time = new SimpleDateFormat("HH:mm:ss").format(Calendar.getInstance().getTime());
     
     private String studentID;
