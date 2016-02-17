@@ -152,7 +152,10 @@ public class TreatmentItems {
         String outlineOfReferalLetter = "";
         String patientRecordKeeping = "";
         String charting = "";
-        String presentationOfCase = "";        
+        String presentationOfCase = "";
+        String abilToUnderstandMedicalHistory = "";
+        String backKnowledgeForSessionProcedure = "";
+        String justKnowledgeOfApproSpecInvest = "";        
 
         result = database.SelectRow( "SELECT * FROM TBICoreSkills WHERE StudentID = '" + StudentID + "' AND TreatmentID = '" + TreatmentID + "';" );
         
@@ -196,6 +199,9 @@ public class TreatmentItems {
             patientRecordKeeping = result[39];
             charting = result[40];
             presentationOfCase = result[41];
+            abilToUnderstandMedicalHistory = result[42];
+            backKnowledgeForSessionProcedure = result[43];
+            justKnowledgeOfApproSpecInvest = result[44]; 
         }
         
         TreatmentItems score = new TreatmentItems();
@@ -371,6 +377,20 @@ public class TreatmentItems {
                    form += "<tr>\n";
                    form += "<th>Presentation of case</th>\n";
                    form += "<td>" + presentationOfCase + "</td>\n";
+                   form += "</tr>\n";
+                   
+                   form += "<th><h1>Knowledge</h1></th>\n";
+                   form += "<tr>\n";
+                   form += "<th>Ability to understand medical history</th>\n";
+                   form += "<td>" + abilToUnderstandMedicalHistory + "</td>\n";
+                   form += "</tr>\n";
+                   form += "<tr>\n";
+                   form += "<th>Background Knowledge for session/procedure</th>\n";
+                   form += "<td>" + backKnowledgeForSessionProcedure + "</td>\n";
+                   form += "</tr>\n";
+                   form += "<tr>\n";
+                   form += "<th>Justification for, and knowledge of appropriate special investigations</th>\n";
+                   form += "<td>" + justKnowledgeOfApproSpecInvest + "</td>\n";
                    form += "</tr>\n";
                    
                    

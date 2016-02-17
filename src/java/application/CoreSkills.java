@@ -73,6 +73,9 @@ public class CoreSkills {
     private String patientRecordKeeping;
     private String charting;
     private String presentationOfCase;
+    private String abilToUnderstandMedicalHistory;
+    private String backKnowledgeForSessionProcedure;
+    private String justKnowledgeOfApproSpecInvest;        
     private DatabaseClass database;
     private final ArrayList<String> errors;
     
@@ -118,6 +121,9 @@ public class CoreSkills {
         patientRecordKeeping = "";
         charting = "";
         presentationOfCase = "";
+        abilToUnderstandMedicalHistory = "";
+        backKnowledgeForSessionProcedure = "";
+        justKnowledgeOfApproSpecInvest = "";  
         this.treatmentScore = "";
         this.treatmentPlanID = "";
         this.checkbox = "";
@@ -484,6 +490,30 @@ public class CoreSkills {
         this.communicationWithPatientAndFamily = communicationWithPatientAndFamily;
     }
     
+    public String getAbilToUnderstandMedicalHistory( ) {
+        return abilToUnderstandMedicalHistory;
+    }
+ 
+    public void setAbilToUnderstandMedicalHistory( final String abilToUnderstandMedicalHistory) {
+        this.abilToUnderstandMedicalHistory = abilToUnderstandMedicalHistory;
+    }
+    
+    public String getBackKnowledgeForSessionProcedure( ) {
+        return backKnowledgeForSessionProcedure;
+    }
+ 
+    public void setBackKnowledgeForSessionProcedure( final String backKnowledgeForSessionProcedure) {
+        this.backKnowledgeForSessionProcedure = backKnowledgeForSessionProcedure;
+    }
+    
+    public String getJustKnowledgeOfApproSpecInvest( ) {
+        return justKnowledgeOfApproSpecInvest;
+    }
+ 
+    public void setJustKnowledgeOfApproSpecInvest( final String justKnowledgeOfApproSpecInvest) {
+        this.justKnowledgeOfApproSpecInvest = justKnowledgeOfApproSpecInvest;
+    }
+    
     /**
     public boolean checkPassword( HttpServletRequest request ) throws NoSuchAlgorithmException, InvalidKeySpecException, Exception  {
         DatabaseClass database = new DatabaseClass( );
@@ -628,8 +658,8 @@ public class CoreSkills {
                 + "ExaminationIntraOralHardTissues, ExaminationIntraOralSoftTissues, ExtraOralExamination, InfectionControl, InterpretationOfSpeciaInvestigations, LocalAnaesthesiaBlock, LocalAnaesthesiaInfiltration,"
                 + "ManagementOfComplications, MaterialSelectionAndHandling, AppropriatePatientPosition, AppropriateOperatorPosition, AppropriateLightPosition, AppropriateUseOfMirror, AppropriateFingerSupport,"
                 + "DateAdded, TreatmentID, Time, TreatmentScore, Comment, Punctuality, ProfessionalApproach, SelfAwareness, StudentInsight, AbilityToEstablishPatientHistory, AbilityToObtainInformedConsent, AbilityToRequestSpecialInvestigations,"
-                + "AbilityToWritePerscription, CommunicationWithDentalTeam, CommunicationWithPatientAndFamily, CommunicationWithTutor, OutlineOfReferalLetter, PatientRecordKeeping, Charting, PresentationOfCase )"
-                +"VALUES( '" + studentID + "', '" + patientID + "', '" + tutorID + "', '" + abilToEstDiag + "', '" + abilToFormTrtPlan + "', '" + ensInfCons + "', '" + equipPrep + "','" + examIntraOralHard + "','" + examIntraOralSoft + "','" + extraOralExam + "','" + infectionControl + "','" + interpOfSpecInves + "','" + localAnaesthesiaBlock + "','" + localAnaesthesiaInfiltration + "','" + managementofComplications + "','" + matSelecHandling + "','" + approPatPos + "','" + approOpPos + "','" + approLightPos + "','" + approUseOfMirror + "','" + approFingerSupport + "','" + date + "','" + treatmentID + "','" + time + "','" + treatmentResult + "','" + comment + "','" + punctuality + "','" + professionalApproach + "','" + selfAwareness + "','" + studentInsight + "','" + abilToEstPatientHistory  + "','" + abilToEnsureInformedConsent + "','" + abilToReqSpecialInvestigations + "','" + abilToWritePerscription + "','" + communicationWithDentalTeam + "', '" + communicationWithPatientAndFamily + "', '" + communicationWithTutor + "','" + outlineOfReferalLetter+ "','" + patientRecordKeeping + "','" + charting + "','" + presentationOfCase + "' );" );
+                + "AbilityToWritePerscription, CommunicationWithDentalTeam, CommunicationWithPatientAndFamily, CommunicationWithTutor, OutlineOfReferalLetter, PatientRecordKeeping, Charting, PresentationOfCase, AbilityToUnderstandMedicalHistory, BackgroundKnowledgeForSessionProcedure, JustificationForAndKnowledgeOfAppropriateSpecialInvestigations )"
+                +"VALUES( '" + studentID + "', '" + patientID + "', '" + tutorID + "', '" + abilToEstDiag + "', '" + abilToFormTrtPlan + "', '" + ensInfCons + "', '" + equipPrep + "','" + examIntraOralHard + "','" + examIntraOralSoft + "','" + extraOralExam + "','" + infectionControl + "','" + interpOfSpecInves + "','" + localAnaesthesiaBlock + "','" + localAnaesthesiaInfiltration + "','" + managementofComplications + "','" + matSelecHandling + "','" + approPatPos + "','" + approOpPos + "','" + approLightPos + "','" + approUseOfMirror + "','" + approFingerSupport + "','" + date + "','" + treatmentID + "','" + time + "','" + treatmentResult + "','" + comment + "','" + punctuality + "','" + professionalApproach + "','" + selfAwareness + "','" + studentInsight + "','" + abilToEstPatientHistory  + "','" + abilToEnsureInformedConsent + "','" + abilToReqSpecialInvestigations + "','" + abilToWritePerscription + "','" + communicationWithDentalTeam + "', '" + communicationWithPatientAndFamily + "', '" + communicationWithTutor + "','" + outlineOfReferalLetter+ "','" + patientRecordKeeping + "','" + charting + "','" + presentationOfCase + "','" + abilToUnderstandMedicalHistory + "','" + backKnowledgeForSessionProcedure + "','" + backKnowledgeForSessionProcedure + "' );" );
         
         /**database.Insert( "INSERT INTO TreatmentPlanEntries( TreatmentPlanID, TreatmentItem, GroupID )" +
                          "VALUES( '" + studentID + "', '" + yearID + "','" + groupID + "' );" );**/
@@ -971,6 +1001,35 @@ public class CoreSkills {
                 "</select><br />";
         form += "<label for='presentationOfCase'>Presentation of case:</label>\n";
         form += "<select name=\"presentationOfCase\"id='dropdown' >\n" +
+                    "  <option value=\"1\" selected>1</option>\n" +
+                    "  <option value=\"2\">2</option>\n" +
+                    "  <option value=\"3\">3</option>\n" +
+                    "  <option value=\"4\">4</option>\n" +
+                    "  <option value=\"5\">5</option>\n" +
+                    "  <option value=\"6\">6</option>\n" +
+                "</select><br />";
+        
+        form += "<h1>Knowledge</h1>\n";
+        form += "<label for='abilToUnderstandMedicalHistory '>Ability to understand medical history:</label>\n";
+        form += "<select name=\"abilToUnderstandMedicalHistory\"id='dropdown' >\n" +
+                    "  <option value=\"1\" selected>1</option>\n" +
+                    "  <option value=\"2\">2</option>\n" +
+                    "  <option value=\"3\">3</option>\n" +
+                    "  <option value=\"4\">4</option>\n" +
+                    "  <option value=\"5\">5</option>\n" +
+                    "  <option value=\"6\">6</option>\n" +
+                "</select><br />";
+        form += "<label for='backKnowledgeForSessionProcedure'>Background Knowledge for session/procedure:</label>\n";
+        form += "<select name=\"backKnowledgeForSessionProcedure\"id='dropdown' >\n" +
+                    "  <option value=\"1\" selected>1</option>\n" +
+                    "  <option value=\"2\">2</option>\n" +
+                    "  <option value=\"3\">3</option>\n" +
+                    "  <option value=\"4\">4</option>\n" +
+                    "  <option value=\"5\">5</option>\n" +
+                    "  <option value=\"6\">6</option>\n" +
+                "</select><br />";
+        form += "<label for='justKnowledgeOfApproSpecInvest'>Justification for, and knowledge of appropriate special investigations:</label>\n";
+        form += "<select name=\"justKnowledgeOfApproSpecInvest\"id='dropdown' >\n" +
                     "  <option value=\"1\" selected>1</option>\n" +
                     "  <option value=\"2\">2</option>\n" +
                     "  <option value=\"3\">3</option>\n" +
