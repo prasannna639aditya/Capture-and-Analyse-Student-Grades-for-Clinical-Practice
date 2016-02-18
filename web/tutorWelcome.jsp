@@ -48,7 +48,11 @@
                 String picture = (String) session.getAttribute( "picture" );
                 out.print(gui.tutorWelcomeNavigation(true, TutorID, firstName, lastName, department, picture));
                 out.print(core.markingDescriptors());
-                out.print(check.show(1));
+                out.print(check.showCore(1));
+                out.print(check.showBasic(1));
+                out.print(check.showProfessionalism(1));
+                out.print(check.showCommunication(1));
+                out.print(check.showKnowledge(1));
           }
         %>
         
