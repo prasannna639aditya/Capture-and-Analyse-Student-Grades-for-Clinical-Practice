@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package application;
+package summaryData;
 
 import dbpackage.DatabaseClass;
 import java.sql.Connection;
@@ -18,10 +18,10 @@ import javax.servlet.http.HttpServletRequest;
  *
  * @author Delaney
  */
-public class CheckStudentData {
+public class StudentSummaryData {
     private String [] result;
     
-    public CheckStudentData(){
+    public StudentSummaryData(){
         this.result = new String[10];
     }
     
@@ -41,7 +41,7 @@ public class CheckStudentData {
                 + "SUM(LocalAnaesthesiaInfiltration = " + score + " ) AS LocalAnaesthesiaInfiltrationCount, "
                 + "SUM(ManagementOfComplications = " + score + " ) AS ManagementOfComplicationsCount, "
                 + "SUM(MaterialSelectionAndHandling = " + score + " ) AS MaterialSelectionAndHandlingCount " 
-                + "FROM TBICoreSkills;" );
+                + "FROM TBICoreSkills" );
                 //+ "FROM TBICoreSkills WHERE StudentID = 112445898 AND DateAdded LIKE '%2015%';" );
         
         Statement stmt = conn.createStatement();
@@ -67,7 +67,8 @@ public class CheckStudentData {
                int MaterialSelectionAndHandlingInt = Integer.parseInt(rs.getString("MaterialSelectionAndHandlingCount"));
                
                countTotal = AbilToEstDiagInt + AbilToFormATreatmentPlanInt + EnsuringInfConInt + EquipPrepSelectInt + ExamIntraOralHardInt + ExamIntraOralSoftCountInt + ExtraOralExaminationInt + InfectionControlInt + InterpOfSpeciaInvestInt + LocalAnaesthesiaBlockInt + LocalAnaesthesiaInfiltrationInt + ManagementOfComplicationsInt + MaterialSelectionAndHandlingInt;
-               form += "<h1>Core Skills Generic ount total " + countTotal + "</h1>\n";
+               //form += "<h1>Core Skills Generic ount total " + countTotal + "</h1>\n";
+               form += countTotal;
                form += "</div>\n";
         }
         
@@ -82,7 +83,7 @@ public class CheckStudentData {
                 + "SUM(AppropriateLightPosition = " + score + " ) AS AppropriateLightPositionCount, "
                 + "SUM(AppropriateUseOfMirror = " + score + " ) AS AppropriateUseOfMirrorCount, "
                 + "SUM(AppropriateFingerSupport = " + score + " ) AS AppropriateFingerSupportCount " 
-                + "FROM TBICoreSkills;" );
+                + "FROM TBICoreSkills" );
         
         Statement stmt = conn.createStatement();
         ResultSet rs = stmt.executeQuery(query);
@@ -99,7 +100,7 @@ public class CheckStudentData {
                int AppropriateFingerSupportInt = Integer.parseInt(rs.getString("AppropriateFingerSupportCount"));
                
                countTotal = AppropriatePatientPositionInt + AppropriateOperatorPositionInt + AppropriateLightPositionInt + AppropriateUseOfMirrorInt + AppropriateFingerSupportInt;
-               form += "<h1>Basic Operative Skills count total " + countTotal + "</h1>\n";
+               form += countTotal;
                form += "</div>\n";
         }
         
@@ -114,7 +115,7 @@ public class CheckStudentData {
                 + "SUM(ProfessionalApproach = " + score + " ) AS ProfessionalApproachCount, "
                 + "SUM(SelfAwareness = " + score + " ) AS SelfAwarenessCount, "
                 + "SUM(StudentInsight = " + score + " ) AS StudentInsightCount "
-                + "FROM TBICoreSkills;" );
+                + "FROM TBICoreSkills" );
         
         Statement stmt = conn.createStatement();
         ResultSet rs = stmt.executeQuery(query);
@@ -130,7 +131,7 @@ public class CheckStudentData {
                int StudentInsightInt = Integer.parseInt(rs.getString("StudentInsightCount"));
                
                countTotal = PunctualityInt + ProfessionalApproachInt + SelfAwarenessInt + StudentInsightInt;
-               form += "<h1>Professionalism count total " + countTotal + "</h1>\n";
+               form += countTotal;
                form += "</div>\n";
         }
         
@@ -151,7 +152,7 @@ public class CheckStudentData {
                 + "SUM(PatientRecordKeeping = " + score + " ) AS PatientRecordKeepingCount, "
                 + "SUM(Charting = " + score + " ) AS ChartingCount, "
                 + "SUM(PresentationOfCase = " + score + " ) AS PresentationOfCaseCount "
-                + "FROM TBICoreSkills;" );
+                + "FROM TBICoreSkills" );
         
         Statement stmt = conn.createStatement();
         ResultSet rs = stmt.executeQuery(query);
@@ -174,7 +175,7 @@ public class CheckStudentData {
                int PresentationOfCaseInt = Integer.parseInt(rs.getString("PresentationOfCaseCount"));
                
                countTotal = AbilityToEstablishPatientHistoryInt + AbilityToObtainInformedConsentInt + AbilityToRequestSpecialInvestigationsInt +  AbilityToWritePerscriptionInt + CommunicationWithDentalTeamInt + CommunicationWithPatientAndFamilyInt + CommunicationWithTutorInt + OutlineOfReferalLetterInt + PatientRecordKeepingInt + ChartingInt + PresentationOfCaseInt;
-               form += "<h1>Communication count total " + countTotal + "</h1>\n";
+               form += countTotal;
                form += "</div>\n";
         }
         
@@ -187,7 +188,7 @@ public class CheckStudentData {
         String query =( "SELECT SUM(AbilityToUnderstandMedicalHistory = 1) AS AbilityToUnderstandMedicalHistoryCount,"
                 + "SUM(BackgroundKnowledgeForSessionProcedure = " + score + " ) AS BackgroundKnowledgeForSessionProcedureCount, "
                 + "SUM(JustificationForAndKnowledgeOfAppropriateSpecialInvestigations = " + score + " ) AS JustForKnowledgeOfApprSpecInvestCount "
-                + "FROM TBICoreSkills;" );
+                + "FROM TBICoreSkills" );
         
         Statement stmt = conn.createStatement();
         ResultSet rs = stmt.executeQuery(query);
@@ -202,10 +203,73 @@ public class CheckStudentData {
                int JustForKnowledgeOfApprSpecInvestInt = Integer.parseInt(rs.getString("JustForKnowledgeOfApprSpecInvestCount"));
                
                countTotal = AbilityToUnderstandMedicalHistoryInt + BackgroundKnowledgeForSessionProcedureInt + JustForKnowledgeOfApprSpecInvestInt;
-               form += "<h1>Knowledge count total " + countTotal + "</h1>\n";
+               form += countTotal;
                form += "</div>\n";
         }
         
+        return form;
+    }
+    
+    public String studentData() throws SQLException{
+        StudentSummaryData check = new StudentSummaryData();
+        String form = "<table class=\"table table-striped table-bordered table-condensed\" width=\"647\">\n";
+                   form += "<thead>\n";
+                   form += "<tr>\n";
+                   form += "<th>Skill                    Development Need Indicator:</th>\n";
+                   form += "<td>1</td>\n";
+                   form += "<td>2</td>\n";
+                   form += "<td>3</td>\n";
+                   form += "<td>4</td>\n";
+                   form += "<td>5</td>\n";
+                   form += "<td>6</td>\n";
+                   form += "</tr>\n";
+                   form += "<tr>";
+                   form += "<th>Core Skills Generic</th>\n";
+                   form += "<th>" + check.showCore(1) + "</th>\n";
+                   form += "<th>" + check.showCore(2) + "</th>\n";
+                   form += "<th>" + check.showCore(3) + "</th>\n";
+                   form += "<th>" + check.showCore(4) + "</th>\n";
+                   form += "<th>" + check.showCore(5) + "</th>\n";
+                   form += "<th>" + check.showCore(6) + "</th>\n";
+                   form += "</tr>\n";
+                   form += "<tr>";
+                   form += "<th>Basic Operative Skills</th>\n";
+                   form += "<th>" + check.showBasic(1) + "</th>\n";
+                   form += "<th>" + check.showBasic(2) + "</th>\n";
+                   form += "<th>" + check.showBasic(3) + "</th>\n";
+                   form += "<th>" + check.showBasic(4) + "</th>\n";
+                   form += "<th>" + check.showBasic(5) + "</th>\n";
+                   form += "<th>" + check.showBasic(6) + "</th>\n";
+                   form += "</tr>\n";
+                   form += "<tr>";
+                   form += "<th>Professionalism</th>\n";
+                   form += "<th>" + check.showProfessionalism(1) + "</th>\n";
+                   form += "<th>" + check.showProfessionalism(2) + "</th>\n";
+                   form += "<th>" + check.showProfessionalism(3) + "</th>\n";
+                   form += "<th>" + check.showProfessionalism(4) + "</th>\n";
+                   form += "<th>" + check.showProfessionalism(5) + "</th>\n";
+                   form += "<th>" + check.showProfessionalism(6) + "</th>\n";
+                   form += "</tr>\n";
+                   form += "<tr>";
+                   form += "<th>Communication</th>\n";
+                   form += "<th>" + check.showCommunication(1) + "</th>\n";
+                   form += "<th>" + check.showCommunication(2) + "</th>\n";
+                   form += "<th>" + check.showCommunication(3) + "</th>\n";
+                   form += "<th>" + check.showCommunication(4) + "</th>\n";
+                   form += "<th>" + check.showCommunication(5) + "</th>\n";
+                   form += "<th>" + check.showCommunication(6) + "</th>\n";
+                   form += "</tr>\n";
+                   form += "<tr>";
+                   form += "<th>Knowledge</th>\n";
+                   form += "<th>" + check.showKnowledge(1) + "</th>\n";
+                   form += "<th>" + check.showKnowledge(2) + "</th>\n";
+                   form += "<th>" + check.showKnowledge(3) + "</th>\n";
+                   form += "<th>" + check.showKnowledge(4) + "</th>\n";
+                   form += "<th>" + check.showKnowledge(5) + "</th>\n";
+                   form += "<th>" + check.showKnowledge(6) + "</th>\n";
+                   form += "</tr>\n";
+                   form += "</tr>\n";
+                   
         return form;
     }
     

@@ -4,7 +4,7 @@
     Author     : Delaney
 --%>
 
-<%@page import="application.CheckStudentData"%>
+<%@page import="summaryData.StudentSummaryData"%>
 <%@page import="application.CoreSkills"%>
 <%@page import="application.TutorLogin"%>
 <%@page import="application.StudentLookup"%>
@@ -33,7 +33,7 @@
           GUI gui = new GUI( );
           TutorLogin tutor = new TutorLogin();
           CoreSkills core = new CoreSkills();
-          CheckStudentData check = new CheckStudentData();
+          StudentSummaryData check = new StudentSummaryData();
           
           StudentLookup look = new StudentLookup();
           if( session.getAttribute( "Authenticated" ) == null ) {
@@ -48,11 +48,12 @@
                 String picture = (String) session.getAttribute( "picture" );
                 out.print(gui.tutorWelcomeNavigation(true, TutorID, firstName, lastName, department, picture));
                 out.print(core.markingDescriptors());
-                out.print(check.showCore(1));
+                /**out.print(check.showCore(1));
                 out.print(check.showBasic(1));
                 out.print(check.showProfessionalism(1));
                 out.print(check.showCommunication(1));
                 out.print(check.showKnowledge(1));
+                out.print(check.studentData**/
           }
         %>
         

@@ -123,7 +123,8 @@ public class CoreSkills {
         presentationOfCase = "";
         abilToUnderstandMedicalHistory = "";
         backKnowledgeForSessionProcedure = "";
-        justKnowledgeOfApproSpecInvest = "";  
+        justKnowledgeOfApproSpecInvest = ""; 
+        checkbox = "";
         this.treatmentScore = "";
         this.treatmentPlanID = "";
         this.checkbox = "";
@@ -514,6 +515,14 @@ public class CoreSkills {
         this.justKnowledgeOfApproSpecInvest = justKnowledgeOfApproSpecInvest;
     }
     
+    public String getCheckbox( ) {
+        return checkbox;
+    }
+ 
+    public void setCheckbox( final String checkbox) {
+        this.checkbox = checkbox;
+    }
+    
     /**
     public boolean checkPassword( HttpServletRequest request ) throws NoSuchAlgorithmException, InvalidKeySpecException, Exception  {
         DatabaseClass database = new DatabaseClass( );
@@ -573,9 +582,11 @@ public class CoreSkills {
         }**/
          
         if( isValid ) {
+            CoreSkills core = new CoreSkills();
             treatmentResult = score( abilToEstDiag, abilToFormTrtPlan , ensInfCons , equipPrep, examIntraOralHard, examIntraOralSoft, extraOralExam, infectionControl, interpOfSpecInves, localAnaesthesiaBlock, localAnaesthesiaInfiltration, managementofComplications, matSelecHandling, approPatPos, approOpPos , approLightPos , approUseOfMirror, approFingerSupport );
             getStudent( studentID );
             markStudent( );
+            
         }  
         
         return isValid;
@@ -653,7 +664,7 @@ public class CoreSkills {
     
     
     public void markStudent(  ) {
-       
+        CoreSkills core = new CoreSkills();
         database.Insert( "INSERT INTO TBICoreSkills( StudentID, PatientID, TutorID, AbilityToEstablishDiagnosis, AbilityToFormulateATreatmentPlan, EnsuringInformedConsent, EquipmentPreparationSelection,"
                 + "ExaminationIntraOralHardTissues, ExaminationIntraOralSoftTissues, ExtraOralExamination, InfectionControl, InterpretationOfSpeciaInvestigations, LocalAnaesthesiaBlock, LocalAnaesthesiaInfiltration,"
                 + "ManagementOfComplications, MaterialSelectionAndHandling, AppropriatePatientPosition, AppropriateOperatorPosition, AppropriateLightPosition, AppropriateUseOfMirror, AppropriateFingerSupport,"
@@ -661,8 +672,8 @@ public class CoreSkills {
                 + "AbilityToWritePerscription, CommunicationWithDentalTeam, CommunicationWithPatientAndFamily, CommunicationWithTutor, OutlineOfReferalLetter, PatientRecordKeeping, Charting, PresentationOfCase, AbilityToUnderstandMedicalHistory, BackgroundKnowledgeForSessionProcedure, JustificationForAndKnowledgeOfAppropriateSpecialInvestigations )"
                 +"VALUES( '" + studentID + "', '" + patientID + "', '" + tutorID + "', '" + abilToEstDiag + "', '" + abilToFormTrtPlan + "', '" + ensInfCons + "', '" + equipPrep + "','" + examIntraOralHard + "','" + examIntraOralSoft + "','" + extraOralExam + "','" + infectionControl + "','" + interpOfSpecInves + "','" + localAnaesthesiaBlock + "','" + localAnaesthesiaInfiltration + "','" + managementofComplications + "','" + matSelecHandling + "','" + approPatPos + "','" + approOpPos + "','" + approLightPos + "','" + approUseOfMirror + "','" + approFingerSupport + "','" + date + "','" + treatmentID + "','" + time + "','" + treatmentResult + "','" + comment + "','" + punctuality + "','" + professionalApproach + "','" + selfAwareness + "','" + studentInsight + "','" + abilToEstPatientHistory  + "','" + abilToEnsureInformedConsent + "','" + abilToReqSpecialInvestigations + "','" + abilToWritePerscription + "','" + communicationWithDentalTeam + "', '" + communicationWithPatientAndFamily + "', '" + communicationWithTutor + "','" + outlineOfReferalLetter+ "','" + patientRecordKeeping + "','" + charting + "','" + presentationOfCase + "','" + abilToUnderstandMedicalHistory + "','" + backKnowledgeForSessionProcedure + "','" + backKnowledgeForSessionProcedure + "' );" );
         
-        /**database.Insert( "INSERT INTO TreatmentPlanEntries( TreatmentPlanID, TreatmentItem, GroupID )" +
-                         "VALUES( '" + studentID + "', '" + yearID + "','" + groupID + "' );" );**/
+        database.Insert( "INSERT INTO TreatmentPlanEntries( TreatmentID, TreatmentScore, ClinicalAlert, Comment)" +
+                         "VALUES( '" + treatmentID + "','" + treatmentResult + "','" + checkbox + "','" + comment + "' );" );
         
         database.Close();
     }
@@ -1039,6 +1050,8 @@ public class CoreSkills {
                 "</select><br />";
         
         form += "<h1>Review</h1>\n";
+        form += "<label for=\"checkbox\">Clinical Alert</label>\n" +
+                "<input type=\"checkbox\" name=\"checkbox\" id=\"checkbox\" value=\"Yes\">\n";
         form += "<label for='comment'>Comment:</label>\n" +
                 "<textarea name='comment' placeholder=\"Please comment on the students performance\" value='comment' id='comment'></textarea>\n" +
                 "</select><br />";

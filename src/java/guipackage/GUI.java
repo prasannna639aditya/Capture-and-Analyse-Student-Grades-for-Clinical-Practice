@@ -62,6 +62,14 @@ public class GUI {
         form += "<li><a href=\"registerStudent.jsp\">Register a Student</a></li>\n";
         form += "<li><a href=\"markStudent.jsp\">Grade Student</a></li>\n";
         form += "<li><a href=\"student-years/students.jsp\">Students</a></li>\n";
+        form += "<li><a href=\"summaryData/summaryData.jsp\">Summary Data</a></li>\n";
+        form += "<li>\n" +
+        "    <div class=\"input-group\">\n" +
+        "      <input type=\"text\" class=\"form-control\" placeholder=\"Search for...\">\n" +
+        "      <span class=\"input-group-btn\">\n" +
+        "        <button class=\"btn btn-default\" type=\"button\"><span class=\"glyphicon glyphicon-search\" aria-hidden=\"true\"></span></button>\n" +
+        "      </span>\n" +
+        "    </div><!-- /input-group --></li>\n";
         form += "</ul>\n";        
         form += "</div>\n";
         form += "<div id=\"page-content-wrapper\">\n";  
@@ -118,6 +126,14 @@ public class GUI {
         form += "<li><a href=\"registerStudent.jsp\">Register a Student</a></li>\n";
         form += "<li><a href=\"markStudent.jsp\">Grade Student</a></li>\n";
         form += "<li><a href=\"student-years/students.jsp\">Students</a></li>\n";
+        form += "<li><a href=\"summaryData/summaryData.jsp\">Summary Data</a></li>\n";
+        form += "<li>\n" +
+        "    <div class=\"input-group\">\n" +
+        "      <input type=\"text\" class=\"form-control\" placeholder=\"Search for...\">\n" +
+        "      <span class=\"input-group-btn\">\n" +
+        "        <button class=\"btn btn-default\" type=\"button\"><span class=\"glyphicon glyphicon-search\" aria-hidden=\"true\"></span></button>\n" +
+        "      </span>\n" +
+        "    </div><!-- /input-group --></li>\n";
         form += "</ul>\n";        
         form += "</div>\n";
         form += "<div id=\"page-content-wrapper\">\n";  
@@ -130,6 +146,7 @@ public class GUI {
         form += "    <script>$(\"#menu-toggle\").click(function(e) {e.preventDefault();$(\"#wrapper\").toggleClass(\"toggled\");});</script>\n";
         return form;
     }
+    
     
     public String studentWelcomeNavigation(boolean printName, String StudentID, String firstName, String lastName, String picture) {
         form = "<div id=\"wrapper\">\n";
