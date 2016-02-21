@@ -51,7 +51,9 @@
 }
 
 #menu-toggle{
-    float:left;
+    float:right;
+    padding: 50px;
+    border-bottom: black 10px solid;
 }
 /* Sidebar Styles */
 

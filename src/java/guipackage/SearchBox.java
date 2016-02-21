@@ -1,40 +1,59 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package summaryData;
+package guipackage;
 
-/**
- *
- * @author Delaney
- */
 
-import dbpackage.DatabaseClass;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
+import summaryData.StudentSummaryData;
 
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 
 /**
  *
  * @author Delaney
  */
-public class StudentYearlySummaryData {
+public class SearchBox {
     private String [] result;
+    private String studentID;
+    private final ArrayList<String> errors;
     
-    public StudentYearlySummaryData(){
+    public SearchBox(){
         this.result = new String[10];
+        errors = new ArrayList<>( );
+        this.studentID = "";
     }
     
-    public String showCore( int score, String year ) throws SQLException {
+    public String getStudentID() {
+        return studentID;
+    }
+    
+    public void setStudentID(String studentID) {
+        this.studentID = studentID;
+    }
+    
+    public String printErrors( ) {
+        String errorList;
+        
+        errorList = "<ul>";
+            for( String error: errors ) {
+                errorList += "<li>" + error + "</li>";
+            }
+        errorList += "</ul>";
+        
+        return errorList;
+    }
+    
+    public String showCore( int score, String studentID) throws SQLException {
         Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
         
-        String query =( "SELECT tb.StudentID, "
-                + "SUM(AbilityToEstablishDiagnosis = 1) AS AbilToEstDiagCount, "
+        String query =( "SELECT SUM(AbilityToEstablishDiagnosis = " + score + ") AS AbilToEstDiagCount,"
                 + "SUM(AbilityToFormulateATreatmentPlan = " + score + " ) AS AbilToFormATreatmentPlanCount, "
                 + "SUM(EnsuringInformedConsent = " + score + " ) AS EnsuringInfConCount, "
                 + "SUM(EquipmentPreparationSelection = " + score + " ) AS EquipPrepSelectCount, "
@@ -47,9 +66,8 @@ public class StudentYearlySummaryData {
                 + "SUM(LocalAnaesthesiaInfiltration = " + score + " ) AS LocalAnaesthesiaInfiltrationCount, "
                 + "SUM(ManagementOfComplications = " + score + " ) AS ManagementOfComplicationsCount, "
                 + "SUM(MaterialSelectionAndHandling = " + score + " ) AS MaterialSelectionAndHandlingCount " 
-                + "FROM TBICoreSkills tb;" );
-        
-        
+                + "FROM TBICoreSkills WHERE StudentID= " + studentID + ";" );
+                //+ "FROM TBICoreSkills WHERE StudentID = 112445898 AND DateAdded LIKE '%2015%';" );
         
         Statement stmt = conn.createStatement();
         ResultSet rs = stmt.executeQuery(query);
@@ -82,15 +100,15 @@ public class StudentYearlySummaryData {
         return form;
     }
     
-    public String showBasic( int score ) throws SQLException {
+    public String showBasic( int score, String studentID ) throws SQLException {
         Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
         
-        String query =( "SELECT SUM(AppropriatePatientPosition = 1) AS AppropriatePatientPositionCount,"
+        String query =( "SELECT SUM(AppropriatePatientPosition = " + score + ") AS AppropriatePatientPositionCount,"
                 + "SUM(AppropriateOperatorPosition = " + score + " ) AS AppropriateOperatorPositionCount, "
                 + "SUM(AppropriateLightPosition = " + score + " ) AS AppropriateLightPositionCount, "
                 + "SUM(AppropriateUseOfMirror = " + score + " ) AS AppropriateUseOfMirrorCount, "
                 + "SUM(AppropriateFingerSupport = " + score + " ) AS AppropriateFingerSupportCount " 
-                + "FROM TBICoreSkills WHERE StudentID = 112445898;" );
+                + "FROM TBICoreSkills WHERE StudentID= " + studentID + ";" );
         
         Statement stmt = conn.createStatement();
         ResultSet rs = stmt.executeQuery(query);
@@ -115,14 +133,14 @@ public class StudentYearlySummaryData {
     }
     
     
-    public String showProfessionalism( int score ) throws SQLException {
+    public String showProfessionalism( int score, String studentID ) throws SQLException {
         Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
         
-        String query =( "SELECT SUM(Punctuality = 1) AS PunctualityCount,"
+        String query =( "SELECT SUM(Punctuality = " + score + ") AS PunctualityCount,"
                 + "SUM(ProfessionalApproach = " + score + " ) AS ProfessionalApproachCount, "
                 + "SUM(SelfAwareness = " + score + " ) AS SelfAwarenessCount, "
                 + "SUM(StudentInsight = " + score + " ) AS StudentInsightCount "
-                + "FROM TBICoreSkills WHERE StudentID = 112445898;" );
+                + "FROM TBICoreSkills WHERE StudentID= " + studentID + ";" );
         
         Statement stmt = conn.createStatement();
         ResultSet rs = stmt.executeQuery(query);
@@ -145,10 +163,10 @@ public class StudentYearlySummaryData {
         return form;
     }
     
-    public String showCommunication( int score ) throws SQLException {
+    public String showCommunication( int score, String studentID ) throws SQLException {
         Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
         
-        String query =( "SELECT SUM(AbilityToEstablishPatientHistory = 1) AS AbilityToEstablishPatientHistoryCount,"
+        String query =( "SELECT SUM(AbilityToEstablishPatientHistory = " + score + ") AS AbilityToEstablishPatientHistoryCount,"
                 + "SUM(AbilityToObtainInformedConsent = " + score + " ) AS AbilityToObtainInformedConsentCount, "
                 + "SUM(AbilityToRequestSpecialInvestigations = " + score + " ) AS AbilityToRequestSpecialInvestigationsCount, "
                 + "SUM(AbilityToWritePerscription = " + score + " ) AS AbilityToWritePerscriptionCount, "
@@ -159,7 +177,7 @@ public class StudentYearlySummaryData {
                 + "SUM(PatientRecordKeeping = " + score + " ) AS PatientRecordKeepingCount, "
                 + "SUM(Charting = " + score + " ) AS ChartingCount, "
                 + "SUM(PresentationOfCase = " + score + " ) AS PresentationOfCaseCount "
-                + "FROM TBICoreSkills WHERE StudentID = 112445898;" );
+                + "FROM TBICoreSkills WHERE StudentID= " + studentID + ";" );
         
         Statement stmt = conn.createStatement();
         ResultSet rs = stmt.executeQuery(query);
@@ -189,13 +207,13 @@ public class StudentYearlySummaryData {
         return form;
     }
     
-    public String showKnowledge( int score ) throws SQLException {
+    public String showKnowledge( int score, String studentID ) throws SQLException {
         Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
         
-        String query =( "SELECT SUM(AbilityToUnderstandMedicalHistory = 1) AS AbilityToUnderstandMedicalHistoryCount,"
+        String query =( "SELECT SUM(AbilityToUnderstandMedicalHistory = " + score + ") AS AbilityToUnderstandMedicalHistoryCount,"
                 + "SUM(BackgroundKnowledgeForSessionProcedure = " + score + " ) AS BackgroundKnowledgeForSessionProcedureCount, "
                 + "SUM(JustificationForAndKnowledgeOfAppropriateSpecialInvestigations = " + score + " ) AS JustForKnowledgeOfApprSpecInvestCount "
-                + "FROM TBICoreSkills WHERE StudentID = 112445898;" );
+                + "FROM TBICoreSkills WHERE StudentID= " + studentID + ";" );
         
         Statement stmt = conn.createStatement();
         ResultSet rs = stmt.executeQuery(query);
@@ -217,76 +235,88 @@ public class StudentYearlySummaryData {
         return form;
     }
     
-    public String studentData() throws SQLException{
-        StudentSummaryData check = new StudentSummaryData();
+    public String studentData( String studentID) throws SQLException{
+        SearchBox check = new SearchBox();
         String form = "<table class=\"table table-striped table-bordered table-condensed\" width=\"647\">\n";
                    form += "<thead>\n";
                    form += "<tr>\n";
-                   form += "<th>Skill                    Development Need Indicator:</th>\n";
-                   form += "<td>1</td>\n";
-                   form += "<td>2</td>\n";
-                   form += "<td>3</td>\n";
-                   form += "<td>4</td>\n";
-                   form += "<td>5</td>\n";
-                   form += "<td>6</td>\n";
+                   form += "<th></th>\n";
+                   form += "<th colspan=\"6\">Development Need Indicator</th>";
+                   form += "</tr>";
+                   form += "<tr>\n";
+                   form += "<th>Skill</th>\n";
+                   form += "<th>1 (Total)</th>\n";
+                   form += "<th>2 (Total)</th>\n";
+                   form += "<th>3 (Total)</th>\n";
+                   form += "<th>4 (Total)</th>\n";
+                   form += "<th>5 (Total)</th>\n";
+                   form += "<th>6 (Total)</th>\n";
                    form += "</tr>\n";
+                   form += "</thead>\n";
                    form += "<tr>";
                    form += "<th>Core Skills Generic</th>\n";
-                   form += "<th>" + check.showCore(1) + "</th>\n";
-                   form += "<th>" + check.showCore(2) + "</th>\n";
-                   form += "<th>" + check.showCore(3) + "</th>\n";
-                   form += "<th>" + check.showCore(4) + "</th>\n";
-                   form += "<th>" + check.showCore(5) + "</th>\n";
-                   form += "<th>" + check.showCore(6) + "</th>\n";
+                   form += "<th>" + check.showCore(1, studentID) + "</th>\n";
+                   form += "<th>" + check.showCore(2, studentID) + "</th>\n";
+                   form += "<th>" + check.showCore(3, studentID) + "</th>\n";
+                   form += "<th>" + check.showCore(4, studentID) + "</th>\n";
+                   form += "<th>" + check.showCore(5, studentID) + "</th>\n";
+                   form += "<th>" + check.showCore(6, studentID) + "</th>\n";
                    form += "</tr>\n";
                    form += "<tr>";
                    form += "<th>Basic Operative Skills</th>\n";
-                   form += "<th>" + check.showBasic(1) + "</th>\n";
-                   form += "<th>" + check.showBasic(2) + "</th>\n";
-                   form += "<th>" + check.showBasic(3) + "</th>\n";
-                   form += "<th>" + check.showBasic(4) + "</th>\n";
-                   form += "<th>" + check.showBasic(5) + "</th>\n";
-                   form += "<th>" + check.showBasic(6) + "</th>\n";
+                   form += "<th>" + check.showBasic(1, studentID) + "</th>\n";
+                   form += "<th>" + check.showBasic(2, studentID) + "</th>\n";
+                   form += "<th>" + check.showBasic(3, studentID) + "</th>\n";
+                   form += "<th>" + check.showBasic(4, studentID) + "</th>\n";
+                   form += "<th>" + check.showBasic(5, studentID) + "</th>\n";
+                   form += "<th>" + check.showBasic(6, studentID) + "</th>\n";
                    form += "</tr>\n";
                    form += "<tr>";
                    form += "<th>Professionalism</th>\n";
-                   form += "<th>" + check.showProfessionalism(1) + "</th>\n";
-                   form += "<th>" + check.showProfessionalism(2) + "</th>\n";
-                   form += "<th>" + check.showProfessionalism(3) + "</th>\n";
-                   form += "<th>" + check.showProfessionalism(4) + "</th>\n";
-                   form += "<th>" + check.showProfessionalism(5) + "</th>\n";
-                   form += "<th>" + check.showProfessionalism(6) + "</th>\n";
+                   form += "<th>" + check.showProfessionalism(1, studentID) + "</th>\n";
+                   form += "<th>" + check.showProfessionalism(2, studentID) + "</th>\n";
+                   form += "<th>" + check.showProfessionalism(3, studentID) + "</th>\n";
+                   form += "<th>" + check.showProfessionalism(4, studentID) + "</th>\n";
+                   form += "<th>" + check.showProfessionalism(5, studentID) + "</th>\n";
+                   form += "<th>" + check.showProfessionalism(6, studentID) + "</th>\n";
                    form += "</tr>\n";
                    form += "<tr>";
                    form += "<th>Communication</th>\n";
-                   form += "<th>" + check.showCommunication(1) + "</th>\n";
-                   form += "<th>" + check.showCommunication(2) + "</th>\n";
-                   form += "<th>" + check.showCommunication(3) + "</th>\n";
-                   form += "<th>" + check.showCommunication(4) + "</th>\n";
-                   form += "<th>" + check.showCommunication(5) + "</th>\n";
-                   form += "<th>" + check.showCommunication(6) + "</th>\n";
+                   form += "<th>" + check.showCommunication(1, studentID) + "</th>\n";
+                   form += "<th>" + check.showCommunication(2, studentID) + "</th>\n";
+                   form += "<th>" + check.showCommunication(3, studentID) + "</th>\n";
+                   form += "<th>" + check.showCommunication(4, studentID) + "</th>\n";
+                   form += "<th>" + check.showCommunication(5, studentID) + "</th>\n";
+                   form += "<th>" + check.showCommunication(6, studentID) + "</th>\n";
                    form += "</tr>\n";
                    form += "<tr>";
                    form += "<th>Knowledge</th>\n";
-                   form += "<th>" + check.showKnowledge(1) + "</th>\n";
-                   form += "<th>" + check.showKnowledge(2) + "</th>\n";
-                   form += "<th>" + check.showKnowledge(3) + "</th>\n";
-                   form += "<th>" + check.showKnowledge(4) + "</th>\n";
-                   form += "<th>" + check.showKnowledge(5) + "</th>\n";
-                   form += "<th>" + check.showKnowledge(6) + "</th>\n";
+                   form += "<th>" + check.showKnowledge(1, studentID) + "</th>\n";
+                   form += "<th>" + check.showKnowledge(2, studentID) + "</th>\n";
+                   form += "<th>" + check.showKnowledge(3, studentID) + "</th>\n";
+                   form += "<th>" + check.showKnowledge(4, studentID) + "</th>\n";
+                   form += "<th>" + check.showKnowledge(5, studentID) + "</th>\n";
+                   form += "<th>" + check.showKnowledge(6, studentID) + "</th>\n";
                    form += "</tr>\n";
                    form += "</tr>\n";
+                   form += "</table>\n";
                    
         return form;
     }
     
+    
+    
+    
     public String searchBox(){
-        String form = "<div class=\"input-group\">\n" +
-        "      <input type=\"text\" class=\"form-control\" placeholder=\"Search for...\">\n" +
-        "      <input type='submit' value='Submit' name='submit' /><br />\n" +
-        "    </div><!-- /input-group --></li>\n";
+        String form = "<form name='marking_form' action='studentSearch.jsp' method='POST'>\n";
+               form += "<li>\n" +
+                       "<div class=\"input-group\">\n";
+               form += "<input type=\"text\" name='studentID' class=\"form-control\" placeholder=\"Search student ID\">\n" +
+                       "</select><br />" +
+                       "<input type='submit' value='Search' name='submit' /><br />\n" +
+                       "</div><!-- /input-group --></li>\n" +
+                       "</form>";
         
         return form;
     }
-    
 }

@@ -663,8 +663,10 @@ public class CoreSkills {
     }
     
     
-    public void markStudent(  ) {
+    public void markStudent(  ) throws SQLException {
         CoreSkills core = new CoreSkills();
+        TreatmentItems treatment = new TreatmentItems();
+        
         database.Insert( "INSERT INTO TBICoreSkills( StudentID, PatientID, TutorID, AbilityToEstablishDiagnosis, AbilityToFormulateATreatmentPlan, EnsuringInformedConsent, EquipmentPreparationSelection,"
                 + "ExaminationIntraOralHardTissues, ExaminationIntraOralSoftTissues, ExtraOralExamination, InfectionControl, InterpretationOfSpeciaInvestigations, LocalAnaesthesiaBlock, LocalAnaesthesiaInfiltration,"
                 + "ManagementOfComplications, MaterialSelectionAndHandling, AppropriatePatientPosition, AppropriateOperatorPosition, AppropriateLightPosition, AppropriateUseOfMirror, AppropriateFingerSupport,"
@@ -672,8 +674,11 @@ public class CoreSkills {
                 + "AbilityToWritePerscription, CommunicationWithDentalTeam, CommunicationWithPatientAndFamily, CommunicationWithTutor, OutlineOfReferalLetter, PatientRecordKeeping, Charting, PresentationOfCase, AbilityToUnderstandMedicalHistory, BackgroundKnowledgeForSessionProcedure, JustificationForAndKnowledgeOfAppropriateSpecialInvestigations )"
                 +"VALUES( '" + studentID + "', '" + patientID + "', '" + tutorID + "', '" + abilToEstDiag + "', '" + abilToFormTrtPlan + "', '" + ensInfCons + "', '" + equipPrep + "','" + examIntraOralHard + "','" + examIntraOralSoft + "','" + extraOralExam + "','" + infectionControl + "','" + interpOfSpecInves + "','" + localAnaesthesiaBlock + "','" + localAnaesthesiaInfiltration + "','" + managementofComplications + "','" + matSelecHandling + "','" + approPatPos + "','" + approOpPos + "','" + approLightPos + "','" + approUseOfMirror + "','" + approFingerSupport + "','" + date + "','" + treatmentID + "','" + time + "','" + treatmentResult + "','" + comment + "','" + punctuality + "','" + professionalApproach + "','" + selfAwareness + "','" + studentInsight + "','" + abilToEstPatientHistory  + "','" + abilToEnsureInformedConsent + "','" + abilToReqSpecialInvestigations + "','" + abilToWritePerscription + "','" + communicationWithDentalTeam + "', '" + communicationWithPatientAndFamily + "', '" + communicationWithTutor + "','" + outlineOfReferalLetter+ "','" + patientRecordKeeping + "','" + charting + "','" + presentationOfCase + "','" + abilToUnderstandMedicalHistory + "','" + backKnowledgeForSessionProcedure + "','" + backKnowledgeForSessionProcedure + "' );" );
         
-        database.Insert( "INSERT INTO TreatmentPlanEntries( TreatmentID, TreatmentScore, ClinicalAlert, Comment)" +
-                         "VALUES( '" + treatmentID + "','" + treatmentResult + "','" + checkbox + "','" + comment + "' );" );
+        database.Insert( "INSERT INTO TreatmentPlanEntries( TreatmentName, TreatmentScore, ClinicalAlert, Comment)" +
+                         "VALUES( '" + treatment.fetchTreatmentName(treatmentID) + "','" + treatmentResult + "','" + checkbox + "','" + comment + "' );" );
+        
+        database.Insert( "INSERT INTO TreatmentPlans( TutorID, PatientID, StudentID)" +
+                         "VALUES( '" + tutorID + "','" + patientID + "','" + studentID + "' );" );
         
         database.Close();
     }
@@ -1084,6 +1089,7 @@ public class CoreSkills {
                    form += "<td>Confirmatory advice from the tutor.</td>\n";
                    form += "<td>Confirmatory advice from the tutor.</td>\n";
                    form += "</tr>\n";
+                   form += "</thead>\n";
                    form += "<tr>\n";
                    form += "<th rowspan=\"1\">Development Indicator/ Grade</th>\n";
                    form += "<td>1</td>"

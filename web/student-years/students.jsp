@@ -35,10 +35,35 @@
         
     </head>
     <body>
+        <div id="wrapper">
+        <div id="sidebar-wrapper">
+        <ul class="sidebar-nav">
+            <li class="sidebar-brand">
+             <a href="../index.jsp">Logout</a>
+            </li>
+            <li><a href="../tutorWelcome.jsp">Home</a></li>
+            <li><a href="../registerStudent.jsp">Register a Student</a></li>
+            <li><a href="student-years/students.jsp">Grade Students</a></li>
+            <li><a href="../summaryData.jsp">Summary Data</a></li>
+               <form name='marking_form' action='../studentSearch.jsp' method='POST'>
+               <li>
+               <div class="input-group">
+               <input type="text" name='studentID' class="form-control" placeholder="Search student ID">
+               </select><br/>
+               <input type='submit' value='Search' name='submit' /><br />
+               </div>
+               </li>
+               </form>
+        </ul>        
+        </div>
+        <div id="page-content-wrapper"> 
+        <div class="container-fluid">
+        <div class="row">
+        <div class="col-lg-12">
+        
         <%
           GUI gui = new GUI( );
           StudentLookup look = new StudentLookup();
-          out.print(gui.tutorNavigation());
         %>
          <div id="tabs">
          <ul>
@@ -97,8 +122,9 @@
            </p>
          </div>
            
-        </div>   
-               
+        </div> 
+           
+          
          </div>    
         </div>
        </div>

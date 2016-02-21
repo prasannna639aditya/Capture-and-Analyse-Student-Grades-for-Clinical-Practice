@@ -28,7 +28,7 @@ public class StudentSummaryData {
     public String showCore( int score ) throws SQLException {
         Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
         
-        String query =( "SELECT SUM(AbilityToEstablishDiagnosis = 1) AS AbilToEstDiagCount,"
+        String query =( "SELECT SUM(AbilityToEstablishDiagnosis = " + score + ") AS AbilToEstDiagCount,"
                 + "SUM(AbilityToFormulateATreatmentPlan = " + score + " ) AS AbilToFormATreatmentPlanCount, "
                 + "SUM(EnsuringInformedConsent = " + score + " ) AS EnsuringInfConCount, "
                 + "SUM(EquipmentPreparationSelection = " + score + " ) AS EquipPrepSelectCount, "
@@ -78,7 +78,7 @@ public class StudentSummaryData {
     public String showBasic( int score ) throws SQLException {
         Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
         
-        String query =( "SELECT SUM(AppropriatePatientPosition = 1) AS AppropriatePatientPositionCount,"
+        String query =( "SELECT SUM(AppropriatePatientPosition = " + score + ") AS AppropriatePatientPositionCount,"
                 + "SUM(AppropriateOperatorPosition = " + score + " ) AS AppropriateOperatorPositionCount, "
                 + "SUM(AppropriateLightPosition = " + score + " ) AS AppropriateLightPositionCount, "
                 + "SUM(AppropriateUseOfMirror = " + score + " ) AS AppropriateUseOfMirrorCount, "
@@ -111,7 +111,7 @@ public class StudentSummaryData {
     public String showProfessionalism( int score ) throws SQLException {
         Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
         
-        String query =( "SELECT SUM(Punctuality = 1) AS PunctualityCount,"
+        String query =( "SELECT SUM(Punctuality = " + score + ") AS PunctualityCount,"
                 + "SUM(ProfessionalApproach = " + score + " ) AS ProfessionalApproachCount, "
                 + "SUM(SelfAwareness = " + score + " ) AS SelfAwarenessCount, "
                 + "SUM(StudentInsight = " + score + " ) AS StudentInsightCount "
@@ -141,7 +141,7 @@ public class StudentSummaryData {
     public String showCommunication( int score ) throws SQLException {
         Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
         
-        String query =( "SELECT SUM(AbilityToEstablishPatientHistory = 1) AS AbilityToEstablishPatientHistoryCount,"
+        String query =( "SELECT SUM(AbilityToEstablishPatientHistory = " + score + ") AS AbilityToEstablishPatientHistoryCount,"
                 + "SUM(AbilityToObtainInformedConsent = " + score + " ) AS AbilityToObtainInformedConsentCount, "
                 + "SUM(AbilityToRequestSpecialInvestigations = " + score + " ) AS AbilityToRequestSpecialInvestigationsCount, "
                 + "SUM(AbilityToWritePerscription = " + score + " ) AS AbilityToWritePerscriptionCount, "
@@ -185,7 +185,7 @@ public class StudentSummaryData {
     public String showKnowledge( int score ) throws SQLException {
         Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
         
-        String query =( "SELECT SUM(AbilityToUnderstandMedicalHistory = 1) AS AbilityToUnderstandMedicalHistoryCount,"
+        String query =( "SELECT SUM(AbilityToUnderstandMedicalHistory = " + score + ") AS AbilityToUnderstandMedicalHistoryCount,"
                 + "SUM(BackgroundKnowledgeForSessionProcedure = " + score + " ) AS BackgroundKnowledgeForSessionProcedureCount, "
                 + "SUM(JustificationForAndKnowledgeOfAppropriateSpecialInvestigations = " + score + " ) AS JustForKnowledgeOfApprSpecInvestCount "
                 + "FROM TBICoreSkills" );
@@ -215,14 +215,19 @@ public class StudentSummaryData {
         String form = "<table class=\"table table-striped table-bordered table-condensed\" width=\"647\">\n";
                    form += "<thead>\n";
                    form += "<tr>\n";
-                   form += "<th>Skill                    Development Need Indicator:</th>\n";
-                   form += "<td>1</td>\n";
-                   form += "<td>2</td>\n";
-                   form += "<td>3</td>\n";
-                   form += "<td>4</td>\n";
-                   form += "<td>5</td>\n";
-                   form += "<td>6</td>\n";
+                   form += "<th></th>\n";
+                   form += "<th colspan=\"6\">Development Need Indicator</th>";
+                   form += "</tr>";
+                   form += "<tr>\n";
+                   form += "<th>Skill</th>\n";
+                   form += "<th>1 (Total)</th>\n";
+                   form += "<th>2 (Total)</th>\n";
+                   form += "<th>3 (Total)</th>\n";
+                   form += "<th>4 (Total)</th>\n";
+                   form += "<th>5 (Total)</th>\n";
+                   form += "<th>6 (Total)</th>\n";
                    form += "</tr>\n";
+                   form += "</thead>\n";
                    form += "<tr>";
                    form += "<th>Core Skills Generic</th>\n";
                    form += "<th>" + check.showCore(1) + "</th>\n";
@@ -269,6 +274,7 @@ public class StudentSummaryData {
                    form += "<th>" + check.showKnowledge(6) + "</th>\n";
                    form += "</tr>\n";
                    form += "</tr>\n";
+                   form += "</table>\n";
                    
         return form;
     }

@@ -29,37 +29,75 @@
         
     </head>
     <body>
+     
+        <div id="wrapper">
+        <div id="sidebar-wrapper">
+        <ul class="sidebar-nav">
+            <li class="sidebar-brand">
+             <a href="../index.jsp">Logout</a>
+            </li>
+            <li><a href="../tutorWelcome.jsp">Home</a></li>
+            <li><a href="../registerStudent.jsp">Register a Student</a></li>
+            <li><a href="student-years/students.jsp">Grade Students</a></li>
+            <li><a href="../summaryData.jsp">Summary Data</a></li>
+               <form name='marking_form' action='../studentSearch.jsp' method='POST'>
+               <li>
+               <div class="input-group">
+               <input type="text" name='studentID' class="form-control" placeholder="Search student ID">
+               </select><br/>
+               <input type='submit' value='Search' name='submit' /><br />
+               </div>
+               </li>
+               </form>
+        </ul>          
+        </div>
+        <div id="page-content-wrapper"> 
+        <div class="container-fluid">
+        <div class="row">
+        <div class="col-lg-12">
+        
+        
+        
         
         
         <%
           GUI gui = new GUI( );
           StudentLookup look = new StudentLookup();
-          out.print(gui.tutorNavigation());
           StudentSummaryData check = new StudentSummaryData();
           StudentYearlySummaryData year = new StudentYearlySummaryData();
         %> 
         
-        <ul>
+        
+        <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Menu</a>
+        
+        
+        <div>
+         <ul>
             <li a href="year1StudentData.jsp">BDS3</li>
             <li a href="year2StudentData.jsp">BDS4</li>
             <li a href="year3StudentData.jsp">BDS5</li>
             <li a href="year4StudentData.jsp">HYG1</li>
             <li a href="year5StudentData.jsp">HYG2</li>
-        </ul>
+         </ul>
+        </div>
         <%
           out.print(check.studentData());
           
           out.print("Test with numb");
-          out.print(year.showCore(1, "2"));
+          out.print(year.showCore(1, "3"));
           
           out.print("Test");
           out.print(check.showCore(5));
         %> 
            
-               
-         </div>    
+         
+        
+        <script src="../js/jquery.js"></script>
+        <script src="../js/bootstrap.min.js"></script>
+        <script>$("#menu-toggle").click(function(e) {e.preventDefault();$("#wrapper").toggleClass("toggled");});</script>
         </div>
        </div>
+      </div>
      </div>
     </div>
         
