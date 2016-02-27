@@ -64,6 +64,7 @@ public class GUI {
         form += "<li><a href=\"registerStudent.jsp\">Register a Student</a></li>\n";
         form += "<li><a href=\"student-years/students.jsp\">Grade Students</a></li>\n";
         form += "<li><a href=\"summaryData/summaryData.jsp\">Summary Data</a></li>\n";
+        form += "<li><a href=\"markingDescriptors.jsp\">Marking Descriptors</a></li>";
         form += "<li>\n";
         form += search.searchBox();
         form += "</li>\n";
@@ -100,7 +101,7 @@ public class GUI {
                    form += "</div>\n";
             
         }
-        form += "<a href=\"#menu-toggle\" class=\"btn btn-default\" id=\"menu-toggle\">Toggle Menu</a>\n";
+        //form += "<a href=\"#menu-toggle\" class=\"btn btn-default\" id=\"menu-toggle\">Toggle Menu</a>\n";
         form += "</div>\n";
         form += "</div>\n";
         form += "</div>\n";
@@ -126,6 +127,7 @@ public class GUI {
         form += "<li><a href=\"registerStudent.jsp\">Register a Student</a></li>\n";
         form += "<li><a href=\"student-years/students.jsp\">Grade Students</a></li>\n";
         form += "<li><a href=\"summaryData/summaryData.jsp\">Summary Data</a></li>\n";
+        form += "<li><a href=\"markingDescriptors.jsp\">Marking Descriptors</a></li>";
         form += "<li>\n";
         form += search.searchBox();
         form += "</ul>\n";        
@@ -134,7 +136,7 @@ public class GUI {
         form += "<div class=\"container-fluid\">\n";
         form += "<div class=\"row\">\n";
         form += "<div class=\"col-lg-12\">\n";
-        form += "<a href=\"#menu-toggle\" class=\"btn btn-default\" id=\"menu-toggle\">Toggle Menu</a>\n";
+        //form += "<a href=\"#menu-toggle\" class=\"btn btn-default\" id=\"menu-toggle\">Toggle Menu</a>\n";
         form += "<script src=\"js/jquery.js\"></script>\n";
         form += "<script src=\"js/bootstrap.min.js\"></script>\n";
         form += "    <script>$(\"#menu-toggle\").click(function(e) {e.preventDefault();$(\"#wrapper\").toggleClass(\"toggled\");});</script>\n";
@@ -152,13 +154,14 @@ public class GUI {
         form += "</li>\n";
         form += "<li><a href=\"studentWelcome.jsp\">Home</a></li>\n";
         form += "<li><a href=\"studentGradeView.jsp\">View Treatments</a></li>\n";
+        form += "<li><a href=\"markingDescriptors.jsp\">Marking Descriptors</a></li>";
         form += "</ul>\n";        
         form += "</div>\n";
         form += "<div id=\"page-content-wrapper\">\n";  
         form += "<div class=\"container-fluid\">\n";
         form += "<div class=\"row\">\n";
         form += "<div class=\"col-lg-12\">\n";
-        form += "<a href=\"#menu-toggle\" class=\"btn btn-default\" id=\"menu-toggle\">Toggle Menu</a>\n";
+        //form += "<a href=\"#menu-toggle\" class=\"btn btn-default\" id=\"menu-toggle\">Toggle Menu</a>\n";
         if(printName) {
             
                    form += "<div class=\"table-responsive\">\n";
@@ -203,13 +206,14 @@ public class GUI {
         form += "</li>\n";
         form += "<li><a href=\"studentWelcome.jsp\">Home</a></li>\n";
         form += "<li><a href=\"studentGradeView.jsp\">View Treatments</a></li>\n";
+        form += "<li><a href=\"markingDescriptors.jsp\">Marking Descriptors</a></li>";
         form += "</ul>\n";        
         form += "</div>\n";
         form += "<div id=\"page-content-wrapper\">\n";  
         form += "<div class=\"container-fluid\">\n";
         form += "<div class=\"row\">\n";
         form += "<div class=\"col-lg-12\">\n";
-        form += "<a href=\"#menu-toggle\" class=\"btn btn-default\" id=\"menu-toggle\">Toggle Menu</a>\n";
+        //form += "<a href=\"#menu-toggle\" class=\"btn btn-default\" id=\"menu-toggle\">Toggle Menu</a>\n";
         form += "</div>\n";
         form += "</div>\n";
         form += "</div>\n";
@@ -229,13 +233,14 @@ public class GUI {
         form += "</li>\n";
         form += "<li><a href=\"studentWelcome.jsp\">Home</a></li>\n";
         form += "<li><a href=\"studentGradeView.jsp\">View Treatments</a></li>\n";
+        form += "<li><a href=\"markingDescriptors.jsp\">Marking Descriptors</a></li>";
         form += "</ul>\n";        
         form += "</div>\n";
         form += "<div id=\"page-content-wrapper\">\n";  
         form += "<div class=\"container-fluid\">\n";
         form += "<div class=\"row\">\n";
         form += "<div class=\"col-lg-12\">\n";
-        form += "<a href=\"#menu-toggle\" class=\"btn btn-default\" id=\"menu-toggle\">Toggle Menu</a>\n";
+        //form += "<a href=\"#menu-toggle\" class=\"btn btn-default\" id=\"menu-toggle\">Toggle Menu</a>\n";
         form += "<script src=\"js/jquery.js\"></script>\n";
         form += "<script src=\"js/bootstrap.min.js\"></script>\n";
         form += "    <script>$(\"#menu-toggle\").click(function(e) {e.preventDefault();$(\"#wrapper\").toggleClass(\"toggled\");});</script>\n";

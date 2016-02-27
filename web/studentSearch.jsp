@@ -4,6 +4,7 @@
     Author     : Delaney
 --%>
 
+<%@page import="application.TreatmentItems"%>
 <%@page import="guipackage.SearchBox"%>
 <%@page import="summaryData.StudentYearlySummaryData"%>
 <%@page import="summaryData.StudentSummaryData"%>
@@ -39,16 +40,16 @@
           out.print(gui.tutorNavigation());
           StudentSummaryData check = new StudentSummaryData();
           StudentYearlySummaryData year = new StudentYearlySummaryData();
+          TreatmentItems name = new TreatmentItems();
           
           
           String studentID = search.getStudentID();
           if( search.getStudentID() == null || studentID.length() != 9) {
-           response.sendRedirect( "tutorWelcome.jsp" );
            out.println("Please enter a valid student ID.");
           }
           else{
             //String student = (String)request.getParameter("student");
-            
+           out.println("See the summary data for" + name.fetchStudentName(search.getStudentID()));
            out.print(search.studentData(search.getStudentID()));
             // out.println(search.getStudentID());
           }

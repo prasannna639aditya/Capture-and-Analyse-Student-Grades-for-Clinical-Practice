@@ -43,8 +43,9 @@
             </li>
             <li><a href="../tutorWelcome.jsp">Home</a></li>
             <li><a href="../registerStudent.jsp">Register a Student</a></li>
-            <li><a href="student-years/students.jsp">Grade Students</a></li>
+            <li><a href="students.jsp">Grade Students</a></li>
             <li><a href="../summaryData.jsp">Summary Data</a></li>
+            <li><a href="../markingDescriptors.jsp">Marking Descriptors</a></li>
                <form name='marking_form' action='../studentSearch.jsp' method='POST'>
                <li>
                <div class="input-group">
@@ -73,6 +74,7 @@
            <li><a href="#tabs-4">BDS5</a></li>
            <li><a href="#tabs-5">HYG1</a></li>
            <li><a href="#tabs-6">HYG2</a></li>
+           <li><a href="#tabs-7">3.1</a></li>
          </ul>
          <div id="tabs-1">
            <p>
@@ -118,6 +120,14 @@
            <p>
             <%
                 out.print(look.fetchYearNames("5"));
+            %>
+           </p>
+         </div>
+           
+         <div id="tabs-7">
+           <p>
+            <%
+                out.print(look.fetchGroupNames("1"));
             %>
            </p>
          </div>

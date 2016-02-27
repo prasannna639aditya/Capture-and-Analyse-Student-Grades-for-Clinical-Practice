@@ -6,8 +6,11 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import summaryData.StudentSummaryData;
+import dbpackage.DatabaseClass;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -22,12 +25,17 @@ import summaryData.StudentSummaryData;
 public class SearchBox {
     private String [] result;
     private String studentID;
+    private String groupID;
+    private DatabaseClass database;
     private final ArrayList<String> errors;
     
     public SearchBox(){
         this.result = new String[10];
         errors = new ArrayList<>( );
         this.studentID = "";
+        database = new DatabaseClass( );
+        this.result = new String[10];
+        database.setup( "localhost", "final_year_project", "root", "" );
     }
     
     public String getStudentID() {
@@ -36,6 +44,14 @@ public class SearchBox {
     
     public void setStudentID(String studentID) {
         this.studentID = studentID;
+    }
+    
+    public String getGroupID() {
+        return groupID;
+    }
+    
+    public void setGroupID(String groupID) {
+        this.groupID = groupID;
     }
     
     public String printErrors( ) {
@@ -136,10 +152,7 @@ public class SearchBox {
     public String showProfessionalism( int score, String studentID ) throws SQLException {
         Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
         
-        String query =( "SELECT SUM(Punctuality = " + score + ") AS PunctualityCount,"
-                + "SUM(ProfessionalApproach = " + score + " ) AS ProfessionalApproachCount, "
-                + "SUM(SelfAwareness = " + score + " ) AS SelfAwarenessCount, "
-                + "SUM(StudentInsight = " + score + " ) AS StudentInsightCount "
+        String query =( "SELECT SUM(Professionalism = " + score + ") AS ProfessionalismCount "
                 + "FROM TBICoreSkills WHERE StudentID= " + studentID + ";" );
         
         Statement stmt = conn.createStatement();
@@ -150,33 +163,20 @@ public class SearchBox {
         String form = "<div>\n";
         while(rs.next()){
              
-               int PunctualityInt = Integer.parseInt(rs.getString("PunctualityCount"));
-               int ProfessionalApproachInt = Integer.parseInt(rs.getString("ProfessionalApproachCount"));
-               int SelfAwarenessInt = Integer.parseInt(rs.getString("SelfAwarenessCount"));
-               int StudentInsightInt = Integer.parseInt(rs.getString("StudentInsightCount"));
+               int ProfessionalismInt = Integer.parseInt(rs.getString("ProfessionalismCount"));
                
-               countTotal = PunctualityInt + ProfessionalApproachInt + SelfAwarenessInt + StudentInsightInt;
+               countTotal = ProfessionalismInt;
                form += countTotal;
                form += "</div>\n";
         }
         
         return form;
-    }
+    } 
     
     public String showCommunication( int score, String studentID ) throws SQLException {
         Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
         
-        String query =( "SELECT SUM(AbilityToEstablishPatientHistory = " + score + ") AS AbilityToEstablishPatientHistoryCount,"
-                + "SUM(AbilityToObtainInformedConsent = " + score + " ) AS AbilityToObtainInformedConsentCount, "
-                + "SUM(AbilityToRequestSpecialInvestigations = " + score + " ) AS AbilityToRequestSpecialInvestigationsCount, "
-                + "SUM(AbilityToWritePerscription = " + score + " ) AS AbilityToWritePerscriptionCount, "
-                + "SUM(CommunicationWithDentalTeam = " + score + " ) AS CommunicationWithDentalTeamCount, "
-                + "SUM(CommunicationWithPatientAndFamily = " + score + " ) AS CommunicationWithPatientAndFamilyCount, "
-                + "SUM(CommunicationWithTutor = " + score + " ) AS CommunicationWithTutorCount, "
-                + "SUM(OutlineOfReferalLetter = " + score + " ) AS OutlineOfReferalLetterCount, "
-                + "SUM(PatientRecordKeeping = " + score + " ) AS PatientRecordKeepingCount, "
-                + "SUM(Charting = " + score + " ) AS ChartingCount, "
-                + "SUM(PresentationOfCase = " + score + " ) AS PresentationOfCaseCount "
+        String query =( "SELECT SUM(Communication = " + score + ") AS CommunicationCount "
                 + "FROM TBICoreSkills WHERE StudentID= " + studentID + ";" );
         
         Statement stmt = conn.createStatement();
@@ -187,19 +187,9 @@ public class SearchBox {
         String form = "<div>\n";
         while(rs.next()){
              
-               int AbilityToEstablishPatientHistoryInt = Integer.parseInt(rs.getString("AbilityToEstablishPatientHistoryCount"));
-               int AbilityToObtainInformedConsentInt = Integer.parseInt(rs.getString("AbilityToObtainInformedConsentCount"));
-               int AbilityToRequestSpecialInvestigationsInt = Integer.parseInt(rs.getString("AbilityToRequestSpecialInvestigationsCount"));
-               int AbilityToWritePerscriptionInt = Integer.parseInt(rs.getString("AbilityToWritePerscriptionCount"));
-               int CommunicationWithDentalTeamInt = Integer.parseInt(rs.getString("CommunicationWithDentalTeamCount"));
-               int CommunicationWithPatientAndFamilyInt = Integer.parseInt(rs.getString("CommunicationWithPatientAndFamilyCount"));
-               int CommunicationWithTutorInt = Integer.parseInt(rs.getString("CommunicationWithTutorCount"));
-               int OutlineOfReferalLetterInt = Integer.parseInt(rs.getString("OutlineOfReferalLetterCount"));
-               int PatientRecordKeepingInt = Integer.parseInt(rs.getString("PatientRecordKeepingCount"));
-               int ChartingInt = Integer.parseInt(rs.getString("ChartingCount"));
-               int PresentationOfCaseInt = Integer.parseInt(rs.getString("PresentationOfCaseCount"));
+               int CommunicationInt = Integer.parseInt(rs.getString("CommunicationCount"));
                
-               countTotal = AbilityToEstablishPatientHistoryInt + AbilityToObtainInformedConsentInt + AbilityToRequestSpecialInvestigationsInt +  AbilityToWritePerscriptionInt + CommunicationWithDentalTeamInt + CommunicationWithPatientAndFamilyInt + CommunicationWithTutorInt + OutlineOfReferalLetterInt + PatientRecordKeepingInt + ChartingInt + PresentationOfCaseInt;
+               countTotal = CommunicationInt;
                form += countTotal;
                form += "</div>\n";
         }
@@ -210,9 +200,7 @@ public class SearchBox {
     public String showKnowledge( int score, String studentID ) throws SQLException {
         Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
         
-        String query =( "SELECT SUM(AbilityToUnderstandMedicalHistory = " + score + ") AS AbilityToUnderstandMedicalHistoryCount,"
-                + "SUM(BackgroundKnowledgeForSessionProcedure = " + score + " ) AS BackgroundKnowledgeForSessionProcedureCount, "
-                + "SUM(JustificationForAndKnowledgeOfAppropriateSpecialInvestigations = " + score + " ) AS JustForKnowledgeOfApprSpecInvestCount "
+        String query =( "SELECT SUM(Knowledge= " + score + ") AS KnowledgeCount "
                 + "FROM TBICoreSkills WHERE StudentID= " + studentID + ";" );
         
         Statement stmt = conn.createStatement();
@@ -223,11 +211,9 @@ public class SearchBox {
         String form = "<div>\n";
         while(rs.next()){
              
-               int AbilityToUnderstandMedicalHistoryInt = Integer.parseInt(rs.getString("AbilityToUnderstandMedicalHistoryCount"));
-               int BackgroundKnowledgeForSessionProcedureInt = Integer.parseInt(rs.getString("BackgroundKnowledgeForSessionProcedureCount"));
-               int JustForKnowledgeOfApprSpecInvestInt = Integer.parseInt(rs.getString("JustForKnowledgeOfApprSpecInvestCount"));
+               int KnowledgeInt = Integer.parseInt(rs.getString("KnowledgeCount"));
                
-               countTotal = AbilityToUnderstandMedicalHistoryInt + BackgroundKnowledgeForSessionProcedureInt + JustForKnowledgeOfApprSpecInvestInt;
+               countTotal = KnowledgeInt;
                form += countTotal;
                form += "</div>\n";
         }
@@ -237,6 +223,7 @@ public class SearchBox {
     
     public String studentData( String studentID) throws SQLException{
         SearchBox check = new SearchBox();
+        
         String form = "<table class=\"table table-striped table-bordered table-condensed\" width=\"647\">\n";
                    form += "<thead>\n";
                    form += "<tr>\n";
@@ -319,4 +306,85 @@ public class SearchBox {
         
         return form;
     }
+    
+    public String groupSearchBox(){
+        
+        String form = "<form id='form-id' name='group_search' action='groupSearchResults.jsp' method='POST'>" +
+                "      <div class=\"ui action left icon input\">\n" +
+                "      <i class=\"search icon\"></i>\n" +
+                "      <input type=\"text\" name='groupID' placeholder=\"Search a group...\">\n" +
+                "      <div class=\"ui teal button\">Search</div>\n" +
+                "    </div>";
+        return form;
+    }
+    
+    public String addStudents( String groupId){
+        
+        String form = "<form id='form-id' name='add_student' action='grade.jsp' method='POST'>" +
+                "      <div class=\"ui action left icon input\">\n" +
+                "      <i class=\"search icon\"></i>\n" +
+                "      <input type=\"hidden\" name='groupID' value='" + groupID + "' placeholder=\"Search...\">\n" +
+                "      <input type=\"text\" name='studentID' placeholder=\"Search...\">\n" +
+                "      <div class=\"ui teal button\">Search</div>\n" +
+                "    </div>";
+        return form;
+    }
+    
+    public void addToExtras( String tutorID, String groupId, String studentIDs){
+        String date = new SimpleDateFormat("yyyy/MM/dd").format(Calendar.getInstance().getTime());
+        database.Insert( "INSERT INTO GroupExtras( TutorID, GroupDescriptor, StudentIDS, DateAdded)" +
+                         "VALUES( '" + tutorID + "','" + groupId + "','" + studentIDs + "','" + date + "' );" );
+        database.Close();
+    }
+    
+    public boolean checkStudentID( String studentID ){
+        DatabaseClass database = new DatabaseClass( );
+        //database.setup( "ec2-52-48-85-26.eu-west-1.compute.amazonaws.com", "final_year_project", "root", "IPNTclyv43" );
+        database.setup( "localhost", "final_year_project", "root", "" );
+        result = database.SelectRow( "SELECT * FROM Students WHERE StudentID = '" + studentID + "';" );
+        Boolean isStudent = false;
+        
+        if( result.length != 0 ) {
+          isStudent = true;  
+        }
+        
+      return isStudent;  
+    }
+    
+    public boolean checkGroupDescriptor( String descriptor){
+        DatabaseClass database = new DatabaseClass( );
+        //database.setup( "ec2-52-48-85-26.eu-west-1.compute.amazonaws.com", "final_year_project", "root", "IPNTclyv43" );
+        database.setup( "localhost", "final_year_project", "root", "" );
+        result = database.SelectRow( "SELECT * FROM StudentGroups WHERE GroupDescriptor = '" + descriptor + "';" );
+        Boolean isDescriptor = false;
+        
+        if( result.length != 0 ) {
+          isDescriptor = true;  
+        }
+        
+      return isDescriptor;
+    }
+    
+    public boolean checkGroup( String studentID, String groupID ){
+        DatabaseClass database = new DatabaseClass( );
+        //database.setup( "ec2-52-48-85-26.eu-west-1.compute.amazonaws.com", "final_year_project", "root", "IPNTclyv43" );
+        database.setup( "localhost", "final_year_project", "root", "" );
+        result = database.SelectRow("SELECT Students.StudentID, Students.FirstName, Students.LastName, Students.Picture, CourseYear.ProgrammeYear, StudentGroups.GroupDescriptor"
+                            + " FROM Students JOIN StudentGroups JOIN StudentClass JOIN CourseYear"
+                            + " ON Students.StudentID = StudentClass.StudentID AND StudentClass.GroupID = StudentGroups.GroupID AND StudentClass.YearID = CourseYear.YearID"
+                            + " WHERE Students.StudentID =" + studentID + " AND StudentGroups.GroupDescriptor=" + groupID + ";" );
+        Boolean isInGroup = false;
+        
+        if( result.length != 0 ) {
+          isInGroup = true;  
+        }
+        
+      return isInGroup;  
+    }
+
+    
+    
+    
+    
+    
 }

@@ -114,7 +114,6 @@ public class TreatmentItems {
     public String showScore( String StudentID, String TreatmentID ) throws SQLException {
         DatabaseClass database = new DatabaseClass( );
         database.setup( "localhost", "final_year_project", "root", "" );
-        String treatmentScore = "";
         String dateAdded = "";
         String time = "";
         String patientID = "";
@@ -138,29 +137,13 @@ public class TreatmentItems {
         String AppropriateUseOfMirror = "";
         String AppropriateFingerSupport = "";
         String Comment = "";
-        String Punctuality = "";
-        String ProfessionalApproach = "";
-        String SelfAwareness = "";
-        String StudentInsight = "";
-        String abilToEstPatientHistory = "";
-        String abilToEnsureInformedConsent = "";
-        String abilToReqSpecialInvestigations = "";
-        String abilToWritePerscription = "";
-        String communicationWithDentalTeam = "";
-        String communicationWithPatientAndFamily = "";
-        String communicationWithTutor = "";
-        String outlineOfReferalLetter = "";
-        String patientRecordKeeping = "";
-        String charting = "";
-        String presentationOfCase = "";
-        String abilToUnderstandMedicalHistory = "";
-        String backKnowledgeForSessionProcedure = "";
-        String justKnowledgeOfApproSpecInvest = "";        
+        String Professionalism = "";
+        String Communication = "";
+        String Knowledge = "";
 
         result = database.SelectRow( "SELECT * FROM TBICoreSkills WHERE StudentID = '" + StudentID + "' AND TreatmentID = '" + TreatmentID + "';" );
         
         if( result.length != 0 ) {
-            treatmentScore = result[25];
             dateAdded = result[22];
             time = result[24];
             patientID = result[2];
@@ -183,25 +166,10 @@ public class TreatmentItems {
             AppropriateLightPosition = result[19];
             AppropriateUseOfMirror = result[20];
             AppropriateFingerSupport = result[21];
-            Comment = result[26];
-            Punctuality = result[27];
-            ProfessionalApproach = result[28];
-            SelfAwareness = result[29];
-            StudentInsight = result[30];
-            abilToEstPatientHistory = result[31];
-            abilToEnsureInformedConsent = result[32];
-            abilToReqSpecialInvestigations = result[33];
-            abilToWritePerscription = result[34];
-            communicationWithDentalTeam = result[35];
-            communicationWithPatientAndFamily = result[36];
-            communicationWithTutor = result[37];
-            outlineOfReferalLetter = result[38];
-            patientRecordKeeping = result[39];
-            charting = result[40];
-            presentationOfCase = result[41];
-            abilToUnderstandMedicalHistory = result[42];
-            backKnowledgeForSessionProcedure = result[43];
-            justKnowledgeOfApproSpecInvest = result[44]; 
+            Comment = result[25];
+            Professionalism = result[26];
+            Communication = result[27];
+            Knowledge = result[28];
         }
         
         TreatmentItems score = new TreatmentItems();
@@ -317,80 +285,21 @@ public class TreatmentItems {
                    
                    form += "<th><h1>Professionalism</h1></th>\n";
                    form += "<tr>\n";
-                   form += "<th>Punctuality</th>\n";
-                   form += "<td>" + Punctuality + "</td>\n";
-                   form += "</tr>\n";
-                   form += "<tr>\n";
-                   form += "<th>Professional Approach</th>\n";
-                   form += "<td>" + ProfessionalApproach + "</td>\n";
-                   form += "</tr>\n";
-                   form += "<tr>\n";
-                   form += "<th>Self Awareness</th>\n";
-                   form += "<td>" + SelfAwareness + "</td>\n";
-                   form += "</tr>\n";
-                   form += "<tr>\n";
-                   form += "<th>Student Insight</th>\n";
-                   form += "<td>" + StudentInsight + "</td>\n";
+                   form += "<th>Professionalism</th>\n";
+                   form += "<td>" + Professionalism + "</td>\n";
                    form += "</tr>\n";
                    
                    form += "<th><h1>Communication</h1></th>\n";
                    form += "<tr>\n";
-                   form += "<th>Ability to establish patient history</th>\n";
-                   form += "<td>" + abilToEstPatientHistory + "</td>\n";
+                   form += "<th>Communication</th>\n";
+                   form += "<td>" + Communication + "</td>\n";
                    form += "</tr>\n";
-                   form += "<tr>\n";
-                   form += "<th>Ability to ensure informed consent</th>\n";
-                   form += "<td>" + abilToEnsureInformedConsent + "</td>\n";
-                   form += "</tr>\n";
-                   form += "<tr>\n";
-                   form += "<th>Ability to request special investigations</th>\n";
-                   form += "<td>" + abilToReqSpecialInvestigations + "</td>\n";
-                   form += "</tr>\n";
-                   form += "<tr>\n";
-                   form += "<th>Ability to write perscription</th>\n";
-                   form += "<td>" + abilToWritePerscription + "</td>\n";
-                   form += "</tr>\n";
-                   form += "<tr>\n";
-                   form += "<th>Communication with dental team</th>\n";
-                   form += "<td>" + communicationWithDentalTeam + "</td>\n";
-                   form += "</tr>\n";
-                   form += "<tr>\n";
-                   form += "<th>Communication with patient/family members</th>\n";
-                   form += "<td>" + communicationWithPatientAndFamily + "</td>\n";
-                   form += "</tr>\n";
-                   form += "<tr>\n";
-                   form += "<th>Communication with tutor</th>\n";
-                   form += "<td>" + communicationWithTutor + "</td>\n";
-                   form += "</tr>\n";
-                   form += "<tr>\n";
-                   form += "<th>Outline of referal letter</th>\n";
-                   form += "<td>" + outlineOfReferalLetter + "</td>\n";
-                   form += "</tr>\n";
-                   form += "<tr>\n";
-                   form += "<th>Patient record keeping</th>\n";
-                   form += "<td>" + patientRecordKeeping + "</td>\n";
-                   form += "</tr>\n";
-                   form += "<tr>\n";
-                   form += "<th>Charting</th>\n";
-                   form += "<td>" + charting + "</td>\n";
-                   form += "</tr>\n";
-                   form += "<tr>\n";
-                   form += "<th>Presentation of case</th>\n";
-                   form += "<td>" + presentationOfCase + "</td>\n";
-                   form += "</tr>\n";
+                   
                    
                    form += "<th><h1>Knowledge</h1></th>\n";
                    form += "<tr>\n";
-                   form += "<th>Ability to understand medical history</th>\n";
-                   form += "<td>" + abilToUnderstandMedicalHistory + "</td>\n";
-                   form += "</tr>\n";
-                   form += "<tr>\n";
-                   form += "<th>Background Knowledge for session/procedure</th>\n";
-                   form += "<td>" + backKnowledgeForSessionProcedure + "</td>\n";
-                   form += "</tr>\n";
-                   form += "<tr>\n";
-                   form += "<th>Justification for, and knowledge of appropriate special investigations</th>\n";
-                   form += "<td>" + justKnowledgeOfApproSpecInvest + "</td>\n";
+                   form += "<th>Knowledge</th>\n";
+                   form += "<td>" + Knowledge + "</td>\n";
                    form += "</tr>\n";
                    
                    
@@ -483,6 +392,27 @@ public class TreatmentItems {
         conn.close();
         return form;
     }
+    /**public String fetchClinicalAlert( String StudentID, String TreatmentID) throws SQLException{
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
+            String query = ("SELECT TreatmentPlaneEntries.ClinicalAlert,"
+                            + " FROM TreatmentPlanEntries JOIN TBICoreSkills"
+                            + " ON TreatmentPlanEntries.PlanEntryID = TBICoreSkills "
+                            + " WHERE TBICoreSkills.StudentID= " + StudentID + " AND TBICoreSkills.TreatmentID= " + TreatmentID + ";");
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            
+            String form = "\n";
+            if( "Yes".equals(rs.getString("TreatmentPlanEntries.ClinicalAlert")) ){
+                form += "<td>" + rs.getString("TreatmentPlanEntries.ClinicalAlert") + "</td>\n";
+            }
+            else{
+                form += "<td>No</td>\n";
+            }
+            
+            conn.close();
+            return form;
+    }
+     */
     
     public String fetchMyTreatments( String StudentID) throws SQLException{
         
@@ -595,48 +525,6 @@ public class TreatmentItems {
             return form;       
     }
     
-    
-    /**
-    public String clinicalAlert( String StudentID, String TreatmentID) throws SQLException{
-        DatabaseClass database = new DatabaseClass( );
-        database.setup( "localhost", "final_year_project", "root", "" );
-        String treatmentPlanID = "";
-        String treatmentScore = "";
-        TreatmentItems treatment = new TreatmentItems();
-        CoreSkills core = new CoreSkills();
-        
-        result = database.SelectRow( "SELECT * FROM TBICoreSkills WHERE StudentID = '" + StudentID + "' AND TreatmentID = '" + TreatmentID + "';" );
-        
-        if( result.length != 0 ) {
-            treatmentPlanID = result[0];
-            treatmentScore = result[25];
-        }
-        //database.Close();
-        
-        String form = "<form name='clinical_alert' action='index.jsp' method='POST'>\n";
-               form += "<label for='treatmentPlanID'>Treatment Plan ID:</label>\n"
-                    + "<select name=\"treatmentPlanID\" id='dropdown'>\n" 
-                    + "<option value=\"" + treatmentPlanID + "\" selected>" + treatmentPlanID + "</option>\n" 
-                    + "</select><br />"; 
-               form += "<label for='treatmentItem'>Treatment Name:</label>\n"
-                    + "<select name=\"treatmentItem\" id='dropdown'>\n" 
-                    + "<option value=\"" + treatment.fetchTreatmentName(TreatmentID) + "\" selected>" + treatment.fetchTreatmentName(TreatmentID) + "</option>\n" 
-                    + "</select><br />"; 
-               form += "<label for='treatmentScore'>Treatment Score:</label>\n"
-                    + "<select name=\"treatmentScore\" id='dropdown'>\n" 
-                    + "<option value=\"" + treatmentScore + "\" selected>" + treatmentScore + "</option>\n" 
-                    + "</select><br />"; 
-               form += "<label for=\"checkbox\">Clinical Alert</label>"
-                    + "<input type=\"checkbox\" name=\"checkbox\" value=\"value\">";
-               form += "<label for='comment'>Comment:</label>\n" 
-                    + "<textarea name='comment' placeholder=\"Please comment on the students performance\" value='comment' id='comment'></textarea>\n" 
-                    + "</select><br />";
-               form += "<input type='submit' value='Submit' name='submit' /><br />\n";
-               form += "</form>\n";
-        
-        core.clinical();       
-        return form;
-     }**/
     
     
 

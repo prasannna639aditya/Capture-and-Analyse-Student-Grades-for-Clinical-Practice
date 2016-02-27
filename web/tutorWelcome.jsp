@@ -47,7 +47,7 @@
                 String department = (String) session.getAttribute( "department" );
                 String picture = (String) session.getAttribute( "picture" );
                 out.print(gui.tutorWelcomeNavigation(true, TutorID, firstName, lastName, department, picture));
-                out.print(core.markingDescriptors());
+                //out.print(core.markingDescriptors());
                 /**out.print(check.showCore(1));
                 out.print(check.showBasic(1));
                 out.print(check.showProfessionalism(1));

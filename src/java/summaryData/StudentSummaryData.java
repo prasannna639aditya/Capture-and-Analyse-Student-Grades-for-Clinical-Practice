@@ -111,10 +111,7 @@ public class StudentSummaryData {
     public String showProfessionalism( int score ) throws SQLException {
         Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
         
-        String query =( "SELECT SUM(Punctuality = " + score + ") AS PunctualityCount,"
-                + "SUM(ProfessionalApproach = " + score + " ) AS ProfessionalApproachCount, "
-                + "SUM(SelfAwareness = " + score + " ) AS SelfAwarenessCount, "
-                + "SUM(StudentInsight = " + score + " ) AS StudentInsightCount "
+        String query =( "SELECT SUM(Professionalism = " + score + ") AS ProfessionalismCount "
                 + "FROM TBICoreSkills" );
         
         Statement stmt = conn.createStatement();
@@ -125,12 +122,9 @@ public class StudentSummaryData {
         String form = "<div>\n";
         while(rs.next()){
              
-               int PunctualityInt = Integer.parseInt(rs.getString("PunctualityCount"));
-               int ProfessionalApproachInt = Integer.parseInt(rs.getString("ProfessionalApproachCount"));
-               int SelfAwarenessInt = Integer.parseInt(rs.getString("SelfAwarenessCount"));
-               int StudentInsightInt = Integer.parseInt(rs.getString("StudentInsightCount"));
+               int ProfessionalismInt = Integer.parseInt(rs.getString("ProfessionalismCount"));
                
-               countTotal = PunctualityInt + ProfessionalApproachInt + SelfAwarenessInt + StudentInsightInt;
+               countTotal = ProfessionalismInt;
                form += countTotal;
                form += "</div>\n";
         }
@@ -141,17 +135,7 @@ public class StudentSummaryData {
     public String showCommunication( int score ) throws SQLException {
         Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
         
-        String query =( "SELECT SUM(AbilityToEstablishPatientHistory = " + score + ") AS AbilityToEstablishPatientHistoryCount,"
-                + "SUM(AbilityToObtainInformedConsent = " + score + " ) AS AbilityToObtainInformedConsentCount, "
-                + "SUM(AbilityToRequestSpecialInvestigations = " + score + " ) AS AbilityToRequestSpecialInvestigationsCount, "
-                + "SUM(AbilityToWritePerscription = " + score + " ) AS AbilityToWritePerscriptionCount, "
-                + "SUM(CommunicationWithDentalTeam = " + score + " ) AS CommunicationWithDentalTeamCount, "
-                + "SUM(CommunicationWithPatientAndFamily = " + score + " ) AS CommunicationWithPatientAndFamilyCount, "
-                + "SUM(CommunicationWithTutor = " + score + " ) AS CommunicationWithTutorCount, "
-                + "SUM(OutlineOfReferalLetter = " + score + " ) AS OutlineOfReferalLetterCount, "
-                + "SUM(PatientRecordKeeping = " + score + " ) AS PatientRecordKeepingCount, "
-                + "SUM(Charting = " + score + " ) AS ChartingCount, "
-                + "SUM(PresentationOfCase = " + score + " ) AS PresentationOfCaseCount "
+        String query =( "SELECT SUM(Communication = " + score + ") AS CommunicationCount "
                 + "FROM TBICoreSkills" );
         
         Statement stmt = conn.createStatement();
@@ -162,19 +146,9 @@ public class StudentSummaryData {
         String form = "<div>\n";
         while(rs.next()){
              
-               int AbilityToEstablishPatientHistoryInt = Integer.parseInt(rs.getString("AbilityToEstablishPatientHistoryCount"));
-               int AbilityToObtainInformedConsentInt = Integer.parseInt(rs.getString("AbilityToObtainInformedConsentCount"));
-               int AbilityToRequestSpecialInvestigationsInt = Integer.parseInt(rs.getString("AbilityToRequestSpecialInvestigationsCount"));
-               int AbilityToWritePerscriptionInt = Integer.parseInt(rs.getString("AbilityToWritePerscriptionCount"));
-               int CommunicationWithDentalTeamInt = Integer.parseInt(rs.getString("CommunicationWithDentalTeamCount"));
-               int CommunicationWithPatientAndFamilyInt = Integer.parseInt(rs.getString("CommunicationWithPatientAndFamilyCount"));
-               int CommunicationWithTutorInt = Integer.parseInt(rs.getString("CommunicationWithTutorCount"));
-               int OutlineOfReferalLetterInt = Integer.parseInt(rs.getString("OutlineOfReferalLetterCount"));
-               int PatientRecordKeepingInt = Integer.parseInt(rs.getString("PatientRecordKeepingCount"));
-               int ChartingInt = Integer.parseInt(rs.getString("ChartingCount"));
-               int PresentationOfCaseInt = Integer.parseInt(rs.getString("PresentationOfCaseCount"));
+               int CommunicationInt = Integer.parseInt(rs.getString("CommunicationCount"));
                
-               countTotal = AbilityToEstablishPatientHistoryInt + AbilityToObtainInformedConsentInt + AbilityToRequestSpecialInvestigationsInt +  AbilityToWritePerscriptionInt + CommunicationWithDentalTeamInt + CommunicationWithPatientAndFamilyInt + CommunicationWithTutorInt + OutlineOfReferalLetterInt + PatientRecordKeepingInt + ChartingInt + PresentationOfCaseInt;
+               countTotal = CommunicationInt;
                form += countTotal;
                form += "</div>\n";
         }
@@ -185,9 +159,7 @@ public class StudentSummaryData {
     public String showKnowledge( int score ) throws SQLException {
         Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
         
-        String query =( "SELECT SUM(AbilityToUnderstandMedicalHistory = " + score + ") AS AbilityToUnderstandMedicalHistoryCount,"
-                + "SUM(BackgroundKnowledgeForSessionProcedure = " + score + " ) AS BackgroundKnowledgeForSessionProcedureCount, "
-                + "SUM(JustificationForAndKnowledgeOfAppropriateSpecialInvestigations = " + score + " ) AS JustForKnowledgeOfApprSpecInvestCount "
+        String query =( "SELECT SUM(Knowledge= " + score + ") AS KnowledgeCount "
                 + "FROM TBICoreSkills" );
         
         Statement stmt = conn.createStatement();
@@ -198,11 +170,9 @@ public class StudentSummaryData {
         String form = "<div>\n";
         while(rs.next()){
              
-               int AbilityToUnderstandMedicalHistoryInt = Integer.parseInt(rs.getString("AbilityToUnderstandMedicalHistoryCount"));
-               int BackgroundKnowledgeForSessionProcedureInt = Integer.parseInt(rs.getString("BackgroundKnowledgeForSessionProcedureCount"));
-               int JustForKnowledgeOfApprSpecInvestInt = Integer.parseInt(rs.getString("JustForKnowledgeOfApprSpecInvestCount"));
+               int KnowledgeInt = Integer.parseInt(rs.getString("KnowledgeCount"));
                
-               countTotal = AbilityToUnderstandMedicalHistoryInt + BackgroundKnowledgeForSessionProcedureInt + JustForKnowledgeOfApprSpecInvestInt;
+               countTotal = KnowledgeInt;
                form += countTotal;
                form += "</div>\n";
         }

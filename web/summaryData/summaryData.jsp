@@ -38,8 +38,9 @@
             </li>
             <li><a href="../tutorWelcome.jsp">Home</a></li>
             <li><a href="../registerStudent.jsp">Register a Student</a></li>
-            <li><a href="student-years/students.jsp">Grade Students</a></li>
-            <li><a href="../summaryData.jsp">Summary Data</a></li>
+            <li><a href="../student-years/students.jsp">Grade Students</a></li>
+            <li><a href="summaryData.jsp">Summary Data</a></li>
+            <li><a href="../markingDescriptors.jsp">Marking Descriptors</a></li>
                <form name='marking_form' action='../studentSearch.jsp' method='POST'>
                <li>
                <div class="input-group">
@@ -68,7 +69,7 @@
         %> 
         
         
-        <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Menu</a>
+        <!--<a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Menu</a>-->
         
         
         <div>
@@ -80,14 +81,11 @@
             <li a href="year5StudentData.jsp">HYG2</li>
          </ul>
         </div>
+        
+        <h1> All student data summarized</h1>
         <%
           out.print(check.studentData());
           
-          out.print("Test with numb");
-          out.print(year.showCore(1, "3"));
-          
-          out.print("Test");
-          out.print(check.showCore(5));
         %> 
            
          
