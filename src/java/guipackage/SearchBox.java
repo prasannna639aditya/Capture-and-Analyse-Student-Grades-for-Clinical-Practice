@@ -1,6 +1,7 @@
 package guipackage;
 
 
+import application.StudentLookup;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -11,6 +12,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import summaryData.StudentSummaryData;
 import dbpackage.DatabaseClass;
+import java.util.LinkedList;
+import java.util.List;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -26,6 +29,7 @@ public class SearchBox {
     private String [] result;
     private String studentID;
     private String groupID;
+    private String name;
     private DatabaseClass database;
     private final ArrayList<String> errors;
     
@@ -33,6 +37,7 @@ public class SearchBox {
         this.result = new String[10];
         errors = new ArrayList<>( );
         this.studentID = "";
+        this.name = "";
         database = new DatabaseClass( );
         this.result = new String[10];
         database.setup( "localhost", "final_year_project", "root", "" );
@@ -45,6 +50,15 @@ public class SearchBox {
     public void setStudentID(String studentID) {
         this.studentID = studentID;
     }
+    
+    public String getName() {
+        return name;
+    }
+    
+    public void setName(String name) {
+        this.name= name;
+    }
+    
     
     public String getGroupID() {
         return groupID;
@@ -324,16 +338,18 @@ public class SearchBox {
                 "      <div class=\"ui action left icon input\">\n" +
                 "      <i class=\"search icon\"></i>\n" +
                 "      <input type=\"hidden\" name='groupID' value='" + groupID + "' placeholder=\"Search...\">\n" +
-                "      <input type=\"text\" name='studentID' placeholder=\"Search...\">\n" +
+                "      <input type=\"text\" name='studentID' placeholder=\"Add an extra student to the group\"><br/>\n" +
+                "      <div><input type=\"text\" name='name' placeholder=\"Please name this group\"></div><br/>\n" +
                 "      <div class=\"ui teal button\">Search</div>\n" +
                 "    </div>";
         return form;
     }
     
-    public void addToExtras( String tutorID, String groupId, String studentIDs){
-        String date = new SimpleDateFormat("yyyy/MM/dd").format(Calendar.getInstance().getTime());
-        database.Insert( "INSERT INTO GroupExtras( TutorID, GroupDescriptor, StudentIDS, DateAdded)" +
-                         "VALUES( '" + tutorID + "','" + groupId + "','" + studentIDs + "','" + date + "' );" );
+    public void addToExtras( String tutorID, String groupId, String studentID){
+        String date = new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime());
+        String time = new SimpleDateFormat("HH:mm:ss").format(Calendar.getInstance().getTime());
+        database.Insert( "INSERT INTO GroupExtras( TutorID, GroupDescriptor, StudentID, DateAdded, Time, GroupName)" +
+                         "VALUES( '" + tutorID + "','" + groupId + "','" + studentID + "','" + date + "','" + time + "','" + name + "' );" );
         database.Close();
     }
     
@@ -381,7 +397,35 @@ public class SearchBox {
         
       return isInGroup;  
     }
-
+    
+    public String selectTodaysGroup( String groupName ) throws SQLException{
+        String date = new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime());
+        
+        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
+        
+        String query =( "SELECT * FROM GroupExtras WHERE GroupExtras.GroupName= " + groupName + ";" );
+        
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery(query);
+        
+        
+        
+        String form = "<div>\n";
+        while(rs.next()){
+        
+        SearchBox search = new SearchBox();
+        StudentLookup look = new StudentLookup();
+       
+        
+           form += look.fetchGroupNames(rs.getString("GroupDescriptor"));
+           //form += look.fetchExtraStudent(search.getStudentID());
+        
+        }
+        form += "</div>\n";      
+       
+        return form;  
+    }
+    
     
     
     

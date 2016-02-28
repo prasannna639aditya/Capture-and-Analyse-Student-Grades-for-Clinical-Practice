@@ -24,6 +24,7 @@ public class TreatmentItems {
     private String treatmentScore;
     private String comment;
     private String checkbox;
+    private String attendance;
     private String [] result;
     
     public TreatmentItems(){
@@ -33,6 +34,7 @@ public class TreatmentItems {
         this.comment = "";
         this.treatmentPlanID = "";
         this.checkbox = "";
+        this.attendance = "";
         this.result = new String[10];
     }
     
@@ -74,6 +76,14 @@ public class TreatmentItems {
  
     public void setTreatmentPlanID( final String treamentPlanID ) {
         this.treatmentPlanID = treatmentPlanID;
+    }
+    
+    public String getAttendance( ) {
+        return attendance;
+    }
+ 
+    public void setAttendance( final String attendance ) {
+        this.attendance = attendance;
     }
     
     public boolean hasBeenGraded( String StudentID, String TreatmentID ) {
@@ -338,7 +348,7 @@ public class TreatmentItems {
                    form += "<th>Treatment Name</th>\n";
                    form += "<th>Domain ID</th>\n";
                    form += "<th>Requirements Group ID</th>\n";
-                   form += "<th>Requirements Weighting</th>\n";
+                   form += "<th>Attendance</th>\n";
                    form += "<th>Grade</th>";
                    form += "</tr>\n";
                    form += "<tbody>\n";
@@ -358,7 +368,7 @@ public class TreatmentItems {
                     form += "<td>" + rs.getString("TreatmentItems.TreatmentName") + "</td>\n";
                     form += "<td>" + rs.getString("TreatmentItems.DomainID") + "</td>\n";
                     form += "<td>" + rs.getString("TreatmentItems.RequirementsGroupID") + "</td>\n";
-                    form += "<td>" + rs.getString("TreatmentItems.RequirementsWeighting") + "</td>\n";
+                    form += "<td></td>\n";
                     //form += "<td class='red'>" + showGrade( StudentID,rs.getString("TreatmentItems.TreatmentItemID") ) + "</td>\n";
                     form += "<td><input type=\"submit\" value=\"View Score\" class=\"btn-style\"></td></form>\n";
                     form += "</tr>\n";
@@ -377,7 +387,12 @@ public class TreatmentItems {
                     form += "<td>" + rs.getString("TreatmentItems.TreatmentName") + "</td>\n";
                     form += "<td>" + rs.getString("TreatmentItems.DomainID") + "</td>\n";
                     form += "<td>" + rs.getString("TreatmentItems.RequirementsGroupID") + "</td>\n";
-                    form += "<td>" + rs.getString("TreatmentItems.RequirementsWeighting") + "</td>\n";
+                    form += "<td><select name=\"attendance\">"
+                          + "<option value='absent' selected>Absent</option>"
+                          + "<option value='present'>Present</option>"
+                          + "<option value='assisting'>Assisting</option>"
+                          + "</select><br />"
+                          + "</td>\n";
                     form += "<td><input type=\"submit\" value=\"Grade\" class=\"btn-style\"></td></form>\n";
                     form += "</tr>\n";
                 }
@@ -525,7 +540,14 @@ public class TreatmentItems {
             return form;       
     }
     
-    
+    public boolean isAbsent( String attendance){
+        boolean is = true;
+        
+        if(attendance == "absent"){
+            is = false;
+        }
+        return is;
+    }
     
 
 }

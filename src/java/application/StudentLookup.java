@@ -209,13 +209,24 @@ public class StudentLookup {
 
             String form = "<div class=\"table-responsive\">\n";
                    form += "<table class=\"table\">\n";
+                   form += "<thead>\n";
+                   form += "<tr>\n";
+                   form += "<th></th>\n";
+                   form += "<th></th>\n";
+                   form += "<th></th>\n";
+                   form += "<th></th>\n";
+                   form += "<th></th>\n";
+                   form += "<th></th>\n";
+                   form += "<th></th>\n";
+                   form += "</tr>\n";
+                   form += "</thead>\n";
                    form += "<tbody>\n";
                    form += "<tr>\n";
                
             while(rs.next()){
                 form += "<tr>\n";
                 form += "<td><img id='studnetID' class=\"img-rounded\" src=\"../img/" + rs.getString("Students.Picture") + "\"</td>\n";
-                form += "<td><form name='treatments' action='../treatmentItems.jsp' method='POST'>"
+                form += "<form name='treatments' action='../treatmentItems.jsp' method='POST'><td>"
                         + "<select name=\"studentID\" id='dropdown'>"
                         + "<option value=\"" + rs.getString("Students.StudentID") + "\" selected>" + rs.getString("Students.StudentID") + "</option>"
                         + "</select><br /></td>\n";

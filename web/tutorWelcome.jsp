@@ -4,6 +4,7 @@
     Author     : Delaney
 --%>
 
+<%@page import="guipackage.SearchBox"%>
 <%@page import="summaryData.StudentSummaryData"%>
 <%@page import="application.CoreSkills"%>
 <%@page import="application.TutorLogin"%>
@@ -34,6 +35,7 @@
           TutorLogin tutor = new TutorLogin();
           CoreSkills core = new CoreSkills();
           StudentSummaryData check = new StudentSummaryData();
+          SearchBox search = new SearchBox();
           
           StudentLookup look = new StudentLookup();
           if( session.getAttribute( "Authenticated" ) == null ) {
@@ -46,7 +48,11 @@
                 String lastName = (String) session.getAttribute( "lastName" );
                 String department = (String) session.getAttribute( "department" );
                 String picture = (String) session.getAttribute( "picture" );
+                
+                String group = "group";
                 out.print(gui.tutorWelcomeNavigation(true, TutorID, firstName, lastName, department, picture));
+                
+                //out.print(search.selectTodaysGroup("test"));
                 //out.print(core.markingDescriptors());
                 /**out.print(check.showCore(1));
                 out.print(check.showBasic(1));

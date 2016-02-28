@@ -4,6 +4,7 @@
     Author     : Delaney
 --%>
 
+<%@page import="guipackage.SearchBox"%>
 <%@page import="application.StudentLookup"%>
 <%@page import="application.CoreSkills"%>
 <%@page import="guipackage.GUI"%>
@@ -35,6 +36,8 @@
             <jsp:setProperty name="lookup" property="*" />
             <jsp:useBean id="treatment" class="application.TreatmentItems" scope="request" />
             <jsp:setProperty name="treatment" property="*" />
+            <jsp:useBean id="search" class="guipackage.SearchBox" scope="request" />
+            <jsp:setProperty name="search" property="*" />
             
             
         
@@ -45,9 +48,10 @@
                 String TutorID = (String) session.getAttribute( "TutorID" );
                 
                 
-                if( request.getParameter( "submit" ) == null ) {
+              
+                  if( request.getParameter( "submit" ) == null ) {
                     
-                    out.print( core.markingForm( TutorID, treatment.getStudentID(), treatment.getTreatmentID()) );
+                   out.print( core.markingForm( TutorID, treatment.getStudentID(), treatment.getTreatmentID()) );
                 }
                 else {
                     if( core.validateMarkingForm( ) ) {

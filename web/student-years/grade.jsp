@@ -3,7 +3,8 @@
     Created on : 26-Feb-2016, 22:02:53
     Author     : Delaney
 --%>
-
+<%@page import="java.util.*"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="application.TreatmentItems"%>
 <%@page import="guipackage.SearchBox"%>
 <%@page import="summaryData.StudentYearlySummaryData"%>
@@ -68,51 +69,36 @@
           
           String groupID = search.getGroupID();
           String studentIDs = search.getStudentID();
-          //String[] studentIDArray = studentIDs.split(",");
-          search.addToExtras(TutorID, groupID, studentIDs);
+          
+          String[] studentOutputArray;
         
-        
-          if(studentIDs.contains(",")){
-            String[] studentIDArray = studentIDs.split("\\,");
-            for( int i = 0; i < 2; i++){
-              if(search.checkStudentID(studentIDArray[i]) == true){
-               if(search.checkGroup(studentIDArray[i], groupID) == false){
-                out.println(look.fetchExtraStudent(studentIDArray[i]));
-               }
-               
-               else{
-                out.println("Please select a student/students who is not in group " + groupID + ".");
-                out.print(search.addStudents(groupID));
-               }
-              }
-              
-              else{
-                out.println("Please enter a valid student ID/'s.");
-                out.print(search.addStudents(groupID));
-              }
+          
+          
+            if(search.checkStudentID(search.getStudentID()) == true){
+             if(search.checkGroup(search.getStudentID(), groupID) == false){
+               out.println( name.fetchStudentName(search.getStudentID()) + " has been added to session with group " + groupID + ".");
+               out.print(look.fetchGroupNames(groupID));
+               out.print(look.fetchExtraStudent(search.getStudentID()));
+               search.addToExtras(TutorID, groupID, search.getStudentID());
+             }
+
+             else{
+              out.println("Please select a student who is not in group " + groupID + ".");
+              out.print(search.addStudents(groupID));
+              out.println(look.fetchGroupNames(groupID));
+             }
             }
-          }
+
+            else{
+              out.println("Please enter a valid student ID.");
+              out.print(search.addStudents(groupID));
+              out.println(look.fetchGroupNames(groupID));
+            }
+
           
-          else{
-              if(search.checkStudentID(search.getStudentID()) == true){
-               if(search.checkGroup(search.getStudentID(), groupID) == false){
-                 out.println(look.fetchExtraStudent(search.getStudentID()));
-               }
-               
-               else{
-                out.println("Please select a student/students who is not in group " + groupID + ".");
-                out.print(search.addStudents(groupID));
-               }
-              }
-              
-              else{
-                out.println("Please enter a valid student ID/'s.");
-                out.print(search.addStudents(groupID));
-              }
-          }
           
-          out.println(look.fetchGroupNames(groupID));
-          //out.println(look.fetchExtraStudent(studentID));
+          
+          
         %> 
            
                
