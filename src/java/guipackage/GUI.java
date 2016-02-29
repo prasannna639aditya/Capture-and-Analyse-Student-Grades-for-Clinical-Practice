@@ -36,7 +36,7 @@ public class GUI {
         form += "<a href=\"#about\">About</a>\n";
         form += "</li>\n";
         form += "<li>\n";
-        form += "<a href=\"#services\">Services</a>\n";
+        form += "<a href='admin/adminLogin.jsp'>Admin</a>\n";
         form += "</li>\n";
         form += "<li>\n";
         form += "<a href=\"#contact\">Contact</a>\n";
