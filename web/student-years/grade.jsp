@@ -73,7 +73,7 @@
           String[] studentOutputArray;
         
           
-          
+            
             if(search.checkStudentID(search.getStudentID()) == true){
              if(search.checkGroup(search.getStudentID(), groupID) == false){
                out.println( name.fetchStudentName(search.getStudentID()) + " has been added to session with group " + groupID + ".");

@@ -74,7 +74,6 @@
            <li><a href="#tabs-4">BDS5</a></li>
            <li><a href="#tabs-5">HYG1</a></li>
            <li><a href="#tabs-6">HYG2</a></li>
-           <li><a href="#tabs-7">3.1</a></li>
          </ul>
          <div id="tabs-1">
            <p>
@@ -120,14 +119,6 @@
            <p>
             <%
                 out.print(look.fetchYearNames("5"));
-            %>
-           </p>
-         </div>
-           
-         <div id="tabs-7">
-           <p>
-            <%
-                out.print(look.fetchGroupNames("1"));
             %>
            </p>
          </div>

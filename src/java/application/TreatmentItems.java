@@ -209,13 +209,15 @@ public class TreatmentItems {
                    form += "<th>Treatment</th>\n";
                    form += "<td>" + score.fetchTreatmentName(treatmentID) + "</td>\n";
                    form += "</tr>\n";
+                   form += "<tr>\n";
                    form += "<th>Tutors Comments</th>\n";
                    form += "<td>" + Comment + "</td>\n";
                    form += "</tr>\n"; 
                    form += "<tr>\n";
-                   form += "<th>Aggregated score</th>\n";
-                   form += "<td>" + treatmentScore + "</td>\n";
-                   form += "</tr>\n";
+                   form += "<th>Clinical Alert</th>\n";
+                   form += "<td>" + score.fetchClinicalAlert(score.fetchTreatmentName(treatmentID),StudentID ) + "</td>\n";
+                   form += "</tr>\n"; 
+                   form += "<tr>\n";
                    
                    form += "<th><h1>Core Skills Generic</h1></th>\n";
                    form += "<tr>";
@@ -313,11 +315,7 @@ public class TreatmentItems {
                    form += "</tr>\n";
                    
                    
-                   
-                   form += "<tbody>\n";
-                   form += "<tr>\n";
-                   
-                   form += "</tr>\n";
+                   form += "</thead>\n";
             
             form += "</tbody>\n";
             form += "</table>\n";
@@ -407,27 +405,6 @@ public class TreatmentItems {
         conn.close();
         return form;
     }
-    /**public String fetchClinicalAlert( String StudentID, String TreatmentID) throws SQLException{
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
-            String query = ("SELECT TreatmentPlaneEntries.ClinicalAlert,"
-                            + " FROM TreatmentPlanEntries JOIN TBICoreSkills"
-                            + " ON TreatmentPlanEntries.PlanEntryID = TBICoreSkills "
-                            + " WHERE TBICoreSkills.StudentID= " + StudentID + " AND TBICoreSkills.TreatmentID= " + TreatmentID + ";");
-            Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery(query);
-            
-            String form = "\n";
-            if( "Yes".equals(rs.getString("TreatmentPlanEntries.ClinicalAlert")) ){
-                form += "<td>" + rs.getString("TreatmentPlanEntries.ClinicalAlert") + "</td>\n";
-            }
-            else{
-                form += "<td>No</td>\n";
-            }
-            
-            conn.close();
-            return form;
-    }
-     */
     
     public String fetchMyTreatments( String StudentID) throws SQLException{
         
@@ -505,6 +482,24 @@ public class TreatmentItems {
             String form = "";
             while(rs.next()){
                 form += rs.getString("FirstName") + " " + rs.getString("LastName") + "\n";
+            }
+            
+            return form;
+    }
+    
+    public String fetchClinicalAlert( String treatmentName, String studentID) throws SQLException{
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
+            //System.out.println("successful");
+            String query = ("SELECT ClinicalAlert FROM TreatmentPlanEntries JOIN TreatmentPlans "
+                            + "ON TreatmentPlanEntries.PlanEntryID = TreatmentPlans.PlanID "
+                            + "WHERE TreatmentPlanEntries.TreatmentName = '" + treatmentName + "'"
+                            + " AND TreatmentPlans.StudentID = '" + studentID + "';");
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            
+            String form = "";
+            if(rs.next()){
+                form += rs.getString("ClinicalAlert") + "\n";
             }
             
             return form;

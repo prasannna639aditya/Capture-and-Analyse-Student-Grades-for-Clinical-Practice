@@ -30,7 +30,7 @@ public class StudentYearlySummaryData {
         this.result = new String[10];
     }
     
-    public String showCore( int score, String year ) throws SQLException {
+    public String showCore( int score, String group ) throws SQLException {
         Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
         
         String query =( "SELECT tb.StudentID, "
@@ -47,7 +47,9 @@ public class StudentYearlySummaryData {
                 + "SUM(LocalAnaesthesiaInfiltration = " + score + " ) AS LocalAnaesthesiaInfiltrationCount, "
                 + "SUM(ManagementOfComplications = " + score + " ) AS ManagementOfComplicationsCount, "
                 + "SUM(MaterialSelectionAndHandling = " + score + " ) AS MaterialSelectionAndHandlingCount " 
-                + "FROM TBICoreSkills tb;" );
+                + "FROM TBICoreSkills AS tb JOIN Students JOIN StudentGroups JOIN StudentClass JOIN CourseYear"
+                            + " ON Students.StudentID = StudentClass.StudentID AND StudentClass.GroupID = StudentGroups.GroupID AND StudentClass.YearID = CourseYear.YearID"
+                            + " WHERE StudentGroups.GroupDescriptor =" + group + ";" );
         
         
         
@@ -79,10 +81,11 @@ public class StudentYearlySummaryData {
                form += "</div>\n";
         }
         
+        conn.close();
         return form;
     }
     
-    public String showBasic( int score ) throws SQLException {
+    public String showBasic( int score, String group ) throws SQLException {
         Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
         
         String query =( "SELECT SUM(AppropriatePatientPosition = 1) AS AppropriatePatientPositionCount,"
@@ -90,7 +93,9 @@ public class StudentYearlySummaryData {
                 + "SUM(AppropriateLightPosition = " + score + " ) AS AppropriateLightPositionCount, "
                 + "SUM(AppropriateUseOfMirror = " + score + " ) AS AppropriateUseOfMirrorCount, "
                 + "SUM(AppropriateFingerSupport = " + score + " ) AS AppropriateFingerSupportCount " 
-                + "FROM TBICoreSkills WHERE StudentID = 112445898;" );
+                + "FROM TBICoreSkills AS tb JOIN Students JOIN StudentGroups JOIN StudentClass JOIN CourseYear"
+                            + " ON Students.StudentID = StudentClass.StudentID AND StudentClass.GroupID = StudentGroups.GroupID AND StudentClass.YearID = CourseYear.YearID"
+                            + " WHERE StudentGroups.GroupDescriptor =" + group + ";" );
         
         Statement stmt = conn.createStatement();
         ResultSet rs = stmt.executeQuery(query);
@@ -110,16 +115,18 @@ public class StudentYearlySummaryData {
                form += countTotal;
                form += "</div>\n";
         }
-        
+        conn.close();
         return form;
     }
     
     
-    public String showProfessionalism( int score ) throws SQLException {
+    public String showProfessionalism( int score, String group ) throws SQLException {
         Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
         
         String query =( "SELECT SUM(Professionalism = " + score + ") AS ProfessionalismCount "
-                + "FROM TBICoreSkills WHERE StudentID = 112445898;" );
+                + "FROM TBICoreSkills AS tb JOIN Students JOIN StudentGroups JOIN StudentClass JOIN CourseYear"
+                            + " ON Students.StudentID = StudentClass.StudentID AND StudentClass.GroupID = StudentGroups.GroupID AND StudentClass.YearID = CourseYear.YearID"
+                            + " WHERE StudentGroups.GroupDescriptor =" + group + ";" );
         
         Statement stmt = conn.createStatement();
         ResultSet rs = stmt.executeQuery(query);
@@ -135,15 +142,17 @@ public class StudentYearlySummaryData {
                form += countTotal;
                form += "</div>\n";
         }
-        
+        conn.close();
         return form;
     }
     
-    public String showCommunication( int score ) throws SQLException {
+    public String showCommunication( int score, String group ) throws SQLException {
         Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
         
         String query =( "SELECT SUM(Communication = " + score + ") AS CommunicationCount "
-                + "FROM TBICoreSkills WHERE StudentID = 112445898;" );
+                + "FROM TBICoreSkills AS tb JOIN Students JOIN StudentGroups JOIN StudentClass JOIN CourseYear"
+                            + " ON Students.StudentID = StudentClass.StudentID AND StudentClass.GroupID = StudentGroups.GroupID AND StudentClass.YearID = CourseYear.YearID"
+                            + " WHERE StudentGroups.GroupDescriptor =" + group + ";" );
         
         Statement stmt = conn.createStatement();
         ResultSet rs = stmt.executeQuery(query);
@@ -159,15 +168,17 @@ public class StudentYearlySummaryData {
                form += countTotal;
                form += "</div>\n";
         }
-        
+        conn.close();
         return form;
     }
     
-    public String showKnowledge( int score ) throws SQLException {
+    public String showKnowledge( int score, String group ) throws SQLException {
         Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
         
         String query =( "SELECT SUM(Knowledge= " + score + ") AS KnowledgeCount "
-                + "FROM TBICoreSkills WHERE StudentID = 112445898;" );
+                + "FROM TBICoreSkills AS tb JOIN Students JOIN StudentGroups JOIN StudentClass JOIN CourseYear"
+                            + " ON Students.StudentID = StudentClass.StudentID AND StudentClass.GroupID = StudentGroups.GroupID AND StudentClass.YearID = CourseYear.YearID"
+                            + " WHERE StudentGroups.GroupDescriptor =" + group + ";" );
         
         Statement stmt = conn.createStatement();
         ResultSet rs = stmt.executeQuery(query);
@@ -183,67 +194,72 @@ public class StudentYearlySummaryData {
                form += countTotal;
                form += "</div>\n";
         }
-        
+        conn.close();
         return form;
     }
     
-    public String studentData() throws SQLException{
-        StudentSummaryData check = new StudentSummaryData();
+    public String studentData(String group) throws SQLException{
+        StudentYearlySummaryData check = new StudentYearlySummaryData();
         String form = "<table class=\"table table-striped table-bordered table-condensed\" width=\"647\">\n";
                    form += "<thead>\n";
                    form += "<tr>\n";
-                   form += "<th>Skill                    Development Need Indicator:</th>\n";
-                   form += "<td>1</td>\n";
-                   form += "<td>2</td>\n";
-                   form += "<td>3</td>\n";
-                   form += "<td>4</td>\n";
-                   form += "<td>5</td>\n";
-                   form += "<td>6</td>\n";
+                   form += "<th></th>\n";
+                   form += "<th colspan=\"6\">Development Need Indicator</th>";
+                   form += "</tr>";
+                   form += "<tr>\n";
+                   form += "<th>Skill</th>\n";
+                   form += "<th>1 (Total)</th>\n";
+                   form += "<th>2 (Total)</th>\n";
+                   form += "<th>3 (Total)</th>\n";
+                   form += "<th>4 (Total)</th>\n";
+                   form += "<th>5 (Total)</th>\n";
+                   form += "<th>6 (Total)</th>\n";
                    form += "</tr>\n";
+                   form += "</thead>\n";
                    form += "<tr>";
                    form += "<th>Core Skills Generic</th>\n";
-                   form += "<th>" + check.showCore(1) + "</th>\n";
-                   form += "<th>" + check.showCore(2) + "</th>\n";
-                   form += "<th>" + check.showCore(3) + "</th>\n";
-                   form += "<th>" + check.showCore(4) + "</th>\n";
-                   form += "<th>" + check.showCore(5) + "</th>\n";
-                   form += "<th>" + check.showCore(6) + "</th>\n";
+                   form += "<th>" + check.showCore(1,group) + "</th>\n";
+                   form += "<th>" + check.showCore(2,group) + "</th>\n";
+                   form += "<th>" + check.showCore(3,group) + "</th>\n";
+                   form += "<th>" + check.showCore(4,group) + "</th>\n";
+                   form += "<th>" + check.showCore(5,group) + "</th>\n";
+                   form += "<th>" + check.showCore(6,group) + "</th>\n";
                    form += "</tr>\n";
                    form += "<tr>";
                    form += "<th>Basic Operative Skills</th>\n";
-                   form += "<th>" + check.showBasic(1) + "</th>\n";
-                   form += "<th>" + check.showBasic(2) + "</th>\n";
-                   form += "<th>" + check.showBasic(3) + "</th>\n";
-                   form += "<th>" + check.showBasic(4) + "</th>\n";
-                   form += "<th>" + check.showBasic(5) + "</th>\n";
-                   form += "<th>" + check.showBasic(6) + "</th>\n";
+                   form += "<th>" + check.showBasic(1,group) + "</th>\n";
+                   form += "<th>" + check.showBasic(2,group) + "</th>\n";
+                   form += "<th>" + check.showBasic(3,group) + "</th>\n";
+                   form += "<th>" + check.showBasic(4,group) + "</th>\n";
+                   form += "<th>" + check.showBasic(5,group) + "</th>\n";
+                   form += "<th>" + check.showBasic(6,group) + "</th>\n";
                    form += "</tr>\n";
                    form += "<tr>";
                    form += "<th>Professionalism</th>\n";
-                   form += "<th>" + check.showProfessionalism(1) + "</th>\n";
-                   form += "<th>" + check.showProfessionalism(2) + "</th>\n";
-                   form += "<th>" + check.showProfessionalism(3) + "</th>\n";
-                   form += "<th>" + check.showProfessionalism(4) + "</th>\n";
-                   form += "<th>" + check.showProfessionalism(5) + "</th>\n";
-                   form += "<th>" + check.showProfessionalism(6) + "</th>\n";
+                   form += "<th>" + check.showProfessionalism(1,group) + "</th>\n";
+                   form += "<th>" + check.showProfessionalism(2,group) + "</th>\n";
+                   form += "<th>" + check.showProfessionalism(3,group) + "</th>\n";
+                   form += "<th>" + check.showProfessionalism(4,group) + "</th>\n";
+                   form += "<th>" + check.showProfessionalism(5,group) + "</th>\n";
+                   form += "<th>" + check.showProfessionalism(6,group) + "</th>\n";
                    form += "</tr>\n";
                    form += "<tr>";
                    form += "<th>Communication</th>\n";
-                   form += "<th>" + check.showCommunication(1) + "</th>\n";
-                   form += "<th>" + check.showCommunication(2) + "</th>\n";
-                   form += "<th>" + check.showCommunication(3) + "</th>\n";
-                   form += "<th>" + check.showCommunication(4) + "</th>\n";
-                   form += "<th>" + check.showCommunication(5) + "</th>\n";
-                   form += "<th>" + check.showCommunication(6) + "</th>\n";
+                   form += "<th>" + check.showCommunication(1,group) + "</th>\n";
+                   form += "<th>" + check.showCommunication(2,group) + "</th>\n";
+                   form += "<th>" + check.showCommunication(3,group) + "</th>\n";
+                   form += "<th>" + check.showCommunication(4,group) + "</th>\n";
+                   form += "<th>" + check.showCommunication(5,group) + "</th>\n";
+                   form += "<th>" + check.showCommunication(6,group) + "</th>\n";
                    form += "</tr>\n";
                    form += "<tr>";
                    form += "<th>Knowledge</th>\n";
-                   form += "<th>" + check.showKnowledge(1) + "</th>\n";
-                   form += "<th>" + check.showKnowledge(2) + "</th>\n";
-                   form += "<th>" + check.showKnowledge(3) + "</th>\n";
-                   form += "<th>" + check.showKnowledge(4) + "</th>\n";
-                   form += "<th>" + check.showKnowledge(5) + "</th>\n";
-                   form += "<th>" + check.showKnowledge(6) + "</th>\n";
+                   form += "<th>" + check.showKnowledge(1,group) + "</th>\n";
+                   form += "<th>" + check.showKnowledge(2,group) + "</th>\n";
+                   form += "<th>" + check.showKnowledge(3,group) + "</th>\n";
+                   form += "<th>" + check.showKnowledge(4,group) + "</th>\n";
+                   form += "<th>" + check.showKnowledge(5,group) + "</th>\n";
+                   form += "<th>" + check.showKnowledge(6,group) + "</th>\n";
                    form += "</tr>\n";
                    form += "</tr>\n";
                    
