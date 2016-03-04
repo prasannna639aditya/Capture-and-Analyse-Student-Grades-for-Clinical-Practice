@@ -27,6 +27,7 @@ import passwordhash.PasswordHash;
 public class CoreSkills {
     String date = new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime());
     String time = new SimpleDateFormat("HH:mm").format(Calendar.getInstance().getTime());
+    String hour = new SimpleDateFormat("HH").format(Calendar.getInstance().getTime());
     
     private String studentID;
     private String patientID;
@@ -381,6 +382,8 @@ public class CoreSkills {
         this.attendance = attendance;
     }
     
+    
+    
     /**
     public boolean checkPassword( HttpServletRequest request ) throws NoSuchAlgorithmException, InvalidKeySpecException, Exception  {
         DatabaseClass database = new DatabaseClass( );
@@ -430,15 +433,11 @@ public class CoreSkills {
             isValid = false;
         }
         
-        /**
-        if( password.equals( "" ) ) {
+       /** if( validateStudent(studentID, password) == false){
+            errors.add( "Students password is not correct." );
             isValid = false;
-        }
-        
-        if( PasswordHash.check( password, passwordToCheck) == false){
-           isValid = false;
         }**/
-         
+        
         if( isValid ) {
             CoreSkills core = new CoreSkills();
             getStudent( studentID );
@@ -498,8 +497,8 @@ public class CoreSkills {
         database.Insert( "INSERT INTO TBICoreSkills( StudentID, PatientID, TutorID, AbilityToEstablishDiagnosis, AbilityToFormulateATreatmentPlan, EnsuringInformedConsent, EquipmentPreparationSelection,"
                 + "ExaminationIntraOralHardTissues, ExaminationIntraOralSoftTissues, ExtraOralExamination, InfectionControl, InterpretationOfSpeciaInvestigations, LocalAnaesthesiaBlock, LocalAnaesthesiaInfiltration,"
                 + "ManagementOfComplications, MaterialSelectionAndHandling, AppropriatePatientPosition, AppropriateOperatorPosition, AppropriateLightPosition, AppropriateUseOfMirror, AppropriateFingerSupport,"
-                + "DateAdded, TreatmentID, Time, Comment, Professionalism, Communication, Knowledge, Attendance )"
-                +"VALUES( '" + studentID + "', '" + patientID + "', '" + tutorID + "', '" + abilToEstDiag + "', '" + abilToFormTrtPlan + "', '" + ensInfCons + "', '" + equipPrep + "','" + examIntraOralHard + "','" + examIntraOralSoft + "','" + extraOralExam + "','" + infectionControl + "','" + interpOfSpecInves + "','" + localAnaesthesiaBlock + "','" + localAnaesthesiaInfiltration + "','" + managementofComplications + "','" + matSelecHandling + "','" + approPatPos + "','" + approOpPos + "','" + approLightPos + "','" + approUseOfMirror + "','" + approFingerSupport + "','" + date + "','" + treatmentID + "','" + time + "','" + comment + "','" + professionalism + "','" + communication + "','" + knowledge + "', '" + attendance + "' );" );
+                + "DateAdded, TreatmentID, Time, Comment, Professionalism, Communication, Knowledge, Attendance, Hour )"
+                +"VALUES( '" + studentID + "', '" + patientID + "', '" + tutorID + "', '" + abilToEstDiag + "', '" + abilToFormTrtPlan + "', '" + ensInfCons + "', '" + equipPrep + "','" + examIntraOralHard + "','" + examIntraOralSoft + "','" + extraOralExam + "','" + infectionControl + "','" + interpOfSpecInves + "','" + localAnaesthesiaBlock + "','" + localAnaesthesiaInfiltration + "','" + managementofComplications + "','" + matSelecHandling + "','" + approPatPos + "','" + approOpPos + "','" + approLightPos + "','" + approUseOfMirror + "','" + approFingerSupport + "','" + date + "','" + treatmentID + "','" + time + "','" + comment + "','" + professionalism + "','" + communication + "','" + knowledge + "', '" + attendance + "', '" + hour + "' );" );
                
         
         database.Insert( "INSERT INTO TreatmentPlanEntries( TreatmentName, ClinicalAlert, Comment)" +
@@ -769,8 +768,8 @@ public class CoreSkills {
                 "<textarea name='comment' placeholder=\"Please comment on the students performance\" value='comment' id='comment'></textarea>\n" +
                 "</select><br /></p>";
         
-        //form += "<label for='password'>Password:</label>\n";
-        //form += "<input type=\"password\" name=\"password\" placeholder=\"Enter Password\"/><br />";
+        form += "<label for='password'>Students Password:</label>\n";
+        form += "<input type=\"password\" name=\"password\" placeholder=\"Enter Password\"/><br />\n";
         form += "<input type='submit' value='Submit' name='submit' /><br />\n";
         form += "</form>\n";
         conn.close();
@@ -818,5 +817,30 @@ public class CoreSkills {
                    form += "</table>\n";
                    
         return form;
+    }
+    
+    public boolean validateStudent(String password, String studentID) throws Exception{
+        DatabaseClass database = new DatabaseClass( );
+        database.setup( "localhost", "final_year_project", "root", "" );
+        //database.setup( "ec2-52-31-84-76.eu-west-1.compute.amazonaws.com", "final_year_project", "root", "IPNTclyv43" );
+        PasswordHash hash = new PasswordHash();
+ 
+        password = password;
+        boolean isValid = true;
+        
+        result = database.SelectRow( "SELECT * FROM Students WHERE StudentID = 119876543;" );
+        
+            
+        
+        if( result.length != 0 ) {
+            passwordToCheck = result[1];
+        }
+        
+        if( PasswordHash.check( password, passwordToCheck) == false){
+           isValid = false;
+        }
+  
+        return isValid;
+        
     }
 }

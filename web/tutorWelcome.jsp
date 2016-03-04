@@ -4,6 +4,7 @@
     Author     : Delaney
 --%>
 
+<%@page import="application.TreatmentItems"%>
 <%@page import="guipackage.SearchBox"%>
 <%@page import="summaryData.StudentSummaryData"%>
 <%@page import="application.CoreSkills"%>
@@ -52,6 +53,8 @@
                 String group = "group";
                 out.print(gui.tutorWelcomeNavigation(true, TutorID, firstName, lastName, department, picture));
                 
+                out.print( search.showTutorsGroups(TutorID));
+                
                 //out.print(search.selectTodaysGroup("test"));
                 //out.print(core.markingDescriptors());
                 /**out.print(check.showCore(1));
@@ -63,6 +66,14 @@
           }
         %>
         
+        </div>
+        </div>
+        </div>
+        </div>
+        </div>
+
+
+
     
     </body>
 </html>

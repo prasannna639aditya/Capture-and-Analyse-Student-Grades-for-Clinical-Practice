@@ -127,6 +127,7 @@ public class TreatmentItems {
     }
     
     public String showScore( String StudentID, String TreatmentID ) throws SQLException {
+        TreatmentItems treatment = new TreatmentItems();
         DatabaseClass database = new DatabaseClass( );
         database.setup( "localhost", "final_year_project", "root", "" );
         String dateAdded = "";
@@ -156,6 +157,7 @@ public class TreatmentItems {
         String Communication = "";
         String Knowledge = "";
         String Attendance = "";
+        String Hour = "";
 
         result = database.SelectRow( "SELECT * FROM TBICoreSkills WHERE StudentID = '" + StudentID + "' AND TreatmentID = '" + TreatmentID + "';" );
         
@@ -187,6 +189,7 @@ public class TreatmentItems {
             Communication = result[27];
             Knowledge = result[28];
             Attendance = result[29];
+            Hour = result[30];
         }
         
         TreatmentItems score = new TreatmentItems();
@@ -222,7 +225,15 @@ public class TreatmentItems {
                    form += "</tr>\n"; 
                    form += "<tr>\n";
                    form += "<th>Assiting</th>\n";
-                   form += "<td>" + Attendance + "</td>\n";
+                   if( Attendance == "absent"){
+                   form += "<td>" + Attendance + " from " + treatment.session(Hour) + "</td>\n";
+                   }
+                   if( Attendance == "yes"){
+                   form += "<td>" + Attendance + " in " + treatment.session(Hour) + "</td>\n";
+                   }
+                   else{
+                   form += "<td>" + Attendance + "</td>\n";    
+                   }
                    form += "</tr>\n"; 
                    form += "<tr>\n";
                    form += "<th>Clinical Alert</th>\n";
@@ -433,13 +444,14 @@ public class TreatmentItems {
         TreatmentItems treatment = new TreatmentItems();
         String date = new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime());
         String time = new SimpleDateFormat("HH:mm:ss").format(Calendar.getInstance().getTime());
+        String hour = new SimpleDateFormat("HH").format(Calendar.getInstance().getTime());
     
         
         database.Insert( "INSERT INTO TBICoreSkills( StudentID, PatientID, TutorID, AbilityToEstablishDiagnosis, AbilityToFormulateATreatmentPlan, EnsuringInformedConsent, EquipmentPreparationSelection,"
                 + "ExaminationIntraOralHardTissues, ExaminationIntraOralSoftTissues, ExtraOralExamination, InfectionControl, InterpretationOfSpeciaInvestigations, LocalAnaesthesiaBlock, LocalAnaesthesiaInfiltration,"
                 + "ManagementOfComplications, MaterialSelectionAndHandling, AppropriatePatientPosition, AppropriateOperatorPosition, AppropriateLightPosition, AppropriateUseOfMirror, AppropriateFingerSupport,"
-                + "DateAdded, TreatmentID, Time, Comment, Professionalism, Communication, Knowledge, Attendance )"
-                +"VALUES( '" + studentID + "', '0', '" + tutorID + "', '0', '0', '0', '0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','" + date + "','" + treatmentID + "','" + time + "','Absent from session','0','0','0','absent' );" );
+                + "DateAdded, TreatmentID, Time, Comment, Professionalism, Communication, Knowledge, Attendance, Hour )"
+                +"VALUES( '" + studentID + "', '0', '" + tutorID + "', '0', '0', '0', '0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','" + date + "','" + treatmentID + "','" + time + "','Absent from session','0','0','0','','" + hour + "' );" );
         
         
         database.Close();
@@ -518,6 +530,21 @@ public class TreatmentItems {
             }
             
             return form;
+    }
+    
+    public String session(String hour){
+        String period = "";
+        
+        int periodInt = Integer.parseInt(hour);
+        if( periodInt < 12){
+            period = "morning";
+        }
+        
+        else{
+            period = "afternoon";
+        }
+                
+       return period;         
     }
     
     public String fetchClinicalAlert( String treatmentName, String studentID) throws SQLException{

@@ -30,6 +30,8 @@ public class SearchBox {
     private String studentID;
     private String groupID;
     private String name;
+    private String group;
+    private String groupDescriptor;
     private DatabaseClass database;
     private final ArrayList<String> errors;
     
@@ -38,7 +40,10 @@ public class SearchBox {
         errors = new ArrayList<>( );
         this.studentID = "";
         this.name = "";
+        this.groupDescriptor = "";
         database = new DatabaseClass( );
+        group = "";
+        
         this.result = new String[10];
         database.setup( "localhost", "final_year_project", "root", "" );
     }
@@ -66,6 +71,14 @@ public class SearchBox {
     
     public void setGroupID(String groupID) {
         this.groupID = groupID;
+    }
+    
+    public String getGroup() {
+        return group;
+    }
+    
+    public void setGroup(String group) {
+        this.group = group;
     }
     
     public String printErrors( ) {
@@ -367,6 +380,15 @@ public class SearchBox {
       return isStudent;  
     }
     
+    public boolean doesGroupExist(String groupName) {
+        String[] dbResult = database.SelectRow( "SELECT GroupName FROM GroupExtras WHERE GroupName = '" + groupName + "';" );
+        
+        if(dbResult.length != 0) {
+            return true;
+        }
+        return false;
+    }
+    
     public boolean checkGroupDescriptor( String descriptor){
         DatabaseClass database = new DatabaseClass( );
         //database.setup( "ec2-52-48-85-26.eu-west-1.compute.amazonaws.com", "final_year_project", "root", "IPNTclyv43" );
@@ -398,6 +420,45 @@ public class SearchBox {
       return isInGroup;  
     }
     
+    public String showTutorsGroups(String tutorID) throws SQLException{
+        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
+        
+        String query =( "SELECT * FROM GroupExtras "
+                + "WHERE TutorID= " + tutorID + ";" );
+        
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery(query);
+        
+        String form = "<h1>My Groups</h1>\n";
+               form +=  "<div class=\"table-responsive\">\n";
+               form += "<table class=\"table\">\n";
+               form += "<thead>\n";
+               form += "<tbody>\n";
+        if(rs.next()){
+          while(rs.next()){ 
+               form += "<tr>\n";
+               form += "<form name='grade' action='student-years/showGroups.jsp' method='POST'>";
+               form += "<input type=\"hidden\" name='groupID' value='" + rs.getString("GroupDescriptor") + "'>\n";
+               form += "<input type=\"hidden\" name='studentID' value='" + rs.getString("StudentID") + "'>\n";
+               form += "<td>" + rs.getString("DateAdded") + "</td>\n";
+               form += "<td>" + rs.getString("GroupName") + "</td>\n";
+               form += "<td><input type=\"submit\" value=\"Go to group\" class=\"btn-style\"></td></form>\n";
+               form += "<form name='grade' action='student-years/deleteGroup.jsp' method='POST'>";
+               form += "<input type=\"hidden\" name='group' value='" + rs.getString("GroupName") + "'>\n";
+               form += "<td><input type=\"submit\" value=\"Delete Group\" class=\"btn-style\"></td></form>\n";
+               form += "</tr>\n";
+          }
+        }
+            form += "</tbody>\n";
+            form += "</table>\n";
+            form += "</div>\n";
+        return form;
+    }
+    
+    public void deleteGroup( String groupName, String tutorID){
+        database.Insert( "DELETE FROM GroupExtras WHERE GroupName = '" + groupName + "' AND TutorID = " + tutorID + ";" );
+        database.Close();
+    }
     public String selectTodaysGroup( String groupName ) throws SQLException{
         String date = new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime());
         

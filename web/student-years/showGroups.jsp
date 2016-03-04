@@ -1,4 +1,10 @@
 <%-- 
+    Document   : showGroups
+    Created on : 04-Mar-2016, 18:09:48
+    Author     : Delaney
+--%>
+
+<%-- 
     Document   : grade
     Created on : 26-Feb-2016, 22:02:53
     Author     : Delaney
@@ -49,7 +55,7 @@
         <script type="text/javascript" src="../js/components/popup.js"></script>
         <script type="text/javascript" src="../js/components/dropdown.js"></script>
         <script type="text/javascript" src="../js/components/transition.js"></script>
-        <title>Grade Students</title>
+        <title>Groups</title>
         
         
     </head>
@@ -72,34 +78,10 @@
           String groupName = search.getName();
           
           String[] studentOutputArray;
-        
           
-            if(search.checkStudentID(search.getStudentID()) == true){
-             if(search.checkGroup(search.getStudentID(), groupID) == false){
-               out.println( name.fetchStudentName(search.getStudentID()) + " has been added to session with group " + groupID + ".");
-               out.print(look.fetchGroupNames(groupID));
-               out.print(look.fetchExtraStudent(search.getStudentID()));
-               search.addToExtras(TutorID, groupID, search.getStudentID());
-             }
+          out.print(look.fetchGroupNames(groupID));
+          out.print(look.fetchExtraStudent(search.getStudentID()));
 
-             else{
-              out.println("Please select a student who is not in group " + groupID + ".");
-              out.print(search.addStudents(groupID));
-              out.println(look.fetchGroupNames(groupID));
-             }
-            }
-
-            else{
-              out.println("Please enter a valid student ID.");
-              out.print(search.addStudents(groupID));
-              out.println(look.fetchGroupNames(groupID));
-            }
-           
-           
-          
-          
-          
-          
         %> 
            
                
@@ -111,3 +93,4 @@
         
     </body>
 </html>
+

@@ -101,15 +101,6 @@ public class GUI {
                    form += "</div>\n";
             
         }
-        //form += "<a href=\"#menu-toggle\" class=\"btn btn-default\" id=\"menu-toggle\">Toggle Menu</a>\n";
-        form += "</div>\n";
-        form += "</div>\n";
-        form += "</div>\n";
-        form += "</div>\n";
-        form += "</div>\n";
-        form += "<script src=\"js/jquery.js\"></script>\n";
-        form += "<script src=\"js/bootstrap.min.js\"></script>\n";
-        form += "<script>$(\"#menu-toggle\").click(function(e) {e.preventDefault();$(\"#wrapper\").toggleClass(\"toggled\");});</script>\n";
         return form;
     }
     
