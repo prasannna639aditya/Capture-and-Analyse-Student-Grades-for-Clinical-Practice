@@ -46,12 +46,18 @@
                 StudentLookup studentLookup = new StudentLookup();
                 out.print( gui.tutorNavigation( ));
                 String TutorID = (String) session.getAttribute( "TutorID" );
-                
+                String attendance = treatment.getAttendance();
+                String absent = "absent";
                 
               
                   if( request.getParameter( "submit" ) == null ) {
                     
                    out.print( core.markingForm( TutorID, treatment.getStudentID(), treatment.getTreatmentID()) );
+                   if(treatment.isAbsent(attendance) == true)
+                   {
+                       out.print(attendance);
+                   }
+                   
                 }
                 else {
                     if( core.validateMarkingForm( ) ) {

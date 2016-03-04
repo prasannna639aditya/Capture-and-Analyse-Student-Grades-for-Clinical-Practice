@@ -328,7 +328,7 @@ public class SearchBox {
                 "      <i class=\"search icon\"></i>\n" +
                 "      <input type=\"text\" name='groupID' placeholder=\"Search a group...\">\n" +
                 "      <div class=\"ui teal button\">Search</div>\n" +
-                "    </div>";
+                "    </div></form>\n";
         return form;
     }
     
@@ -340,8 +340,8 @@ public class SearchBox {
                 "      <input type=\"hidden\" name='groupID' value='" + groupID + "' placeholder=\"Search...\">\n" +
                 "      <input type=\"text\" name='studentID' placeholder=\"Add an extra student to the group\"><br/>\n" +
                 "      <div><input type=\"text\" name='name' placeholder=\"Please name this group\"></div><br/>\n" +
-                "      <div class=\"ui teal button\">Search</div>\n" +
-                "    </div>";
+                "      <input type='submit' value='Search' name='submit' /><br />\n" +
+                "    </div></form>\n";
         return form;
     }
     

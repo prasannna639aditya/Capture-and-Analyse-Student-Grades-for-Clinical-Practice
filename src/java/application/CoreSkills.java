@@ -26,7 +26,7 @@ import passwordhash.PasswordHash;
  */
 public class CoreSkills {
     String date = new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime());
-    String time = new SimpleDateFormat("HH:mm:ss").format(Calendar.getInstance().getTime());
+    String time = new SimpleDateFormat("HH:mm").format(Calendar.getInstance().getTime());
     
     private String studentID;
     private String patientID;
@@ -60,6 +60,7 @@ public class CoreSkills {
     private String professionalism;
     private String communication;
     private String knowledge;
+    private String attendance;
     private DatabaseClass database;
     private final ArrayList<String> errors;
     
@@ -93,6 +94,7 @@ public class CoreSkills {
         communication = "";
         knowledge = "";
         checkbox = "";
+        attendance = "";
         this.treatmentScore = "";
         this.treatmentPlanID = "";
         this.checkbox = "";
@@ -371,6 +373,14 @@ public class CoreSkills {
         this.checkbox = checkbox;
     }
     
+    public String getAttendance( ) {
+        return attendance;
+    }
+ 
+    public void setAttendance( final String attendance) {
+        this.attendance = attendance;
+    }
+    
     /**
     public boolean checkPassword( HttpServletRequest request ) throws NoSuchAlgorithmException, InvalidKeySpecException, Exception  {
         DatabaseClass database = new DatabaseClass( );
@@ -488,8 +498,8 @@ public class CoreSkills {
         database.Insert( "INSERT INTO TBICoreSkills( StudentID, PatientID, TutorID, AbilityToEstablishDiagnosis, AbilityToFormulateATreatmentPlan, EnsuringInformedConsent, EquipmentPreparationSelection,"
                 + "ExaminationIntraOralHardTissues, ExaminationIntraOralSoftTissues, ExtraOralExamination, InfectionControl, InterpretationOfSpeciaInvestigations, LocalAnaesthesiaBlock, LocalAnaesthesiaInfiltration,"
                 + "ManagementOfComplications, MaterialSelectionAndHandling, AppropriatePatientPosition, AppropriateOperatorPosition, AppropriateLightPosition, AppropriateUseOfMirror, AppropriateFingerSupport,"
-                + "DateAdded, TreatmentID, Time, Comment, Professionalism, Communication, Knowledge )"
-                +"VALUES( '" + studentID + "', '" + patientID + "', '" + tutorID + "', '" + abilToEstDiag + "', '" + abilToFormTrtPlan + "', '" + ensInfCons + "', '" + equipPrep + "','" + examIntraOralHard + "','" + examIntraOralSoft + "','" + extraOralExam + "','" + infectionControl + "','" + interpOfSpecInves + "','" + localAnaesthesiaBlock + "','" + localAnaesthesiaInfiltration + "','" + managementofComplications + "','" + matSelecHandling + "','" + approPatPos + "','" + approOpPos + "','" + approLightPos + "','" + approUseOfMirror + "','" + approFingerSupport + "','" + date + "','" + treatmentID + "','" + time + "','" + comment + "','" + professionalism + "','" + communication + "','" + knowledge + "' );" );
+                + "DateAdded, TreatmentID, Time, Comment, Professionalism, Communication, Knowledge, Attendance )"
+                +"VALUES( '" + studentID + "', '" + patientID + "', '" + tutorID + "', '" + abilToEstDiag + "', '" + abilToFormTrtPlan + "', '" + ensInfCons + "', '" + equipPrep + "','" + examIntraOralHard + "','" + examIntraOralSoft + "','" + extraOralExam + "','" + infectionControl + "','" + interpOfSpecInves + "','" + localAnaesthesiaBlock + "','" + localAnaesthesiaInfiltration + "','" + managementofComplications + "','" + matSelecHandling + "','" + approPatPos + "','" + approOpPos + "','" + approLightPos + "','" + approUseOfMirror + "','" + approFingerSupport + "','" + date + "','" + treatmentID + "','" + time + "','" + comment + "','" + professionalism + "','" + communication + "','" + knowledge + "', '" + attendance + "' );" );
                
         
         database.Insert( "INSERT INTO TreatmentPlanEntries( TreatmentName, ClinicalAlert, Comment)" +
@@ -529,6 +539,8 @@ public class CoreSkills {
                         + "<select name=\"treatmentID\" id='dropdown'>\n" 
                         + "  <option value=\"" + TreatmentID + "\" selected>" + TreatmentID + "</option>\n" 
                         + "</select><br />"; 
+        form += "<label for=\"attendance\">Assisting</label>\n" +
+                "<input type=\"checkbox\" name=\"attendance\" id=\"checkbox\" value=\"yes\">\n";
         form += "<h1>Core Skills Generic</h1>";
         form += "<label for='abilToEstDiag'>Ability to establish diagnosis(es):</label>\n";
         form += "<select name=\"abilToEstDiag\"id='dropdown' >\n" +

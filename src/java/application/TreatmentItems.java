@@ -11,6 +11,8 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import javax.servlet.http.HttpServletRequest;
 
 /**
@@ -26,6 +28,7 @@ public class TreatmentItems {
     private String checkbox;
     private String attendance;
     private String [] result;
+    private DatabaseClass database;
     
     public TreatmentItems(){
         this.treatmentID = "";
@@ -36,6 +39,8 @@ public class TreatmentItems {
         this.checkbox = "";
         this.attendance = "";
         this.result = new String[10];
+        database = new DatabaseClass( );
+        database.setup( "localhost", "final_year_project", "root", "" );
     }
     
     public String getStudentID() {
@@ -150,6 +155,7 @@ public class TreatmentItems {
         String Professionalism = "";
         String Communication = "";
         String Knowledge = "";
+        String Attendance = "";
 
         result = database.SelectRow( "SELECT * FROM TBICoreSkills WHERE StudentID = '" + StudentID + "' AND TreatmentID = '" + TreatmentID + "';" );
         
@@ -180,6 +186,7 @@ public class TreatmentItems {
             Professionalism = result[26];
             Communication = result[27];
             Knowledge = result[28];
+            Attendance = result[29];
         }
         
         TreatmentItems score = new TreatmentItems();
@@ -212,6 +219,10 @@ public class TreatmentItems {
                    form += "<tr>\n";
                    form += "<th>Tutors Comments</th>\n";
                    form += "<td>" + Comment + "</td>\n";
+                   form += "</tr>\n"; 
+                   form += "<tr>\n";
+                   form += "<th>Assiting</th>\n";
+                   form += "<td>" + Attendance + "</td>\n";
                    form += "</tr>\n"; 
                    form += "<tr>\n";
                    form += "<th>Clinical Alert</th>\n";
@@ -325,34 +336,32 @@ public class TreatmentItems {
         return form; 
     }
     
-    public String fetchTreatments( String StudentID) throws SQLException{
+    public String fetchTreatments( String StudentID, String domain) throws SQLException{
         
             Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
             //System.out.println("successful");
             String query = ("SELECT TreatmentItems.TreatmentItemID, TreatmentItems.TreatmentName, TreatmentItems.DomainID, TreatmentItems.RequirementsGroupID, TreatmentItems.RequirementsWeighting"
-                            + " FROM TreatmentItems");
+                            + " FROM TreatmentItems WHERE TreatmentItems.DomainID=" + domain + "");
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(query);
+            TreatmentItems treatment = new TreatmentItems();
 
             
             
-            String form = "<div>Please see the treatments that " + StudentID + " has and has not been graded for\n";
-                   form += "<div class=\"table-responsive\">\n";
+            String form =  "<div class=\"table-responsive\">\n";
                    form += "<table class=\"table\">\n";
                    form += "<thead>\n";
                    form += "<tr>\n";
                    form += "<th>Student ID</th>\n";
                    form += "<th>Treatment ID</th>\n";
                    form += "<th>Treatment Name</th>\n";
-                   form += "<th>Domain ID</th>\n";
-                   form += "<th>Requirements Group ID</th>\n";
                    form += "<th>Attendance</th>\n";
                    form += "<th>Grade</th>";
                    form += "</tr>\n";
                    form += "<tbody>\n";
-                   form += "<tr>\n";
                
             while(rs.next()){
+                
                 if( hasBeenGraded( StudentID, rs.getString("TreatmentItems.TreatmentItemID") ) == true){
                     form += "<tr class='graded'>\n";
                     form += "<td><form name='grade' action='viewScore.jsp' method='POST'>"
@@ -364,8 +373,6 @@ public class TreatmentItems {
                         + "</select><br />"
                         + "</td>\n";
                     form += "<td>" + rs.getString("TreatmentItems.TreatmentName") + "</td>\n";
-                    form += "<td>" + rs.getString("TreatmentItems.DomainID") + "</td>\n";
-                    form += "<td>" + rs.getString("TreatmentItems.RequirementsGroupID") + "</td>\n";
                     form += "<td></td>\n";
                     //form += "<td class='red'>" + showGrade( StudentID,rs.getString("TreatmentItems.TreatmentItemID") ) + "</td>\n";
                     form += "<td><input type=\"submit\" value=\"View Score\" class=\"btn-style\"></td></form>\n";
@@ -383,20 +390,19 @@ public class TreatmentItems {
                             + "</select><br />"
                             + "</td>\n";
                     form += "<td>" + rs.getString("TreatmentItems.TreatmentName") + "</td>\n";
-                    form += "<td>" + rs.getString("TreatmentItems.DomainID") + "</td>\n";
-                    form += "<td>" + rs.getString("TreatmentItems.RequirementsGroupID") + "</td>\n";
-                    form += "<td><select name=\"attendance\">"
+                    form += "<td><input type=\"submit\" value=\"Grade\" class=\"btn-style\"></td></form>\n";
+                    form += "<td>" + treatment.absent(StudentID,rs.getString("TreatmentItems.TreatmentItemID") ) + "</td>\n";                     
+                    /**form += "<td><select name=\"attendance\">"
                           + "<option value='absent' selected>Absent</option>"
                           + "<option value='present'>Present</option>"
                           + "<option value='assisting'>Assisting</option>"
                           + "</select><br />"
-                          + "</td>\n";
-                    form += "<td><input type=\"submit\" value=\"Grade\" class=\"btn-style\"></td></form>\n";
+                          + "</td>\n"; **/
                     form += "</tr>\n";
                 }
                 
             }
-        
+            
             
             form += "</tbody>\n";
             form += "</table>\n";
@@ -404,6 +410,39 @@ public class TreatmentItems {
             
         conn.close();
         return form;
+    }
+    
+    public String absent(String StudentID, String TreatmentID) throws SQLException{
+        TreatmentItems attendance = new TreatmentItems();
+//        String TutorID = (String) session.getAttribute( "TutorID" );
+        String form = "<form name='absent' action='absent.jsp' method='POST'>"
+                            + "<select name=\"studentID\" id='dropdown'>"
+                            + "<option value=\"" + StudentID + "\" selected></option>"
+                            + "</select><br />"
+                            + "<select name=\"treatmentID\" id='dropdown'>"
+                            + "<option value=\"" + TreatmentID + "\" selected></option>"
+                            + "</select><br />\n";
+        form += "<input type=\"submit\" value=\"Absent\" class=\"btn-style\"></form>\n";
+        
+        return form;
+        
+    }
+    
+    public void markStudentAbsent( String studentID, String tutorID, String treatmentID ) throws SQLException {
+        CoreSkills core = new CoreSkills();
+        TreatmentItems treatment = new TreatmentItems();
+        String date = new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime());
+        String time = new SimpleDateFormat("HH:mm:ss").format(Calendar.getInstance().getTime());
+    
+        
+        database.Insert( "INSERT INTO TBICoreSkills( StudentID, PatientID, TutorID, AbilityToEstablishDiagnosis, AbilityToFormulateATreatmentPlan, EnsuringInformedConsent, EquipmentPreparationSelection,"
+                + "ExaminationIntraOralHardTissues, ExaminationIntraOralSoftTissues, ExtraOralExamination, InfectionControl, InterpretationOfSpeciaInvestigations, LocalAnaesthesiaBlock, LocalAnaesthesiaInfiltration,"
+                + "ManagementOfComplications, MaterialSelectionAndHandling, AppropriatePatientPosition, AppropriateOperatorPosition, AppropriateLightPosition, AppropriateUseOfMirror, AppropriateFingerSupport,"
+                + "DateAdded, TreatmentID, Time, Comment, Professionalism, Communication, Knowledge, Attendance )"
+                +"VALUES( '" + studentID + "', '0', '" + tutorID + "', '0', '0', '0', '0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','" + date + "','" + treatmentID + "','" + time + "','Absent from session','0','0','0','absent' );" );
+        
+        
+        database.Close();
     }
     
     public String fetchMyTreatments( String StudentID) throws SQLException{
@@ -417,8 +456,7 @@ public class TreatmentItems {
 
             
             
-            String form = "<div>Please see the treatments that " + StudentID + " has and has not been graded for\n";
-                   form += "<div class=\"table-responsive\">\n";
+            String form = "<div class=\"table-responsive\">\n";
                    form += "<table class=\"table\">\n";
                    form += "<thead>\n";
                    form += "<tr>\n";
@@ -426,12 +464,9 @@ public class TreatmentItems {
                    form += "<th>Treatment ID</th>\n";
                    form += "<th>Treatment Name</th>\n";
                    form += "<th>Domain ID</th>\n";
-                   form += "<th>Requirements Group ID</th>\n";
-                   form += "<th>Requirements Weighting</th>\n";
                    form += "<th>Grade</th>";
                    form += "</tr>\n";
                    form += "<tbody>\n";
-                   form += "<tr>\n";
                
             while(rs.next()){
                 if( hasBeenGraded( StudentID, rs.getString("TreatmentItems.TreatmentItemID") ) == true){
@@ -446,8 +481,6 @@ public class TreatmentItems {
                         + "</td>\n";
                     form += "<td>" + rs.getString("TreatmentItems.TreatmentName") + "</td>\n";
                     form += "<td>" + rs.getString("TreatmentItems.DomainID") + "</td>\n";
-                    form += "<td>" + rs.getString("TreatmentItems.RequirementsGroupID") + "</td>\n";
-                    form += "<td>" + rs.getString("TreatmentItems.RequirementsWeighting") + "</td>\n";
                     //form += "<td class='red'>" + showGrade( StudentID,rs.getString("TreatmentItems.TreatmentItemID") ) + "</td>\n";
                     form += "<td><input type=\"submit\" value=\"View Score\" class=\"btn-style\"></td></form>\n";
                     form += "</tr>\n";
@@ -536,10 +569,10 @@ public class TreatmentItems {
     }
     
     public boolean isAbsent( String attendance){
-        boolean is = true;
+        boolean is = false;
         
         if(attendance == "absent"){
-            is = false;
+            is = true;
         }
         return is;
     }

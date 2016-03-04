@@ -37,27 +37,39 @@
             }
             else {
                 out.print(gui.tutorNavigation());
-                out.print( treatmentItem.fetchTreatments( lookup.getStudentID() ) );
+                %>
+                <h1>Periodontics</h1>
+                <%
+                        out.print( treatmentItem.fetchTreatments( lookup.getStudentID(), "1" ) );
+                %>
+                <h1>Prevention</h1>
+                <%
+                        out.print( treatmentItem.fetchTreatments( lookup.getStudentID(), "2" ) );
+                %>
+                <h1>Direct Restorations</h1>
+                <%
+                        out.print( treatmentItem.fetchTreatments( lookup.getStudentID(), "3" ) );
+                %>
+                <h1>Indirect Restorations</h1>
+                <%
+                        out.print( treatmentItem.fetchTreatments( lookup.getStudentID(), "4" ) );
+                %>
+                <h1>Endodontics</h1>
+                <%
+                        out.print( treatmentItem.fetchTreatments( lookup.getStudentID(), "5" ) );
+                %>
+                <h1>Prosthodontics</h1>
+                <%
+                        out.print( treatmentItem.fetchTreatments( lookup.getStudentID(), "6" ) );
+                %>
+                <h1>Tooth Whitening</h1>
+                <%
+                        out.print( treatmentItem.fetchTreatments( lookup.getStudentID(), "7" ) );
+        
               }
                         
-                        
+              session.setAttribute("attendance", treatmentItem.getAttendance( ) );          
         %>
-         
-        <img id="clickMeId" src="img/derek.jpg" onclick="show('comment')"/>&nbsp;&nbsp;<div id="comment" style="float:left;display:none;"><input type="password" name="password" placeholder="Enter Password"/><br />&nbsp;<a href="#" class="buttonintable">Submit</a></div>
-
-        <script>function show(target){
-        document.getElementById(target).style.display = 'block';
-        document.getElementById("clickMeId").style.display = 'none';
-        }
-        function hide(target){
-        document.getElementById(target).style.display = 'none';
-        document.getElementById("clickMeId").style.display = 'block';
-        }</script>
-         </div>    
-        </div>
-       </div>
-     </div>
-    </div>
         
     </body>
 </html>

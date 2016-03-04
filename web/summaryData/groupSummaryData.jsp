@@ -67,66 +67,14 @@
           GUI gui = new GUI( );
           StudentLookup look = new StudentLookup();
           StudentYearlySummaryData year = new StudentYearlySummaryData();
-        %>
-         <div id="tabs">
-         <ul>
-           <li><a href="#tabs-1">All Students</a></li>
-           <li><a href="#tabs-2">BDS3</a></li>
-           <li><a href="#tabs-3">BDS4</a></li>
-           <li><a href="#tabs-4">BDS5</a></li>
-           <li><a href="#tabs-5">HYG1</a></li>
-           <li><a href="#tabs-6">HYG2</a></li>
-         </ul>
-         <div id="tabs-1">
-           <p>
-            <% 
+        
                 out.print(year.studentData("3.1"));
-            %> 
-           </p>
-         </div>
-           
-         <div id="tabs-2">
-           <p>
-            <% 
-                out.print(year.studentData("3.1"));
-            %> 
-           </p>
-         </div>
-         
-         <div id="tabs-3">
-           <p>
-            <%
+                out.print(year.studentData("3.2"));
                 out.print(year.studentData("3.3"));
-            %> 
-           </p>
-         </div>
-           
-         <div id="tabs-4">
-           <p>
-            <%
                 out.print(year.studentData("3.4"));
-            %>
-           </p>
-         </div>
-           
-         <div id="tabs-5">
-           <p>
-            <%
                 out.print(year.studentData("3.5"));
-            %>
-           </p>
-         </div>
-           
-         <div id="tabs-6">
-           <p>
-            <%
-                out.print(look.fetchYearNames("5"));
-            %>
-           </p>
-         </div>
-           
-        </div> 
-           
+            
+        %>   
           
          </div>    
         </div>
