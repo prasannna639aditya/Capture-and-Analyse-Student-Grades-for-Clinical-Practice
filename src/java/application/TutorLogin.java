@@ -145,7 +145,7 @@ public class TutorLogin {
         return isValid;
     }  
     
-    
+    /**
     public String tutorLoginForm( ) {
         String form = "<form name=\"login_form\" action=\"tutorLogin.jsp\" method=\"POST\">\n";
                form += "<label for=\"TutorID\">Tutor ID:</label>\n";
@@ -153,6 +153,26 @@ public class TutorLogin {
                form += "<label for=\"Password\">Password:</label>\n";
                form += "<input type=\"password\" name=\"password\" placeholder=\"Enter Password\"/><br />\n";
                form += "<input type=\"submit\" value=\"Login\" name=\"submit\" /><br />\n";
+               form += "</form>";
+        return form;
+    }**/
+    
+    public String tutorLoginForm( ) {
+        String form = "<form name=\"login_form\" action=\"tutorLogin.jsp\" method=\"POST\">\n";
+               form += "<div class=\"container\">\n" +
+        "        <div class=\"card card-container\">\n" +
+        "            <!-- <img class=\"profile-img-card\" src=\"//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120\" alt=\"\" /> -->\n" +
+        "            <img id=\"profile-img\" class=\"profile-img-card\" src=\"//ssl.gstatic.com/accounts/ui/avatar_2x.png\" />\n" +
+        "            <p id=\"profile-name\" class=\"profile-name-card\"></p>\n" +
+        "            <h1>Welcome Tutor</h1>\n" +               
+        "            <form class=\"form-signin\">\n" +
+        "                <span id=\"reauth-email\" class=\"reauth-email\"></span>\n" +
+        "                <input type=\"text\" id=\"inputEmail\" name=\"TutorID\" class=\"form-control\" placeholder=\"Tutor ID\" required autofocus>\n" +
+        "                <input type=\"password\" name=\"password\" id=\"inputPassword\" class=\"form-control\" placeholder=\"Password\" required>\n" + 
+        "                <input type=\"submit\" value=\"Login\" name=\"submit\" /><br />\n" +
+        "            </form><!-- /form -->\n" +
+        "        </div><!-- /card-container -->\n" +
+        "    </div><!-- /container -->";
                form += "</form>";
         return form;
     }

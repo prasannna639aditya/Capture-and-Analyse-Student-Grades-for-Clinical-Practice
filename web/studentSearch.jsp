@@ -48,10 +48,16 @@
            out.println("Please enter a valid student ID.");
           }
           else{
-            //String student = (String)request.getParameter("student");
-           out.println("See the summary data for" + name.fetchStudentName(search.getStudentID()));
-           out.print(search.studentData(search.getStudentID()));
-            // out.println(search.getStudentID());
+            if( name.hasPerformedTreatments(studentID) == false){
+                out.println(name.fetchStudentName(gui.getStudentID()) + " has not performed any treatments yet.");
+            }
+
+            else{
+              //String student = (String)request.getParameter("student");
+             out.println("See the summary data for" + name.fetchStudentName(search.getStudentID()));
+             out.print(search.studentData(search.getStudentID()));
+              // out.println(search.getStudentID());
+            }
           }
         %> 
            

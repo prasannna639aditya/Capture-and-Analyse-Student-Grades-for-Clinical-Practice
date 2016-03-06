@@ -111,6 +111,23 @@ public class TreatmentItems {
         return isGraded;
     }
     
+    public boolean hasPerformedTreatments( String StudentID) {
+        DatabaseClass database = new DatabaseClass( );
+        database.setup( "localhost", "final_year_project", "root", "" );
+        boolean isGraded = true;
+        
+        result = database.SelectRow( "SELECT TreatmentID FROM TBICoreSkills WHERE StudentID=" + StudentID + ";" );
+        
+        if( result.length == 0 ) {
+            isGraded = false;
+        }
+        
+        
+        //database.Close();
+  
+        return isGraded;
+    }
+    
     public String showGrade( String StudentID, String TreatmentID ) {
         DatabaseClass database = new DatabaseClass( );
         database.setup( "localhost", "final_year_project", "root", "" );
