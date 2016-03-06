@@ -7,6 +7,55 @@ and open the template in the editor.
     Created on : Jan 15, 2016, 8:07:51 AM
     Author     : Delaney
 */
+
+h2{
+    font-family:  sans-serif;
+    text-decoration: underline;
+    color: #404040;
+    font-weight: lighter;
+}
+
+input[type=label] {
+    font-weight: lighter;
+}
+
+input[type=submit] {
+	-moz-box-shadow:inset -50px 1px 0px 50px #ffffff;
+	-webkit-box-shadow:inset -50px 1px 0px 50px #ffffff;
+	box-shadow:inset -50px 1px 0px 50px #ffffff;
+	background-color:transparent;
+	-webkit-border-top-left-radius:0px;
+	-moz-border-radius-topleft:0px;
+	border-top-left-radius:0px;
+	-webkit-border-top-right-radius:0px;
+	-moz-border-radius-topright:0px;
+	border-top-right-radius:0px;
+	-webkit-border-bottom-right-radius:0px;
+	-moz-border-radius-bottomright:0px;
+	border-bottom-right-radius:0px;
+	-webkit-border-bottom-left-radius:0px;
+	-moz-border-radius-bottomleft:0px;
+	border-bottom-left-radius:0px;
+	text-indent:0;
+	border:2px solid #dcdcdc;
+	display:inline-block;
+	color:#666666;
+	font-family:Trebuchet MS;
+	font-size:12px;
+	font-style:normal;
+        width: 120px;
+	height:50px;
+	text-decoration:none;
+	text-align:center;
+	text-shadow:1px 1px 0px #ffffff;
+}
+
+input[type=submit] {
+	position:relative;
+	top:1px;
+}
+
+
 #dropdown{
    font-size: 1em;
    margin-bottom: 3%;

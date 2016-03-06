@@ -360,7 +360,7 @@ public class SearchBox {
     }
     
     public void addToExtras( String tutorID, String groupId, String studentID){
-        String date = new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime());
+        String date = new SimpleDateFormat("dd-MM-yyyy").format(Calendar.getInstance().getTime());
         String time = new SimpleDateFormat("HH:mm:ss").format(Calendar.getInstance().getTime());
         database.Insert( "INSERT INTO GroupExtras( TutorID, GroupDescriptor, StudentID, DateAdded, Time, GroupName)" +
                          "VALUES( '" + tutorID + "','" + groupId + "','" + studentID + "','" + date + "','" + time + "','" + name + "' );" );
@@ -461,7 +461,7 @@ public class SearchBox {
         database.Close();
     }
     public String selectTodaysGroup( String groupName ) throws SQLException{
-        String date = new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime());
+        String date = new SimpleDateFormat("dd-MM-yyyy").format(Calendar.getInstance().getTime());
         
         Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
         

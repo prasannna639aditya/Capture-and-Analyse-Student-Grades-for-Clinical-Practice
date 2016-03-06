@@ -25,7 +25,7 @@ import passwordhash.PasswordHash;
  * @author Delaney
  */
 public class CoreSkills {
-    String date = new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime());
+    String date = new SimpleDateFormat("dd-MM-yyyy").format(Calendar.getInstance().getTime());
     String time = new SimpleDateFormat("HH:mm").format(Calendar.getInstance().getTime());
     String hour = new SimpleDateFormat("HH").format(Calendar.getInstance().getTime());
     
@@ -509,40 +509,268 @@ public class CoreSkills {
         
         database.Close();
     }
+    
+    public String buttonNav(){
+        String  form = "<p>  </p>\n";
+                form += "<a href='#info'><button type=\"button\" class=\"btn btn-primary btn-sm\">Info</button></a>\n" +
+                    "<a href='#core'><button type=\"button\" class=\"btn btn-primary btn-sm\">Core</button></a>\n" +
+                    "<a href='#basic'><button type=\"button\" class=\"btn btn-primary btn-sm\">Basic</button></a>\n" +
+                    "<a href='#professionalism'><button type=\"button\" class=\"btn btn-primary btn-sm\">Professionalism</button></a>\n" +
+                    "<a href='#communication'><button type=\"button\" class=\"btn btn-primary btn-sm\">Communication</button></a>\n" +
+                    "<a href='#knowledge'><button type=\"button\" class=\"btn btn-primary btn-sm\">Knowledge</button></a>\n" +
+                    "<a href='#review'><button type=\"button\" class=\"btn btn-primary btn-sm\">Review</button></a>\n";
+                 
+        return form;
+    }
 
     public String markingForm( String TutorID, String StudentID, String TreatmentID) throws SQLException {
         Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
         Statement stmt = conn.createStatement();
         ResultSet rsPatient; 
+        TreatmentItems treatment = new TreatmentItems();
         rsPatient = stmt.executeQuery("SELECT PatientID, FirstName, LastName, DOB FROM Patients");
         
-        String form = "<form name='marking_form' action='markStudent.jsp' method='POST'>\n";
-        form += "<label for='studentID'>Student:</label>\n"
-                + "<select name=\"studentID\" id='dropdown'>\n" 
-                        + "  <option value=\"" + StudentID + "\" selected>" + StudentID + "</option>\n" 
-                        + "</select><br />"; 
         
-        form += "<label for='patientID'>Patient:</label>\n";
-        form += "<select name=\"patientID\"id='dropdown' >\n";
+        String form = "<form name='marking_form' action='markStudent.jsp' method='POST'>\n";
+        form += "<p>\n";
+        form += "<a  name=\"info\"></a><h2>Info</h2>\n";
+        form += "<div class=\"form-group row\">";
+        form += "<label class=\"col-sm-2 form-control-label\" for='studentID'>Student:</label>\n"
+                + "<div class=\"col-sm-10\">"
+                + "<select name=\"studentID\"class=\"form-control\">\n" 
+                        + "  <option value=\"" + StudentID + "\" selected>" + StudentID + "</option>\n" 
+                        + "</select><br />"
+                + "</div>\n"
+                + "</div>\n";
+        form += "<div class=\"form-group row\">" +
+                "<label class=\"col-sm-2\" for=\"attendance\">Assisting</label>\n" +
+                "<div class=\"col-sm-10\">\n" +
+                "      <div class=\"checkbox\"><label>" +
+                "<input type=\"checkbox\" name=\"attendance\" id=\"checkbox\" value=\"yes\">Student is assisting with procedure.\n" +
+                "</label>\n" +
+                "      </div>\n" +
+                "    </div>\n" +
+                "  </div>";
+        form += "<div class=\"form-group row\">";
+        form += "<label class=\"col-sm-2 form-control-label\" for='tutorID'>Tutor ID:</label>\n"
+                        + "<div class=\"col-sm-10\">"
+                        + "<select name=\"tutorID\" class=\"form-control\">\n" 
+                        + "  <option value=\"" + TutorID + "\" selected>" + TutorID + "</option>\n" 
+                        + "</select><br />" 
+                        + "</div>\n" 
+                        + "</div>\n";
+        form += "<div class=\"form-group row\">";
+        form += "<label class=\"col-sm-2 form-control-label\" for='treatmentID'>Treatment:</label>\n"
+                        + "<div class=\"col-sm-10\">"
+                        + "<select name=\"treatmentID\" class=\"form-control\" >\n" 
+                        + "  <option value=\"" + TreatmentID + "\" selected>" + TreatmentID + "</option>\n" 
+                        + "</select><br />"
+                        + "</div>\n" 
+                        + "</div>\n";
+        form += "<div class=\"form-group row\">";
+        form += "<label class=\"col-sm-2 form-control-label\" for='patientID'>Patient:</label>\n"
+                + "<div class=\"col-sm-10\">"
+                + "<select class=\"form-control\" name=\"patientID\" >\n";
         while ( rsPatient.next() ) {
             form += "<option value=\"" + rsPatient.getString("PatientID") + "\" >" + rsPatient.getString("FirstName") + " " + rsPatient.getString("LastName") +  "</option>\n";
         }
-        form += "</select><br />";
+        form += "</select><br />"
+             + "</div>\n" 
+             + "</div>\n";
+        form += "</p>\n";
         
-        form += "<label for='tutorID'>Tutor ID:</label>\n"
-                        + "<select name=\"tutorID\" id='dropdown'>\n" 
-                        + "  <option value=\"" + TutorID + "\" selected>" + TutorID + "</option>\n" 
-                        + "</select><br />"; 
+        form += "<p>\n";
+        form += "<a  name=\"core\"></a><h2>Core Skills Generic</h2>";
+        form += "<div class=\"form-group row\">";
+        form += "<label class=\"col-sm-2 form-control-label\" for='abilToEstDiag'>Ability to establish diagnosis(es):</label>\n";
+        form += "<div class=\"col-sm-10\">";
+        form += "<select name=\"abilToEstDiag\" class='form-control' >\n" +
+                    "  <option value=\"0\" selected>No Grade</option>\n" +
+                    "  <option value=\"1\">1</option>\n" +
+                    "  <option value=\"2\">2</option>\n" +
+                    "  <option value=\"3\">3</option>\n" +
+                    "  <option value=\"4\">4</option>\n" +
+                    "  <option value=\"5\">5</option>\n" +
+                    "  <option value=\"6\">6</option>\n" +
+                "</select><br />"
+                + "</div>\n" 
+                + "</div>\n";
+        form += "<div class=\"form-group row\">";
+        form += "<label class=\"col-sm-2 form-control-label\" for='abilToFormTrtPlan'>Ability to formulate a treatment plan:</label>\n";
+        form += "<div class=\"col-sm-10\">";
+        form += "<select name=\"abilToFormTrtPlan\"  class='form-control'>\n" +
+                    "  <option value=\"0\" selected>No Grade</option>\n" +
+                    "  <option value=\"1\">1</option>\n" +
+                    "  <option value=\"2\">2</option>\n" +
+                    "  <option value=\"3\">3</option>\n" +
+                    "  <option value=\"4\">4</option>\n" +
+                    "  <option value=\"5\">5</option>\n" +
+                    "  <option value=\"6\">6</option>\n" +
+                "</select><br />"
+                + "</div>\n" 
+                + "</div>\n";
+        form += "<div class=\"form-group row\">";
+        form += "<label class=\"col-sm-2 form-control-label\" for='ensInfCons'>Ensuring informed consent:</label>\n";
+        form += "<div class=\"col-sm-10\">";
+        form += "<select name=\"ensInfCons\"  class='form-control'>\n" +
+                    "  <option value=\"0\" selected>No Grade</option>\n" +
+                    "  <option value=\"1\">1</option>\n" +
+                    "  <option value=\"2\">2</option>\n" +
+                    "  <option value=\"3\">3</option>\n" +
+                    "  <option value=\"4\">4</option>\n" +
+                    "  <option value=\"5\">5</option>\n" +
+                    "  <option value=\"6\">6</option>\n" +
+                "</select><br />"
+                + "</div>\n" 
+                + "</div>\n";
+        form += "<div class=\"form-group row\">";
+        form += "<label class=\"col-sm-2 form-control-label\" for='equipPrep'>Equipment Preparation/Selection:</label>\n";
+        form += "<div class=\"col-sm-10\">";
+        form += "<select name=\"equipPrep\" class='form-control' >\n" +
+                    "  <option value=\"0\" selected>No Grade</option>\n" +
+                    "  <option value=\"1\">1</option>\n" +
+                    "  <option value=\"2\">2</option>\n" +
+                    "  <option value=\"3\">3</option>\n" +
+                    "  <option value=\"4\">4</option>\n" +
+                    "  <option value=\"5\">5</option>\n" +
+                    "  <option value=\"6\">6</option>\n" +
+                "</select><br />"
+                + "</div>\n" 
+                + "</div>\n";
+        form += "<div class=\"form-group row\">";
+        form += "<label class=\"col-sm-2 form-control-label\" for='examIntraOralHard'>Examination : Intra oral hard tissues:</label>\n";
+        form += "<div class=\"col-sm-10\">";
+        form += "<select name=\"examIntraOralHard\" class='form-control' >\n" +
+                    "  <option value=\"0\" selected>No Grade</option>\n" +
+                    "  <option value=\"1\">1</option>\n" +
+                    "  <option value=\"2\">2</option>\n" +
+                    "  <option value=\"3\">3</option>\n" +
+                    "  <option value=\"4\">4</option>\n" +
+                    "  <option value=\"5\">5</option>\n" +
+                    "  <option value=\"6\">6</option>\n" +
+                "</select><br />"
+                + "</div>\n" 
+                + "</div>\n";
+        form += "<div class=\"form-group row\">";
+        form += "<label class=\"col-sm-2 form-control-label\" for='examIntraOralSoft'>Examination : Intra oral soft tissues:</label>\n";
+        form += "<div class=\"col-sm-10\">";
+        form += "<select name=\"examIntraOralSoft\"  class='form-control'>\n" +
+                    "  <option value=\"0\" selected>No Grade</option>\n" +
+                    "  <option value=\"1\">1</option>\n" +
+                    "  <option value=\"2\">2</option>\n" +
+                    "  <option value=\"3\">3</option>\n" +
+                    "  <option value=\"4\">4</option>\n" +
+                    "  <option value=\"5\">5</option>\n" +
+                    "  <option value=\"6\">6</option>\n" +
+                "</select><br />"
+                + "</div>\n" 
+                + "</div>\n";
+        form += "<div class=\"form-group row\">";
+        form += "<label class=\"col-sm-2 form-control-label\" for='extraOralExam'>Extra oral examination:</label>\n";
+        form += "<div class=\"col-sm-10\">";
+        form += "<select name=\"extraOralExam\" class='form-control' >\n" +
+                    "  <option value=\"0\" selected>No Grade</option>\n" +
+                    "  <option value=\"1\">1</option>\n" +
+                    "  <option value=\"2\">2</option>\n" +
+                    "  <option value=\"3\">3</option>\n" +
+                    "  <option value=\"4\">4</option>\n" +
+                    "  <option value=\"5\">5</option>\n" +
+                    "  <option value=\"6\">6</option>\n" +
+                "</select><br />"
+                + "</div>\n" 
+                + "</div>\n";
+        form += "<div class=\"form-group row\">";
+        form += "<label class=\"col-sm-2 form-control-label\" for='infectionControl'>Infection control:</label>\n";
+        form += "<div class=\"col-sm-10\">";
+        form += "<select name=\"infectionControl\" class='form-control'>\n" +
+                    "  <option value=\"0\" selected>No Grade</option>\n" +
+                    "  <option value=\"1\">1</option>\n" +
+                    "  <option value=\"2\">2</option>\n" +
+                    "  <option value=\"3\">3</option>\n" +
+                    "  <option value=\"4\">4</option>\n" +
+                    "  <option value=\"5\">5</option>\n" +
+                    "  <option value=\"6\">6</option>\n" +
+                "</select><br />"
+                + "</div>\n" 
+                + "</div>\n";
+        form += "<div class=\"form-group row\">";
+        form += "<label class=\"col-sm-2 form-control-label\" for='interpOfSpecInves'>Interpretation of special investigations:</label>\n";
+        form += "<div class=\"col-sm-10\">";
+        form += "<select name=\"interpOfSpecInves\"  class='form-control'>\n" +
+                    "  <option value=\"0\" selected>No Grade</option>\n" +
+                    "  <option value=\"1\">1</option>\n" +
+                    "  <option value=\"2\">2</option>\n" +
+                    "  <option value=\"3\">3</option>\n" +
+                    "  <option value=\"4\">4</option>\n" +
+                    "  <option value=\"5\">5</option>\n" +
+                    "  <option value=\"6\">6</option>\n" +
+                "</select><br />"
+                + "</div>\n" 
+                + "</div>\n";
+        form += "<div class=\"form-group row\">";
+        form += "<label class=\"col-sm-2 form-control-label\" for='localAnaesthesiaBlock'>Local anaesthesia (Block):</label>\n";
+        form += "<div class=\"col-sm-10\">";
+        form += "<select name=\"localAnaesthesiaBlock\" class='form-control'>\n" +
+                    "  <option value=\"0\" selected>No Grade</option>\n" +
+                    "  <option value=\"1\">1</option>\n" +
+                    "  <option value=\"2\">2</option>\n" +
+                    "  <option value=\"3\">3</option>\n" +
+                    "  <option value=\"4\">4</option>\n" +
+                    "  <option value=\"5\">5</option>\n" +
+                    "  <option value=\"6\">6</option>\n" +
+                "</select><br />"
+                + "</div>\n" 
+                + "</div>\n";
+        form += "<div class=\"form-group row\">";
+        form += "<label class=\"col-sm-2 form-control-label\" for='localAnaesthesiaInfiltration'>Local anaesthesia (Infiltration):</label>\n";
+        form += "<div class=\"col-sm-10\">";
+        form += "<select name=\"localAnaesthesiaInfiltration\" class='form-control' >\n" +
+                    "  <option value=\"0\" selected>No Grade</option>\n" +
+                    "  <option value=\"1\">1</option>\n" +
+                    "  <option value=\"2\">2</option>\n" +
+                    "  <option value=\"3\">3</option>\n" +
+                    "  <option value=\"4\">4</option>\n" +
+                    "  <option value=\"5\">5</option>\n" +
+                    "  <option value=\"6\">6</option>\n" +
+                "</select><br />"
+                + "</div>\n" 
+                + "</div>\n";
+        form += "<div class=\"form-group row\">";
+        form += "<label class=\"col-sm-2 form-control-label\" for='managementofComplications'>Management of complications:</label>\n";
+        form += "<div class=\"col-sm-10\">";
+        form += "<select name=\"managementofComplications\" class='form-control' >\n" +
+                    "  <option value=\"0\" selected>No Grade</option>\n" +
+                    "  <option value=\"1\">1</option>\n" +
+                    "  <option value=\"2\">2</option>\n" +
+                    "  <option value=\"3\">3</option>\n" +
+                    "  <option value=\"4\">4</option>\n" +
+                    "  <option value=\"5\">5</option>\n" +
+                    "  <option value=\"6\">6</option>\n" +
+                "</select><br />"
+                + "</div>\n" 
+                + "</div>\n";
+        form += "<div class=\"form-group row\">";
+        form += "<label class=\"col-sm-2 form-control-label\" for='matSelecHandling'>Material selection and handling:</label>\n";
+        form += "<div class=\"col-sm-10\">";
+        form += "<select name=\"matSelecHandling\" class='form-control'>\n" +
+                    "  <option value=\"0\" selected>No Grade</option>\n" +
+                    "  <option value=\"1\">1</option>\n" +
+                    "  <option value=\"2\">2</option>\n" +
+                    "  <option value=\"3\">3</option>\n" +
+                    "  <option value=\"4\">4</option>\n" +
+                    "  <option value=\"5\">5</option>\n" +
+                    "  <option value=\"6\">6</option>\n" +
+                "</select><br />"
+                + "</div>\n" 
+                + "</div>\n";
+        form += "</p>\n";
         
-        form += "<label for='treatmentID'>Treatment:</label>\n"
-                        + "<select name=\"treatmentID\" id='dropdown'>\n" 
-                        + "  <option value=\"" + TreatmentID + "\" selected>" + TreatmentID + "</option>\n" 
-                        + "</select><br />"; 
-        form += "<label for=\"attendance\">Assisting</label>\n" +
-                "<input type=\"checkbox\" name=\"attendance\" id=\"checkbox\" value=\"yes\">\n";
-        form += "<h1>Core Skills Generic</h1>";
-        form += "<label for='abilToEstDiag'>Ability to establish diagnosis(es):</label>\n";
-        form += "<select name=\"abilToEstDiag\"id='dropdown' >\n" +
+        form += "<p>\n";
+        form += "<a  name=\"basic\"></a><h2>Basic Operative Skills</h2>";
+        form += "<div class=\"form-group row\">";
+        form += "<label class=\"col-sm-2 form-control-label\" for='approPatPos'>Appropriate patient position:</label>\n";
+        form += "<div class=\"col-sm-10\">";
+        form += "<select name=\"approPatPos\"  class='form-control'>\n" +
                     "  <option value=\"0\" selected>No Grade</option>\n" +
                     "  <option value=\"1\">1</option>\n" +
                     "  <option value=\"2\">2</option>\n" +
@@ -550,9 +778,13 @@ public class CoreSkills {
                     "  <option value=\"4\">4</option>\n" +
                     "  <option value=\"5\">5</option>\n" +
                     "  <option value=\"6\">6</option>\n" +
-                "</select><br />"; 
-        form += "<label for='abilToFormTrtPlan'>Ability to formulate a treatment plan:</label>\n";
-        form += "<select name=\"abilToFormTrtPlan\"id='dropdown' >\n" +
+                "</select><br />"
+                + "</div>\n" 
+                + "</div>\n";
+        form += "<div class=\"form-group row\">";
+        form += "<label class=\"col-sm-2 form-control-label\" for='approOpPos'>Appropriate operator position:</label>\n";
+        form += "<div class=\"col-sm-10\">";
+        form += "<select name=\"approOpPos\" class='form-control' >\n" +
                     "  <option value=\"0\" selected>No Grade</option>\n" +
                     "  <option value=\"1\">1</option>\n" +
                     "  <option value=\"2\">2</option>\n" +
@@ -560,9 +792,13 @@ public class CoreSkills {
                     "  <option value=\"4\">4</option>\n" +
                     "  <option value=\"5\">5</option>\n" +
                     "  <option value=\"6\">6</option>\n" +
-                "</select><br />";
-        form += "<label for='ensInfCons'>Ensuring informed consent:</label>\n";
-        form += "<select name=\"ensInfCons\"id='dropdown' >\n" +
+                "</select><br />"
+                + "</div>\n" 
+                + "</div>\n";
+        form += "<div class=\"form-group row\">";
+        form += "<label class=\"col-sm-2 form-control-label\" for='approLightPos'>Appropriate light position:</label>\n";
+        form += "<div class=\"col-sm-10\">";
+        form += "<select name=\"approLightPos\" class='form-control' >\n" +
                     "  <option value=\"0\" selected>No Grade</option>\n" +
                     "  <option value=\"1\">1</option>\n" +
                     "  <option value=\"2\">2</option>\n" +
@@ -570,9 +806,13 @@ public class CoreSkills {
                     "  <option value=\"4\">4</option>\n" +
                     "  <option value=\"5\">5</option>\n" +
                     "  <option value=\"6\">6</option>\n" +
-                "</select><br />";
-        form += "<label for='equipPrep'>Equipment Preparation/Selection:</label>\n";
-        form += "<select name=\"equipPrep\"id='dropdown' >\n" +
+                "</select><br />"
+                + "</div>\n" 
+                + "</div>\n";
+        form += "<div class=\"form-group row\">";
+        form += "<label class=\"col-sm-2 form-control-label\" for='approUseOfMirror'>Appropriate use of mirror:</label>\n";
+        form += "<div class=\"col-sm-10\">";
+        form += "<select name=\"approUseOfMirror\"  class='form-control'>\n" +
                     "  <option value=\"0\" selected>No Grade</option>\n" +
                     "  <option value=\"1\">1</option>\n" +
                     "  <option value=\"2\">2</option>\n" +
@@ -580,9 +820,13 @@ public class CoreSkills {
                     "  <option value=\"4\">4</option>\n" +
                     "  <option value=\"5\">5</option>\n" +
                     "  <option value=\"6\">6</option>\n" +
-                "</select><br />";
-        form += "<label for='examIntraOralHard'>Examination : Intra oral hard tissues:</label>\n";
-        form += "<select name=\"examIntraOralHard\"id='dropdown' >\n" +
+                "</select><br />"
+                + "</div>\n" 
+                + "</div>\n";
+        form += "<div class=\"form-group row\">";
+        form += "<label class=\"col-sm-2 form-control-label\" for='approFingerSupport'>Appropriate finger support:</label>\n";
+        form += "<div class=\"col-sm-10\">";
+        form += "<select name=\"approFingerSupport\" class='form-control' >\n" +
                     "  <option value=\"0\" selected>No Grade</option>\n" +
                     "  <option value=\"1\">1</option>\n" +
                     "  <option value=\"2\">2</option>\n" +
@@ -590,91 +834,17 @@ public class CoreSkills {
                     "  <option value=\"4\">4</option>\n" +
                     "  <option value=\"5\">5</option>\n" +
                     "  <option value=\"6\">6</option>\n" +
-                "</select><br />";
-        form += "<label for='examIntraOralSoft'>Examination : Intra oral soft tissues:</label>\n";
-        form += "<select name=\"examIntraOralSoft\"id='dropdown' >\n" +
-                    "  <option value=\"0\" selected>No Grade</option>\n" +
-                    "  <option value=\"1\">1</option>\n" +
-                    "  <option value=\"2\">2</option>\n" +
-                    "  <option value=\"3\">3</option>\n" +
-                    "  <option value=\"4\">4</option>\n" +
-                    "  <option value=\"5\">5</option>\n" +
-                    "  <option value=\"6\">6</option>\n" +
-                "</select><br />";
-        form += "<label for='extraOralExam'>Extra oral examination:</label>\n";
-        form += "<select name=\"extraOralExam\"id='dropdown' >\n" +
-                    "  <option value=\"0\" selected>No Grade</option>\n" +
-                    "  <option value=\"1\">1</option>\n" +
-                    "  <option value=\"2\">2</option>\n" +
-                    "  <option value=\"3\">3</option>\n" +
-                    "  <option value=\"4\">4</option>\n" +
-                    "  <option value=\"5\">5</option>\n" +
-                    "  <option value=\"6\">6</option>\n" +
-                "</select><br />";
-        form += "<label for='infectionControl'>Infection control:</label>\n";
-        form += "<select name=\"infectionControl\"id='dropdown' >\n" +
-                    "  <option value=\"0\" selected>No Grade</option>\n" +
-                    "  <option value=\"1\">1</option>\n" +
-                    "  <option value=\"2\">2</option>\n" +
-                    "  <option value=\"3\">3</option>\n" +
-                    "  <option value=\"4\">4</option>\n" +
-                    "  <option value=\"5\">5</option>\n" +
-                    "  <option value=\"6\">6</option>\n" +
-                "</select><br />";
-        form += "<label for='interpOfSpecInves'>Interpretation of special investigations:</label>\n";
-        form += "<select name=\"interpOfSpecInves\"id='dropdown' >\n" +
-                    "  <option value=\"0\" selected>No Grade</option>\n" +
-                    "  <option value=\"1\">1</option>\n" +
-                    "  <option value=\"2\">2</option>\n" +
-                    "  <option value=\"3\">3</option>\n" +
-                    "  <option value=\"4\">4</option>\n" +
-                    "  <option value=\"5\">5</option>\n" +
-                    "  <option value=\"6\">6</option>\n" +
-                "</select><br />";
-        form += "<label for='localAnaesthesiaBlock'>Local anaesthesia (Block):</label>\n";
-        form += "<select name=\"localAnaesthesiaBlock\"id='dropdown' >\n" +
-                    "  <option value=\"0\" selected>No Grade</option>\n" +
-                    "  <option value=\"1\">1</option>\n" +
-                    "  <option value=\"2\">2</option>\n" +
-                    "  <option value=\"3\">3</option>\n" +
-                    "  <option value=\"4\">4</option>\n" +
-                    "  <option value=\"5\">5</option>\n" +
-                    "  <option value=\"6\">6</option>\n" +
-                "</select><br />";
-        form += "<label for='localAnaesthesiaInfiltration'>Local anaesthesia (Infiltration):</label>\n";
-        form += "<select name=\"localAnaesthesiaInfiltration\"id='dropdown' >\n" +
-                    "  <option value=\"0\" selected>No Grade</option>\n" +
-                    "  <option value=\"1\">1</option>\n" +
-                    "  <option value=\"2\">2</option>\n" +
-                    "  <option value=\"3\">3</option>\n" +
-                    "  <option value=\"4\">4</option>\n" +
-                    "  <option value=\"5\">5</option>\n" +
-                    "  <option value=\"6\">6</option>\n" +
-                "</select><br />";
-        form += "<label for='managementofComplications'>Management of complications:</label>\n";
-        form += "<select name=\"managementofComplications\"id='dropdown' >\n" +
-                    "  <option value=\"0\" selected>No Grade</option>\n" +
-                    "  <option value=\"1\">1</option>\n" +
-                    "  <option value=\"2\">2</option>\n" +
-                    "  <option value=\"3\">3</option>\n" +
-                    "  <option value=\"4\">4</option>\n" +
-                    "  <option value=\"5\">5</option>\n" +
-                    "  <option value=\"6\">6</option>\n" +
-                "</select><br />";
-        form += "<label for='matSelecHandling'>Material selection and handling:</label>\n";
-        form += "<select name=\"matSelecHandling\"id='dropdown' >\n" +
-                    "  <option value=\"0\" selected>No Grade</option>\n" +
-                    "  <option value=\"1\">1</option>\n" +
-                    "  <option value=\"2\">2</option>\n" +
-                    "  <option value=\"3\">3</option>\n" +
-                    "  <option value=\"4\">4</option>\n" +
-                    "  <option value=\"5\">5</option>\n" +
-                    "  <option value=\"6\">6</option>\n" +
-                "</select><br />";
+                "</select><br />"
+                + "</div>\n" 
+                + "</div>\n";
+        form += "</p>\n";
         
-        form += "<h1>Basic Operative Skills</h1>";
-        form += "<label for='approPatPos'>Appropriate patient position:</label>\n";
-        form += "<select name=\"approPatPos\"id='dropdown' >\n" +
+        form += "<p>\n";
+        form += "<a  name=\"professionalism\"></a><h2>Professionalism</h2>\n";
+        form += "<div class=\"form-group row\">";
+        form += "<label class=\"col-sm-2 form-control-label\" for='professionalism'>Professionalism:</label>\n";
+        form += "<div class=\"col-sm-10\">";
+        form += "<select name=\"professionalism\" class='form-control' >\n" +
                     "  <option value=\"0\" selected>No Grade</option>\n" +
                     "  <option value=\"1\">1</option>\n" +
                     "  <option value=\"2\">2</option>\n" +
@@ -682,51 +852,17 @@ public class CoreSkills {
                     "  <option value=\"4\">4</option>\n" +
                     "  <option value=\"5\">5</option>\n" +
                     "  <option value=\"6\">6</option>\n" +
-                "</select><br />";
-        form += "<label for='approOpPos'>Appropriate operator position:</label>\n";
-        form += "<select name=\"approOpPos\"id='dropdown' >\n" +
-                    "  <option value=\"0\" selected>No Grade</option>\n" +
-                    "  <option value=\"1\">1</option>\n" +
-                    "  <option value=\"2\">2</option>\n" +
-                    "  <option value=\"3\">3</option>\n" +
-                    "  <option value=\"4\">4</option>\n" +
-                    "  <option value=\"5\">5</option>\n" +
-                    "  <option value=\"6\">6</option>\n" +
-                "</select><br />";
-        form += "<label for='approLightPos'>Appropriate light position:</label>\n";
-        form += "<select name=\"approLightPos\"id='dropdown' >\n" +
-                    "  <option value=\"0\" selected>No Grade</option>\n" +
-                    "  <option value=\"1\">1</option>\n" +
-                    "  <option value=\"2\">2</option>\n" +
-                    "  <option value=\"3\">3</option>\n" +
-                    "  <option value=\"4\">4</option>\n" +
-                    "  <option value=\"5\">5</option>\n" +
-                    "  <option value=\"6\">6</option>\n" +
-                "</select><br />";
-        form += "<label for='approUseOfMirror'>Appropriate use of mirror:</label>\n";
-        form += "<select name=\"approUseOfMirror\"id='dropdown' >\n" +
-                    "  <option value=\"0\" selected>No Grade</option>\n" +
-                    "  <option value=\"1\">1</option>\n" +
-                    "  <option value=\"2\">2</option>\n" +
-                    "  <option value=\"3\">3</option>\n" +
-                    "  <option value=\"4\">4</option>\n" +
-                    "  <option value=\"5\">5</option>\n" +
-                    "  <option value=\"6\">6</option>\n" +
-                "</select><br />";
-        form += "<label for='approFingerSupport'>Appropriate finger support:</label>\n";
-        form += "<select name=\"approFingerSupport\"id='dropdown' >\n" +
-                    "  <option value=\"0\" selected>No Grade</option>\n" +
-                    "  <option value=\"1\">1</option>\n" +
-                    "  <option value=\"2\">2</option>\n" +
-                    "  <option value=\"3\">3</option>\n" +
-                    "  <option value=\"4\">4</option>\n" +
-                    "  <option value=\"5\">5</option>\n" +
-                    "  <option value=\"6\">6</option>\n" +
-                "</select><br />";
+                "</select><br />"
+                + "</div>\n" 
+                + "</div>\n";
+        form += "</p>\n";
         
-        form += "<h1>Professionalism</h1>\n";
-        form += "<label for='professionalism'>Professionalism:</label>\n";
-        form += "<select name=\"professionalism\"id='dropdown' >\n" +
+        form += "<p>\n";
+        form += "<a  name=\"communication\"></a><h2>Communication</h2>\n";
+        form += "<div class=\"form-group row\">";
+        form += "<label class=\"col-sm-2 form-control-label\" for='communication'>Communication:</label>\n";
+        form += "<div class=\"col-sm-10\">";
+        form += "<select name=\"communication\"  class='form-control'>\n" +
                     "  <option value=\"0\" selected>No Grade</option>\n" +
                     "  <option value=\"1\">1</option>\n" +
                     "  <option value=\"2\">2</option>\n" +
@@ -734,11 +870,18 @@ public class CoreSkills {
                     "  <option value=\"4\">4</option>\n" +
                     "  <option value=\"5\">5</option>\n" +
                     "  <option value=\"6\">6</option>\n" +
-                "</select><br />";
+                "</select><br />"
+                + "</div>\n" 
+                + "</div>\n";
+        form += "</p>\n";
         
-        form += "<h1>Communication</h1>\n";
-        form += "<label for='communication'>Communication:</label>\n";
-        form += "<select name=\"communication\"id='dropdown' >\n" +
+        form += "<p>\n";
+        form += "<p>\n";
+        form += "<a  name=\"knowledge\"></a><h2>Knowledge</h2>\n";
+        form += "<div class=\"form-group row\">";
+        form += "<label class=\"col-sm-2 form-control-label\" for='knowledge'>Knowledge:</label>\n";
+        form += "<div class=\"col-sm-10\">";
+        form += "<select name=\"knowledge\" class='form-control'>\n" +
                     "  <option value=\"0\" selected>No Grade</option>\n" +
                     "  <option value=\"1\">1</option>\n" +
                     "  <option value=\"2\">2</option>\n" +
@@ -746,31 +889,41 @@ public class CoreSkills {
                     "  <option value=\"4\">4</option>\n" +
                     "  <option value=\"5\">5</option>\n" +
                     "  <option value=\"6\">6</option>\n" +
-                "</select><br />";
+                "</select><br />"
+                + "</div>\n" 
+                + "</div>\n";
+        form += "</p>\n";
         
-        form += "<h1>Knowledge</h1>\n";
-        form += "<label for='knowledge'>Knowledge:</label>\n";
-        form += "<select name=\"knowledge\"id='dropdown' >\n" +
-                    "  <option value=\"0\" selected>No Grade</option>\n" +
-                    "  <option value=\"1\">1</option>\n" +
-                    "  <option value=\"2\">2</option>\n" +
-                    "  <option value=\"3\">3</option>\n" +
-                    "  <option value=\"4\">4</option>\n" +
-                    "  <option value=\"5\">5</option>\n" +
-                    "  <option value=\"6\">6</option>\n" +
-                "</select><br />";
-        
-        
-        form += "<h1>Review</h1>\n";
-        form += "<label for=\"checkbox\">Clinical Alert</label>\n" +
-                "<input type=\"checkbox\" name=\"checkbox\" id=\"checkbox\" value=\"Yes\">\n";
-        form += "<p><label for='comment'>Comment:</label>\n" +
-                "<textarea name='comment' placeholder=\"Please comment on the students performance\" value='comment' id='comment'></textarea>\n" +
-                "</select><br /></p>";
-        
-        form += "<label for='password'>Students Password:</label>\n";
-        form += "<input type=\"password\" name=\"password\" placeholder=\"Enter Password\"/><br />\n";
-        form += "<input type='submit' value='Submit' name='submit' /><br />\n";
+        form += "<p>\n";
+        form += "<a  name=\"review\"></a><h2>Review</h2>\n";
+        form += "<div class=\"form-group row\">\n";
+        form += "<label class=\"col-sm-2\" for=\"checkbox\">Clinical Alert</label>\n" +
+                "<div class=\"col-sm-10\">\n" +
+                "      <div class=\"checkbox\"><label>" +
+                "<input type=\"checkbox\" name=\"checkbox\" id=\"checkbox\" value=\"Yes\">Patient, student or staff exposed to distress or potential/actual harm as a result of inappropriate student actions.\n" +
+                "       </label>\n" +
+                "      </div>\n" +
+                "    </div>\n" +
+                "  </div>";
+        form += "<div class=\"form-group row\">\n";
+        form += "<label class=\"col-sm-2\" for=\"comment\">Comment:</label>\n" +
+                "<div class=\"col-sm-10\">\n" +
+                "<textarea name='comment' placeholder=\"Please comment on the students performance\" value='comment' id=\"exampleTextarea\" class=\"form-control\" rows=\"3\"></textarea>\n" +
+                "</select><br /></p>"
+                + "</div>\n" 
+                + "</div>\n";
+        form += "<div class=\"form-group row\">\n";
+        form += "<label class=\"col-sm-2\" for='password'>Students Password:</label>\n" +
+                "<div class=\"col-sm-10\">\n";
+        form += "<input type=\"password\" class=\"form-control\" id=\"exampleInputPassword1\" name=\"password\" placeholder=\"Enter Password\"/><br />\n"
+                + "</div>\n" 
+                + "</div>\n";
+        form += "<div class=\"form-group row\">\n" +
+            "    <div class=\"col-sm-offset-2 col-sm-10\">\n" +
+            "      <input type='submit' value='Submit' name='submit' /><br />\n" +
+            "    </div>\n" +
+            "  </div>";
+        form += "</p>\n";
         form += "</form>\n";
         conn.close();
         return form;

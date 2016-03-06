@@ -597,6 +597,21 @@ public class TreatmentItems {
             return form;
     }
     
+    public String fetchTutorName( String TutorID) throws SQLException{
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
+            //System.out.println("successful");
+            String query = ("SELECT FirstName, LastName FROM TutorsWHERE TutorID=" + TutorID + ";");
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            
+            String form = "";
+            while(rs.next()){
+                form += rs.getString("FirstName") + " " + rs.getString("LastName") + "\n";
+            }
+            
+            return form;
+    }
+    
     public String fetchTreatmentName( String TreatmentID) throws SQLException{
             Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
             //System.out.println("successful");
