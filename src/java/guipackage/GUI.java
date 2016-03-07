@@ -29,41 +29,39 @@ public class GUI {
     }
     
     public String loginHeader( ) {
-        form = "<nav class=\"navbar navbar-default navbar-fixed-top topnav\" role=\"navigation\">\n";
-        form += "<div class=\"container topnav\">\n";
-        form += "<div class=\"navbar-header\">\n";
-        form += "<button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\"#bs-example-navbar-collapse-1\">\n"; 
-        form += "<span class=\"sr-only\">Toggle navigation</span>\n";
-        form += "<span class=\"icon-bar\"></span>\n";
-        form += "<span class=\"icon-bar\"></span>\n";
-        form += "<span class=\"icon-bar\"></span>\n";
-        form += "</button>\n";        
-        form += "<a class=\"navbar-brand topnav\" href=\"#\">Cork University Dental Hospital</a>\n";
-        form += "</div>\n";
-        form += "<div class=\"collapse navbar-collapse\" id=\"bs-example-navbar-collapse-1\">\n";  
-        form += "<ul class=\"nav navbar-nav navbar-right\">\n";
-        form += "<li>\n";
-        form += "<a href=\"#about\">About</a>\n";
-        form += "</li>\n";
-        form += "<li>\n";
-        form += "<a href='admin/adminLogin.jsp'>Admin</a>\n";
-        form += "</li>\n";
-        form += "<li>\n";
-        form += "<a href=\"#contact\">Contact</a>\n";
-        form += "</li>\n";
-        form += "</ul>\n";
-        form += "</div>\n";
-        form += "</div>\n";
-        form += "</nav>\n";
+     String form = "<nav class=\"navbar navbar-default navbar-fixed-top topnav\" role=\"navigation\">\n";
+            form += "<div class=\"container topnav\">\n";
+            form += "<div class=\"navbar-header\">\n";
+            form += "<button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\"#bs-example-navbar-collapse-1\">\n"; 
+            form += "<span class=\"sr-only\">Toggle navigation</span>\n";
+            form += "<span class=\"icon-bar\"></span>\n";
+            form += "<span class=\"icon-bar\"></span>\n";
+            form += "<span class=\"icon-bar\"></span>\n";
+            form += "</button>\n";        
+            form += "<a class=\"navbar-brand topnav\" href=\"#\">Cork University Dental Hospital</a>\n";
+            form += "</div>\n";
+            form += "<div class=\"collapse navbar-collapse\" id=\"bs-example-navbar-collapse-1\">\n";  
+            form += "<ul class=\"nav navbar-nav navbar-right\">\n";
+            form += "<li>\n";
+            form += "<a href=\"#about\">About</a>\n";
+            form += "</li>\n";
+            form += "<li>\n";
+            form += "<a href='admin/adminLogin.jsp'>Admin</a>\n";
+            form += "</li>\n";
+            form += "<li>\n";
+            form += "<a href=\"#contact\">Contact</a>\n";
+            form += "</li>\n";
+            form += "</ul>\n";
+            form += "</div>\n";
+            form += "</div>\n";
+            form += "</nav>\n";
         return form;
     }
     
 
         
-    public String tutorDisplay(boolean printName, String TutorID, String firstName, String lastName, String department, String picture) {
-        if(printName) {
-            
-                   form += "<div class=\"table-responsive\">\n";
+    public String tutorDisplay(String TutorID, String firstName, String lastName, String department, String picture) {
+            String form = "<div class=\"table-responsive\">\n";
                    form += "<table class=\"table\">\n";
                    form += "<thead>\n";
                    form += "<tr>\n";
@@ -85,47 +83,14 @@ public class GUI {
                    form += "</tbody>\n";
                    form += "</table>\n";
                    form += "</div>\n";
-            
-        }
-        return form;
-    }
-    /**
-    public String tutorNavigation() {
-        SearchBox search = new SearchBox();
         
-        form = "<div id=\"wrapper\">\n";
-        form += "<div id=\"sidebar-wrapper\">\n";
-        form += "<ul class=\"sidebar-nav\">\n";
-        form += "<li class=\"sidebar-brand\">\n"; 
-
-        form += "<a href=\"index.jsp\">Logout</a>\n";
-        form += "</li>\n";
-        form += "<li><a href=\"tutorWelcome.jsp\">Home</a></li>\n";
-        form += "<li><a href=\"registerStudent.jsp\">Register a Student</a></li>\n";
-        form += "<li><a href=\"student-years/students.jsp\">Grade Students</a></li>\n";
-        form += "<li><a href=\"summaryData/summaryData.jsp\">Summary Data</a></li>\n";
-        form += "<li><a href=\"markingDescriptors.jsp\">Marking Descriptors</a></li>";
-        form += "<li>\n";
-        form += search.searchBox();
-        form += "</ul>\n";        
-        form += "</div>\n";
-        form += "<div id=\"page-content-wrapper\">\n";  
-        form += "<div class=\"container-fluid\">\n";
-        form += "<div class=\"row\">\n";
-        form += "<div class=\"col-lg-12\">\n";
-        //form += "<a href=\"#menu-toggle\" class=\"btn btn-default\" id=\"menu-toggle\">Toggle Menu</a>\n";
-        form += "<script src=\"js/jquery.js\"></script>\n";
-        form += "<script src=\"js/bootstrap.min.js\"></script>\n";
-        form += "    <script>$(\"#menu-toggle\").click(function(e) {e.preventDefault();$(\"#wrapper\").toggleClass(\"toggled\");});</script>\n";
         return form;
     }
-    **/
     
-    public String studentPrint(boolean printName, String StudentID, String firstName, String lastName, String picture) {
+    
+    public String studentPrint(String StudentID, String firstName, String lastName, String picture) {
         
-        if(printName) {
-            
-                   form += "<div class=\"table-responsive\">\n";
+            String form = "<div class=\"table-responsive\">\n";
                    form += "<table class=\"table\">\n";
                    form += "<thead>\n";
                    form += "<tr>\n";
@@ -145,8 +110,7 @@ public class GUI {
                    form += "</tbody>\n";
                    form += "</table>\n";
                    form += "</div>\n";
-            
-        }
+        
          return form;
     }
     
@@ -177,16 +141,7 @@ public class GUI {
             "            </div>\n" +
             "\n" +
             "            <!-- Search -->\n" +
-            "            <a data-toggle=\"collapse\" href=\"#search\" class=\"btn btn-default\" id=\"search-trigger\">\n" +
-            "                <span class=\"glyphicon glyphicon-search\"></span>\n" +
-            "            </a>\n" +
             "\n" +
-            "            <!-- Search body -->\n" +
-            "            <div id=\"search\" class=\"panel-collapse collapse\">\n" +
-            "                <div class=\"panel-body\">\n" + 
-            "            </div>\n" +
-            "            </div>\n" +
-            "        </div>\n" +
             "\n" +
             "    </div>\n" +
             "\n" +
@@ -196,7 +151,7 @@ public class GUI {
             "\n" +
             "            <li class=\"active\"><a href=\"studentWelcome.jsp\"><span class=\"glyphicon glyphicon-home\"></span> Home</a></li>\n" +  
             "            <li class=\"active\"><a href=\"studentGradeView.jsp\"><span class=\"glyphicon glyphicon-pencil\"></span> My Grades</a></li>\n" + 
-            "            <li class=\"active\"><a href=\"markingDescriptors.jsp\"><span class=\"glyphicon glyphicon-edit\"></span> Marking Descriptors</a></li>\n" +
+            "            <li class=\"active\"><a href=\"studentMarkingDescriptors.jsp\"><span class=\"glyphicon glyphicon-edit\"></span> Marking Descriptors</a></li>\n" +
             "\n" +
             "\n" +
             "\n" +
@@ -214,7 +169,6 @@ public class GUI {
          return form;
     }
     
-        
     public String tutorNavigation(){
          String form = "<div class=\"row\">\n";
             form += "<!-- uncomment code for absolute positioning tweek see top comment in css -->\n" +
@@ -277,11 +231,13 @@ public class GUI {
             "                    <div class=\"panel-body\">\n" +
             "                        <ul class=\"nav navbar-nav\">\n" +
             "                            <li><a href=\"summaryData/summaryData.jsp\">All Students</a></li>\n" +
+            "                            <li><a href=\"student-years/2015.jsp\">2015 Summary Data</a></li>\n" +
+            "                            <li><a href=\"student-years/2016.jsp\">2016 Summary Data</a></li>\n" +
             "\n" +
             "                            <!-- Dropdown level 2 -->\n" +
             "                            <li class=\"panel panel-default\" id=\"dropdown\">\n" +
             "                                <a data-toggle=\"collapse\" href=\"#dropdown-lvl2\">\n" +
-            "                                    <span class=\"glyphicon glyphicon-list-alt\"></span> Groups <span class=\"caret\"></span>\n" +
+            "                                    <span class=\"glyphicon glyphicon-list-alt\"></span> Group Summary Data <span class=\"caret\"></span>\n" +
             "                                </a>\n" +
             "                                <div id=\"dropdown-lvl2\" class=\"panel-collapse collapse\">\n" +
             "                                    <div class=\"panel-body\">\n" +
@@ -323,6 +279,71 @@ public class GUI {
          
          return form;
     }
+        
+    public String adminNavigation(){
+         String form = "<div class=\"row\">\n";
+            form += "<!-- uncomment code for absolute positioning tweek see top comment in css -->\n" +
+            "    <div class=\"absolute-wrapper\"> </div>\n" +
+            "    <!-- Menu -->\n" +
+            "    <div class=\"side-menu\">\n" +
+            "    \n" +
+            "    <nav class=\"navbar navbar-default\" role=\"navigation\">\n" +
+            "    <!-- Brand and toggle get grouped for better mobile display -->\n" +
+            "    <div class=\"navbar-header\">\n" +
+            "        <div class=\"brand-wrapper\">\n" +
+            "            <!-- Hamburger -->\n" +
+            "            <button type=\"button\" class=\"navbar-toggle\">\n" +
+            "                <span class=\"sr-only\">Toggle navigation</span>\n" +
+            "                <span class=\"icon-bar\"></span>\n" +
+            "                <span class=\"icon-bar\"></span>\n" +
+            "                <span class=\"icon-bar\"></span>\n" +
+            "            </button>\n" +
+            "\n" +
+            "            <!-- Brand -->\n" +
+            "            <div class=\"brand-name-wrapper\">\n" +
+            "                <a class=\"navbar-brand\" href=\"../index.jsp\">\n" +
+            "                 <span class=\"glyphicon glyphicon-repeat\">   Logout\n" +
+            "                </a>\n" +
+            "            </div>\n" +
+            "\n" +
+            "            <!-- Search -->\n" +
+            "            <a data-toggle=\"collapse\" href=\"#search\" class=\"btn btn-default\" id=\"search-trigger\">\n" +
+            "                <span class=\"glyphicon glyphicon-search\"></span>\n" +
+            "            </a>\n" +
+            "\n" +
+            "            <!-- Search body -->\n" +
+            "            <div id=\"search\" class=\"panel-collapse collapse\">\n" +
+            "                <div class=\"panel-body\">\n";
+            SearchBox search = new SearchBox();
+            form += search.searchBox();
+            form +=        "                </div>\n" +
+            "            </div>\n" +
+            "        </div>\n" +
+            "\n" +
+            "    </div>\n" +
+            "\n" +
+            "    <!-- Main Menu -->\n" +
+            "    <div class=\"side-menu-container\">\n" +
+            "        <ul class=\"nav navbar-nav\">\n" +
+            "\n" +
+            "            <li class=\"active\"><a href=\"../adminWelcome.jsp\"><span class=\"glyphicon glyphicon-home\"></span> Home</a></li>\n" +  
+            "            <li class=\"active\"><a href=\"registerStudent.jsp\"><span class=\"glyphicon glyphicon-pencil\"></span> Register Student</a></li>\n" + 
+            "            <li class=\"active\"><a href=\"registerTutor.jsp\"><span class=\"glyphicon glyphicon-edit\"></span> Register Tutor</a></li>\n" +
+            "\n" +
+            "\n" +
+            "\n" +
+            "        </ul>\n" +
+            "    </div><!-- /.navbar-collapse -->\n" +
+            "</nav>\n" +
+            "    \n" +
+            "    </div>\n" +
+            "\n" +
+            "    <!-- Main Content -->\n" +
+            "    <div class=\"container-fluid\">\n" +
+            "        <div class=\"side-body\">\n";
+         
+         return form;
+    }
     
     public String tutorStudentYearsNav(){
          String form = "<div class=\"row\">\n";
@@ -345,7 +366,7 @@ public class GUI {
             "\n" +
             "            <!-- Brand -->\n" +
             "            <div class=\"brand-name-wrapper\">\n" +
-            "                <a class=\"navbar-brand\" href=\"index.jsp\">\n" +
+            "                <a class=\"navbar-brand\" href=\"../index.jsp\">\n" +
             "                 <span class=\"glyphicon glyphicon-repeat\">   Logout\n" +
             "                </a>\n" +
             "            </div>\n" +
@@ -386,6 +407,8 @@ public class GUI {
             "                    <div class=\"panel-body\">\n" +
             "                        <ul class=\"nav navbar-nav\">\n" +
             "                            <li><a href=\"../summaryData/summaryData.jsp\">All Students</a></li>\n" +
+            "                            <li><a href=\"../student-years/2015.jsp\">2015 Summary Data</a></li>\n" +
+            "                            <li><a href=\"../student-years/2016.jsp\">2016 Summary Data</a></li>\n" +        
             "\n" +
             "                            <!-- Dropdown level 2 -->\n" +
             "                            <li class=\"panel panel-default\" id=\"dropdown\">\n" +
@@ -455,7 +478,7 @@ public class GUI {
             "\n" +
             "            <!-- Brand -->\n" +
             "            <div class=\"brand-name-wrapper\">\n" +
-            "                <a class=\"navbar-brand\" href=\"index.jsp\">\n" +
+            "                <a class=\"navbar-brand\" href=\"../index.jsp\">\n" +
             "                 <span class=\"glyphicon glyphicon-repeat\">   Logout\n" +
             "                </a>\n" +
             "            </div>\n" +
@@ -496,6 +519,8 @@ public class GUI {
             "                    <div class=\"panel-body\">\n" +
             "                        <ul class=\"nav navbar-nav\">\n" +
             "                            <li><a href=\"summaryData.jsp\">All Students</a></li>\n" +
+            "                            <li><a href=\"../student-years/2015.jsp\">2015 Summary Data</a></li>\n" +
+            "                            <li><a href=\"../student-years/2016.jsp\">2016 Summary Data</a></li>\n" +
             "\n" +
             "                            <!-- Dropdown level 2 -->\n" +
             "                            <li class=\"panel panel-default\" id=\"dropdown\">\n" +
@@ -523,7 +548,7 @@ public class GUI {
             "                                        </ul>\n" +
             "                                    </div>\n" +
             "                                </div>\n" +
-            "                            </li>\n" +
+            "                            </li>\n" +       
             "                        </ul>\n" +
             "                    </div>\n" +
             "                </div>\n" +

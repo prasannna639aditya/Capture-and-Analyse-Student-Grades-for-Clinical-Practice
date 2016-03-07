@@ -1,10 +1,12 @@
 <%-- 
-    Document   : 3.5
-    Created on : 06-Mar-2016, 20:42:50
+    Document   : studentMarkingDescriptors
+    Created on : 07-Mar-2016, 12:39:08
     Author     : Delaney
 --%>
 
-<%@page import="summaryData.GroupSummaryData"%>
+<%@page import="summaryData.StudentSummaryData"%>
+<%@page import="application.CoreSkills"%>
+<%@page import="application.TutorLogin"%>
 <%@page import="application.StudentLookup"%>
 <%@page import="guipackage.GUI"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -15,24 +17,30 @@
         <meta name="robots" content="noindex">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-        <link href="../css/sidebar.css" rel="stylesheet">
+        <link href="css/sidebar.css" rel="stylesheet">
         <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
-        <script src="../js/sidebar.js"></script>
+        <script src="js/sidebar.js"></script>
         <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-        <link href="../font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
         <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
-    <tite> Group 3.5 Summary Data</title>
+        <title>Marking Descriptors</title>
+
+   
+    
     </head>
-    <body
-        
+    <body>
         <%
           GUI gui = new GUI( );
-          StudentLookup look = new StudentLookup();
-          GroupSummaryData group = new GroupSummaryData();
-          out.print(gui.tutorSummaryNavigation2());
-                out.print(group.studentData("3.5"));
-          out.print(gui.footer());  
-        %>   
+          CoreSkills core = new CoreSkills();
+          
+                out.print(gui.studentNavigation());
+        %>
+        <p> </p>
+        <%        
+                out.print(core.markingDescriptors());
+                out.print(gui.footer());   
+        %>
         
+    
     </body>
 </html>

@@ -9,7 +9,6 @@ package summaryData;
  *
  * @author Delaney
  */
-
 import dbpackage.DatabaseClass;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -23,14 +22,14 @@ import javax.servlet.http.HttpServletRequest;
  *
  * @author Delaney
  */
-public class StudentYearlySummaryData {
+public class YearlyData {
     private String [] result;
     
-    public StudentYearlySummaryData(){
+    public YearlyData(){
         this.result = new String[10];
     }
     
-    public String showCore( int score, String group ) throws SQLException {
+    public String showCore( int score, String year ) throws SQLException {
         Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
         
         String query =( "SELECT tb.StudentID, "
@@ -47,9 +46,7 @@ public class StudentYearlySummaryData {
                 + "SUM(LocalAnaesthesiaInfiltration = " + score + " ) AS LocalAnaesthesiaInfiltrationCount, "
                 + "SUM(ManagementOfComplications = " + score + " ) AS ManagementOfComplicationsCount, "
                 + "SUM(MaterialSelectionAndHandling = " + score + " ) AS MaterialSelectionAndHandlingCount " 
-                + "FROM TBICoreSkills AS tb JOIN Students JOIN StudentGroups JOIN StudentClass JOIN CourseYear"
-                            + " ON Students.StudentID = StudentClass.StudentID AND StudentClass.GroupID = StudentGroups.GroupID AND StudentClass.YearID = CourseYear.YearID"
-                            + " WHERE StudentGroups.GroupDescriptor =" + group + ";" );
+                + "FROM TBICoreSkills AS tb WHERE tb.DateAdded LIKE %" + year + "%;" );
         
         
         
@@ -85,7 +82,7 @@ public class StudentYearlySummaryData {
         return form;
     }
     
-    public String showBasic( int score, String group ) throws SQLException {
+    public String showBasic( int score, String year) throws SQLException {
         Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
         
         String query =( "SELECT SUM(AppropriatePatientPosition = 1) AS AppropriatePatientPositionCount,"
@@ -93,9 +90,7 @@ public class StudentYearlySummaryData {
                 + "SUM(AppropriateLightPosition = " + score + " ) AS AppropriateLightPositionCount, "
                 + "SUM(AppropriateUseOfMirror = " + score + " ) AS AppropriateUseOfMirrorCount, "
                 + "SUM(AppropriateFingerSupport = " + score + " ) AS AppropriateFingerSupportCount " 
-                + "FROM TBICoreSkills AS tb JOIN Students JOIN StudentGroups JOIN StudentClass JOIN CourseYear"
-                            + " ON Students.StudentID = StudentClass.StudentID AND StudentClass.GroupID = StudentGroups.GroupID AND StudentClass.YearID = CourseYear.YearID"
-                            + " WHERE StudentGroups.GroupDescriptor =" + group + ";" );
+                + "FROM TBICoreSkills AS tb WHERE tb.DateAdded LIKE %" + year + "%;" );
         
         Statement stmt = conn.createStatement();
         ResultSet rs = stmt.executeQuery(query);
@@ -120,13 +115,11 @@ public class StudentYearlySummaryData {
     }
     
     
-    public String showProfessionalism( int score, String group ) throws SQLException {
+    public String showProfessionalism( int score, String year ) throws SQLException {
         Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
         
         String query =( "SELECT SUM(Professionalism = " + score + ") AS ProfessionalismCount "
-                + "FROM TBICoreSkills AS tb JOIN Students JOIN StudentGroups JOIN StudentClass JOIN CourseYear"
-                            + " ON Students.StudentID = StudentClass.StudentID AND StudentClass.GroupID = StudentGroups.GroupID AND StudentClass.YearID = CourseYear.YearID"
-                            + " WHERE StudentGroups.GroupDescriptor =" + group + ";" );
+                + "FROM TBICoreSkills AS tb WHERE tb.DateAdded LIKE %" + year + "%;" );
         
         Statement stmt = conn.createStatement();
         ResultSet rs = stmt.executeQuery(query);
@@ -146,13 +139,11 @@ public class StudentYearlySummaryData {
         return form;
     }
     
-    public String showCommunication( int score, String group ) throws SQLException {
+    public String showCommunication( int score, String year ) throws SQLException {
         Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
         
         String query =( "SELECT SUM(Communication = " + score + ") AS CommunicationCount "
-                + "FROM TBICoreSkills AS tb JOIN Students JOIN StudentGroups JOIN StudentClass JOIN CourseYear"
-                            + " ON Students.StudentID = StudentClass.StudentID AND StudentClass.GroupID = StudentGroups.GroupID AND StudentClass.YearID = CourseYear.YearID"
-                            + " WHERE StudentGroups.GroupDescriptor =" + group + ";" );
+                + "FROM TBICoreSkills AS tb WHERE tb.DateAdded LIKE %" + year + "%;" );
         
         Statement stmt = conn.createStatement();
         ResultSet rs = stmt.executeQuery(query);
@@ -172,13 +163,11 @@ public class StudentYearlySummaryData {
         return form;
     }
     
-    public String showKnowledge( int score, String group ) throws SQLException {
+    public String showKnowledge( int score, String year) throws SQLException {
         Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
         
         String query =( "SELECT SUM(Knowledge= " + score + ") AS KnowledgeCount "
-                + "FROM TBICoreSkills AS tb JOIN Students JOIN StudentGroups JOIN StudentClass JOIN CourseYear"
-                            + " ON Students.StudentID = StudentClass.StudentID AND StudentClass.GroupID = StudentGroups.GroupID AND StudentClass.YearID = CourseYear.YearID"
-                            + " WHERE StudentGroups.GroupDescriptor =" + group + ";" );
+                + "FROM TBICoreSkills AS tb WHERE tb.DateAdded LIKE %" + year + "%;" );
         
         Statement stmt = conn.createStatement();
         ResultSet rs = stmt.executeQuery(query);
@@ -199,7 +188,7 @@ public class StudentYearlySummaryData {
     }
     
     public String studentData(String group) throws SQLException{
-        StudentYearlySummaryData check = new StudentYearlySummaryData();
+        GroupSummaryData check = new GroupSummaryData();
         String form = "<table class=\"table table-striped table-bordered table-condensed\" width=\"647\">\n";
                    form += "<thead>\n";
                    form += "<tr>\n";
@@ -263,15 +252,6 @@ public class StudentYearlySummaryData {
                    form += "</tr>\n";
                    form += "</tr>\n";
                    
-        return form;
-    }
-    
-    public String searchBox(){
-        String form = "<div class=\"input-group\">\n" +
-        "      <input type=\"text\" class=\"form-control\" placeholder=\"Search for...\">\n" +
-        "      <input type='submit' value='Submit' name='submit' /><br />\n" +
-        "    </div><!-- /input-group --></li>\n";
-        
         return form;
     }
     

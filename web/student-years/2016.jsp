@@ -1,9 +1,10 @@
 <%-- 
-    Document   : 3.1
-    Created on : 06-Mar-2016, 20:35:03
+    Document   : 2016.jsp
+    Created on : 07-Mar-2016, 22:51:55
     Author     : Delaney
 --%>
 
+<%@page import="summaryData.YearlyData"%>
 <%@page import="summaryData.GroupSummaryData"%>
 <%@page import="application.StudentLookup"%>
 <%@page import="guipackage.GUI"%>
@@ -21,16 +22,17 @@
         <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
         <link href="../font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
         <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
-    <tite> Group 3.1 Summary Data</title>
+    <tite> 2016 Summary Data</title>
     </head>
     <body
         
         <%
           GUI gui = new GUI( );
           StudentLookup look = new StudentLookup();
-          GroupSummaryData group = new GroupSummaryData();
+          YearlyData year = new YearlyData();
           out.print(gui.tutorSummaryNavigation2());
-          out.print(group.studentData("3.1"));
+          out.println("2016 Summary Data");      
+          out.print(year.studentData("2016"));
           out.print(gui.footer());  
         %>   
         

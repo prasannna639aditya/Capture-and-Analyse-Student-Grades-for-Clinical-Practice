@@ -28,12 +28,13 @@
                 response.sendRedirect( "index.jsp" );
             }
             else {
+                out.print(gui.studentNavigation());
                 String username = (String) session.getAttribute( "Authenticated" );
                 String firstName = (String) session.getAttribute( "firstName" );
                 String lastName = (String) session.getAttribute( "lastName" );
                 String picture = (String) session.getAttribute( "picture" );
                 String StudentID = (String) session.getAttribute( "StudentID" );
-                out.print(gui.studentPrint(true, StudentID, firstName, lastName, picture));
+                out.print(gui.studentPrint(StudentID, firstName, lastName, picture));
           }
           
           out.print(gui.footer());

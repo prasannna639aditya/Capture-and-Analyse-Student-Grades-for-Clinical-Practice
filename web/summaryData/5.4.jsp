@@ -4,7 +4,7 @@
     Author     : Delaney
 --%>
 
-<%@page import="summaryData.StudentYearlySummaryData"%>
+<%@page import="summaryData.GroupSummaryData"%>
 <%@page import="application.StudentLookup"%>
 <%@page import="guipackage.GUI"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -28,9 +28,9 @@
         <%
           GUI gui = new GUI( );
           StudentLookup look = new StudentLookup();
-          StudentYearlySummaryData year = new StudentYearlySummaryData();
+          GroupSummaryData group = new GroupSummaryData();
           out.print(gui.tutorSummaryNavigation2());
-                out.print(year.studentData("5.4"));
+                out.print(group.studentData("5.4"));
           out.print(gui.footer());  
         %>   
         

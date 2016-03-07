@@ -78,9 +78,52 @@
                         session.setAttribute("StudentID", login.getStudentID( ) );
                         response.sendRedirect( "studentWelcome.jsp" );
                     }
-                    out.print( login.studentLoginForm( ) );
-                    out.print( "Student ID or Password are incorrect, please try again!" );
+                    else{
+                        out.print( loginHeader.loginHeader( ) );    
+                        %>
+                    
+                    <div class="intro-header">
+                        <div class="container">
+
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="intro-message">
+                                       <% 
+                                        out.print( login.studentLoginForm() );
+                                         out.print( login.printErrors( ) );
+                    }
                 }
+                                       %>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <!-- /.container -->
+
+                    </div>
+                    <div class="content-section-a">
+
+                    <div class="container">
+
+                        <div class="row">
+                            <div class="col-lg-5 col-sm-6">
+                                <hr class="section-heading-spacer">
+                                <div class="clearfix"></div>
+                                <h2 class="section-heading">Google Web Fonts and<br>Font Awesome Icons</h2>
+                                <p class="lead">This template features the 'Lato' font, part of the <a target="_blank" href="http://www.google.com/fonts">Google Web Font library</a>, as well as <a target="_blank" href="http://fontawesome.io">icons from Font Awesome</a>.</p>
+                            </div>
+                            <div class="col-lg-5 col-lg-offset-2 col-sm-6">
+                                <img class="img-responsive" src="img/phones.png" alt="">
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- /.container -->
+
+                </div>
+                <%                    
+                       
          %>
        
     </body>

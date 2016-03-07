@@ -51,40 +51,83 @@
                     </div>
                     <div class="content-section-a">
 
-        <div class="container">
+                    <div class="container">
 
-            <div class="row">
-                <div class="col-lg-5 col-sm-6">
-                    <hr class="section-heading-spacer">
-                    <div class="clearfix"></div>
-                    <h2 class="section-heading">Google Web Fonts and<br>Font Awesome Icons</h2>
-                    <p class="lead">This template features the 'Lato' font, part of the <a target="_blank" href="http://www.google.com/fonts">Google Web Font library</a>, as well as <a target="_blank" href="http://fontawesome.io">icons from Font Awesome</a>.</p>
-                </div>
-                <div class="col-lg-5 col-lg-offset-2 col-sm-6">
-                    <img class="img-responsive" src="img/phones.png" alt="">
-                </div>
-            </div>
+                        <div class="row">
+                            <div class="col-lg-5 col-sm-6">
+                                <hr class="section-heading-spacer">
+                                <div class="clearfix"></div>
+                                <h2 class="section-heading">Google Web Fonts and<br>Font Awesome Icons</h2>
+                                <p class="lead">This template features the 'Lato' font, part of the <a target="_blank" href="http://www.google.com/fonts">Google Web Font library</a>, as well as <a target="_blank" href="http://fontawesome.io">icons from Font Awesome</a>.</p>
+                            </div>
+                            <div class="col-lg-5 col-lg-offset-2 col-sm-6">
+                                <img class="img-responsive" src="img/phones.png" alt="">
+                            </div>
+                        </div>
 
-        </div>
-        <!-- /.container -->
+                    </div>
+                    <!-- /.container -->
 
-    </div>                
-                    <%
+                </div>                
+                <%
                     
                 }
                 else{
                     if( login.loginTutor( request )) {
-                        session.setAttribute( "Authenticated", login.getTutorID( ) );
-                        session.setAttribute("TutorID", login.getTutorID( ) );
-                        session.setAttribute("firstName", login.getFirstName( ) );
-                        session.setAttribute("lastName", login.getLastName( ) );
-                        session.setAttribute("department", login.getDepartment( ) );
-                        session.setAttribute("picture", login.getPicture( ) );
-                        response.sendRedirect( "tutorWelcome.jsp" );
+                            session.setAttribute( "Authenticated", login.getTutorID( ) );
+                            session.setAttribute("TutorID", login.getTutorID( ) );
+                            session.setAttribute("firstName", login.getFirstName( ) );
+                            session.setAttribute("lastName", login.getLastName( ) );
+                            session.setAttribute("department", login.getDepartment( ) );
+                            session.setAttribute("picture", login.getPicture( ) );
+                            response.sendRedirect( "tutorWelcome.jsp" );
                     }
-                    out.print( login.tutorLoginForm( ) );
-                    out.print( "Tutor ID or Password are incorrect, please try again!" );
+                    else{
+                        out.print( loginHeader.loginHeader( ) );    
+                        %>
+                    
+                    <div class="intro-header">
+                        <div class="container">
+
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="intro-message">
+                                       <% 
+                                        out.print( login.tutorLoginForm() );
+                                         out.print( login.printErrors( ) );
+                    }
                 }
+                                       %>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <!-- /.container -->
+
+                    </div>
+                    <div class="content-section-a">
+
+                    <div class="container">
+
+                        <div class="row">
+                            <div class="col-lg-5 col-sm-6">
+                                <hr class="section-heading-spacer">
+                                <div class="clearfix"></div>
+                                <h2 class="section-heading">Google Web Fonts and<br>Font Awesome Icons</h2>
+                                <p class="lead">This template features the 'Lato' font, part of the <a target="_blank" href="http://www.google.com/fonts">Google Web Font library</a>, as well as <a target="_blank" href="http://fontawesome.io">icons from Font Awesome</a>.</p>
+                            </div>
+                            <div class="col-lg-5 col-lg-offset-2 col-sm-6">
+                                <img class="img-responsive" src="img/phones.png" alt="">
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- /.container -->
+
+                </div>
+                <%                    
+                       
          %>
          
     </body>

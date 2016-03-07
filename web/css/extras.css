@@ -1,0 +1,69 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 07-Mar-2016, 15:25:07
+    Author     : Delaney
+*/
+
+input[type=submit] {
+	-moz-box-shadow:inset -50px 1px 0px 50px #ffffff;
+	-webkit-box-shadow:inset -50px 1px 0px 50px #ffffff;
+	box-shadow:inset -50px 1px 0px 50px #ffffff;
+	background-color:transparent;
+	-webkit-border-top-left-radius:0px;
+	-moz-border-radius-topleft:0px;
+	border-top-left-radius:0px;
+	-webkit-border-top-right-radius:0px;
+	-moz-border-radius-topright:0px;
+	border-top-right-radius:0px;
+	-webkit-border-bottom-right-radius:0px;
+	-moz-border-radius-bottomright:0px;
+	border-bottom-right-radius:0px;
+	-webkit-border-bottom-left-radius:0px;
+	-moz-border-radius-bottomleft:0px;
+	border-bottom-left-radius:0px;
+	text-indent:0;
+	border:2px solid #dcdcdc;
+	display:inline-block;
+	color:#666666;
+	font-family:Trebuchet MS;
+	font-size:12px;
+	font-style:normal;
+        width: 120px;
+	height:35px;
+	text-decoration:none;
+	text-align:center;
+	text-shadow:1px 1px 0px #ffffff;
+        position:relative;
+	top:1px;
+}
+
+input[type=submit]:hover {
+    color: #404040;
+    font-weight: bold; 
+}
+
+label {
+    color: #888;
+    font-weight: bold;
+    display: block;
+    width: 150px;
+    float: left;
+}
+
+h2{
+    color: #999;
+    font-family: Candara, Calibri, Segoe, 'Segoe UI', Optima, Arial, sans-serif;
+    text-decoration: underline;
+    font-size: 20px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 500;
+    line-height: 15.4px;
+    padding-top:20px;
+    padding-left:16px;
+    padding-bottom: 5px;
+}

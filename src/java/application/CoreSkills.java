@@ -533,6 +533,7 @@ public class CoreSkills {
         
         String form = "<form name='marking_form' action='markStudent.jsp' method='POST'>\n";
         form += "<p>\n";
+        form += "<div id=\"test\">";
         form += "<a  name=\"info\"></a><h2>Info</h2>\n";
         form += "<div class=\"form-group row\">";
         form += "<label class=\"col-sm-2 form-control-label\" for='studentID'>Student:</label>\n"
@@ -578,6 +579,7 @@ public class CoreSkills {
              + "</div>\n" 
              + "</div>\n";
         form += "</p>\n";
+        form += "</div>\n";
         
         form += "<p>\n";
         form += "<a  name=\"core\"></a><h2>Core Skills Generic</h2>";

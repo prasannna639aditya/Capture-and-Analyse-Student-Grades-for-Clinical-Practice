@@ -338,11 +338,24 @@ public class SearchBox {
     public String groupSearchBox(){
         
         String form = "<form id='form-id' name='group_search' action='groupSearchResults.jsp' method='POST'>" +
-                "      <div class=\"ui action left icon input\">\n" +
-                "      <i class=\"search icon\"></i>\n" +
-                "      <input type=\"text\" name='groupID' placeholder=\"Search a group...\">\n" +
-                "      <div class=\"ui teal button\">Search</div>\n" +
-                "    </div></form>\n";
+                "<div class=\"container\">\n" +
+                "	<div class=\"row\">\n" +
+                "        <div class=\"col-md-6\">\n" +
+                "            <div id=\"custom-search-input\">\n" +
+                "                <div class=\"input-group col-md-12\">\n" +
+                "                   <input type=\"text\"class=\"form-control input-lg\" name='groupID' placeholder=\"Search a group...\">\n" +
+                "                    <span class=\"input-group-btn\">\n" +
+                "                        <button class=\"btn btn-info btn-lg\" type=\"button\">\n" +
+                "                            <i class=\"glyphicon glyphicon-search\"></i>\n" +
+                "                        </button>\n" +
+                "                    </span>\n" +
+                "                </div>\n" +
+                "            </div>\n" +
+                "        </div>\n" +
+                "	</div>\n" +
+                "</div>" +
+                "</form>\n";
+                
         return form;
     }
     
@@ -354,7 +367,7 @@ public class SearchBox {
                 "      <input type=\"hidden\" name='groupID' value='" + groupID + "' placeholder=\"Search...\">\n" +
                 "      <input type=\"text\" name='studentID' placeholder=\"Add an extra student to the group\"><br/>\n" +
                 "      <div><input type=\"text\" name='name' placeholder=\"Please name this group\"></div><br/>\n" +
-                "      <input type='submit' value='Search' name='submit' /><br />\n" +
+                "      <input type='submit' value='Add' name='submit' /><br />\n" +
                 "    </div></form>\n";
         return form;
     }
@@ -431,8 +444,8 @@ public class SearchBox {
         ResultSet rs = stmt.executeQuery(query);
         
         String form = "<h1>My Groups</h1>\n";
-               form +=  "<div class=\"table-responsive\">\n";
-               form += "<table class=\"table\">\n";
+               form += "<div class=\"table-responsive\">\n";
+               form += "<table class=\"table table-hover\">\n";
                form += "<thead>\n";
                form += "<tbody>\n";
         if(rs.next()){
@@ -441,18 +454,18 @@ public class SearchBox {
                form += "<form name='grade' action='student-years/showGroups.jsp' method='POST'>";
                form += "<input type=\"hidden\" name='groupID' value='" + rs.getString("GroupDescriptor") + "'>\n";
                form += "<input type=\"hidden\" name='studentID' value='" + rs.getString("StudentID") + "'>\n";
-               form += "<td>" + rs.getString("DateAdded") + "</td>\n";
                form += "<td>" + rs.getString("GroupName") + "</td>\n";
+               form += "<td>" + rs.getString("DateAdded") + "</td>\n";
                form += "<td><input type=\"submit\" value=\"Go to group\" class=\"btn-style\"></td></form>\n";
                form += "<form name='grade' action='student-years/deleteGroup.jsp' method='POST'>";
                form += "<input type=\"hidden\" name='group' value='" + rs.getString("GroupName") + "'>\n";
-               form += "<td><input type=\"submit\" value=\"Delete Group\" class=\"btn-style\"></td></form>\n";
+               form += "<td class='delete'><input type=\"submit\" value=\"Delete Group\" class=\"btn-style\"></td></form>\n";
                form += "</tr>\n";
           }
         }
             form += "</tbody>\n";
             form += "</table>\n";
-            form += "</div>\n";
+            form += "</div>";
         return form;
     }
     

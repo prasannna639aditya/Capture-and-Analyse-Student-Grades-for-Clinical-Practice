@@ -54,7 +54,7 @@ public class StudentLookup {
                    form += "<table class=\"table\">\n";
                    form += "<thead>\n";
                    form += "<tr>\n";
-                   form += "<th>Picture</th>\n";
+                   form += "<th></th>\n";
                    form += "<th>Student ID</th>\n";
                    form += "<th>First Name</th>\n";
                    form += "<th>Surname</th>\n";
@@ -91,22 +91,12 @@ public class StudentLookup {
         return form;
     }
     
-    public String fetchGroupNames(String group) throws SQLException{
-        
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
-            //System.out.println("successful");
-            String query = ("SELECT Students.StudentID, Students.FirstName, Students.LastName, Students.Picture, CourseYear.ProgrammeYear, StudentGroups.GroupDescriptor"
-                            + " FROM Students JOIN StudentGroups JOIN StudentClass JOIN CourseYear"
-                            + " ON Students.StudentID = StudentClass.StudentID AND StudentClass.GroupID = StudentGroups.GroupID AND StudentClass.YearID = CourseYear.YearID"
-                            + " WHERE StudentGroups.GroupDescriptor =" + group+ ";" );
-            Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery(query);
-
-            String form = "<div class=\"table-responsive\">\n";
+    public String startTable(){
+        String form = "<div class=\"table-responsive\">\n";
                    form += "<table class=\"table\">\n";
                    form += "<thead>\n";
                    form += "<tr>\n";
-                   form += "<th>Picture</th>\n";
+                   form += "<th></th>\n";
                    form += "<th>Student ID</th>\n";
                    form += "<th>First Name</th>\n";
                    form += "<th>Surname</th>\n";
@@ -117,6 +107,30 @@ public class StudentLookup {
                    form += "</thead>\n";
                    form += "<tbody>\n";
                    form += "<tr>\n";
+        
+        return form;           
+    }
+    
+    public String endTable(){
+        String form = "</tbody>\n";
+               form += "</table>\n";
+               form += "</div>\n";
+               
+        return form;       
+    }
+    
+    public String fetchGroupNames(String group) throws SQLException{
+        
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
+            //System.out.println("successful");
+            String query = ("SELECT Students.StudentID, Students.FirstName, Students.LastName, Students.Picture, CourseYear.ProgrammeYear, StudentGroups.GroupDescriptor"
+                            + " FROM Students JOIN StudentGroups JOIN StudentClass JOIN CourseYear"
+                            + " ON Students.StudentID = StudentClass.StudentID AND StudentClass.GroupID = StudentGroups.GroupID AND StudentClass.YearID = CourseYear.YearID"
+                            + " WHERE StudentGroups.GroupDescriptor =" + group+ ";" );
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            String form = "";
+            
                
             while(rs.next()){
                 form += "<tr>\n";
@@ -132,12 +146,6 @@ public class StudentLookup {
                 form += "<td><input type=\"submit\" value=\"View Treatments\" class=\"btn-style\"></form></td>";
                 form += "</tr>\n";
             }
-            
-            
-            
-            form += "</tbody>\n";
-            form += "</table>\n";
-            form += "</div>\n";
             
         conn.close();
         return form;
@@ -158,7 +166,7 @@ public class StudentLookup {
                    form += "<table class=\"table\">\n";
                    form += "<thead>\n";
                    form += "<tr>\n";
-                   form += "<th>Picture</th>\n";
+                   form += "<th></th>\n";
                    form += "<th>Student ID</th>\n";
                    form += "<th>First Name</th>\n";
                    form += "<th>Surname</th>\n";
@@ -207,22 +215,7 @@ public class StudentLookup {
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(query);
 
-            String form = "<div class=\"table-responsive\">\n";
-                   form += "<table class=\"table\">\n";
-                   form += "<thead>\n";
-                   form += "<tr>\n";
-                   form += "<th></th>\n";
-                   form += "<th></th>\n";
-                   form += "<th></th>\n";
-                   form += "<th></th>\n";
-                   form += "<th></th>\n";
-                   form += "<th></th>\n";
-                   form += "<th></th>\n";
-                   form += "</tr>\n";
-                   form += "</thead>\n";
-                   form += "<tbody>\n";
-                   form += "<tr>\n";
-               
+            String form = "";
             while(rs.next()){
                 form += "<tr>\n";
                 form += "<td><img id='studnetID' class=\"img-rounded\" src=\"../img/" + rs.getString("Students.Picture") + "\"</td>\n";
@@ -237,11 +230,6 @@ public class StudentLookup {
                 form += "<td><input type=\"submit\" value=\"View Treatments\" class=\"btn-style\"></form></td>";
                 form += "</tr>\n";
             }
-            
-            form += "</tbody>\n";
-            form += "</table>\n";
-            form += "</div>\n";
-            
         conn.close();
         return form;
     }

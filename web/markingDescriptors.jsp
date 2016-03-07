@@ -34,6 +34,9 @@
           CoreSkills core = new CoreSkills();
           
                 out.print(gui.tutorNavigation());
+        %>
+        <p> </p>
+        <%
                 out.print(core.markingDescriptors());
                 out.print(gui.footer());   
         %>

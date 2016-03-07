@@ -8,6 +8,7 @@ package application;
 import dbpackage.DatabaseClass;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
+import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import passwordhash.PasswordHash;
 import sun.security.util.Password;
@@ -25,6 +26,8 @@ public class StudentLogin {
     private String passwordToCheck;
     private String hashCheck;
     private String[] result;
+    private final ArrayList<String> errors;
+    
     /**
      * Constructor for the class
      */
@@ -36,6 +39,7 @@ public class StudentLogin {
         this.picture = "";
         this.passwordToCheck = "";
         this.result = new String[10];
+        errors = new ArrayList<>( );
     }
     /**
     * Getter method for the user's StudentID.
@@ -137,44 +141,34 @@ public class StudentLogin {
             isValid = false;
         }
         if( password.equals( "" ) ) {
+            errors.add( "Please enter a valid password" );
             isValid = false;
         }
         if( PasswordHash.check( password, passwordToCheck) == false){
+           errors.add( "Student ID or Password is incorrect" );
            isValid = false;
         }
         
         
         return isValid;
-    }  
-    /**
-     * Form used by the user to log into the system
-     * @return form (string)
-     */
-    /**
-    public String loginForm( ) {
-        String form = "<form name=\"login_form\" action=\"studentLogin.jsp\" method=\"POST\">\n";
-               form += "<label for=\"StudentID\">Student ID:</label>\n";
-               form += "<input type=\"text\" name=\"StudentID\" value=\"" + StudentID + "\"placeholder=\"Enter StudentID\" /><br/>\n";
-               form += "<label for=\"Password\">Password:</label>\n";
-               form += "<input type=\"password\" name=\"password\" placeholder=\"Enter Password\"/><br />\n";
-               
-               form += "<input type=\"submit\" value=\"Login\" name=\"submit\" /><br />\n";
-               form += "</form>";
-        return form;
-    } **/
+    }
     
     /**
-    public String studentLoginForm( ) {
-        String form = "<form name=\"login_form\" action=\"studentLogin.jsp\" method=\"POST\">\n";
-               form += "<label for=\"StudentID\">Student ID:</label>\n";
-               form += "<input type=\"text\" name=\"StudentID\" value=\"" + StudentID + "\"placeholder=\"StudentID\" /><br/>\n";
-               form += "<label for=\"Password\">Password:</label>\n";
-               form += "<input type=\"password\" name=\"password\" placeholder=\"Enter Password\"/><br />\n";
-               form += "<input type=\"submit\" value=\"Login\" name=\"submit\" /><br />\n";
-               form += "</form>";
-        return form;
+     * Function to print any error messages that may have been collected throughout the 
+     * login process
+     * @return errorList (string)
+     */
+    public String printErrors( ) {
+        String errorList;
+        
+        errorList = "<div>";
+            for( String error: errors ) {
+                errorList += error;
+            }
+        errorList += "</div>";
+        
+        return errorList;
     }
-    **/
     
     public String studentLoginForm( ) {
         String form = "<form name=\"login_form\" action=\"studentLogin.jsp\" method=\"POST\">\n";

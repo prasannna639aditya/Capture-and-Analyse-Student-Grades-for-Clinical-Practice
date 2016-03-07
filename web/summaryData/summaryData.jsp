@@ -5,7 +5,7 @@
 --%>
 
 
-<%@page import="summaryData.StudentYearlySummaryData"%>
+<%@page import="summaryData.GroupSummaryData"%>
 <%@page import="summaryData.StudentSummaryData"%>
 <%@page import="application.StudentLookup"%>
 <%@page import="guipackage.GUI"%>
@@ -34,7 +34,7 @@
           out.print(gui.tutorSummaryNavigation2());
           StudentLookup look = new StudentLookup();
           StudentSummaryData check = new StudentSummaryData();
-          StudentYearlySummaryData year = new StudentYearlySummaryData();
+          GroupSummaryData group = new GroupSummaryData();
         %> 
         
         <h1> All student data summarized</h1>

@@ -7,18 +7,6 @@ and open the template in the editor.
     Created on : Jan 15, 2016, 8:07:51 AM
     Author     : Delaney
 */
-
-h2{
-    font-family:  sans-serif;
-    text-decoration: underline;
-    color: #404040;
-    font-weight: lighter;
-}
-
-input[type=label] {
-    font-weight: lighter;
-}
-
 input[type=submit] {
 	-moz-box-shadow:inset -50px 1px 0px 50px #ffffff;
 	-webkit-box-shadow:inset -50px 1px 0px 50px #ffffff;
@@ -44,17 +32,40 @@ input[type=submit] {
 	font-size:12px;
 	font-style:normal;
         width: 120px;
-	height:50px;
+	height:35px;
 	text-decoration:none;
 	text-align:center;
 	text-shadow:1px 1px 0px #ffffff;
-}
-
-input[type=submit] {
-	position:relative;
+        position:relative;
 	top:1px;
 }
 
+input[type=submit]:hover {
+    color: #404040;
+    font-weight: bold; 
+}
+
+label {
+    color: #888;
+    font-weight: bold;
+    display: block;
+    width: 150px;
+    float: left;
+}
+
+h2{
+    color: #999;
+    font-family: Candara, Calibri, Segoe, 'Segoe UI', Optima, Arial, sans-serif;
+    text-decoration: underline;
+    font-size: 20px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 500;
+    line-height: 15.4px;
+    padding-top:20px;
+    padding-left:16px;
+    padding-bottom: 5px;
+}
 
 #dropdown{
    font-size: 1em;

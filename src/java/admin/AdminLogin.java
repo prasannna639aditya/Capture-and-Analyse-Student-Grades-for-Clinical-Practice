@@ -18,6 +18,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import passwordhash.PasswordHash;
 
@@ -33,6 +34,7 @@ public class AdminLogin {
     private String department;
     private String passwordToCheck;
     private String[] result;
+    private final ArrayList<String> errors;
     /**
      * Constructor for the class
      */
@@ -44,6 +46,7 @@ public class AdminLogin {
         this.department = "";
         this.passwordToCheck = "";
         this.result = new String[10];
+        errors = new ArrayList<>( );
     }
     /**
     * Getter method for the user's Admin ID.
@@ -129,18 +132,36 @@ public class AdminLogin {
         boolean isValid = true;
         
         if( AdminID.equals( "" ) ) {
-            isValid = false;
+           isValid = false;
         }
         if( password.equals( "" ) ) {
             isValid = false;
         }
         
         if( PasswordHash.check( password, passwordToCheck) == false){
+           errors.add( "Admin ID or Password is incorrect" );
            isValid = false;
         }
         
         return isValid;
     }  
+    
+    /**
+     * Function to print any error messages that may have been collected throughout the 
+     * login process
+     * @return errorList (string)
+     */
+    public String printErrors( ) {
+        String errorList;
+        
+        errorList = "<div>";
+            for( String error: errors ) {
+                errorList += error;
+            }
+        errorList += "</div>";
+        
+        return errorList;
+    }
     
     /**
     public String adminLoginForm( ) {

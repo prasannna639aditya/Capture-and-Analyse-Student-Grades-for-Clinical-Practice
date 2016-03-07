@@ -13,6 +13,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import passwordhash.PasswordHash;
 
@@ -29,6 +30,7 @@ public class TutorLogin {
     private String picture;
     private String passwordToCheck;
     private String[] result;
+    private final ArrayList<String> errors;
     /**
      * Constructor for the class
      */
@@ -41,6 +43,7 @@ public class TutorLogin {
         this.picture = "";
         this.passwordToCheck = "";
         this.result = new String[10];
+        errors = new ArrayList<>( );
     }
     /**
     * Getter method for the user's TutorID.
@@ -130,32 +133,54 @@ public class TutorLogin {
      */
     public boolean validateLogin( ) throws Exception{
         boolean isValid = true;
+        TutorLogin tutor = new TutorLogin();
         
         if( TutorID.equals( "" ) ) {
             isValid = false;
         }
+        
         if( password.equals( "" ) ) {
             isValid = false;
         }
         
         if( PasswordHash.check( password, passwordToCheck) == false){
+           errors.add( "Tutor ID or Password is incorrect" );
            isValid = false;
         }
         
         return isValid;
     }  
     
+    public Boolean doesTutorExist(String tutorID){
+        DatabaseClass database = new DatabaseClass( );
+        //database.setup( "ec2-52-48-85-26.eu-west-1.compute.amazonaws.com", "final_year_project", "root", "IPNTclyv43" );
+        database.setup( "localhost", "final_year_project", "root", "" );
+        result = database.SelectRow( "SELECT * FROM Tutors WHERE TutorID = '" + tutorID + "';" );
+        Boolean isTutor = false;
+        
+        if( result.length != 0 ) {
+          isTutor = true;  
+        }
+        
+      return isTutor;  
+    }
+    
     /**
-    public String tutorLoginForm( ) {
-        String form = "<form name=\"login_form\" action=\"tutorLogin.jsp\" method=\"POST\">\n";
-               form += "<label for=\"TutorID\">Tutor ID:</label>\n";
-               form += "<input type=\"text\" name=\"TutorID\" value=\"" + TutorID + "\"placeholder=\"TutorID\" /><br/>\n";
-               form += "<label for=\"Password\">Password:</label>\n";
-               form += "<input type=\"password\" name=\"password\" placeholder=\"Enter Password\"/><br />\n";
-               form += "<input type=\"submit\" value=\"Login\" name=\"submit\" /><br />\n";
-               form += "</form>";
-        return form;
-    }**/
+     * Function to print any error messages that may have been collected throughout the 
+     * login process
+     * @return errorList (string)
+     */
+    public String printErrors( ) {
+        String errorList;
+        
+        errorList = "<div>";
+            for( String error: errors ) {
+                errorList += error;
+            }
+        errorList += "</div>";
+        
+        return errorList;
+    }
     
     public String tutorLoginForm( ) {
         String form = "<form name=\"login_form\" action=\"tutorLogin.jsp\" method=\"POST\">\n";

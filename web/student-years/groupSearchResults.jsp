@@ -6,7 +6,7 @@
 
 <%@page import="application.TreatmentItems"%>
 <%@page import="guipackage.SearchBox"%>
-<%@page import="summaryData.StudentYearlySummaryData"%>
+<%@page import="summaryData.GroupSummaryData"%>
 <%@page import="summaryData.StudentSummaryData"%>
 <%@page import="application.StudentLookup"%>
 <%@page import="guipackage.GUI"%>
@@ -39,7 +39,7 @@
           StudentLookup look = new StudentLookup();
           out.print(gui.tutorStudentYearsNav());
           StudentSummaryData check = new StudentSummaryData();
-          StudentYearlySummaryData year = new StudentYearlySummaryData();
+          GroupSummaryData group = new GroupSummaryData();
           TreatmentItems name = new TreatmentItems();
           
           String groupID = search.getGroupID();
@@ -47,7 +47,9 @@
           if(search.checkGroupDescriptor(groupID) == true){
             out.println("Add students who are not in group " + groupID + ".");
             out.print(search.addStudents(groupID));
-            out.println(look.fetchGroupNames(groupID));
+            out.print(look.startTable());
+            out.print(look.fetchGroupNames(groupID));
+            out.print(look.endTable());
           }
           
           else{

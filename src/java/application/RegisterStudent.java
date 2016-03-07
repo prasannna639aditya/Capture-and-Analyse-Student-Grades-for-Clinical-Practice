@@ -260,12 +260,17 @@ public class RegisterStudent {
 
     
      public String registrationForm( ) {
-        String form = "<form name='registration_form' action='registerStudent.jsp' method='POST'>\n";
-        form += "<label for='studentID'>Id Number:</label>\n";
-        form += "<input type='text' name='studentID' value='" + studentID + "' placeholder='123456789' /><br />\n";
-        
-        form += "<label for='groupID'>Group Description:</label>\n";
-        form += "<select name=\"groupID\"id='dropdown' >\n" +
+        String form = "<p><form name='registration_form' action='registerStudent.jsp' method='POST'>\n";
+        form += "<div class=\"form-group row\">";
+        form += "<label class=\"col-sm-2 form-control-label\" for='studentID'>Id Number:</label>\n";
+        form += "<div class=\"col-sm-10\">";
+        form += "<input type='text' class=\"form-control\" name='studentID' value='" + studentID + "' placeholder='123456789' /><br />\n" 
+                        + "</div>\n" 
+                        + "</div>\n";
+        form += "<div class=\"form-group row\">";
+        form += "<label class=\"col-sm-2 form-control-label\" for='groupID'>Group Description:</label>\n";
+        form += "<div class=\"col-sm-10\">";
+        form += "<select class=\"form-control\" name=\"groupID\"id='dropdown' >\n" +
                     "  <option value=\"1\" selected>3.1</option>\n" +
                     "  <option value=\"2\">3.2</option>\n" +
                     "  <option value=\"3\">3.3</option>\n" +
@@ -281,28 +286,58 @@ public class RegisterStudent {
                     "  <option value=\"13\">5.3</option>\n" +
                     "  <option value=\"13\">5.4</option>\n" +
                     "  <option value=\"13\">5.5</option>\n" +
-                "</select><br />"; 
-        form += "<label for='yearID'>Year:</label>\n";
-        form += "<select name=\"yearID\"id='dropdown' >\n" +
+                "</select><br />" 
+                    + "</div>\n" 
+                    + "</div>\n";
+        form += "<div class=\"form-group row\">";
+        form += "<label class=\"col-sm-2 form-control-label\" for='yearID'>Year:</label>\n";
+        form += "<div class=\"col-sm-10\">";
+        form += "<select class=\"form-control\" name=\"yearID\"id='dropdown' >\n" +
                     "  <option value=\"1\" selected>1</option>\n" +
                     "  <option value=\"2\">2</option>\n" +
                     "  <option value=\"3\">3</option>\n" +
                     "  <option value=\"4\">4</option>\n" +
                     "  <option value=\"5\">5</option>\n" +
-                "</select><br />";       
-        form += "<label for='firstName'>First Name:</label>\n";
-        form += "<input type='text' name='firstName' value='" + firstName +  "' placeholder='John' /><br />\n";
-        form += "<label for='lastName'>Last Name:</label>\n";
-        form += "<input type='text' name='lastName' value='" + lastName +  "' placeholder='Smith' /><br />\n";
-        form += "<label for='email'>Email:</label>\n";
-        form += "<input type='email' id='email' name='email' value='" + email +  "' placeholder='martin@live.ie' /><br />\n";
-        form += "<label for='password1'>Password:</label>\n";
-        form += "<input type='password' name='password1' /><br />\n";
-        form += "<label for='password2'>Confirm Password:</label>\n";
-        form += "<input type='password' name='password2' /><br />\n"; 
-        
+                "</select><br />" 
+                    + "</div>\n" 
+                    + "</div>\n"; 
+        form += "<div class=\"form-group row\">";
+        form += "<label class=\"col-sm-2 form-control-label\" for='firstName'>First Name:</label>\n";
+        form += "<div class=\"col-sm-10\">";
+        form += "<input class=\"form-control\" type='text' name='firstName' value='" + firstName +  "' placeholder='John' /><br />\n" 
+                    + "</div>\n" 
+                    + "</div>\n";
+        form += "<div class=\"form-group row\">";
+        form += "<label class=\"col-sm-2 form-control-label\" for='lastName'>Last Name:</label>\n";
+        form += "<div class=\"col-sm-10\">";
+        form += "<input class=\"form-control\" type='text' name='lastName' value='" + lastName +  "' placeholder='Smith' /><br />\n" 
+                    + "</div>\n" 
+                    + "</div>\n";
+        form += "<div class=\"form-group row\">";
+        form += "<label class=\"col-sm-2 form-control-label\" for='email'>Email:</label>\n";
+        form += "<div class=\"col-sm-10\">";
+        form += "<input class=\"form-control\" type='email' id='email' name='email' value='" + email +  "' placeholder='martin@live.ie' /><br />\n" 
+                    + "</div>\n" 
+                    + "</div>\n";
+        form += "<div class=\"form-group row\">";
+        form += "<label class=\"col-sm-2 form-control-label\" for='password1'>Password:</label>\n";
+        form += "<div class=\"col-sm-10\">";
+        form += "<input class=\"form-control\" type='password' name='password1' /><br />\n" 
+                    + "</div>\n" 
+                    + "</div>\n";
+        form += "<div class=\"form-group row\">";
+        form += "<label class=\"col-sm-2 form-control-label\" for='password2'>Confirm Password:</label>\n";
+        form += "<div class=\"col-sm-10\">";
+        form += "<input class=\"form-control\" type='password' name='password2' /><br />\n" 
+                    + "</div>\n" 
+                    + "</div>\n"; 
+        form += "<div class=\"form-group row\">";
+        form += "<div class=\"form-group row\">\n" +
+            "    <div class=\"col-sm-offset-2 col-sm-10\">\n";
         form += "<input type='submit' value='Submit' name='submit' /><br />\n";
-        form += "</form>\n";
+        form += "</div>\n";
+        form += "</div>\n";
+        form += "</form></p>\n";
         
         return form;
     }
