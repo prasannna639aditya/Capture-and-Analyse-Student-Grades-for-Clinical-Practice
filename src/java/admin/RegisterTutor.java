@@ -247,30 +247,60 @@ public class RegisterTutor {
         }
         return true;
     }
-
-
-    
-     public String registrationForm( ) {
-        String form = "<form name='registration_form' action='registerTutor.jsp' method='POST'>\n";
-        form += "<label for='tutorID'>Id Number:</label>\n";
-        form += "<input type='text' name='tutorID' value='" + tutorID + "' placeholder='554678' /><br />\n";
-        
-        form += "<label for='firstName'>First Name:</label>\n";
-        form += "<input type='text' name='firstName' value='" + firstName +  "' placeholder='John' /><br />\n";
-        form += "<label for='lastName'>Last Name:</label>\n";
-        form += "<input type='text' name='lastName' value='" + lastName +  "' placeholder='Smith' /><br />\n";
-        form += "<label for='department'>Department:</label>\n";
-        form += "<input type='text' name='department' value='" + department +  "' placeholder='Restorative' /><br />\n";
-        form += "<label for='email'>Email:</label>\n";
-        form += "<input type='text' name='email' value='" + email +  "' placeholder='joe@ucc.ie' /><br />\n";
-        form += "<label for='password1'>Password:</label>\n";
-        form += "<input type='password' name='password1' /><br />\n";
-        form += "<label for='password2'>Confirm Password:</label>\n";
-        form += "<input type='password' name='password2' /><br />\n"; 
-        
+     
+     public String registrationForm() {
+        String form = "<p><form name='registration_form' action='registerTutor.jsp' method='POST'>\n";
+        form += "<div class=\"form-group row\">";
+        form += "<label class=\"col-sm-2 form-control-label\" for='tutorID'>Id Number:</label>\n";
+        form += "<div class=\"col-sm-10\">";
+        form += "<input type='text' class=\"form-control\" name='tutorID' value='" + tutorID + "' placeholder='555647' /><br />\n" 
+                        + "</div>\n" 
+                        + "</div>\n";
+        form += "<div class=\"form-group row\">";
+        form += "<label class=\"col-sm-2 form-control-label\" for='firstName'>First Name:</label>\n";
+        form += "<div class=\"col-sm-10\">";
+        form += "<input class=\"form-control\" type='text' name='firstName' value='" + firstName +  "' placeholder='John' /><br />\n" 
+                    + "</div>\n" 
+                    + "</div>\n";
+        form += "<div class=\"form-group row\">";
+        form += "<label class=\"col-sm-2 form-control-label\" for='lastName'>Last Name:</label>\n";
+        form += "<div class=\"col-sm-10\">";
+        form += "<input class=\"form-control\" type='text' name='lastName' value='" + lastName +  "' placeholder='Smith' /><br />\n" 
+                    + "</div>\n" 
+                    + "</div>\n";
+        form += "<div class=\"form-group row\">";
+        form += "<label class=\"col-sm-2 form-control-label\" for='email'>Email:</label>\n";
+        form += "<div class=\"col-sm-10\">";
+        form += "<input class=\"form-control\" type='email' id='email' name='email' value='" + email +  "' placeholder='martin@live.ie' /><br />\n" 
+                    + "</div>\n" 
+                    + "</div>\n";
+        form += "<div class=\"form-group row\">";
+        form += "<label class=\"col-sm-2 form-control-label\" for='department'>Department:</label>\n";
+        form += "<div class=\"col-sm-10\">";
+        form += "<input class=\"form-control\" type='text' id='department' name='department' value='" + department +  "' placeholder='Restorative' /><br />\n" 
+                    + "</div>\n" 
+                    + "</div>\n";
+        form += "<div class=\"form-group row\">";
+        form += "<label class=\"col-sm-2 form-control-label\" for='password1'>Password:</label>\n";
+        form += "<div class=\"col-sm-10\">";
+        form += "<input class=\"form-control\" type='password' name='password1' /><br />\n" 
+                    + "</div>\n" 
+                    + "</div>\n";
+        form += "<div class=\"form-group row\">";
+        form += "<label class=\"col-sm-2 form-control-label\" for='password2'>Confirm Password:</label>\n";
+        form += "<div class=\"col-sm-10\">";
+        form += "<input class=\"form-control\" type='password' name='password2' /><br />\n" 
+                    + "</div>\n" 
+                    + "</div>\n"; 
+        form += "<div class=\"form-group row\">";
+        form += "<div class=\"form-group row\">\n" +
+            "    <div class=\"col-sm-offset-2 col-sm-10\">\n";
         form += "<input type='submit' value='Submit' name='submit' /><br />\n";
-        form += "</form>\n";
+        form += "</div>\n";
+        form += "</div>\n";
+        form += "</form></p>\n";
         
         return form;
     }
+
 }

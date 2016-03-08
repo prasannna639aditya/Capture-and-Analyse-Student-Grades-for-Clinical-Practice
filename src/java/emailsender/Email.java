@@ -27,8 +27,8 @@ public class Email {
     private final Session session;
     
     public Email( ) {
-        this.username = "jamesdelaney@umail.ucc.ie";
-        this.password = "";
+        this.username = "112445898@umail.ucc.ie";
+        this.password = "IPNTclyv43";
         
         this.props = new Properties( );
         props.put( "mail.smtp.auth", "true" );
@@ -59,7 +59,7 @@ public class Email {
                               + "<p><b>If you face any problems, please write to us on this email.</b></p>"
                               + "<p>We look forward to seeing you on the site!</p>" 
                               + "<p>The CUDH Team!</p><br />"
-                              + "<p>Developed by: James Delaney</p>", 
+                              + "<p></p>", 
                              
                                 "text/html; charset=utf-8" );
             Transport.send( message );

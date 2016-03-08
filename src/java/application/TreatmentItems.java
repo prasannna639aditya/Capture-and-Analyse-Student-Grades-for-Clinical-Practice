@@ -143,6 +143,23 @@ public class TreatmentItems {
         return grade;
     }
     
+    public String buttonNav(){
+        String  form = "<p>  </p>\n";
+                
+                form += "<div id=\"fixed\"><ul class=\"nav nav-pills nav-justified\">\n" +
+                        "  <li class=\"active\"><a href='#info'>Info</a></li>\n" +
+                        "  <li><a href='#periodontics'>Periodontics</a></li>\n" +
+                        "  <li><a href='#prevention'>Prevention</a></li>\n" +
+                        "  <li><a href='#direct'>Direct Restorations</a></li>\n" +
+                        "  <li><a href='#indirect'>Indirect Restorations</a></li>\n" +
+                        "  <li><a href='#endo'>Endodontics</a></li>\n" +
+                        "  <li><a href='#pros'>Prosthodontics</a></li>\n" +
+                        "  <li><a href='#tooth'>Tooth Whitening</a></li>\n" +
+                        "</ul></div>";
+                 
+        return form;
+    }
+    
     public String showScore( String StudentID, String TreatmentID ) throws SQLException {
         TreatmentItems treatment = new TreatmentItems();
         DatabaseClass database = new DatabaseClass( );

@@ -329,6 +329,7 @@ public class GUI {
             "            <li class=\"active\"><a href=\"../adminWelcome.jsp\"><span class=\"glyphicon glyphicon-home\"></span> Home</a></li>\n" +  
             "            <li class=\"active\"><a href=\"registerStudent.jsp\"><span class=\"glyphicon glyphicon-pencil\"></span> Register Student</a></li>\n" + 
             "            <li class=\"active\"><a href=\"registerTutor.jsp\"><span class=\"glyphicon glyphicon-edit\"></span> Register Tutor</a></li>\n" +
+            "            <li class=\"active\"><a href=\"registerPatient.jsp\"><span class=\"glyphicon glyphicon-plus\"></span> Create Patient</a></li>\n" +
             "\n" +
             "\n" +
             "\n" +

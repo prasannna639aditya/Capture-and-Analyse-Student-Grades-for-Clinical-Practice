@@ -139,14 +139,17 @@ public class StudentLogin {
         
         if( StudentID.equals( "" ) ) {
             isValid = false;
+            StudentID = "";
         }
         if( password.equals( "" ) ) {
             errors.add( "Please enter a valid password" );
             isValid = false;
+            password = "";
         }
         if( PasswordHash.check( password, passwordToCheck) == false){
            errors.add( "Student ID or Password is incorrect" );
            isValid = false;
+           password = "";
         }
         
         

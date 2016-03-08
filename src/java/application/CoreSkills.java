@@ -384,37 +384,6 @@ public class CoreSkills {
     
     
     
-    /**
-    public boolean checkPassword( HttpServletRequest request ) throws NoSuchAlgorithmException, InvalidKeySpecException, Exception  {
-        DatabaseClass database = new DatabaseClass( );
-        //database.setup( "ec2-52-48-85-26.eu-west-1.compute.amazonaws.com", "final_year_project", "root", "IPNTclyv43" );
-        database.setup( "localhost", "final_year_project", "root", "" );
-
-        
-        
-        tutorID = request.getParameter( "TutorID" );
-        
-        
-        result = database.SelectRow( "SELECT * FROM Tutors WHERE TutorID = '" + tutorID + "';" );
-        
-        if( result.length != 0 ) {
-            tutorID = result[0];
-            passwordToCheck = result[4];
-            
-        }
-        
-        if( ! validateMarkingForm( ) ){
-            return false;
-        }
-        System.out.println(passwordToCheck);
-        System.out.println(password);
-        //database.Close();
-  
-        return result.length != 0;
-    }**/
-    
-    
-    
     public boolean validateMarkingForm( ) throws Exception {
         boolean isValid = true; 
         
@@ -431,18 +400,13 @@ public class CoreSkills {
         if( ! isInteger( patientID ) && patientID.length() > 8){
             errors.add( "Please enter a valid Patient" );
             isValid = false;
+            patientID = "";
         }
         
-       /** if( validateStudent(studentID, password) == false){
-            errors.add( "Students password is not correct." );
-            isValid = false;
-        }**/
-        
-        if( isValid ) {
-            CoreSkills core = new CoreSkills();
-            getStudent( studentID );
-            markStudent( );
-            
+        if( PasswordHash.check( password, passwordToCheck) == false){
+           errors.add( "Students password is incorrect. Please get the student to re-enter their password." );
+           isValid = false;
+           password = "";
         }  
         
         return isValid;
@@ -458,11 +422,11 @@ public class CoreSkills {
     public String printErrors( ) {
         String errorList;
         
-        errorList = "<ul>";
+        errorList = "<div>";
             for( String error: errors ) {
-                errorList += "<li>" + error + "</li>";
+                errorList += "<p>" + error + "</p";
             }
-        errorList += "</ul>";
+        errorList += "</div>";
         
         return errorList;
     }
@@ -512,13 +476,16 @@ public class CoreSkills {
     
     public String buttonNav(){
         String  form = "<p>  </p>\n";
-                form += "<a href='#info'><button type=\"button\" class=\"btn btn-primary btn-sm\">Info</button></a>\n" +
-                    "<a href='#core'><button type=\"button\" class=\"btn btn-primary btn-sm\">Core</button></a>\n" +
-                    "<a href='#basic'><button type=\"button\" class=\"btn btn-primary btn-sm\">Basic</button></a>\n" +
-                    "<a href='#professionalism'><button type=\"button\" class=\"btn btn-primary btn-sm\">Professionalism</button></a>\n" +
-                    "<a href='#communication'><button type=\"button\" class=\"btn btn-primary btn-sm\">Communication</button></a>\n" +
-                    "<a href='#knowledge'><button type=\"button\" class=\"btn btn-primary btn-sm\">Knowledge</button></a>\n" +
-                    "<a href='#review'><button type=\"button\" class=\"btn btn-primary btn-sm\">Review</button></a>\n";
+                
+                form += "<div id=\"fixed\"><ul class=\"nav nav-pills nav-justified\">\n" +
+                        "  <li class=\"active\"><a href='#info'>Info</a></li>\n" +
+                        "  <li><a href='#core'>Core</a></li>\n" +
+                        "  <li><a href='#basic'>Basic</a></li>\n" +
+                        "  <li><a href='#professionalism'>Professionalism</a></li>\n" +
+                        "  <li><a href='#communication'>Communication</a></li>\n" +
+                        "  <li><a href='#knowledge'>Knowledge</a></li>\n" +
+                        "  <li><a href='#review'>Review</a></li>\n" +
+                        "</ul></div>";
                  
         return form;
     }
@@ -917,7 +884,7 @@ public class CoreSkills {
         form += "<div class=\"form-group row\">\n";
         form += "<label class=\"col-sm-2\" for='password'>Students Password:</label>\n" +
                 "<div class=\"col-sm-10\">\n";
-        form += "<input type=\"password\" class=\"form-control\" id=\"exampleInputPassword1\" name=\"password\" placeholder=\"Enter Password\"/><br />\n"
+        form += "<input type=\"password\" class=\"form-control\" id=\"exampleInputPassword1\" name=\"password\" placeholder=\"Student is required to enter their password\"/><br />\n"
                 + "</div>\n" 
                 + "</div>\n";
         form += "<div class=\"form-group row\">\n" +
@@ -974,13 +941,13 @@ public class CoreSkills {
         return form;
     }
     
-    public boolean validateStudent(String password, String studentID) throws Exception{
+    public boolean validateStudent(HttpServletRequest request) throws Exception{
         DatabaseClass database = new DatabaseClass( );
         database.setup( "localhost", "final_year_project", "root", "" );
         //database.setup( "ec2-52-31-84-76.eu-west-1.compute.amazonaws.com", "final_year_project", "root", "IPNTclyv43" );
         PasswordHash hash = new PasswordHash();
  
-        password = password;
+        password = request.getParameter( "password" );
         boolean isValid = true;
         
         result = database.SelectRow( "SELECT * FROM Students WHERE StudentID = 119876543;" );
@@ -991,11 +958,13 @@ public class CoreSkills {
             passwordToCheck = result[1];
         }
         
-        if( PasswordHash.check( password, passwordToCheck) == false){
-           isValid = false;
+        if( ! validateMarkingForm( ) ){
+            return false;
         }
+        
+        //database.Close();
   
-        return isValid;
+        return result.length != 0;
         
     }
 }

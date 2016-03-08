@@ -59,7 +59,8 @@
                    
                 }
                 else {
-                    if( core.validateMarkingForm( ) ) {
+                    if( core.validateStudent( request ) ) {
+                        core.markStudent();
                         out.print( "<p>You have successfully graded </p>" + treatment.fetchStudentName(core.getStudentID()) + ".</p>"  );
                         //out.print( "<p>Treatment </p>" + treatment.fetchTreatmentName(treatment.getTreatmentID()) + ".</p>"  );
                        // out.print( treatment.clinicalAlert(core.getStudentID(),treatment.getTreatmentID()));
@@ -67,8 +68,9 @@
                     }
                     else{
                         out.print( core.buttonNav()); 
-                        out.print( core.markingForm( TutorID, treatment.getStudentID(),treatment.getTreatmentID() ) );
                         out.print( core.printErrors( ) );
+                        out.print( core.markingForm( TutorID, treatment.getStudentID(),treatment.getTreatmentID() ) );
+                        
                     }
                 }
                out.print(gui.footer());   

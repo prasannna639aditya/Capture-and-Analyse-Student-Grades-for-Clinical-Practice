@@ -199,7 +199,7 @@ public class RegisterStudent {
             // send an email to new registered users.
             
             Email email = new Email( );
-            email.sendEmailToNewRegUser( studentID, firstName, getEmail( ) );
+            email.sendEmailToNewRegUser( studentID, firstName, getEmail() );
         }
         
         return isValid;
@@ -217,7 +217,7 @@ public class RegisterStudent {
      * Function to register the new student into the database.
      */
     public void registerNewUser(  ) throws NoSuchAlgorithmException, InvalidKeySpecException, Exception {
-       
+        
         database.Insert( "INSERT INTO Students( StudentID, Password, FirstName, LastName, Email )" +
                          "VALUES( '" + studentID + "', '" + PasswordHash.getSaltedHash(password2)  + "', '" + firstName + "', '" + lastName+ "', '" + email + "');" );
         

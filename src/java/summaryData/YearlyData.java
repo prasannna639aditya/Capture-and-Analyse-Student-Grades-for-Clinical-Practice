@@ -29,24 +29,10 @@ public class YearlyData {
         this.result = new String[10];
     }
     
-    public String showCore( int score, String year ) throws SQLException {
+    public String showCore() throws SQLException {
         Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
         
-        String query =( "SELECT tb.StudentID, "
-                + "SUM(AbilityToEstablishDiagnosis = 1) AS AbilToEstDiagCount, "
-                + "SUM(AbilityToFormulateATreatmentPlan = " + score + " ) AS AbilToFormATreatmentPlanCount, "
-                + "SUM(EnsuringInformedConsent = " + score + " ) AS EnsuringInfConCount, "
-                + "SUM(EquipmentPreparationSelection = " + score + " ) AS EquipPrepSelectCount, "
-                + "SUM(ExaminationIntraOralHardTissues = " + score + " ) AS ExamIntraOralHardCount, "
-                + "SUM(ExaminationIntraOralSoftTissues = " + score + " ) AS ExamIntraOralSoftCount, "
-                + "SUM(ExtraOralExamination = " + score + " ) AS ExtraOralExaminationCount, "
-                + "SUM(InfectionControl = " + score + " ) AS InfectionControlCount, "
-                + "SUM(InterpretationOfSpeciaInvestigations = " + score + " ) AS InterpOfSpeciaInvestCount, "
-                + "SUM(LocalAnaesthesiaBlock = " + score + " ) AS LocalAnaesthesiaBlockCount, "
-                + "SUM(LocalAnaesthesiaInfiltration = " + score + " ) AS LocalAnaesthesiaInfiltrationCount, "
-                + "SUM(ManagementOfComplications = " + score + " ) AS ManagementOfComplicationsCount, "
-                + "SUM(MaterialSelectionAndHandling = " + score + " ) AS MaterialSelectionAndHandlingCount " 
-                + "FROM TBICoreSkills AS tb WHERE tb.DateAdded LIKE %" + year + "%;" );
+        String query =( "SELECT * FROM TBICoreSkills WHERE DateAdded LIKE '%2016%';" );
         
         
         
@@ -58,31 +44,14 @@ public class YearlyData {
         String form = "<div>\n";
         while(rs.next()){
              
-               int AbilToEstDiagInt = Integer.parseInt(rs.getString("AbilToEstDiagCount"));
-               int AbilToFormATreatmentPlanInt = Integer.parseInt(rs.getString("AbilToFormATreatmentPlanCount"));
-               int EnsuringInfConInt = Integer.parseInt(rs.getString("EnsuringInfConCount"));
-               int EquipPrepSelectInt = Integer.parseInt(rs.getString("EquipPrepSelectCount"));
-               int ExamIntraOralHardInt = Integer.parseInt(rs.getString("ExamIntraOralHardCount"));
-               int ExamIntraOralSoftCountInt = Integer.parseInt(rs.getString("ExamIntraOralSoftCount"));
-               int ExtraOralExaminationInt = Integer.parseInt(rs.getString("ExtraOralExaminationCount"));
-               int InfectionControlInt = Integer.parseInt(rs.getString("InfectionControlCount"));
-               int InterpOfSpeciaInvestInt = Integer.parseInt(rs.getString("InterpOfSpeciaInvestCount"));
-               int LocalAnaesthesiaBlockInt = Integer.parseInt(rs.getString("LocalAnaesthesiaBlockCount"));
-               int LocalAnaesthesiaInfiltrationInt = Integer.parseInt(rs.getString("LocalAnaesthesiaInfiltrationCount"));
-               int ManagementOfComplicationsInt = Integer.parseInt(rs.getString("ManagementOfComplicationsCount"));
-               int MaterialSelectionAndHandlingInt = Integer.parseInt(rs.getString("MaterialSelectionAndHandlingCount"));
-               
-               countTotal = AbilToEstDiagInt + AbilToFormATreatmentPlanInt + EnsuringInfConInt + EquipPrepSelectInt + ExamIntraOralHardInt + ExamIntraOralSoftCountInt + ExtraOralExaminationInt + InfectionControlInt + InterpOfSpeciaInvestInt + LocalAnaesthesiaBlockInt + LocalAnaesthesiaInfiltrationInt + ManagementOfComplicationsInt + MaterialSelectionAndHandlingInt;
-               //form += "<h1>Core Skills Generic ount total " + countTotal + "</h1>\n";
-               form += countTotal;
-               form += "</div>\n";
+               form += "<p>" + rs.getString("StudentID") + "</p>";
         }
         
         conn.close();
         return form;
     }
     
-    public String showBasic( int score, String year) throws SQLException {
+    public String showBasic( int score, String group ) throws SQLException {
         Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
         
         String query =( "SELECT SUM(AppropriatePatientPosition = 1) AS AppropriatePatientPositionCount,"
@@ -90,7 +59,9 @@ public class YearlyData {
                 + "SUM(AppropriateLightPosition = " + score + " ) AS AppropriateLightPositionCount, "
                 + "SUM(AppropriateUseOfMirror = " + score + " ) AS AppropriateUseOfMirrorCount, "
                 + "SUM(AppropriateFingerSupport = " + score + " ) AS AppropriateFingerSupportCount " 
-                + "FROM TBICoreSkills AS tb WHERE tb.DateAdded LIKE %" + year + "%;" );
+                + "FROM TBICoreSkills AS tb JOIN Students JOIN StudentGroups JOIN StudentClass JOIN CourseYear"
+                            + " ON Students.StudentID = StudentClass.StudentID AND StudentClass.GroupID = StudentGroups.GroupID AND StudentClass.YearID = CourseYear.YearID"
+                            + " WHERE tb.DateAdded LIKE '%" + group + "%';" );
         
         Statement stmt = conn.createStatement();
         ResultSet rs = stmt.executeQuery(query);
@@ -115,11 +86,13 @@ public class YearlyData {
     }
     
     
-    public String showProfessionalism( int score, String year ) throws SQLException {
+    public String showProfessionalism( int score, String group ) throws SQLException {
         Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
         
         String query =( "SELECT SUM(Professionalism = " + score + ") AS ProfessionalismCount "
-                + "FROM TBICoreSkills AS tb WHERE tb.DateAdded LIKE %" + year + "%;" );
+                + "FROM TBICoreSkills AS tb JOIN Students JOIN StudentGroups JOIN StudentClass JOIN CourseYear"
+                            + " ON Students.StudentID = StudentClass.StudentID AND StudentClass.GroupID = StudentGroups.GroupID AND StudentClass.YearID = CourseYear.YearID"
+                            + " WHERE tb.DateAdded LIKE '%" + group + "%';" );
         
         Statement stmt = conn.createStatement();
         ResultSet rs = stmt.executeQuery(query);
@@ -139,11 +112,13 @@ public class YearlyData {
         return form;
     }
     
-    public String showCommunication( int score, String year ) throws SQLException {
+    public String showCommunication( int score, String group ) throws SQLException {
         Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
         
         String query =( "SELECT SUM(Communication = " + score + ") AS CommunicationCount "
-                + "FROM TBICoreSkills AS tb WHERE tb.DateAdded LIKE %" + year + "%;" );
+                + "FROM TBICoreSkills AS tb JOIN Students JOIN StudentGroups JOIN StudentClass JOIN CourseYear"
+                            + " ON Students.StudentID = StudentClass.StudentID AND StudentClass.GroupID = StudentGroups.GroupID AND StudentClass.YearID = CourseYear.YearID"
+                            + " WHERE tb.DateAdded LIKE '%" + group + "%';" );
         
         Statement stmt = conn.createStatement();
         ResultSet rs = stmt.executeQuery(query);
@@ -163,11 +138,13 @@ public class YearlyData {
         return form;
     }
     
-    public String showKnowledge( int score, String year) throws SQLException {
+    public String showKnowledge( int score, String group ) throws SQLException {
         Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
         
         String query =( "SELECT SUM(Knowledge= " + score + ") AS KnowledgeCount "
-                + "FROM TBICoreSkills AS tb WHERE tb.DateAdded LIKE %" + year + "%;" );
+                + "FROM TBICoreSkills AS tb JOIN Students JOIN StudentGroups JOIN StudentClass JOIN CourseYear"
+                            + " ON Students.StudentID = StudentClass.StudentID AND StudentClass.GroupID = StudentGroups.GroupID AND StudentClass.YearID = CourseYear.YearID"
+                            + " WHERE tb.DateAdded LIKE '%" + group + "%';" );
         
         Statement stmt = conn.createStatement();
         ResultSet rs = stmt.executeQuery(query);
@@ -187,7 +164,7 @@ public class YearlyData {
         return form;
     }
     
-    public String studentData(String group) throws SQLException{
+    public String studentData() throws SQLException{
         GroupSummaryData check = new GroupSummaryData();
         String form = "<table class=\"table table-striped table-bordered table-condensed\" width=\"647\">\n";
                    form += "<thead>\n";
@@ -207,52 +184,20 @@ public class YearlyData {
                    form += "</thead>\n";
                    form += "<tr>";
                    form += "<th>Core Skills Generic</th>\n";
-                   form += "<th>" + check.showCore(1,group) + "</th>\n";
-                   form += "<th>" + check.showCore(2,group) + "</th>\n";
-                   form += "<th>" + check.showCore(3,group) + "</th>\n";
-                   form += "<th>" + check.showCore(4,group) + "</th>\n";
-                   form += "<th>" + check.showCore(5,group) + "</th>\n";
-                   form += "<th>" + check.showCore(6,group) + "</th>\n";
-                   form += "</tr>\n";
-                   form += "<tr>";
-                   form += "<th>Basic Operative Skills</th>\n";
-                   form += "<th>" + check.showBasic(1,group) + "</th>\n";
-                   form += "<th>" + check.showBasic(2,group) + "</th>\n";
-                   form += "<th>" + check.showBasic(3,group) + "</th>\n";
-                   form += "<th>" + check.showBasic(4,group) + "</th>\n";
-                   form += "<th>" + check.showBasic(5,group) + "</th>\n";
-                   form += "<th>" + check.showBasic(6,group) + "</th>\n";
-                   form += "</tr>\n";
-                   form += "<tr>";
-                   form += "<th>Professionalism</th>\n";
-                   form += "<th>" + check.showProfessionalism(1,group) + "</th>\n";
-                   form += "<th>" + check.showProfessionalism(2,group) + "</th>\n";
-                   form += "<th>" + check.showProfessionalism(3,group) + "</th>\n";
-                   form += "<th>" + check.showProfessionalism(4,group) + "</th>\n";
-                   form += "<th>" + check.showProfessionalism(5,group) + "</th>\n";
-                   form += "<th>" + check.showProfessionalism(6,group) + "</th>\n";
-                   form += "</tr>\n";
-                   form += "<tr>";
-                   form += "<th>Communication</th>\n";
-                   form += "<th>" + check.showCommunication(1,group) + "</th>\n";
-                   form += "<th>" + check.showCommunication(2,group) + "</th>\n";
-                   form += "<th>" + check.showCommunication(3,group) + "</th>\n";
-                   form += "<th>" + check.showCommunication(4,group) + "</th>\n";
-                   form += "<th>" + check.showCommunication(5,group) + "</th>\n";
-                   form += "<th>" + check.showCommunication(6,group) + "</th>\n";
-                   form += "</tr>\n";
-                   form += "<tr>";
-                   form += "<th>Knowledge</th>\n";
-                   form += "<th>" + check.showKnowledge(1,group) + "</th>\n";
-                   form += "<th>" + check.showKnowledge(2,group) + "</th>\n";
-                   form += "<th>" + check.showKnowledge(3,group) + "</th>\n";
-                   form += "<th>" + check.showKnowledge(4,group) + "</th>\n";
-                   form += "<th>" + check.showKnowledge(5,group) + "</th>\n";
-                   form += "<th>" + check.showKnowledge(6,group) + "</th>\n";
-                   form += "</tr>\n";
+                   form += showCore();
                    form += "</tr>\n";
                    
         return form;
     }
+    
+    public String searchBox(){
+        String form = "<div class=\"input-group\">\n" +
+        "      <input type=\"text\" class=\"form-control\" placeholder=\"Search for...\">\n" +
+        "      <input type='submit' value='Submit' name='submit' /><br />\n" +
+        "    </div><!-- /input-group --></li>\n";
+        
+        return form;
+    }
+    
     
 }

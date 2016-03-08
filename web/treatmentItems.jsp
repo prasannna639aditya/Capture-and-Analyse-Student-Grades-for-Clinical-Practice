@@ -37,32 +37,33 @@
             }
             else {
                 out.print(gui.tutorNavigation());
+                out.print(treatmentItem.buttonNav());
                 %>
-                <h1>Periodontics</h1>
+                <a  name="periodontics"></a><h2>Periodontics</h2>
                 <%
                         out.print( treatmentItem.fetchTreatments( lookup.getStudentID(), "1" ) );
                 %>
-                <h1>Prevention</h1>
+                <a  name="prevention"></a><h2>Prevention</h2>
                 <%
                         out.print( treatmentItem.fetchTreatments( lookup.getStudentID(), "2" ) );
                 %>
-                <h1>Direct Restorations</h1>
+                <a  name="direct"></a><h2>Direct Restorations</h2>
                 <%
                         out.print( treatmentItem.fetchTreatments( lookup.getStudentID(), "3" ) );
                 %>
-                <h1>Indirect Restorations</h1>
+                <a  name="indirect"></a><h2>Indirect Restorations</h2>
                 <%
                         out.print( treatmentItem.fetchTreatments( lookup.getStudentID(), "4" ) );
                 %>
-                <h1>Endodontics</h1>
+                <a  name="endo"></a><h2>Endodontics</h2>
                 <%
                         out.print( treatmentItem.fetchTreatments( lookup.getStudentID(), "5" ) );
                 %>
-                <h1>Prosthodontics</h1>
+                <a  name="pros"></a><h2>Prosthodontics</h2>
                 <%
                         out.print( treatmentItem.fetchTreatments( lookup.getStudentID(), "6" ) );
                 %>
-                <h1>Tooth Whitening</h1>
+                <a  name="tooth"></a><h2>Tooth Whitening</h2>
                 <%
                         out.print( treatmentItem.fetchTreatments( lookup.getStudentID(), "7" ) );
         

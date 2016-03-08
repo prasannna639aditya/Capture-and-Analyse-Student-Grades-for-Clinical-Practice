@@ -30,9 +30,10 @@
           GUI gui = new GUI( );
           StudentLookup look = new StudentLookup();
           YearlyData year = new YearlyData();
+          GroupSummaryData group = new GroupSummaryData();
           out.print(gui.tutorSummaryNavigation2());
           out.println("2016 Summary Data");      
-          out.print(year.studentData("2016"));
+          out.print(year.studentData());
           out.print(gui.footer());  
         %>   
         
