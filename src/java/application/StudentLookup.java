@@ -233,5 +233,15 @@ public class StudentLookup {
         conn.close();
         return form;
     }
+    
+    public String returnToTreatments( String studentID){
+         String form = "<tr>\n";
+                form += "<td><form name='treatments' action='treatmentItems.jsp' method='POST'>";
+                form += "<td><input type=\"hidden\" value='" + studentID + "' name=\"StudentID\" class=\"form-control\"></td>\n";
+                form += "<td><input type=\"submit\" value=\"Return to students treatments\" class=\"btn-style\"></form></td>";
+                form += "</tr>\n";
+                
+          return form;
+    }
 
 }

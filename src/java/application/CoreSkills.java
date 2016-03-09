@@ -403,6 +403,12 @@ public class CoreSkills {
             patientID = "";
         }
         
+        if( password.equals( "" ) ) {
+            errors.add( "Please get the student to re-enter their password." );
+            isValid = false;
+            password = "";
+        }
+        
         if( PasswordHash.check( password, passwordToCheck) == false){
            errors.add( "Students password is incorrect. Please get the student to re-enter their password." );
            isValid = false;

@@ -17,6 +17,7 @@
         <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
         <link href="css/sidebar.css" rel="stylesheet">
         <link href="css/dropdown.css" rel="stylesheet">
+        <link href="css/table2.css" rel="stylesheet">
         <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
         <script src="js/sidebar.js"></script>
         <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
@@ -37,36 +38,57 @@
             }
             else {
                 out.print(gui.tutorNavigation());
-                out.print(treatmentItem.buttonNav());
                 %>
-                <a  name="periodontics"></a><h2>Periodontics</h2>
+                <p>
+                <div class="container">
+                        <ul class="nav nav-tabs">
+                            <li class="nav active"><a href="#A" data-toggle="tab">Periodontics</a></li>
+                            <li class="nav"><a href="#B" data-toggle="tab">Prevention</a></li>
+                            <li class="nav"><a href="#C" data-toggle="tab">Direct Restorations</a></li>
+                            <li class="nav"><a href="#D" data-toggle="tab">Indirect Restorations</a></li>
+                            <li class="nav"><a href="#E" data-toggle="tab">Endodontics</a></li>
+                            <li class="nav"><a href="#F" data-toggle="tab">Prosthodontics</a></li>
+                            <li class="nav"><a href="#G" data-toggle="tab">Tooth Whitening</a></li>
+                        </ul>
+                    <div class="tab-content">
+                <div class="tab-pane fade in active" id="A">
                 <%
                         out.print( treatmentItem.fetchTreatments( lookup.getStudentID(), "1" ) );
                 %>
-                <a  name="prevention"></a><h2>Prevention</h2>
+                </div>
+                <div class="tab-pane fade" id="B">
                 <%
                         out.print( treatmentItem.fetchTreatments( lookup.getStudentID(), "2" ) );
                 %>
-                <a  name="direct"></a><h2>Direct Restorations</h2>
+                </div>
+                <div class="tab-pane fade" id="C">
                 <%
                         out.print( treatmentItem.fetchTreatments( lookup.getStudentID(), "3" ) );
                 %>
-                <a  name="indirect"></a><h2>Indirect Restorations</h2>
+                </div>
+                <div class="tab-pane fade" id="D">
                 <%
                         out.print( treatmentItem.fetchTreatments( lookup.getStudentID(), "4" ) );
                 %>
-                <a  name="endo"></a><h2>Endodontics</h2>
+                </div>
+                <div class="tab-pane fade" id="E">
                 <%
                         out.print( treatmentItem.fetchTreatments( lookup.getStudentID(), "5" ) );
                 %>
-                <a  name="pros"></a><h2>Prosthodontics</h2>
+                </div>
+                <div class="tab-pane fade" id="F">
                 <%
                         out.print( treatmentItem.fetchTreatments( lookup.getStudentID(), "6" ) );
                 %>
-                <a  name="tooth"></a><h2>Tooth Whitening</h2>
+                </div>
+                <div class="tab-pane fade" id="G">
                 <%
                         out.print( treatmentItem.fetchTreatments( lookup.getStudentID(), "7" ) );
-        
+                %>
+                </div>
+                </p>
+                <%
+              
               }
                         
               session.setAttribute("attendance", treatmentItem.getAttendance( ) );

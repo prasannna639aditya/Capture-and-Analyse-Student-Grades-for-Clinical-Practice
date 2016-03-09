@@ -318,7 +318,19 @@ public class SearchBox {
         return form;
     }
     
-    
+    public String searchBox2(){
+        String form = "<div class=\"panel-body\">" +
+                       "<form name='marking_form' class=\"navbar-form\" role=\"search\" action='../studentSearch.jsp' method='POST'>\n" +  
+                       "<div class=\"form-group\">\n";
+               form += "<input type=\"text\" name='studentID' class=\"form-control\" placeholder=\"Search student ID\">\n" +
+                       "</select><br />" +
+                       "</div>" +
+                       "<button type=\"submit\" class=\"btn btn-default \"><span class=\"glyphicon glyphicon-circle-arrow-right\"></span></button><br />" +
+                       "</form>" +
+                       "</div>";
+        
+        return form;
+    }
     
     
     public String searchBox(){

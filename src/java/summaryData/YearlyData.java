@@ -54,7 +54,7 @@ public class YearlyData {
     public String showBasic( int score, String group ) throws SQLException {
         Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
         
-        String query =( "SELECT SUM(AppropriatePatientPosition = 1) AS AppropriatePatientPositionCount,"
+        String query =( "SELECT SUM(AppropriatePatientPosition = " + score + ") AS AppropriatePatientPositionCount,"
                 + "SUM(AppropriateOperatorPosition = " + score + " ) AS AppropriateOperatorPositionCount, "
                 + "SUM(AppropriateLightPosition = " + score + " ) AS AppropriateLightPositionCount, "
                 + "SUM(AppropriateUseOfMirror = " + score + " ) AS AppropriateUseOfMirrorCount, "

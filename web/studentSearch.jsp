@@ -4,6 +4,7 @@
     Author     : Delaney
 --%>
 
+<%@page import="summaryData.StudentTreatmentSummaryData"%>
 <%@page import="application.TreatmentItems"%>
 <%@page import="guipackage.SearchBox"%>
 <%@page import="summaryData.GroupSummaryData"%>
@@ -19,11 +20,14 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
         <link href="css/sidebar.css" rel="stylesheet">
+        <link href="css/table.css" rel="stylesheet">
         <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
         <script src="js/sidebar.js"></script>
         <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
         <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
         <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+
         <title>Student Summary Data</title>
         
         
@@ -33,6 +37,7 @@
         <jsp:useBean id="search" class="guipackage.SearchBox" scope="request" />
         <jsp:setProperty name="search" property="*" />
         
+        
         <%
           GUI gui = new GUI( );
           StudentLookup look = new StudentLookup();
@@ -40,6 +45,8 @@
           StudentSummaryData check = new StudentSummaryData();
           GroupSummaryData group = new GroupSummaryData();
           TreatmentItems name = new TreatmentItems();
+          StudentTreatmentSummaryData data = new StudentTreatmentSummaryData();
+          StudentLookup lookup = new StudentLookup();
           
           
           String studentID = search.getStudentID();
@@ -52,21 +59,46 @@
             }
 
             else{
+        %>
+        <p>
+        <div class="container">
+            <ul class="nav nav-tabs">
+                <li class="nav active"><a href="#A" data-toggle="tab">Domain Summary Data</a></li>
+                <li class="nav"><a href="#B" data-toggle="tab">Treatment Summary Data</a></li>
+            </ul>
+        <div class="tab-content">
+                <div class="tab-pane fade in active" id="A">
+        <%
               //String student = (String)request.getParameter("student");
+        %>
+        <p id="top">
+        <%
              out.println("See the summary data for" + name.fetchStudentName(search.getStudentID()));
+        %>
+        </p>
+        <p>
+        <%
              out.print(search.studentData(search.getStudentID()));
+        %>
+        </p>
+                </div>
+                <div class="tab-pane fade" id="B">
+                    <p>
+        <%
+             out.print(data.studentData(search.getStudentID()));
               // out.println(search.getStudentID());
             }
           }
+          
+        %>
+                    </p>
+                </div>
+            </div>
+        </div>      
+        <%
+          
           out.print(gui.footer());
         %> 
-           
-               
-         </div>    
-        </div>
-       </div>
-     </div>
-    </div>
-        
+    </p>
     </body>
 </html>

@@ -298,26 +298,7 @@ public class GUI {
             "                <span class=\"icon-bar\"></span>\n" +
             "                <span class=\"icon-bar\"></span>\n" +
             "            </button>\n" +
-            "\n" +
-            "            <!-- Brand -->\n" +
-            "            <div class=\"brand-name-wrapper\">\n" +
-            "                <a class=\"navbar-brand\" href=\"../index.jsp\">\n" +
-            "                 <span class=\"glyphicon glyphicon-repeat\">   Logout\n" +
-            "                </a>\n" +
-            "            </div>\n" +
-            "\n" +
-            "            <!-- Search -->\n" +
-            "            <a data-toggle=\"collapse\" href=\"#search\" class=\"btn btn-default\" id=\"search-trigger\">\n" +
-            "                <span class=\"glyphicon glyphicon-search\"></span>\n" +
-            "            </a>\n" +
-            "\n" +
-            "            <!-- Search body -->\n" +
-            "            <div id=\"search\" class=\"panel-collapse collapse\">\n" +
-            "                <div class=\"panel-body\">\n";
-            SearchBox search = new SearchBox();
-            form += search.searchBox();
-            form +=        "                </div>\n" +
-            "            </div>\n" +
+            "\n" +       
             "        </div>\n" +
             "\n" +
             "    </div>\n" +
@@ -381,7 +362,7 @@ public class GUI {
             "            <div id=\"search\" class=\"panel-collapse collapse\">\n" +
             "                <div class=\"panel-body\">\n";
             SearchBox search = new SearchBox();
-            form += search.searchBox();
+            form += search.searchBox2();
             form +=        "                </div>\n" +
             "            </div>\n" +
             "        </div>\n" +
@@ -493,7 +474,7 @@ public class GUI {
             "            <div id=\"search\" class=\"panel-collapse collapse\">\n" +
             "                <div class=\"panel-body\">\n";
             SearchBox search = new SearchBox();
-            form += search.searchBox();
+            form += search.searchBox2();
             form +=        "                </div>\n" +
             "            </div>\n" +
             "        </div>\n" +

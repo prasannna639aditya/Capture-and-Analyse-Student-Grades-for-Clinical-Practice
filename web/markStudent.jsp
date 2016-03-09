@@ -59,6 +59,7 @@
                    
                 }
                 else {
+                   if(core.getPassword() != ""){
                     if( core.validateStudent( request ) ) {
                         core.markStudent();
                         out.print( "<p>You have successfully graded </p>" + treatment.fetchStudentName(core.getStudentID()) + ".</p>"  );
@@ -66,6 +67,7 @@
                        // out.print( treatment.clinicalAlert(core.getStudentID(),treatment.getTreatmentID()));
                         out.print( "<p><a href='tutorWelcome.jsp'>Back to home!</a></p>" );
                     }
+                   }
                     else{
                         out.print( core.buttonNav()); 
                         out.print( core.printErrors( ) );

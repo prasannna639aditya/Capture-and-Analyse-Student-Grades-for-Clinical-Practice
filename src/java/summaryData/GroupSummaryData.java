@@ -34,7 +34,7 @@ public class GroupSummaryData {
         Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
         
         String query =( "SELECT tb.StudentID, "
-                + "SUM(AbilityToEstablishDiagnosis = 1) AS AbilToEstDiagCount, "
+                + "SUM(AbilityToEstablishDiagnosis = " + score + ") AS AbilToEstDiagCount, "
                 + "SUM(AbilityToFormulateATreatmentPlan = " + score + " ) AS AbilToFormATreatmentPlanCount, "
                 + "SUM(EnsuringInformedConsent = " + score + " ) AS EnsuringInfConCount, "
                 + "SUM(EquipmentPreparationSelection = " + score + " ) AS EquipPrepSelectCount, "

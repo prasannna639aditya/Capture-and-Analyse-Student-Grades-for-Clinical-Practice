@@ -1,0 +1,54 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 09-Mar-2016, 21:43:02
+    Author     : Delaney
+*/
+
+body{
+    font-family: 'Century Gothic', CenturyGothic, AppleGothic, sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 400;
+    line-height: 20px
+}
+
+table{
+    font-size: 15px;
+}
+
+ 
+.table-striped>tbody>tr:nth-child(odd)>th {
+   background-color: #26B1FC;
+   color:white;
+   font-weight: 220;
+ }
+ .table-striped>tbody>tr:nth-child(even)>td, 
+.table-striped>tbody>tr:nth-child(even)>th {
+   background-color: #EDEDED;
+   font-weight: 220;
+ }
+ 
+ p{
+     padding: 5px;
+ }
+ 
+ #top{
+     margin-top:3%;
+ }
+input[type=submit] {
+	border:0.4px solid #31b0d5;
+	display:inline-block;
+	font-weight: 400;
+        font-size:16px;
+        color: #0085CC;
+}
+
+#graded>input[type=submit]:hover {
+    color: #03669C;
+    font-weight: bold; 
+}
