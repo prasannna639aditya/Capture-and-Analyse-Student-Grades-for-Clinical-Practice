@@ -1,3 +1,10 @@
+<%-- 
+    Document   : barChart
+    Created on : 10-Mar-2016, 20:03:55
+    Author     : Delaney
+--%>
+
+<%@page import="application.TreatmentItems"%>
 <%@page import="guipackage.GUI"%>
 <%@page import="guipackage.SearchBox"%>
 <!doctype html>
@@ -9,6 +16,7 @@
                 <meta name="viewport" content="width=device-width, initial-scale=1">
                 <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
                 <link href="css/sidebar.css" rel="stylesheet">
+                <link href="css/barchart.css" rel="stylesheet">
                 <link href="css/table.css" rel="stylesheet">
                 <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
                 <script src="js/sidebar.js"></script>
@@ -19,51 +27,66 @@
                 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 		<script src="js/Chart.js"></script>
 	</head>
-        <body>
-            <% 
+	<body>
+            
+        <jsp:useBean id="search" class="guipackage.SearchBox" scope="request" />
+        <jsp:setProperty name="search" property="*" />    
+        <% 
             GUI gui = new GUI();
             out.print(gui.tutorNavigation());
-            %>
-		<div style="width: 50%">
+            TreatmentItems treatment = new TreatmentItems();
+        %>
+        <p>
+        <%    
+                out.println("Catagorical bar chart analysis for" + treatment.fetchStudentName(search.getStudentID()));
+        %>
+		<div style="width: 65%">
 			<canvas id="canvas" height="450" width="600"></canvas>
 		</div>
-        <%  
+        <p>
+        <ul>
+            <li>Core Generic Skills <img src="img/colours/babyblue.JPG"></li>
+            <li>Basic Operative Skills <img src="img/colours/yellow.JPG"></li>
+            <li>Professionalism <img src="img/colours/pink.JPG"></li>
+            <li>Communication <img src="img/colours/purple.JPG"></li>
+            <li>Knowledge <img src="img/colours/turq.JPG"></li>
+        </ul>
+        </p>
+        <%
+            int showCore1 = Integer.parseInt(search.showCore(1, search.getStudentID()));
+            int showCore2 = Integer.parseInt(search.showCore(2, search.getStudentID()));
+            int showCore3 = Integer.parseInt(search.showCore(3, search.getStudentID()));
+            int showCore4 = Integer.parseInt(search.showCore(4, search.getStudentID()));
+            int showCore5 = Integer.parseInt(search.showCore(5, search.getStudentID()));
+            int showCore6 = Integer.parseInt(search.showCore(6, search.getStudentID()));
             
-            SearchBox search = new SearchBox();
-            int showCore1 = Integer.parseInt(search.showCore(1, "119876543"));
-            int showCore2 = Integer.parseInt(search.showCore(2, "119876543"));
-            int showCore3 = Integer.parseInt(search.showCore(3, "119876543"));
-            int showCore4 = Integer.parseInt(search.showCore(4, "119876543"));
-            int showCore5 = Integer.parseInt(search.showCore(5, "119876543"));
-            int showCore6 = Integer.parseInt(search.showCore(6, "119876543"));
+            int showBasic1 = Integer.parseInt(search.showBasic(1, search.getStudentID()));
+            int showBasic2 = Integer.parseInt(search.showBasic(2, search.getStudentID()));
+            int showBasic3 = Integer.parseInt(search.showBasic(3, search.getStudentID()));
+            int showBasic4 = Integer.parseInt(search.showBasic(4, search.getStudentID()));
+            int showBasic5 = Integer.parseInt(search.showBasic(5, search.getStudentID()));
+            int showBasic6 = Integer.parseInt(search.showBasic(6, search.getStudentID()));
             
-            int showBasic1 = Integer.parseInt(search.showBasic(1, "119876543"));
-            int showBasic2 = Integer.parseInt(search.showBasic(2, "119876543"));
-            int showBasic3 = Integer.parseInt(search.showBasic(3, "119876543"));
-            int showBasic4 = Integer.parseInt(search.showBasic(4, "119876543"));
-            int showBasic5 = Integer.parseInt(search.showBasic(5, "119876543"));
-            int showBasic6 = Integer.parseInt(search.showBasic(6, "119876543"));
+            int showProfessionalism1 = Integer.parseInt(search.showProfessionalism(1, search.getStudentID()));
+            int showProfessionalism2 = Integer.parseInt(search.showProfessionalism(2, search.getStudentID()));
+            int showProfessionalism3 = Integer.parseInt(search.showProfessionalism(3, search.getStudentID()));
+            int showProfessionalism4 = Integer.parseInt(search.showProfessionalism(4, search.getStudentID()));
+            int showProfessionalism5 = Integer.parseInt(search.showProfessionalism(5, search.getStudentID()));
+            int showProfessionalism6 = Integer.parseInt(search.showProfessionalism(6, search.getStudentID()));
             
-            int showProfessionalism1 = Integer.parseInt(search.showProfessionalism(1, "119876543"));
-            int showProfessionalism2 = Integer.parseInt(search.showProfessionalism(2, "119876543"));
-            int showProfessionalism3 = Integer.parseInt(search.showProfessionalism(3, "119876543"));
-            int showProfessionalism4 = Integer.parseInt(search.showProfessionalism(4, "119876543"));
-            int showProfessionalism5 = Integer.parseInt(search.showProfessionalism(5, "119876543"));
-            int showProfessionalism6 = Integer.parseInt(search.showProfessionalism(6, "119876543"));
+            int showCommunication1 = Integer.parseInt(search.showCommunication(1, search.getStudentID()));
+            int showCommunication2 = Integer.parseInt(search.showCommunication(2, search.getStudentID()));
+            int showCommunication3 = Integer.parseInt(search.showCommunication(3, search.getStudentID()));
+            int showCommunication4 = Integer.parseInt(search.showCommunication(4, search.getStudentID()));
+            int showCommunication5 = Integer.parseInt(search.showCommunication(5, search.getStudentID()));
+            int showCommunication6 = Integer.parseInt(search.showCommunication(6, search.getStudentID()));
             
-            int showCommunication1 = Integer.parseInt(search.showCommunication(1, "119876543"));
-            int showCommunication2 = Integer.parseInt(search.showCommunication(2, "119876543"));
-            int showCommunication3 = Integer.parseInt(search.showCommunication(3, "119876543"));
-            int showCommunication4 = Integer.parseInt(search.showCommunication(4, "119876543"));
-            int showCommunication5 = Integer.parseInt(search.showCommunication(5, "119876543"));
-            int showCommunication6 = Integer.parseInt(search.showCommunication(6, "119876543"));
-            
-            int showKnowledge1 = Integer.parseInt(search.showKnowledge(1, "119876543"));
-            int showKnowledge2 = Integer.parseInt(search.showKnowledge(2, "119876543"));
-            int showKnowledge3 = Integer.parseInt(search.showKnowledge(3, "119876543"));
-            int showKnowledge4 = Integer.parseInt(search.showKnowledge(4, "119876543"));
-            int showKnowledge5 = Integer.parseInt(search.showKnowledge(5, "119876543"));
-            int showKnowledge6 = Integer.parseInt(search.showKnowledge(6, "119876543"));
+            int showKnowledge1 = Integer.parseInt(search.showKnowledge(1, search.getStudentID()));
+            int showKnowledge2 = Integer.parseInt(search.showKnowledge(2, search.getStudentID()));
+            int showKnowledge3 = Integer.parseInt(search.showKnowledge(3, search.getStudentID()));
+            int showKnowledge4 = Integer.parseInt(search.showKnowledge(4, search.getStudentID()));
+            int showKnowledge5 = Integer.parseInt(search.showKnowledge(5, search.getStudentID()));
+            int showKnowledge6 = Integer.parseInt(search.showKnowledge(6, search.getStudentID()));
             
             
             int my = 25;
@@ -109,38 +132,38 @@
         
         
 	var barChartData = {
-		labels : ["Core","Basic","Professionalism","Knowledge","Communication"],
+		labels : ["Score 1","Score 2","Score 3","Score 4","Score 5", "Score "],
 		datasets : [
 			{
-				fillColor : "rgba(220,220,220,0.5)",
+				fillColor : "rgb(125,200,251)",
 				strokeColor : "rgba(220,220,220,0.8)",
 				highlightFill: "rgba(220,220,220,0.75)",
 				highlightStroke: "rgba(220,220,220,1)",
 				data : [showCore1, showCore2, showCore3, showCore4, showCore5, showCore6]
 			},
 			{
-				fillColor : "rgba(151,187,205,0.5)",
+				fillColor : "rgb(255,170,0)",
 				strokeColor : "rgba(151,187,205,0.8)",
 				highlightFill : "rgba(151,187,205,0.75)",
 				highlightStroke : "rgba(151,187,205,1)",
 				data : [showBasic1, showBasic2, showBasic3, showBasic4, showBasic5, showBasic6]
 			},
                         {
-				fillColor : "rgba(151,187,205,0.5)",
+				fillColor : "rgb(249,49,137)",
 				strokeColor : "rgba(151,187,205,0.8)",
 				highlightFill : "rgba(151,187,205,0.75)",
 				highlightStroke : "rgba(151,187,205,1)",
-				data : [showProfessionalism1, showProfessionalism2,showProfessionalism3, showProfessionalism4, showProfessionalism5, showProfessionalism6]
+				data : [showProfessionalism1, showProfessionalism2, showProfessionalism3, showProfessionalism4, showProfessionalism6, showProfessionalism6]
 			},
                         {
-				fillColor : "rgba(151,187,205,0.5)",
+				fillColor : "rgb(140,27,249)",
 				strokeColor : "rgba(151,187,205,0.8)",
 				highlightFill : "rgba(151,187,205,0.75)",
 				highlightStroke : "rgba(151,187,205,1)",
-				data : [showCommunication1, showCommunication2, showCommunication3, showCommunication4, showCommunication5, showCommunication6 ]
+				data : [showCommunication1, showCommunication2, showCommunication3, showCommunication4, showCommunication5,showCommunication6 ]
 			},
                         {
-				fillColor : "rgba(151,187,205,0.5)",
+				fillColor : "rgb(0,255,249)",
 				strokeColor : "rgba(151,187,205,0.8)",
 				highlightFill : "rgba(151,187,205,0.75)",
 				highlightStroke : "rgba(151,187,205,1)",
@@ -162,6 +185,6 @@
         <%
             out.print(gui.footer());
         %>
+        </p>
 	</body>
 </html>
-

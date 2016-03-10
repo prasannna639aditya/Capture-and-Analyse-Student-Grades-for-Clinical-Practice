@@ -4,7 +4,7 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 */
 /* 
-    Created on : Jan 15, 2016, 8:07:51 AM
+    Created on : 10-Mar-2016, 22:52:06
     Author     : Delaney
 */
 input[type=submit] {
@@ -44,9 +44,6 @@ input[type=submit] {
     margin-top: 5%;
 }
 
-#welcome{
-    padding-left:30px;
-}
 input[type=submit]:hover {
     color: #404040;
     font-weight: bold; 
@@ -61,22 +58,21 @@ label {
 }
 
 h2{
-    color: #999;
+    color: #0085CC;
     font-family: Candara, Calibri, Segoe, 'Segoe UI', Optima, Arial, sans-serif;
     text-decoration: underline;
-    font-size: 20px;
+    font-size: 24px;
     font-style: normal;
     font-variant: normal;
     font-weight: 500;
     line-height: 15.4px;
     padding-top:20px;
-    padding-left:16px;
     padding-bottom: 5px;
+    padding-left:-16px
 }
 
 .img-circle {
-    border-radius: 20%;
-    border: 2px solid #e1e1e1;
+    border-radius: 50%;
 }
 
 #dropdown{

@@ -68,7 +68,7 @@ public class StudentLookup {
                
             while(rs.next()){
                 form += "<tr>\n";
-                form += "<td><img id='studnetID' src=\"../img/" + rs.getString("Students.Picture") + "\"</td>\n";
+                form += "<td><img class=\"img-circle\" id='studnetID' src=\"../img/students/" + rs.getString("Students.StudentID") + ".jpg\"</td>\n";
                 form += "<td><form name='treatments' action='../treatmentItems.jsp' method='POST'>"
                         + "<select name=\"studentID\" id='dropdown'>"
                         + "<option value=\"" + rs.getString("Students.StudentID") + "\" selected>" + rs.getString("Students.StudentID") + "</option>"
@@ -134,7 +134,7 @@ public class StudentLookup {
                
             while(rs.next()){
                 form += "<tr>\n";
-                form += "<td><img id='studnetID' class=\"img-rounded\" src=\"../img/" + rs.getString("Students.Picture") + "\"</td>\n";
+                form += "<td><img class=\"img-circle\" id='studnetID' class=\"img-rounded\" src=\"../img/students/" + rs.getString("Students.StudentID") + ".jpg\"</td>\n";
                 form += "<td><form name='treatments' action='../treatmentItems.jsp' method='POST'>"
                         + "<select name=\"studentID\" id='dropdown'>"
                         + "<option value=\"" + rs.getString("Students.StudentID") + "\" selected>" + rs.getString("Students.StudentID") + "</option>"
@@ -180,7 +180,7 @@ public class StudentLookup {
                
             while(rs.next()){
                 form += "<tr>\n";
-                form += "<td><img id='studnetID' class=\"img-rounded\" src=\"../img/" + rs.getString("Students.Picture") + "\"</td>\n";
+                form += "<td><img class=\"img-circle\" id='studnetID' class=\"img-rounded\" src=\"../img/students/" + rs.getString("Students.StudentID") + ".jpg\"</td>\n";
                 form += "<td><form name='treatments' action='../treatmentItems.jsp' method='POST'>"
                         + "<select name=\"studentID\" id='dropdown'>"
                         + "<option value=\"" + rs.getString("Students.StudentID") + "\" selected>" + rs.getString("Students.StudentID") + "</option>"
@@ -218,7 +218,7 @@ public class StudentLookup {
             String form = "";
             while(rs.next()){
                 form += "<tr>\n";
-                form += "<td><img id='studnetID' class=\"img-rounded\" src=\"../img/" + rs.getString("Students.Picture") + "\"</td>\n";
+                form += "<td><img class=\"img-circle\" id='studnetID' class=\"img-rounded\" src=\"../img/students/" + rs.getString("Students.StudentID") + ".jpg\"</td>\n";
                 form += "<form name='treatments' action='../treatmentItems.jsp' method='POST'><td>"
                         + "<select name=\"studentID\" id='dropdown'>"
                         + "<option value=\"" + rs.getString("Students.StudentID") + "\" selected>" + rs.getString("Students.StudentID") + "</option>"

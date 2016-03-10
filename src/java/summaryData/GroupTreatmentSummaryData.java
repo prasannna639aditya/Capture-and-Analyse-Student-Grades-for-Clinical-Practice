@@ -5,6 +5,7 @@
  */
 package summaryData;
 
+import java.applet.Applet;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -15,7 +16,7 @@ import java.sql.Statement;
  *
  * @author Delaney
  */
-public class GroupTreatmentSummaryData {
+public class GroupTreatmentSummaryData extends Applet {
     private String [] result;
     private String group;
     

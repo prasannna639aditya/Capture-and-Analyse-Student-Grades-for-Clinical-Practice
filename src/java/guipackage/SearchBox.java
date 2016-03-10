@@ -2,6 +2,7 @@ package guipackage;
 
 
 import application.StudentLookup;
+import application.TreatmentItems;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -117,7 +118,7 @@ public class SearchBox {
         int countTotal = 0;
         
         
-        String form = "<div>\n";
+        String form = "";
         while(rs.next()){
              
                int AbilToEstDiagInt = Integer.parseInt(rs.getString("AbilToEstDiagCount"));
@@ -137,7 +138,6 @@ public class SearchBox {
                countTotal = AbilToEstDiagInt + AbilToFormATreatmentPlanInt + EnsuringInfConInt + EquipPrepSelectInt + ExamIntraOralHardInt + ExamIntraOralSoftCountInt + ExtraOralExaminationInt + InfectionControlInt + InterpOfSpeciaInvestInt + LocalAnaesthesiaBlockInt + LocalAnaesthesiaInfiltrationInt + ManagementOfComplicationsInt + MaterialSelectionAndHandlingInt;
                //form += "<h1>Core Skills Generic ount total " + countTotal + "</h1>\n";
                form += countTotal;
-               form += "</div>\n";
         }
         
         return form;
@@ -158,7 +158,7 @@ public class SearchBox {
         int countTotal = 0;
         
         
-        String form = "<div>\n";
+        String form = "";
         while(rs.next()){
              
                int AppropriatePatientPositionInt = Integer.parseInt(rs.getString("AppropriatePatientPositionCount"));
@@ -169,7 +169,6 @@ public class SearchBox {
                
                countTotal = AppropriatePatientPositionInt + AppropriateOperatorPositionInt + AppropriateLightPositionInt + AppropriateUseOfMirrorInt + AppropriateFingerSupportInt;
                form += countTotal;
-               form += "</div>\n";
         }
         
         return form;
@@ -187,14 +186,13 @@ public class SearchBox {
         int countTotal = 0;
         
         
-        String form = "<div>\n";
+        String form = "";
         while(rs.next()){
              
                int ProfessionalismInt = Integer.parseInt(rs.getString("ProfessionalismCount"));
                
                countTotal = ProfessionalismInt;
                form += countTotal;
-               form += "</div>\n";
         }
         
         return form;
@@ -211,14 +209,13 @@ public class SearchBox {
         int countTotal = 0;
         
         
-        String form = "<div>\n";
+        String form = "";
         while(rs.next()){
              
                int CommunicationInt = Integer.parseInt(rs.getString("CommunicationCount"));
                
                countTotal = CommunicationInt;
                form += countTotal;
-               form += "</div>\n";
         }
         
         return form;
@@ -235,14 +232,13 @@ public class SearchBox {
         int countTotal = 0;
         
         
-        String form = "<div>\n";
+        String form = "";
         while(rs.next()){
              
                int KnowledgeInt = Integer.parseInt(rs.getString("KnowledgeCount"));
                
                countTotal = KnowledgeInt;
                form += countTotal;
-               form += "</div>\n";
         }
         
         return form;
@@ -455,7 +451,7 @@ public class SearchBox {
         Statement stmt = conn.createStatement();
         ResultSet rs = stmt.executeQuery(query);
         
-        String form = "<h1>My Groups</h1>\n";
+        String form = "<div id=\"groups\"><h3>My Groups</h3>\n";
                form += "<div class=\"table-responsive\">\n";
                form += "<table class=\"table table-hover\">\n";
                form += "<thead>\n";
@@ -477,6 +473,7 @@ public class SearchBox {
         }
             form += "</tbody>\n";
             form += "</table>\n";
+            form += "</div>";
             form += "</div>";
         return form;
     }
@@ -513,9 +510,22 @@ public class SearchBox {
         return form;  
     }
     
+    public String toBarChart( String studentID) throws SQLException{
+        TreatmentItems treatment = new TreatmentItems();
+        String form = "<form name='grade' action='barChart.jsp' method='POST'>";
+               form += "<input type=\"hidden\" name='studentID' value='" + studentID + "'>\n";
+               form += "<label for='submit'>View a barchart analysis of" + treatment.fetchStudentName(studentID) + "</label>\n";
+               form += "<input type=\"submit\" value=\"Open\" class=\"btn-style\"></form>\n";
+        return form;
+    }
     
-    
-    
+    public String toAllBarChart() throws SQLException{
+        TreatmentItems treatment = new TreatmentItems();
+        String form = "<form name='grade' action='../barChartAll.jsp' method='POST'>";
+               form += "<label for='submit'>View a barchart analysis of all student data.</label>\n";
+               form += "<input type=\"submit\" value=\"Open\" class=\"btn-style\"></form>\n";
+        return form;
+    }
     
     
 }

@@ -156,6 +156,7 @@
 /* Main body section */
 .side-body {
   margin-left: 310px;
+  background-image: url("reception.png");
 }
 /* small screen */
 @media (max-width: 768px) {

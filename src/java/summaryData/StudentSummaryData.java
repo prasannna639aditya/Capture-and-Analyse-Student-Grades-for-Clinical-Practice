@@ -49,7 +49,7 @@ public class StudentSummaryData {
         int countTotal = 0;
         
         
-        String form = "<div>\n";
+        String form = "";
         while(rs.next()){
              
                int AbilToEstDiagInt = Integer.parseInt(rs.getString("AbilToEstDiagCount"));
@@ -69,7 +69,6 @@ public class StudentSummaryData {
                countTotal = AbilToEstDiagInt + AbilToFormATreatmentPlanInt + EnsuringInfConInt + EquipPrepSelectInt + ExamIntraOralHardInt + ExamIntraOralSoftCountInt + ExtraOralExaminationInt + InfectionControlInt + InterpOfSpeciaInvestInt + LocalAnaesthesiaBlockInt + LocalAnaesthesiaInfiltrationInt + ManagementOfComplicationsInt + MaterialSelectionAndHandlingInt;
                //form += "<h1>Core Skills Generic ount total " + countTotal + "</h1>\n";
                form += countTotal;
-               form += "</div>\n";
         }
         
         return form;
@@ -90,7 +89,7 @@ public class StudentSummaryData {
         int countTotal = 0;
         
         
-        String form = "<div>\n";
+        String form = "";
         while(rs.next()){
              
                int AppropriatePatientPositionInt = Integer.parseInt(rs.getString("AppropriatePatientPositionCount"));
@@ -101,7 +100,6 @@ public class StudentSummaryData {
                
                countTotal = AppropriatePatientPositionInt + AppropriateOperatorPositionInt + AppropriateLightPositionInt + AppropriateUseOfMirrorInt + AppropriateFingerSupportInt;
                form += countTotal;
-               form += "</div>\n";
         }
         
         return form;
@@ -119,14 +117,13 @@ public class StudentSummaryData {
         int countTotal = 0;
         
         
-        String form = "<div>\n";
+        String form = "";
         while(rs.next()){
              
                int ProfessionalismInt = Integer.parseInt(rs.getString("ProfessionalismCount"));
                
                countTotal = ProfessionalismInt;
                form += countTotal;
-               form += "</div>\n";
         }
         
         return form;
@@ -143,14 +140,13 @@ public class StudentSummaryData {
         int countTotal = 0;
         
         
-        String form = "<div>\n";
+        String form = "";
         while(rs.next()){
              
                int CommunicationInt = Integer.parseInt(rs.getString("CommunicationCount"));
                
                countTotal = CommunicationInt;
                form += countTotal;
-               form += "</div>\n";
         }
         
         return form;
@@ -167,14 +163,13 @@ public class StudentSummaryData {
         int countTotal = 0;
         
         
-        String form = "<div>\n";
+        String form = "";
         while(rs.next()){
              
                int KnowledgeInt = Integer.parseInt(rs.getString("KnowledgeCount"));
                
                countTotal = KnowledgeInt;
                form += countTotal;
-               form += "</div>\n";
         }
         
         return form;

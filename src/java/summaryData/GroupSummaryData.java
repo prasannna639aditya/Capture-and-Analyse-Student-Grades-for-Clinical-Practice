@@ -262,6 +262,9 @@ public class GroupSummaryData {
                    form += "<th>" + check.showKnowledge(6,group) + "</th>\n";
                    form += "</tr>\n";
                    form += "</tr>\n";
+                   form += "</thead>\n";
+                   form += "</tbody>\n";
+                   form += "</table>\n";
                    
         return form;
     }

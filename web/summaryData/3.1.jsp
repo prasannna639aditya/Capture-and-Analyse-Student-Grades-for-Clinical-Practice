@@ -4,6 +4,9 @@
     Author     : Delaney
 --%>
 
+<%@page import="summaryData.StudentTreatmentSummaryData"%>
+<%@page import="application.TreatmentItems"%>
+<%@page import="summaryData.StudentSummaryData"%>
 <%@page import="summaryData.GroupTreatmentSummaryData"%>
 <%@page import="summaryData.GroupSummaryData"%>
 <%@page import="application.StudentLookup"%>
@@ -24,53 +27,68 @@
         <link href="../font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
         <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        <title>Group 3.1 Summary Data</title>
     </head>
-    <body
+    <body>
+        
+        <jsp:useBean id="search" class="guipackage.SearchBox" scope="request" />
+        <jsp:setProperty name="search" property="*" />
+        
         
         <%
           GUI gui = new GUI( );
           StudentLookup look = new StudentLookup();
-          GroupSummaryData group = new GroupSummaryData();
           out.print(gui.tutorSummaryNavigation2());
+          StudentSummaryData check = new StudentSummaryData();
+          GroupSummaryData group = new GroupSummaryData();
           GroupTreatmentSummaryData data = new GroupTreatmentSummaryData();
+          
+          String studentID = search.getStudentID();
+          
         %>
         
         <p>
-        <div class="container">
+         <div class="container">
             <ul class="nav nav-tabs">
                 <li class="nav active"><a href="#A" data-toggle="tab">Domain Summary Data</a></li>
                 <li class="nav"><a href="#B" data-toggle="tab">Treatment Summary Data</a></li>
             </ul>
-        <div class="tab-content">
-                <div class="tab-pane fade in active" id="A">
+            <div class="tab-content">
+                   <div class="tab-pane fade in active" id="A">
+                       
         <%
               //String student = (String)request.getParameter("student");
         %>
-        <p id="top">
+                    <p id="top">
         <%
              out.println("See the summary data for group 3.1");
         %>
-        </p>
-        <p>
+                    </p>
+                    <p>
         <%
              out.print(group.studentData("3.1"));
         %>
-        </p>
-                </div>
-                <div class="tab-pane fade" id="B">
+                    </p>
+                    </div>
+                    <div class="tab-pane fade" id="B">
+                    <p id="top">
+            <%
+             out.println("See the treatment summary data for group 3.1");
+        %>
+                    </p>
                     <p>
         <%
              out.print(data.studentData("3.1"));
-          
+            
         %>
                     </p>
                 </div>
             </div>
-        </div>      
+         </div>      
         <%
           
           out.print(gui.footer());
         %> 
-    </p>
+        </p>
     </body>
 </html>

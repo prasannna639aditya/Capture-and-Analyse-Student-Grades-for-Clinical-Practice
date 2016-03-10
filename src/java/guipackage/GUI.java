@@ -65,7 +65,7 @@ public class GUI {
                    form += "<table class=\"table\">\n";
                    form += "<thead>\n";
                    form += "<tr>\n";
-                   form += "<th>Picture</th>\n";
+                   form += "<th></th>\n";
                    form += "<th>Tutor ID</th>\n";
                    form += "<th>First Name</th>\n";
                    form += "<th>Surname</th>\n";
@@ -74,7 +74,7 @@ public class GUI {
                    form += "<tbody>\n";
                    form += "<tr>\n";
                    form += "<tr>\n";
-                   form += "<td><img src=\"" + picture + "\"</td>\n";
+                   form += "<td><img class=\"img-circle\" src=\"" + picture + "\"</td>\n";
                    form += "<td>" + TutorID + "</td>\n";
                    form += "<td>" + firstName + "</td>\n";
                    form += "<td>" + lastName + "</td>\n";
@@ -94,7 +94,7 @@ public class GUI {
                    form += "<table class=\"table\">\n";
                    form += "<thead>\n";
                    form += "<tr>\n";
-                   form += "<th>Picture</th>\n";
+                   form += "<th></th>\n";
                    form += "<th>Student ID</th>\n";
                    form += "<th>First Name</th>\n";
                    form += "<th>Surname</th>\n";
@@ -102,7 +102,7 @@ public class GUI {
                    form += "<tbody>\n";
                    form += "<tr>\n";
                    form += "<tr>\n";
-                   form += "<td><img src=\"" + picture + "\"</td>\n";
+                   form += "<td><img class=\"img-circle\" src=\"" + picture + "\"</td>\n";
                    form += "<td>" + StudentID + "</td>\n";
                    form += "<td>" + firstName + "</td>\n";
                    form += "<td>" + lastName + "</td>\n";

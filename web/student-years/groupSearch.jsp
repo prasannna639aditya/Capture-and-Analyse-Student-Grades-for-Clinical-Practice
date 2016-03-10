@@ -41,9 +41,13 @@
           StudentSummaryData check = new StudentSummaryData();
           GroupSummaryData group = new GroupSummaryData();
           TreatmentItems name = new TreatmentItems();
-          
+        %>
+        <p>
+        <%
           out.println(search.groupSearchBox());
-          
+        %>
+        </p>
+        <%
           out.print(gui.footer());
           
           /**String studentID = search.getStudentID();
