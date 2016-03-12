@@ -53,37 +53,37 @@
                     <div class="tab-content">
                 <div class="tab-pane fade in active" id="A">
                 <%
-                        out.print( treatmentItem.fetchTreatments( lookup.getStudentID(), "1" ) );
+                        out.print( treatmentItem.fetchTreatments( lookup.getStudentID(), "1", lookup.getCdsNumber() ) );
                 %>
                 </div>
                 <div class="tab-pane fade" id="B">
                 <%
-                        out.print( treatmentItem.fetchTreatments( lookup.getStudentID(), "2" ) );
+                        out.print( treatmentItem.fetchTreatments( lookup.getStudentID(), "2", lookup.getCdsNumber() ) );
                 %>
                 </div>
                 <div class="tab-pane fade" id="C">
                 <%
-                        out.print( treatmentItem.fetchTreatments( lookup.getStudentID(), "3" ) );
+                        out.print( treatmentItem.fetchTreatments( lookup.getStudentID(), "3", lookup.getCdsNumber() ) );
                 %>
                 </div>
                 <div class="tab-pane fade" id="D">
                 <%
-                        out.print( treatmentItem.fetchTreatments( lookup.getStudentID(), "4" ) );
+                        out.print( treatmentItem.fetchTreatments( lookup.getStudentID(), "4", lookup.getCdsNumber() ) );
                 %>
                 </div>
                 <div class="tab-pane fade" id="E">
                 <%
-                        out.print( treatmentItem.fetchTreatments( lookup.getStudentID(), "5" ) );
+                        out.print( treatmentItem.fetchTreatments( lookup.getStudentID(), "5", lookup.getCdsNumber() ) );
                 %>
                 </div>
                 <div class="tab-pane fade" id="F">
                 <%
-                        out.print( treatmentItem.fetchTreatments( lookup.getStudentID(), "6" ) );
+                        out.print( treatmentItem.fetchTreatments( lookup.getStudentID(), "6", lookup.getCdsNumber() ) );
                 %>
                 </div>
                 <div class="tab-pane fade" id="G">
                 <%
-                        out.print( treatmentItem.fetchTreatments( lookup.getStudentID(), "7" ) );
+                        out.print( treatmentItem.fetchTreatments( lookup.getStudentID(), "7", lookup.getCdsNumber() ) );
                 %>
                 </div>
                 </p>

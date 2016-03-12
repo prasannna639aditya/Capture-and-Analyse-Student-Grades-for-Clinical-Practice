@@ -46,7 +46,8 @@ public class SearchBox {
         group = "";
         
         this.result = new String[10];
-        database.setup( "localhost", "final_year_project", "root", "" );
+        database.setup( "ec2-52-31-7-122.eu-west-1.compute.amazonaws.com", "final_year_project", "root", "IPNTclyv43" );
+        //database.setup( "localhost", "final_year_project", "root", "" );
     }
     
     public String getStudentID() {
@@ -95,8 +96,8 @@ public class SearchBox {
     }
     
     public String showCore( int score, String studentID) throws SQLException {
-        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
-        
+        //Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
+        Connection conn = DriverManager.getConnection("jdbc:mysql://ec2-52-31-7-122.eu-west-1.compute.amazonaws.com/final_year_project","root","IPNTclyv43");
         String query =( "SELECT SUM(AbilityToEstablishDiagnosis = " + score + ") AS AbilToEstDiagCount,"
                 + "SUM(AbilityToFormulateATreatmentPlan = " + score + " ) AS AbilToFormATreatmentPlanCount, "
                 + "SUM(EnsuringInformedConsent = " + score + " ) AS EnsuringInfConCount, "
@@ -144,8 +145,8 @@ public class SearchBox {
     }
     
     public String showBasic( int score, String studentID ) throws SQLException {
-        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
-        
+        //Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
+        Connection conn = DriverManager.getConnection("jdbc:mysql://ec2-52-31-7-122.eu-west-1.compute.amazonaws.com/final_year_project","root","IPNTclyv43");
         String query =( "SELECT SUM(AppropriatePatientPosition = " + score + ") AS AppropriatePatientPositionCount,"
                 + "SUM(AppropriateOperatorPosition = " + score + " ) AS AppropriateOperatorPositionCount, "
                 + "SUM(AppropriateLightPosition = " + score + " ) AS AppropriateLightPositionCount, "
@@ -176,8 +177,8 @@ public class SearchBox {
     
     
     public String showProfessionalism( int score, String studentID ) throws SQLException {
-        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
-        
+        //Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
+        Connection conn = DriverManager.getConnection("jdbc:mysql://ec2-52-31-7-122.eu-west-1.compute.amazonaws.com/final_year_project","root","IPNTclyv43");
         String query =( "SELECT SUM(Professionalism = " + score + ") AS ProfessionalismCount "
                 + "FROM TBICoreSkills WHERE StudentID= " + studentID + ";" );
         
@@ -195,12 +196,13 @@ public class SearchBox {
                form += countTotal;
         }
         
+        
         return form;
     } 
     
     public String showCommunication( int score, String studentID ) throws SQLException {
-        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
-        
+        //Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
+        Connection conn = DriverManager.getConnection("jdbc:mysql://ec2-52-31-7-122.eu-west-1.compute.amazonaws.com/final_year_project","root","IPNTclyv43");
         String query =( "SELECT SUM(Communication = " + score + ") AS CommunicationCount "
                 + "FROM TBICoreSkills WHERE StudentID= " + studentID + ";" );
         
@@ -222,8 +224,8 @@ public class SearchBox {
     }
     
     public String showKnowledge( int score, String studentID ) throws SQLException {
-        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
-        
+        //Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
+        Connection conn = DriverManager.getConnection("jdbc:mysql://ec2-52-31-7-122.eu-west-1.compute.amazonaws.com/final_year_project","root","IPNTclyv43");
         String query =( "SELECT SUM(Knowledge= " + score + ") AS KnowledgeCount "
                 + "FROM TBICoreSkills WHERE StudentID= " + studentID + ";" );
         
@@ -367,6 +369,30 @@ public class SearchBox {
         return form;
     }
     
+    public String groupSearchBox2(){
+        
+        String form = "<form id='form-id' name='group_search' action='student-years/groupSearchResults.jsp' method='POST'>" +
+                "<div class=\"container\">\n" +
+                "	<div class=\"row\">\n" +
+                "        <div class=\"col-md-6\">\n" +
+                "            <div id=\"custom-search-input\">\n" +
+                "                <div class=\"input-group col-md-12\">\n" +
+                "                   <input type=\"text\"class=\"form-control input-lg\" name='groupID' placeholder=\"Search a group...\">\n" +
+                "                    <span class=\"input-group-btn\">\n" +
+                "                        <button class=\"btn btn-info btn-lg\" type=\"button\">\n" +
+                "                            <i class=\"glyphicon glyphicon-search\"></i>\n" +
+                "                        </button>\n" +
+                "                    </span>\n" +
+                "                </div>\n" +
+                "            </div>\n" +
+                "        </div>\n" +
+                "	</div>\n" +
+                "</div>" +
+                "</form>\n";
+                
+        return form;
+    }
+    
     public String addStudents( String groupId){
         
         String form = "<form id='form-id' name='add_student' action='grade.jsp' method='POST'>" +
@@ -421,8 +447,8 @@ public class SearchBox {
         if( result.length != 0 ) {
           isDescriptor = true;  
         }
-        
       return isDescriptor;
+      
     }
     
     public boolean checkGroup( String studentID, String groupID ){
@@ -514,7 +540,16 @@ public class SearchBox {
         TreatmentItems treatment = new TreatmentItems();
         String form = "<form name='grade' action='barChart.jsp' method='POST'>";
                form += "<input type=\"hidden\" name='studentID' value='" + studentID + "'>\n";
-               form += "<label for='submit'>View a barchart analysis of" + treatment.fetchStudentName(studentID) + "</label>\n";
+               form += "<label for='submit'>View a barchart analysis for " + treatment.fetchStudentName(studentID) + "</label>\n";
+               form += "<input type=\"submit\" value=\"Open\" class=\"btn-style\"></form>\n";
+        return form;
+    }
+    
+    public String toStudentBarChart( String studentID) throws SQLException{
+        TreatmentItems treatment = new TreatmentItems();
+        String form = "<form name='grade' action='studentBarChart.jsp' method='POST'>";
+               form += "<input type=\"hidden\" name='studentID' value='" + studentID + "'>\n";
+               form += "<label for='submit'>View a barchart analysis of your results</label>\n";
                form += "<input type=\"submit\" value=\"Open\" class=\"btn-style\"></form>\n";
         return form;
     }

@@ -1,6 +1,6 @@
 <%-- 
-    Document   : viewStudentScore
-    Created on : 14-Feb-2016, 17:49:15
+    Document   : viewMyScore
+    Created on : 12-Mar-2016, 16:38:53
     Author     : Delaney
 --%>
 
@@ -37,18 +37,11 @@
         
         <%
           GUI gui = new GUI( );
-          //TreatmentItems treatmentItem = new TreatmentItems( );
-            /**if( session.getAttribute( "Authenticated" ) == null ) {
-                response.sendRedirect( "index.jsp" );
-            }
-            else {
-                out.print(gui.tutorNavigation());
-                out.print( treatmentItem.fetchScore( lookup.getStudentID(), treatmentItem.fetchStudentName(lookup.getStudentID()), treatmentItem.getTreatmentID()) );
-            }**/
+          String StudentID = (String) session.getAttribute( "StudentID" );
         if( request.getParameter( "submit" ) == null ) {
-             out.print(gui.tutorNavigation());
+             out.print(gui.studentNavigation());
              //out.print( treatmentItem.fetchScore( lookup.getStudentID(), treatmentItem.fetchStudentName(lookup.getStudentID()), treatmentItem.getTreatmentID()) );       
-             out.print( treatmentItem.showScore(lookup.getStudentID(),treatmentItem.getTreatmentID(), treatmentItem.getPatientID(), treatmentItem.getDateAdded()));
+             out.print( treatmentItem.showScore(StudentID,treatmentItem.getTreatmentID(), treatmentItem.getPatientID(), treatmentItem.getDateAdded()));
         }                 
         out.print(gui.footer());
         %>

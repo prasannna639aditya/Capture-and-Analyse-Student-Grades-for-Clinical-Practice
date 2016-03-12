@@ -21,6 +21,7 @@
         <link href="css/extras.css" rel="stylesheet">
         <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
         <script src="js/sidebar.js"></script>
+        <script src="js/popup.js"></script>
         <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
         <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
         <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
@@ -51,7 +52,12 @@
               
                   if( request.getParameter( "submit" ) == null ) {
                    out.print( core.buttonNav()); 
-                   out.print( core.markingForm( TutorID, treatment.getStudentID(), treatment.getTreatmentID()) );
+            %>
+            <div>
+            <p>Please refer to the <a href="markingDescriptors.jsp">Marking Descriptors</a> if you are unsure of what score to assign the student.<p>
+            </div>
+            <%
+                   out.print( core.markingForm( TutorID, treatment.getStudentID(), treatment.getTreatmentID(), treatment.getCdsNumber()) );
                    if(treatment.isAbsent(attendance) == true)
                    {
                        out.print(attendance);
@@ -71,7 +77,7 @@
                     else{
                         out.print( core.buttonNav()); 
                         out.print( core.printErrors( ) );
-                        out.print( core.markingForm( TutorID, treatment.getStudentID(),treatment.getTreatmentID() ) );
+                        out.print( core.markingForm( TutorID, treatment.getStudentID(),treatment.getTreatmentID(), treatment.getCdsNumber() ) );
                         
                     }
                 }

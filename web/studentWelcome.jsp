@@ -14,6 +14,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
         <link href="css/sidebar.css" rel="stylesheet">
+        <link href="css/welcome.css" rel="stylesheet">
         <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
         <script src="js/sidebar.js"></script>
         <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
@@ -34,7 +35,8 @@
                 String lastName = (String) session.getAttribute( "lastName" );
                 String picture = (String) session.getAttribute( "picture" );
                 String StudentID = (String) session.getAttribute( "StudentID" );
-                out.print(gui.studentPrint(StudentID, firstName, lastName, picture));
+                out.print(gui.studentPrint(StudentID, firstName, lastName));
+                
           }
           
           out.print(gui.footer());

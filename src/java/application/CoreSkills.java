@@ -62,6 +62,7 @@ public class CoreSkills {
     private String communication;
     private String knowledge;
     private String attendance;
+    private String cdsNumber;
     private DatabaseClass database;
     private final ArrayList<String> errors;
     
@@ -96,13 +97,15 @@ public class CoreSkills {
         knowledge = "";
         checkbox = "";
         attendance = "";
+        cdsNumber = "";
         this.treatmentScore = "";
         this.treatmentPlanID = "";
         this.checkbox = "";
         this.result = new String[10];
         errors = new ArrayList<>( );
         database = new DatabaseClass( );
-        database.setup( "localhost", "final_year_project", "root", "" );
+        database.setup( "ec2-52-31-7-122.eu-west-1.compute.amazonaws.com", "final_year_project", "root", "IPNTclyv43" );
+        //database.setup( "localhost", "final_year_project", "root", "" );
     }
     
     public String getStudentID( ) {
@@ -382,6 +385,14 @@ public class CoreSkills {
         this.attendance = attendance;
     }
     
+    public String getCdsNumber( ) {
+        return cdsNumber;
+    }
+ 
+    public void setCdsNumber( final String cdsNumber ) {
+        this.cdsNumber = cdsNumber;
+    }
+    
     
     
     public boolean validateMarkingForm( ) throws Exception {
@@ -395,12 +406,6 @@ public class CoreSkills {
         if( ! isInteger( tutorID ) && tutorID.length() > 8){
             errors.add( "Please enter a valid Tutor" );
             isValid = false;
-        }
-        
-        if( ! isInteger( patientID ) && patientID.length() > 8){
-            errors.add( "Please enter a valid Patient" );
-            isValid = false;
-            patientID = "";
         }
         
         if( password.equals( "" ) ) {
@@ -468,14 +473,14 @@ public class CoreSkills {
                 + "ExaminationIntraOralHardTissues, ExaminationIntraOralSoftTissues, ExtraOralExamination, InfectionControl, InterpretationOfSpeciaInvestigations, LocalAnaesthesiaBlock, LocalAnaesthesiaInfiltration,"
                 + "ManagementOfComplications, MaterialSelectionAndHandling, AppropriatePatientPosition, AppropriateOperatorPosition, AppropriateLightPosition, AppropriateUseOfMirror, AppropriateFingerSupport,"
                 + "DateAdded, TreatmentID, Time, Comment, Professionalism, Communication, Knowledge, Attendance, Hour )"
-                +"VALUES( '" + studentID + "', '" + patientID + "', '" + tutorID + "', '" + abilToEstDiag + "', '" + abilToFormTrtPlan + "', '" + ensInfCons + "', '" + equipPrep + "','" + examIntraOralHard + "','" + examIntraOralSoft + "','" + extraOralExam + "','" + infectionControl + "','" + interpOfSpecInves + "','" + localAnaesthesiaBlock + "','" + localAnaesthesiaInfiltration + "','" + managementofComplications + "','" + matSelecHandling + "','" + approPatPos + "','" + approOpPos + "','" + approLightPos + "','" + approUseOfMirror + "','" + approFingerSupport + "','" + date + "','" + treatmentID + "','" + time + "','" + comment + "','" + professionalism + "','" + communication + "','" + knowledge + "', '" + attendance + "', '" + hour + "' );" );
+                +"VALUES( '" + studentID + "', '" + cdsNumber + "', '" + tutorID + "', '" + abilToEstDiag + "', '" + abilToFormTrtPlan + "', '" + ensInfCons + "', '" + equipPrep + "','" + examIntraOralHard + "','" + examIntraOralSoft + "','" + extraOralExam + "','" + infectionControl + "','" + interpOfSpecInves + "','" + localAnaesthesiaBlock + "','" + localAnaesthesiaInfiltration + "','" + managementofComplications + "','" + matSelecHandling + "','" + approPatPos + "','" + approOpPos + "','" + approLightPos + "','" + approUseOfMirror + "','" + approFingerSupport + "','" + date + "','" + treatmentID + "','" + time + "','" + comment + "','" + professionalism + "','" + communication + "','" + knowledge + "', '" + attendance + "', '" + hour + "' );" );
                
         
         database.Insert( "INSERT INTO TreatmentPlanEntries( TreatmentName, ClinicalAlert, Comment)" +
                          "VALUES( '" + treatment.fetchTreatmentName(treatmentID) + "','" + checkbox + "','" + comment + "' );" );
         
         database.Insert( "INSERT INTO TreatmentPlans( TutorID, PatientID, StudentID)" +
-                         "VALUES( '" + tutorID + "','" + patientID + "','" + studentID + "' );" );
+                         "VALUES( '" + tutorID + "','" + cdsNumber + "','" + studentID + "' );" );
         
         database.Close();
     }
@@ -496,8 +501,9 @@ public class CoreSkills {
         return form;
     }
 
-    public String markingForm( String TutorID, String StudentID, String TreatmentID) throws SQLException {
-        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
+    public String markingForm( String TutorID, String StudentID, String TreatmentID, String cdsNumber) throws SQLException {
+        //Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
+        Connection conn = DriverManager.getConnection("jdbc:mysql://ec2-52-31-7-122.eu-west-1.compute.amazonaws.com/final_year_project","root","IPNTclyv43");
         Statement stmt = conn.createStatement();
         ResultSet rsPatient; 
         TreatmentItems treatment = new TreatmentItems();
@@ -542,15 +548,13 @@ public class CoreSkills {
                         + "</div>\n" 
                         + "</div>\n";
         form += "<div class=\"form-group row\">";
-        form += "<label class=\"col-sm-2 form-control-label\" for='patientID'>Patient:</label>\n"
-                + "<div class=\"col-sm-10\">"
-                + "<select class=\"form-control\" name=\"patientID\" >\n";
-        while ( rsPatient.next() ) {
-            form += "<option value=\"" + rsPatient.getString("PatientID") + "\" >" + rsPatient.getString("FirstName") + " " + rsPatient.getString("LastName") +  "</option>\n";
-        }
-        form += "</select><br />"
-             + "</div>\n" 
-             + "</div>\n";
+        form += "<label class=\"col-sm-2 form-control-label\" for='cdsNumber'>Patient CDS Number:</label>\n"
+                        + "<div class=\"col-sm-10\">"
+                        + "<select name=\"cdsNumber\" class=\"form-control\" >\n" 
+                        + "  <option value=\"" + cdsNumber + "\" selected>" + cdsNumber + "</option>\n" 
+                        + "</select><br />"
+                        + "</div>\n" 
+                        + "</div>\n";
         form += "</p>\n";
         form += "</div>\n";
         
@@ -949,8 +953,8 @@ public class CoreSkills {
     
     public boolean validateStudent(HttpServletRequest request) throws Exception{
         DatabaseClass database = new DatabaseClass( );
-        database.setup( "localhost", "final_year_project", "root", "" );
-        //database.setup( "ec2-52-31-84-76.eu-west-1.compute.amazonaws.com", "final_year_project", "root", "IPNTclyv43" );
+        //database.setup( "localhost", "final_year_project", "root", "" );
+        database.setup( "ec2-52-31-7-122.eu-west-1.compute.amazonaws.com", "final_year_project", "root", "IPNTclyv43" );
         PasswordHash hash = new PasswordHash();
  
         password = request.getParameter( "password" );

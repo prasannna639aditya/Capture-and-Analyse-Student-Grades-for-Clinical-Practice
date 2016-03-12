@@ -21,6 +21,7 @@ public class StudentLookup {
     private String lastName;
     private String studentID;
     private String email;
+    private String cdsNumber;
     private String [] result;
     
     public StudentLookup(){
@@ -28,6 +29,7 @@ public class StudentLookup {
         this.studentID = "";
         this.firstName = "";
         this.lastName = "";
+        this.cdsNumber = "";
         this.result = new String[10];
     }
     
@@ -38,11 +40,20 @@ public class StudentLookup {
     public void setStudentID(String studentID) {
         this.studentID = studentID;
     }
+    
+    public String getCdsNumber( ) {
+        return cdsNumber;
+    }
+ 
+    public void setCdsNumber( final String cdsNumber ) {
+        this.cdsNumber = cdsNumber;
+    }
+    
 
     
     public String fetchNames() throws SQLException{
-        
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://ec2-52-31-7-122.eu-west-1.compute.amazonaws.com/final_year_project","root","IPNTclyv43");
+            //Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
             //System.out.println("successful");
             String query = ("SELECT Students.StudentID, Students.FirstName, Students.LastName, Students.Picture, CourseYear.ProgrammeYear, StudentGroups.GroupDescriptor"
                             + " FROM Students JOIN StudentGroups JOIN StudentClass JOIN CourseYear"
@@ -60,7 +71,8 @@ public class StudentLookup {
                    form += "<th>Surname</th>\n";
                    form += "<th>Programme Year</th>\n";
                    form += "<th>Group</th>\n";
-                   form += "<th>View Treatment Items</th>\n";
+                   form += "<th>Patients CDS number</th>\n";
+                   form += "<th></th>\n";
                    form += "</tr>\n";
                    form += "</thead>\n";
                    form += "<tbody>\n";
@@ -77,7 +89,8 @@ public class StudentLookup {
                 form += "<td>" + rs.getString("Students.LastName") + "</td>\n";
                 form += "<td>" + rs.getString("CourseYear.ProgrammeYear") + "</td>\n";
                 form += "<td>" + rs.getString("StudentGroups.GroupDescriptor") + "</td>\n";
-                form += "<td><input type=\"submit\" value=\"View Treatments\" class=\"btn-style\"></form></td>";
+                form += "<td><input type=\"text\" name=\"cdsNumber\" placeholder=\"CDS Number\" class=\"btn-style\"></td>";
+                form += "<td><input type=\"submit\" value=\"Select Treatment\" class=\"btn-style\"></form></td>";
                 form += "</tr>\n";
             }
             
@@ -102,7 +115,8 @@ public class StudentLookup {
                    form += "<th>Surname</th>\n";
                    form += "<th>Programme Year</th>\n";
                    form += "<th>Group</th>\n";
-                   form += "<th>View Treatment Items</th>\n";
+                   form += "<th>Patients CDS number</th>\n";
+                   form += "<th></th>\n";
                    form += "</tr>\n";
                    form += "</thead>\n";
                    form += "<tbody>\n";
@@ -120,8 +134,8 @@ public class StudentLookup {
     }
     
     public String fetchGroupNames(String group) throws SQLException{
-        
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://ec2-52-31-7-122.eu-west-1.compute.amazonaws.com/final_year_project","root","IPNTclyv43");
+            //Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
             //System.out.println("successful");
             String query = ("SELECT Students.StudentID, Students.FirstName, Students.LastName, Students.Picture, CourseYear.ProgrammeYear, StudentGroups.GroupDescriptor"
                             + " FROM Students JOIN StudentGroups JOIN StudentClass JOIN CourseYear"
@@ -143,7 +157,8 @@ public class StudentLookup {
                 form += "<td>" + rs.getString("Students.LastName") + "</td>\n";
                 form += "<td>" + rs.getString("CourseYear.ProgrammeYear") + "</td>\n";
                 form += "<td>" + rs.getString("StudentGroups.GroupDescriptor") + "</td>\n";
-                form += "<td><input type=\"submit\" value=\"View Treatments\" class=\"btn-style\"></form></td>";
+                form += "<td><input type=\"text\" name=\"cdsNumber\" placeholder=\"CDS Number\" class=\"btn-style\"></td>";
+                form += "<td><input type=\"submit\" value=\"Select Treatment\" class=\"btn-style\"></form></td>";
                 form += "</tr>\n";
             }
             
@@ -152,8 +167,8 @@ public class StudentLookup {
     }
     
     public String fetchYearNames(String year) throws SQLException{
-        
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://ec2-52-31-7-122.eu-west-1.compute.amazonaws.com/final_year_project","root","IPNTclyv43");
+            //Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
             //System.out.println("successful");
             String query = ("SELECT Students.StudentID, Students.FirstName, Students.LastName, Students.Picture, CourseYear.ProgrammeYear, StudentGroups.GroupDescriptor"
                             + " FROM Students JOIN StudentGroups JOIN StudentClass JOIN CourseYear"
@@ -172,7 +187,8 @@ public class StudentLookup {
                    form += "<th>Surname</th>\n";
                    form += "<th>Programme Year</th>\n";
                    form += "<th>Group</th>\n";
-                   form += "<th>View Treatment Items</th>\n";
+                   form += "<th>Patients CDS number</th>\n";
+                   form += "<th></th>\n";
                    form += "</tr>\n";
                    form += "</thead>\n";
                    form += "<tbody>\n";
@@ -189,7 +205,8 @@ public class StudentLookup {
                 form += "<td>" + rs.getString("Students.LastName") + "</td>\n";
                 form += "<td>" + rs.getString("CourseYear.ProgrammeYear") + "</td>\n";
                 form += "<td>" + rs.getString("StudentGroups.GroupDescriptor") + "</td>\n";
-                form += "<td><input type=\"submit\" value=\"View Treatments\" class=\"btn-style\"></form></td>";
+                form += "<td><input type=\"text\" name=\"cdsNumber\" placeholder=\"CDS Number\" class=\"btn-style\"></td>";
+                form += "<td><input type=\"submit\" value=\"Select Treatment\" class=\"btn-style\"></form></td>";
                 form += "</tr>\n";
             }
             
@@ -205,8 +222,8 @@ public class StudentLookup {
     
     
     public String fetchExtraStudent(String studentID) throws SQLException{
-        
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://ec2-52-31-7-122.eu-west-1.compute.amazonaws.com/final_year_project","root","IPNTclyv43");
+            //Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
             //System.out.println("successful");
             String query = ("SELECT Students.StudentID, Students.FirstName, Students.LastName, Students.Picture, CourseYear.ProgrammeYear, StudentGroups.GroupDescriptor"
                             + " FROM Students JOIN StudentGroups JOIN StudentClass JOIN CourseYear"
@@ -227,7 +244,8 @@ public class StudentLookup {
                 form += "<td>" + rs.getString("Students.LastName") + "</td>\n";
                 form += "<td>" + rs.getString("CourseYear.ProgrammeYear") + "</td>\n";
                 form += "<td>" + rs.getString("StudentGroups.GroupDescriptor") + "</td>\n";
-                form += "<td><input type=\"submit\" value=\"View Treatments\" class=\"btn-style\"></form></td>";
+                form += "<td><input type=\"text\" name=\"cdsNumber\" placeholder=\"CDS Number\" class=\"btn-style\"></td>";
+                form += "<td><input type=\"submit\" value=\"Select Treatment\" class=\"btn-style\"></form></td>";
                 form += "</tr>\n";
             }
         conn.close();

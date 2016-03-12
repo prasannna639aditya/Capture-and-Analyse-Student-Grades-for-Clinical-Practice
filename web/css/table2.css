@@ -21,6 +21,12 @@ table{
     font-size: 15px;
 }
 
+@media ( min-width: 800px) and (max-width: 1280px){
+.container{
+    width:90%;
+}
+}
+
  
 .table-striped>tbody>tr:nth-child(odd)>th {
    background-color: #26B1FC;
@@ -44,8 +50,14 @@ input[type=submit] {
 	border:0.4px solid #31b0d5;
 	display:inline-block;
 	font-weight: 400;
-        font-size:16px;
+        font-size:14px;
         color: #0085CC;
+}
+
+th{
+    font-size:14px;
+    font-weight:300;
+    margin-top:5%;
 }
 
 #graded>input[type=submit]:hover {

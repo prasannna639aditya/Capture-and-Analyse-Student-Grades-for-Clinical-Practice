@@ -30,8 +30,8 @@ public class TreatmentSummaryData {
     }
     
     public String showAbilToEstDiag( int score) throws SQLException {
-        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
-        
+        //Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
+        Connection conn = DriverManager.getConnection("jdbc:mysql://ec2-52-31-7-122.eu-west-1.compute.amazonaws.com/final_year_project","root","IPNTclyv43");
         String query =( "SELECT SUM(AbilityToEstablishDiagnosis = " + score + ") AS AbilToEstDiagCount FROM TBICoreSkills;" );
         
         Statement stmt = conn.createStatement();
@@ -50,8 +50,8 @@ public class TreatmentSummaryData {
     }
     
     public String showAbilityToFormulateATreatmentPlan( int score) throws SQLException {
-        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
-        
+        //Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
+        Connection conn = DriverManager.getConnection("jdbc:mysql://ec2-52-31-7-122.eu-west-1.compute.amazonaws.com/final_year_project","root","IPNTclyv43");
         String query =( "SELECT SUM(AbilityToFormulateATreatmentPlan = " + score + ") AS AbilityToFormulateATreatmentPlanCount FROM TBICoreSkills;" );
         
         Statement stmt = conn.createStatement();
@@ -70,8 +70,8 @@ public class TreatmentSummaryData {
     }
     
     public String showEnsuringInformedConsent( int score) throws SQLException {
-        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
-        
+        //Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
+        Connection conn = DriverManager.getConnection("jdbc:mysql://ec2-52-31-7-122.eu-west-1.compute.amazonaws.com/final_year_project","root","IPNTclyv43");
         String query =( "SELECT SUM(EnsuringInformedConsent = " + score + ") AS EnsuringInformedConsentCount FROM TBICoreSkills;" );
         
         Statement stmt = conn.createStatement();
@@ -90,8 +90,8 @@ public class TreatmentSummaryData {
     }
     
     public String showEquipmentPreparationSelection( int score) throws SQLException {
-        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
-        
+        //Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
+        Connection conn = DriverManager.getConnection("jdbc:mysql://ec2-52-31-7-122.eu-west-1.compute.amazonaws.com/final_year_project","root","IPNTclyv43");
         String query =( "SELECT SUM(EquipmentPreparationSelection = " + score + ") AS EquipmentPreparationSelectionCount FROM TBICoreSkills;" );
         
         Statement stmt = conn.createStatement();
@@ -110,8 +110,8 @@ public class TreatmentSummaryData {
     }
     
     public String showExaminationIntraOralHardTissues( int score) throws SQLException {
-        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
-        
+        //Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
+        Connection conn = DriverManager.getConnection("jdbc:mysql://ec2-52-31-7-122.eu-west-1.compute.amazonaws.com/final_year_project","root","IPNTclyv43");
         String query =( "SELECT SUM(ExaminationIntraOralHardTissues = " + score + ") AS ExaminationIntraOralHardTissuesCount FROM TBICoreSkills;" );
         
         Statement stmt = conn.createStatement();
@@ -130,8 +130,8 @@ public class TreatmentSummaryData {
     }
     
     public String showExaminationIntraOralSoftTissues( int score) throws SQLException {
-        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
-        
+        //Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
+        Connection conn = DriverManager.getConnection("jdbc:mysql://ec2-52-31-7-122.eu-west-1.compute.amazonaws.com/final_year_project","root","IPNTclyv43");
         String query =( "SELECT SUM(ExaminationIntraOralSoftTissues = " + score + ") AS ExaminationIntraOralSoftTissuesCount FROM TBICoreSkills;" );
         
         Statement stmt = conn.createStatement();
@@ -150,8 +150,8 @@ public class TreatmentSummaryData {
     }
     
     public String showExtraOralExamination( int score) throws SQLException {
-        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
-        
+        //Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
+        Connection conn = DriverManager.getConnection("jdbc:mysql://ec2-52-31-7-122.eu-west-1.compute.amazonaws.com/final_year_project","root","IPNTclyv43");
         String query =( "SELECT SUM(ExtraOralExamination = " + score + ") AS ExtraOralExaminationCount FROM TBICoreSkills;" );
         
         Statement stmt = conn.createStatement();
@@ -170,8 +170,8 @@ public class TreatmentSummaryData {
     }
     
     public String showInfectionControl( int score) throws SQLException {
-        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
-        
+        //Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
+        Connection conn = DriverManager.getConnection("jdbc:mysql://ec2-52-31-7-122.eu-west-1.compute.amazonaws.com/final_year_project","root","IPNTclyv43");
         String query =( "SELECT SUM(InfectionControl = " + score + ") AS InfectionControlCount FROM TBICoreSkills;" );
         
         Statement stmt = conn.createStatement();
@@ -190,8 +190,8 @@ public class TreatmentSummaryData {
     }
     
     public String showInterpretationOfSpeciaInvestigations( int score) throws SQLException {
-        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
-        
+        //Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
+        Connection conn = DriverManager.getConnection("jdbc:mysql://ec2-52-31-7-122.eu-west-1.compute.amazonaws.com/final_year_project","root","IPNTclyv43");
         String query =( "SELECT SUM(InterpretationOfSpeciaInvestigations = " + score + ") AS InterpretationOfSpeciaInvestigationsCount FROM TBICoreSkills;" );
         
         Statement stmt = conn.createStatement();
@@ -210,8 +210,8 @@ public class TreatmentSummaryData {
     }
     
     public String showLocalAnaesthesiaBlock( int score) throws SQLException {
-        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
-        
+        //Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
+        Connection conn = DriverManager.getConnection("jdbc:mysql://ec2-52-31-7-122.eu-west-1.compute.amazonaws.com/final_year_project","root","IPNTclyv43");
         String query =( "SELECT SUM(LocalAnaesthesiaBlock = " + score + ") AS LocalAnaesthesiaBlockCount FROM TBICoreSkills;" );
         
         Statement stmt = conn.createStatement();
@@ -230,8 +230,8 @@ public class TreatmentSummaryData {
     }
     
     public String showLocalAnaesthesiaInfiltration( int score) throws SQLException {
-        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
-        
+        //Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
+        Connection conn = DriverManager.getConnection("jdbc:mysql://ec2-52-31-7-122.eu-west-1.compute.amazonaws.com/final_year_project","root","IPNTclyv43");
         String query =( "SELECT SUM(LocalAnaesthesiaInfiltration = " + score + ") AS LocalAnaesthesiaInfiltrationCount FROM TBICoreSkills;" );
         
         Statement stmt = conn.createStatement();
@@ -250,8 +250,8 @@ public class TreatmentSummaryData {
     }
     
     public String showManagementOfComplications( int score) throws SQLException {
-        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
-        
+        //Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
+        Connection conn = DriverManager.getConnection("jdbc:mysql://ec2-52-31-7-122.eu-west-1.compute.amazonaws.com/final_year_project","root","IPNTclyv43");
         String query =( "SELECT SUM(ManagementOfComplications = " + score + ") AS ManagementOfComplicationsCount FROM TBICoreSkills;" );
         
         Statement stmt = conn.createStatement();
@@ -270,8 +270,8 @@ public class TreatmentSummaryData {
     }
     
     public String showMaterialSelectionAndHandling( int score) throws SQLException {
-        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
-        
+        //Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
+        Connection conn = DriverManager.getConnection("jdbc:mysql://ec2-52-31-7-122.eu-west-1.compute.amazonaws.com/final_year_project","root","IPNTclyv43");
         String query =( "SELECT SUM(MaterialSelectionAndHandling = " + score + ") AS MaterialSelectionAndHandlingCount FROM TBICoreSkills;" );
         
         Statement stmt = conn.createStatement();
@@ -290,8 +290,8 @@ public class TreatmentSummaryData {
     }
     
     public String showAppropriatePatientPosition( int score) throws SQLException {
-        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
-        
+        //Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
+        Connection conn = DriverManager.getConnection("jdbc:mysql://ec2-52-31-7-122.eu-west-1.compute.amazonaws.com/final_year_project","root","IPNTclyv43");
         String query =( "SELECT SUM(AppropriatePatientPosition = " + score + ") AS AppropriatePatientPositionCount FROM TBICoreSkills;" );
         
         Statement stmt = conn.createStatement();
@@ -310,8 +310,8 @@ public class TreatmentSummaryData {
     }
     
     public String showAppropriateOperatorPosition( int score) throws SQLException {
-        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
-        
+        //Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
+        Connection conn = DriverManager.getConnection("jdbc:mysql://ec2-52-31-7-122.eu-west-1.compute.amazonaws.com/final_year_project","root","IPNTclyv43");
         String query =( "SELECT SUM(AppropriateOperatorPosition = " + score + ") AS AppropriateOperatorPositionCount FROM TBICoreSkills;" );
         
         Statement stmt = conn.createStatement();
@@ -330,8 +330,8 @@ public class TreatmentSummaryData {
     }
     
     public String showAppropriateLightPosition( int score) throws SQLException {
-        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
-        
+        //Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
+        Connection conn = DriverManager.getConnection("jdbc:mysql://ec2-52-31-7-122.eu-west-1.compute.amazonaws.com/final_year_project","root","IPNTclyv43");
         String query =( "SELECT SUM(AppropriateLightPosition = " + score + ") AS AppropriateLightPositionCount FROM TBICoreSkills;" );
         
         Statement stmt = conn.createStatement();
@@ -350,8 +350,8 @@ public class TreatmentSummaryData {
     }
     
     public String showAppropriateUseOfMirror( int score) throws SQLException {
-        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
-        
+        //Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
+        Connection conn = DriverManager.getConnection("jdbc:mysql://ec2-52-31-7-122.eu-west-1.compute.amazonaws.com/final_year_project","root","IPNTclyv43");
         String query =( "SELECT SUM(AppropriateUseOfMirror = " + score + ") AS AppropriateUseOfMirrorCount FROM TBICoreSkills;" );
         
         Statement stmt = conn.createStatement();
@@ -370,8 +370,8 @@ public class TreatmentSummaryData {
     }
     
     public String showAppropriateFingerSupport( int score) throws SQLException {
-        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
-        
+        //Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
+        Connection conn = DriverManager.getConnection("jdbc:mysql://ec2-52-31-7-122.eu-west-1.compute.amazonaws.com/final_year_project","root","IPNTclyv43");
         String query =( "SELECT SUM(AppropriateFingerSupport = " + score + ") AS AppropriateFingerSupportCount FROM TBICoreSkills;" );
         
         Statement stmt = conn.createStatement();
@@ -390,8 +390,8 @@ public class TreatmentSummaryData {
     }
     
     public String showProfessionalism( int score) throws SQLException {
-        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
-        
+        //Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
+        Connection conn = DriverManager.getConnection("jdbc:mysql://ec2-52-31-7-122.eu-west-1.compute.amazonaws.com/final_year_project","root","IPNTclyv43");
         String query =( "SELECT SUM(Professionalism = " + score + ") AS ProfessionalismCount FROM TBICoreSkills;" );
         
         Statement stmt = conn.createStatement();
@@ -413,8 +413,8 @@ public class TreatmentSummaryData {
     }
     
     public String showCommunication( int score) throws SQLException {
-        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
-        
+        //Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
+        Connection conn = DriverManager.getConnection("jdbc:mysql://ec2-52-31-7-122.eu-west-1.compute.amazonaws.com/final_year_project","root","IPNTclyv43");
         String query =( "SELECT SUM(Communication = " + score + ") AS CommunicationCount FROM TBICoreSkills;" );
         
         Statement stmt = conn.createStatement();
@@ -436,8 +436,8 @@ public class TreatmentSummaryData {
     }
     
     public String showKnowledge( int score) throws SQLException {
-        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
-        
+        //Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
+        Connection conn = DriverManager.getConnection("jdbc:mysql://ec2-52-31-7-122.eu-west-1.compute.amazonaws.com/final_year_project","root","IPNTclyv43");
         String query =( "SELECT SUM(Knowledge= " + score + ") AS KnowledgeCount FROM TBICoreSkills;" );
         
         Statement stmt = conn.createStatement();

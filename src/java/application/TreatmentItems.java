@@ -27,6 +27,9 @@ public class TreatmentItems {
     private String comment;
     private String checkbox;
     private String attendance;
+    private String cdsNumber;
+    private String patientID;
+    private String dateAdded;
     private String [] result;
     private DatabaseClass database;
     
@@ -38,9 +41,13 @@ public class TreatmentItems {
         this.treatmentPlanID = "";
         this.checkbox = "";
         this.attendance = "";
+        this.cdsNumber = "";
+        this.patientID = "";
+        this.dateAdded = "";
         this.result = new String[10];
         database = new DatabaseClass( );
-        database.setup( "localhost", "final_year_project", "root", "" );
+        database.setup( "ec2-52-31-7-122.eu-west-1.compute.amazonaws.com", "final_year_project", "root", "IPNTclyv43" );
+        //database.setup( "localhost", "final_year_project", "root", "" );
     }
     
     public String getStudentID() {
@@ -91,9 +98,34 @@ public class TreatmentItems {
         this.attendance = attendance;
     }
     
+    public String getCdsNumber( ) {
+        return cdsNumber;
+    }
+ 
+    public void setCdsNumber( final String cdsNumber ) {
+        this.cdsNumber = cdsNumber;
+    }
+    
+    public String getPatientID( ) {
+        return patientID;
+    }
+ 
+    public void setPatientID( final String patientID) {
+        this.patientID = patientID;
+    }
+    
+    public String getDateAdded( ) {
+        return dateAdded;
+    }
+ 
+    public void setDateAdded( final String dateAdded) {
+        this.dateAdded = dateAdded;
+    }
+    
     public boolean hasBeenGraded( String StudentID, String TreatmentID ) {
         DatabaseClass database = new DatabaseClass( );
-        database.setup( "localhost", "final_year_project", "root", "" );
+        database.setup( "ec2-52-31-7-122.eu-west-1.compute.amazonaws.com", "final_year_project", "root", "IPNTclyv43" );
+        //database.setup( "localhost", "final_year_project", "root", "" );
         boolean isGraded = false;
         
         
@@ -113,7 +145,8 @@ public class TreatmentItems {
     
     public boolean hasPerformedTreatments( String StudentID) {
         DatabaseClass database = new DatabaseClass( );
-        database.setup( "localhost", "final_year_project", "root", "" );
+        database.setup( "ec2-52-31-7-122.eu-west-1.compute.amazonaws.com", "final_year_project", "root", "IPNTclyv43" );
+        //database.setup( "localhost", "final_year_project", "root", "" );
         boolean isGraded = true;
         
         result = database.SelectRow( "SELECT TreatmentID FROM TBICoreSkills WHERE StudentID=" + StudentID + ";" );
@@ -130,7 +163,8 @@ public class TreatmentItems {
     
     public String showGrade( String StudentID, String TreatmentID ) {
         DatabaseClass database = new DatabaseClass( );
-        database.setup( "localhost", "final_year_project", "root", "" );
+        database.setup( "ec2-52-31-7-122.eu-west-1.compute.amazonaws.com", "final_year_project", "root", "IPNTclyv43" );
+        //database.setup( "localhost", "final_year_project", "root", "" );
         String grade = "";
         
         result = database.SelectRow( "SELECT * FROM TBICoreSkills WHERE StudentID = '" + StudentID + "' AND TreatmentID = '" + TreatmentID + "';" );
@@ -160,10 +194,11 @@ public class TreatmentItems {
         return form;
     }
     
-    public String showScore( String StudentID, String TreatmentID ) throws SQLException {
+    public String showScore( String StudentID, String TreatmentID, String PatientID, String DateAdded ) throws SQLException {
         TreatmentItems treatment = new TreatmentItems();
         DatabaseClass database = new DatabaseClass( );
-        database.setup( "localhost", "final_year_project", "root", "" );
+        database.setup( "ec2-52-31-7-122.eu-west-1.compute.amazonaws.com", "final_year_project", "root", "IPNTclyv43" );
+        //database.setup( "localhost", "final_year_project", "root", "" );
         String dateAdded = "";
         String time = "";
         String patientID = "";
@@ -193,7 +228,7 @@ public class TreatmentItems {
         String Attendance = "";
         String Hour = "";
 
-        result = database.SelectRow( "SELECT * FROM TBICoreSkills WHERE StudentID = '" + StudentID + "' AND TreatmentID = '" + TreatmentID + "';" );
+        result = database.SelectRow( "SELECT * FROM TBICoreSkills WHERE StudentID = '" + StudentID + "' AND TreatmentID = '" + TreatmentID + "' AND PatientID = '" + PatientID + "' AND DateAdded = '" + DateAdded + "';" );
         
         if( result.length != 0 ) {
             dateAdded = result[22];
@@ -229,10 +264,10 @@ public class TreatmentItems {
         TreatmentItems score = new TreatmentItems();
         
             String form = "<div class=\"table-responsive\">\n";
-                   form += "<table class=\"table\">\n";
+                   form += "<table class=\"table table-bordered\">\n";
                    form += "<thead>\n";
                    
-                   form += "<th><h1>Overview</h1></th>\n";
+                   form += "<th colspan=\"2\"><h1>Overview</h1></th>\n";
                    form += "<tr>\n";
                    form += "<th>Student</th>\n";
                    form += "<td>" + score.fetchStudentName(StudentID) + "</td>\n";
@@ -246,8 +281,8 @@ public class TreatmentItems {
                    form += "<td>" + time + "</td>\n";
                    form += "</tr>\n";
                    form += "<tr>\n";
-                   form += "<th>Patient</th>\n";
-                   form += "<td>" + score.fetchPatientName(patientID) + "</td>\n";
+                   form += "<th>Patient CDS Number</th>\n";
+                   form += "<td>" + patientID + "</td>\n";
                    form += "</tr>\n";
                    form += "<tr>\n";
                    form += "<th>Treatment</th>\n";
@@ -275,7 +310,7 @@ public class TreatmentItems {
                    form += "</tr>\n"; 
                    form += "<tr>\n";
                    
-                   form += "<th><h1>Core Skills Generic</h1></th>\n";
+                   form += "<th colspan=\"2\"><h1>Core Skills Generic</h1></th>\n";
                    form += "<tr>";
                    form += "<th>Ability to establish diagnosis</th>\n";
                    form += "<td>" + AbilityToEstablishDiagnosis + "</td>\n";
@@ -329,7 +364,7 @@ public class TreatmentItems {
                    form += "<td>" + MaterialSelectionAndHandling + "</td>\n";
                    form += "</tr>\n";
                    
-                   form += "<th><h1>Basic Operative Skills</h1></th>\n";
+                   form += "<th colspan=\"2\"><h1>Basic Operative Skills</h1></th>\n";
                    form += "<tr>\n";
                    form += "<th>Appropriate patient position</th>\n";
                    form += "<td>" + AppropriatePatientPosition + "</td>\n";
@@ -351,20 +386,20 @@ public class TreatmentItems {
                    form += "<td>" + AppropriateFingerSupport + "</td>\n";
                    form += "</tr>\n";
                    
-                   form += "<th><h1>Professionalism</h1></th>\n";
+                   form += "<th colspan=\"2\"><h1>Professionalism</h1></th>\n";
                    form += "<tr>\n";
                    form += "<th>Professionalism</th>\n";
                    form += "<td>" + Professionalism + "</td>\n";
                    form += "</tr>\n";
                    
-                   form += "<th><h1>Communication</h1></th>\n";
+                   form += "<th colspan=\"2\"><h1>Communication</h1></th>\n";
                    form += "<tr>\n";
                    form += "<th>Communication</th>\n";
                    form += "<td>" + Communication + "</td>\n";
                    form += "</tr>\n";
                    
                    
-                   form += "<th><h1>Knowledge</h1></th>\n";
+                   form += "<th colspan=\"2\"><h1>Knowledge</h1></th>\n";
                    form += "<tr>\n";
                    form += "<th>Knowledge</th>\n";
                    form += "<td>" + Knowledge + "</td>\n";
@@ -381,9 +416,9 @@ public class TreatmentItems {
         return form; 
     }
     
-    public String fetchTreatments( String StudentID, String domain) throws SQLException{
-        
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
+    public String fetchTreatments( String StudentID, String domain, String cdsNumber) throws SQLException{
+            Connection conn = DriverManager.getConnection("jdbc:mysql://ec2-52-31-7-122.eu-west-1.compute.amazonaws.com/final_year_project","root","IPNTclyv43");
+            //Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
             //System.out.println("successful");
             String query = ("SELECT TreatmentItems.TreatmentItemID, TreatmentItems.TreatmentName, TreatmentItems.DomainID, TreatmentItems.RequirementsGroupID, TreatmentItems.RequirementsWeighting"
                             + " FROM TreatmentItems WHERE TreatmentItems.DomainID=" + domain + "");
@@ -400,31 +435,13 @@ public class TreatmentItems {
                    form += "<th>Student ID</th>\n";
                    form += "<th>Treatment ID</th>\n";
                    form += "<th>Treatment Name</th>\n";
-                   form += "<th>Attendance</th>\n";
-                   form += "<th>Grade</th>";
+                   form += "<th>Patient CDS Number</th>\n";
+                   form += "<th>Grade</th>\n";
                    form += "</tr>\n";
                    form += "<tbody>\n";
                
             while(rs.next()){
                 
-                if( hasBeenGraded( StudentID, rs.getString("TreatmentItems.TreatmentItemID") ) == true){
-                    form += "<tr class='graded'>\n";
-                    form += "<td><form name='grade' action='viewScore.jsp' method='POST'>"
-                        + "<select name=\"studentID\" id='dropdown'>"
-                        + "<option value=\"" + StudentID + "\" selected>" + StudentID + "</option>"
-                        + "</select><br /></td>"
-                        + "<td><select name=\"treatmentID\" id='dropdown'>"
-                        + "<option value=\"" + rs.getString("TreatmentItems.TreatmentItemID") + "\" selected>" + rs.getString("TreatmentItems.TreatmentItemID") + "</option>"
-                        + "</select><br />"
-                        + "</td>\n";
-                    form += "<td>" + rs.getString("TreatmentItems.TreatmentName") + "</td>\n";
-                    form += "<td></td>\n";
-                    //form += "<td class='red'>" + showGrade( StudentID,rs.getString("TreatmentItems.TreatmentItemID") ) + "</td>\n";
-                    form += "<td><input type=\"submit\" value=\"View Score\" class=\"btn-style\"></td></form>\n";
-                    form += "</tr>\n";
-                }
-                
-               else{
                     form += "<tr>\n";
                     form += "<td><form name='grade' action='markStudent.jsp' method='POST'>"
                             + "<select name=\"studentID\" id='dropdown'>"
@@ -434,9 +451,12 @@ public class TreatmentItems {
                             + "<option value=\"" + rs.getString("TreatmentItems.TreatmentItemID") + "\" selected>" + rs.getString("TreatmentItems.TreatmentItemID") + "</option>"
                             + "</select><br />"
                             + "</td>\n";
-                    form += "<td>" + rs.getString("TreatmentItems.TreatmentName") + "</td>\n";
-                    form += "<td><input type=\"submit\" value=\"Grade\" class=\"btn-style\"></td></form>\n";
-                    form += "<td>" + treatment.absent(StudentID,rs.getString("TreatmentItems.TreatmentItemID") ) + "</td>\n";                     
+                    form += "<td>" + rs.getString("TreatmentItems.TreatmentName") + "</td>\n"
+                            + "<td><select name=\"cdsNumber\" id='dropdown'>"
+                            + "<option value=\"" + cdsNumber + "\" selected>" + cdsNumber + "</option>"
+                            + "</select><br /></td>";
+                    form += "<td><input type=\"submit\" value=\"Grade\" class=\"btn-style\"></form>\n";
+                    form += "" + absent(StudentID,rs.getString("TreatmentItems.TreatmentItemID") ) + "</td>\n";                     
                     /**form += "<td><select name=\"attendance\">"
                           + "<option value='absent' selected>Absent</option>"
                           + "<option value='present'>Present</option>"
@@ -444,7 +464,7 @@ public class TreatmentItems {
                           + "</select><br />"
                           + "</td>\n"; **/
                     form += "</tr>\n";
-                }
+               
                 
             }
             
@@ -456,6 +476,8 @@ public class TreatmentItems {
         conn.close();
         return form;
     }
+    
+    
     
     public String absent(String StudentID, String TreatmentID) throws SQLException{
         TreatmentItems attendance = new TreatmentItems();
@@ -485,18 +507,19 @@ public class TreatmentItems {
                 + "ExaminationIntraOralHardTissues, ExaminationIntraOralSoftTissues, ExtraOralExamination, InfectionControl, InterpretationOfSpeciaInvestigations, LocalAnaesthesiaBlock, LocalAnaesthesiaInfiltration,"
                 + "ManagementOfComplications, MaterialSelectionAndHandling, AppropriatePatientPosition, AppropriateOperatorPosition, AppropriateLightPosition, AppropriateUseOfMirror, AppropriateFingerSupport,"
                 + "DateAdded, TreatmentID, Time, Comment, Professionalism, Communication, Knowledge, Attendance, Hour )"
-                +"VALUES( '" + studentID + "', '0', '" + tutorID + "', '0', '0', '0', '0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','" + date + "','" + treatmentID + "','" + time + "','Absent from session','0','0','0','','" + hour + "' );" );
+                +"VALUES( '" + studentID + "', '" + cdsNumber + "', '" + tutorID + "', '0', '0', '0', '0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','" + date + "','" + treatmentID + "','" + time + "','Absent from session','0','0','0','','" + hour + "' );" );
         
         
         database.Close();
     }
     
     public String fetchMyTreatments( String StudentID) throws SQLException{
-        
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://ec2-52-31-7-122.eu-west-1.compute.amazonaws.com/final_year_project","root","IPNTclyv43");
+            //Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
             //System.out.println("successful");
-            String query = ("SELECT TreatmentItems.TreatmentItemID, TreatmentItems.TreatmentName, TreatmentItems.DomainID, TreatmentItems.RequirementsGroupID, TreatmentItems.RequirementsWeighting"
-                            + " FROM TreatmentItems");
+            String query = ("SELECT TBICoreSkills.PatientID, TBICoreSkills.TreatmentID, TBICoreSkills.DateAdded, TreatmentItems.TreatmentName, TreatmentItems.DomainID"
+                            + " FROM TreatmentItems JOIN TBICoreSkills ON TBICoreSkills.TreatmentID = TreatmentItems.TreatmentItemID"
+                            + " WHERE TBICoreSkills.StudentID=" + StudentID + "");
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(query);
 
@@ -510,32 +533,94 @@ public class TreatmentItems {
                    form += "<th>Treatment ID</th>\n";
                    form += "<th>Treatment Name</th>\n";
                    form += "<th>Domain ID</th>\n";
-                   form += "<th>Grade</th>";
+                   form += "<th>Date Graded</th>";
+                   form += "<th>Patient CDS</th>";
+                   form += "<th> </th>\n";
                    form += "</tr>\n";
                    form += "<tbody>\n";
                
             while(rs.next()){
-                if( hasBeenGraded( StudentID, rs.getString("TreatmentItems.TreatmentItemID") ) == true){
-                    form += "<tr class='graded'>\n";
+                
+                    form += "<tr>\n";
                     form += "<td><form name='grade' action='viewStudentScore.jsp' method='POST'>"
                         + "<select name=\"studentID\" id='dropdown'>"
                         + "<option value=\"" + StudentID + "\" selected>" + StudentID + "</option>"
                         + "</select><br /></td>"
                         + "<td><select name=\"treatmentID\" id='dropdown'>"
-                        + "<option value=\"" + rs.getString("TreatmentItems.TreatmentItemID") + "\" selected>" + rs.getString("TreatmentItems.TreatmentItemID") + "</option>"
+                        + "<option value=\"" + rs.getString("TBICoreSkills.TreatmentID") + "\" selected>" + rs.getString("TBICoreSkills.TreatmentID") + "</option>"
                         + "</select><br />"
                         + "</td>\n";
                     form += "<td>" + rs.getString("TreatmentItems.TreatmentName") + "</td>\n";
-                    form += "<td>" + rs.getString("TreatmentItems.DomainID") + "</td>\n";
-                    //form += "<td class='red'>" + showGrade( StudentID,rs.getString("TreatmentItems.TreatmentItemID") ) + "</td>\n";
+                    form += "<td>" + rs.getString("TreatmentItems.DomainID") + "</td>\n"+ "<select name=\"studentID\" id='dropdown'>";
+                    form += "<td><select name=\"dateAdded\" id='dropdown'>"
+                         + "<option value=\"" + rs.getString("TBICoreSkills.DateAdded") + "\" selected>" + rs.getString("TBICoreSkills.DateAdded") + "</option>"
+                         + "</select><br /></td>"
+                         + "<td><select name=\"patientID\" id='dropdown'>"
+                         + "<option value=\"" + rs.getString("TBICoreSkills.PatientID") + "\" selected>" + rs.getString("TBICoreSkills.PatientID") + "</option>"
+                         + "</select><br /></td>";
                     form += "<td><input type=\"submit\" value=\"View Score\" class=\"btn-style\"></td></form>\n";
                     form += "</tr>\n";
-                }
                 
-               else{
+                
+            }
+        
+            
+            form += "</tbody>\n";
+            form += "</table>\n";
+            form += "</div>\n";
+            
+        conn.close();
+        return form;
+    }
+    
+    public String fetchMyTreatments2( String StudentID) throws SQLException{
+            Connection conn = DriverManager.getConnection("jdbc:mysql://ec2-52-31-7-122.eu-west-1.compute.amazonaws.com/final_year_project","root","IPNTclyv43");
+            //Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
+            //System.out.println("successful");
+            String query = ("SELECT TBICoreSkills.PatientID, TBICoreSkills.TreatmentID, TBICoreSkills.DateAdded, TreatmentItems.TreatmentName, TreatmentItems.DomainID"
+                            + " FROM TreatmentItems JOIN TBICoreSkills ON TBICoreSkills.TreatmentID = TreatmentItems.TreatmentItemID"
+                            + " WHERE TBICoreSkills.StudentID=" + StudentID + "");
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+
+            
+            
+            String form = "<div class=\"table-responsive\">\n";
+                   form += "<table class=\"table\">\n";
+                   form += "<thead>\n";
+                   form += "<tr>\n";
+                   form += "<th>Student ID</th>\n";
+                   form += "<th>Treatment ID</th>\n";
+                   form += "<th>Treatment Name</th>\n";
+                   form += "<th>Domain ID</th>\n";
+                   form += "<th>Date Graded</th>";
+                   form += "<th>Patient CDS</th>";
+                   form += "<th> </th>\n";
+                   form += "</tr>\n";
+                   form += "<tbody>\n";
+               
+            while(rs.next()){
+                
                     form += "<tr>\n";
+                    form += "<td><form name='grade' action='viewMyScore.jsp' method='POST'>"
+                        + "<select name=\"studentID\" id='dropdown'>"
+                        + "<option value=\"" + StudentID + "\" selected>" + StudentID + "</option>"
+                        + "</select><br /></td>"
+                        + "<td><select name=\"treatmentID\" id='dropdown'>"
+                        + "<option value=\"" + rs.getString("TBICoreSkills.TreatmentID") + "\" selected>" + rs.getString("TBICoreSkills.TreatmentID") + "</option>"
+                        + "</select><br />"
+                        + "</td>\n";
+                    form += "<td>" + rs.getString("TreatmentItems.TreatmentName") + "</td>\n";
+                    form += "<td>" + rs.getString("TreatmentItems.DomainID") + "</td>\n"+ "<select name=\"studentID\" id='dropdown'>";
+                    form += "<td><select name=\"dateAdded\" id='dropdown'>"
+                         + "<option value=\"" + rs.getString("TBICoreSkills.DateAdded") + "\" selected>" + rs.getString("TBICoreSkills.DateAdded") + "</option>"
+                         + "</select><br /></td>"
+                         + "<td><select name=\"patientID\" id='dropdown'>"
+                         + "<option value=\"" + rs.getString("TBICoreSkills.PatientID") + "\" selected>" + rs.getString("TBICoreSkills.PatientID") + "</option>"
+                         + "</select><br /></td>";
+                    form += "<td><input type=\"submit\" value=\"View Score\" class=\"btn-style\"></td></form>\n";
                     form += "</tr>\n";
-                }
+                
                 
             }
         
@@ -552,7 +637,8 @@ public class TreatmentItems {
     
     
     public String fetchStudentName( String StudentID) throws SQLException{
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://ec2-52-31-7-122.eu-west-1.compute.amazonaws.com/final_year_project","root","IPNTclyv43");
+            //Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
             //System.out.println("successful");
             String query = ("SELECT FirstName, LastName FROM Students WHERE StudentID=" + StudentID + ";");
             Statement stmt = conn.createStatement();
@@ -582,7 +668,8 @@ public class TreatmentItems {
     }
     
     public String fetchClinicalAlert( String treatmentName, String studentID) throws SQLException{
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://ec2-52-31-7-122.eu-west-1.compute.amazonaws.com/final_year_project","root","IPNTclyv43");
+            //Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
             //System.out.println("successful");
             String query = ("SELECT ClinicalAlert FROM TreatmentPlanEntries JOIN TreatmentPlans "
                             + "ON TreatmentPlanEntries.PlanEntryID = TreatmentPlans.PlanID "
@@ -599,23 +686,9 @@ public class TreatmentItems {
             return form;
     }
     
-    public String fetchPatientName( String PatientID) throws SQLException{
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
-            //System.out.println("successful");
-            String query = ("SELECT FirstName, LastName FROM Patients WHERE PatientID=" + PatientID + ";");
-            Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery(query);
-            
-            String form = "";
-            while(rs.next()){
-                form += rs.getString("FirstName") + " " + rs.getString("LastName") + "\n";
-            }
-            
-            return form;
-    }
-    
     public String fetchTutorName( String TutorID) throws SQLException{
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://ec2-52-31-7-122.eu-west-1.compute.amazonaws.com/final_year_project","root","IPNTclyv43");
+            //Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
             //System.out.println("successful");
             String query = ("SELECT FirstName, LastName FROM TutorsWHERE TutorID=" + TutorID + ";");
             Statement stmt = conn.createStatement();
@@ -630,7 +703,8 @@ public class TreatmentItems {
     }
     
     public String fetchTreatmentName( String TreatmentID) throws SQLException{
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://ec2-52-31-7-122.eu-west-1.compute.amazonaws.com/final_year_project","root","IPNTclyv43");
+            //Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
             //System.out.println("successful");
             String query = ("SELECT TreatmentName FROM TreatmentItems WHERE TreatmentItemID=" + TreatmentID + ";");
             Statement stmt = conn.createStatement();

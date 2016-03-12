@@ -44,6 +44,7 @@
 			<canvas id="canvas" height="450" width="600"></canvas>
 		</div>
         <p>
+        <div id="list">
         <ul>
             <li>Core Generic Skills <img src="img/colours/babyblue.JPG"></li>
             <li>Basic Operative Skills <img src="img/colours/yellow.JPG"></li>
@@ -52,6 +53,7 @@
             <li>Knowledge <img src="img/colours/turq.JPG"></li>
         </ul>
         </p>
+        </div>
         <%
             int showCore1 = Integer.parseInt(search.showCore(1));
             int showCore2 = Integer.parseInt(search.showCore(2));

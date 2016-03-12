@@ -4,6 +4,8 @@
     Author     : Delaney
 --%>
 
+<%@page import="summaryData.StudentTreatmentSummaryData"%>
+<%@page import="guipackage.SearchBox"%>
 <%@page import="application.StudentGrades"%>
 <%@page import="guipackage.GUI"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -15,6 +17,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
         <link href="css/sidebar.css" rel="stylesheet">
+        <link href="css/dropdown.css" rel="stylesheet">
         <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
         <script src="js/sidebar.js"></script>
         <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
@@ -32,10 +35,54 @@
                 StudentGrades grades = new StudentGrades(); 
           
                 out.print(gui.studentNavigation());
+                SearchBox search = new SearchBox();
                 String StudentID = (String) session.getAttribute( "StudentID" );
-                out.print( treatmentItem.fetchMyTreatments( StudentID ) );
-                
-                out.print(gui.footer());
+                StudentTreatmentSummaryData data = new StudentTreatmentSummaryData();
         %>
+        <p>
+        <div class="container">
+            <ul class="nav nav-tabs">
+                <li class="nav active"><a href="#A" data-toggle="tab">Domain Summary Data</a></li>
+                <li class="nav"><a href="#B" data-toggle="tab">Treatment Summary Data</a></li>
+                <li class="nav"><a href="#C" data-toggle="tab">Treatment Scores</a></li>
+            </ul>
+        <div class="tab-content">
+                <div class="tab-pane fade in active" id="A">
+        <%
+              //String student = (String)request.getParameter("student");
+        %>
+        <p id="top">
+        </p>
+        <p>
+        <%
+             out.print(search.studentData( StudentID ));
+             out.print( search.toStudentBarChart( StudentID ));
+        %>
+        </p>
+                </div>
+                <div class="tab-pane fade" id="B">
+                <p>
+        <%
+             out.print(data.studentData( StudentID ));
+             
+        %>
+                    </p>
+                </div>  
+                <div class="tab-pane fade" id="C">
+                  
+        <%
+             out.print( treatmentItem.fetchMyTreatments2( StudentID ) );
+              
+              
+        %>
+                   
+                </div>            
+            </div>
+        </div>      
+        <%
+          
+          out.print(gui.footer());
+        %> 
+    </p>
     </body>
 </html>

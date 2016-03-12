@@ -26,6 +26,8 @@ public class RegisterPatient {
     private String firstName;
     private String lastName;
     private String gender;
+    private String cdsNumber;
+    private String ethenticity;
     private DatabaseClass database;
     private final ArrayList<String> errors;
     
@@ -34,10 +36,13 @@ public class RegisterPatient {
         firstName = "";
         lastName = "";
         gender = "";
+        cdsNumber = "";
+        ethenticity = "";
         errors = new ArrayList<>( );
 
         database = new DatabaseClass( );
         database.setup( "localhost", "final_year_project", "root", "" );
+        //database.setup( "ec2-52-31-7-122.eu-west-1.compute.amazonaws.com", "final_year_project", "root", "IPNTclyv43" );
     }
     
     public String getDob( ) {
@@ -74,13 +79,33 @@ public class RegisterPatient {
     public void setLastName( final String lastName ) {
         this.lastName = lastName;
     }
+    public String getEthenticity( ) {
+        return ethenticity ;
+    }
+    
+    public void setEthenticity( final String ethenticity ) {
+        this.ethenticity = ethenticity ;
+    }
+    
+    public String getCdsNumber( ) {
+        return cdsNumber;
+    }
+ 
+    public void setCdsNumber( final String cdsNumber ) {
+        this.cdsNumber = cdsNumber;
+    }
+    
+    
     public String getGender( ) {
         return gender;
     }
-    
+ 
     public void setGender( final String gender ) {
         this.gender = gender;
     }
+    
+    
+    
     /**
      * Ensures the form is filled out correctly by the user.
      * @return true if form is filled out correctly and false if otherwise.
@@ -100,9 +125,21 @@ public class RegisterPatient {
         }
         
         if( gender.equals( "" )) {
-            errors.add( "Please enter a valid gender." );
+            errors.add( "Please enter the gender of the patient." );
             isValid = false;
             gender = "";
+        }
+        
+        if( ethenticity.equals( "" )) {
+            errors.add( "Please enter the patients ethenticity." );
+            isValid = false;
+            ethenticity = "";
+        }
+        
+        if( cdsNumber.equals( "" )) {
+            errors.add( "Please enter a valid CDS Number." );
+            isValid = false;
+            cdsNumber = "";
         }
         
         if( dob.equals( "" )) {
@@ -128,8 +165,8 @@ public class RegisterPatient {
      */
     public void registerNewPatient(  ) throws NoSuchAlgorithmException, InvalidKeySpecException, Exception {
        
-        database.Insert( "INSERT INTO Patients( DOB, FirstName, LastName, Gender)" +
-                         "VALUES( '" + dob + "','" + firstName + "', '" + lastName + "', '" + gender + "');" );
+        database.Insert( "INSERT INTO Patients( DOB, FirstName, LastName, Gender, CDSNumber, Ethenticity)" +
+                         "VALUES( '" + dob + "','" + firstName + "', '" + lastName + "', '" + gender + "', '" + cdsNumber + "', '" + ethenticity + "');" );
         
         database.Close();
     }
@@ -187,7 +224,19 @@ public class RegisterPatient {
         form += "<div class=\"form-group row\">";
         form += "<label class=\"col-sm-2 form-control-label\" for='gender'>Gender:</label>\n";
         form += "<div class=\"col-sm-10\">";
-        form += "<input class=\"form-control\" type='text' id='gender' name='gender' value='" + gender +  "' placeholder='Female' /><br />\n" 
+        form += "<input class=\"form-control\" type='text' id='gender' name='gender' value='" + gender +  "' placeholder='Gender' /><br />\n" 
+                    + "</div>\n" 
+                    + "</div>\n";
+        form += "<div class=\"form-group row\">";
+        form += "<label class=\"col-sm-2 form-control-label\" for='cdsNumber'>CDS Number:</label>\n";
+        form += "<div class=\"col-sm-10\">";
+        form += "<input class=\"form-control\" type='text' id='cdsNumber' name='cdsNumber' value='" + cdsNumber +  "' placeholder='CDS Number' /><br />\n" 
+                    + "</div>\n" 
+                    + "</div>\n";
+        form += "<div class=\"form-group row\">";
+        form += "<label class=\"col-sm-2 form-control-label\" for='ethenticity'>Gender:</label>\n";
+        form += "<div class=\"col-sm-10\">";
+        form += "<input class=\"form-control\" type='text' id='ethenticity' name='ethenticity' value='" + ethenticity +  "' placeholder='Irish' /><br />\n" 
                     + "</div>\n" 
                     + "</div>\n";
         form += "<div class=\"form-group row\">";

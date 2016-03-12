@@ -51,9 +51,7 @@
                 String department = (String) session.getAttribute( "department" );
                 String picture = (String) session.getAttribute( "picture" );
                 out.print(gui.tutorNavigation());
-                
-                
-                out.print(gui.tutorDisplay(TutorID, firstName, lastName, department, picture));
+                out.print(gui.tutorDisplay(TutorID, firstName, lastName));
                 out.print(search.showTutorsGroups(TutorID));
                 
                 out.print(gui.footer());

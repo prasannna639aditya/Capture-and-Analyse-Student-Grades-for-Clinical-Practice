@@ -1,6 +1,6 @@
 <%-- 
-    Document   : barChart
-    Created on : 10-Mar-2016, 20:03:55
+    Document   : studentBarChart
+    Created on : 12-Mar-2016, 16:31:36
     Author     : Delaney
 --%>
 
@@ -33,13 +33,10 @@
         <jsp:setProperty name="search" property="*" />    
         <% 
             GUI gui = new GUI();
-            out.print(gui.tutorNavigation());
+            out.print(gui.studentNavigation());
             TreatmentItems treatment = new TreatmentItems();
         %>
         <p>
-        <%    
-                out.println("Catagorical bar chart analysis for " + treatment.fetchStudentName(search.getStudentID()));
-        %>
 		<div style="width: 65%">
 			<canvas id="canvas" height="450" width="600"></canvas>
 		</div>

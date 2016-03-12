@@ -49,7 +49,7 @@ public class GUI {
             form += "<a href='admin/adminLogin.jsp'>Admin</a>\n";
             form += "</li>\n";
             form += "<li>\n";
-            form += "<a href=\"#contact\">Contact</a>\n";
+            form += "<a href=\"https://www.ucc.ie/en/dentalschool/about/contact/\">Contact</a>\n";
             form += "</li>\n";
             form += "</ul>\n";
             form += "</div>\n";
@@ -60,57 +60,40 @@ public class GUI {
     
 
         
-    public String tutorDisplay(String TutorID, String firstName, String lastName, String department, String picture) {
-            String form = "<div class=\"table-responsive\">\n";
-                   form += "<table class=\"table\">\n";
-                   form += "<thead>\n";
-                   form += "<tr>\n";
-                   form += "<th></th>\n";
-                   form += "<th>Tutor ID</th>\n";
-                   form += "<th>First Name</th>\n";
-                   form += "<th>Surname</th>\n";
-                   form += "<th>Department</th>\n";
-                   form += "</tr>\n";
-                   form += "<tbody>\n";
-                   form += "<tr>\n";
-                   form += "<tr>\n";
-                   form += "<td><img class=\"img-circle\" src=\"" + picture + "\"</td>\n";
-                   form += "<td>" + TutorID + "</td>\n";
-                   form += "<td>" + firstName + "</td>\n";
-                   form += "<td>" + lastName + "</td>\n";
-                   form += "<td>" + department + "</td>\n";
-                   form += "</tr>\n";
-                   form += "</tbody>\n";
-                   form += "</table>\n";
-                   form += "</div>\n";
-        
-        return form;
+    public String tutorDisplay(String TutorID, String firstName, String lastName) {
+            SearchBox search = new SearchBox();
+            String form = "<div class=\"row\">\n" +
+                    "            <div class=\"col-md-4\">\n" +
+                    "                <p> </p>\n" +
+                    "                <img class=\"img-responsive img-rounded\"  src=\"img/tutors/" + TutorID + ".jpg\" alt=\"\">\n" +
+                    "            </div>\n" +
+                    "            <!-- /.col-md-8 -->\n" +
+                    "            <div class=\"col-md-4\">\n" +
+                    "                <h2>Welcome " + firstName + " " + lastName + "</h2>\n" +
+                    "                <p>Please search for a group below that you would like to grade. Enter in the group ID. You will then have the option to add another student to this group session.</p>   \n";
+                   form +=       search.groupSearchBox2() +
+                    "            </div>\n" +
+                    "            <!-- /.col-md-4 -->\n" +
+                    "        </div>";
+         return form;
     }
     
     
-    public String studentPrint(String StudentID, String firstName, String lastName, String picture) {
+    public String studentPrint(String StudentID, String firstName, String lastName) {
         
-            String form = "<div class=\"table-responsive\">\n";
-                   form += "<table class=\"table\">\n";
-                   form += "<thead>\n";
-                   form += "<tr>\n";
-                   form += "<th></th>\n";
-                   form += "<th>Student ID</th>\n";
-                   form += "<th>First Name</th>\n";
-                   form += "<th>Surname</th>\n";
-                   form += "</tr>\n";
-                   form += "<tbody>\n";
-                   form += "<tr>\n";
-                   form += "<tr>\n";
-                   form += "<td><img class=\"img-circle\" src=\"" + picture + "\"</td>\n";
-                   form += "<td>" + StudentID + "</td>\n";
-                   form += "<td>" + firstName + "</td>\n";
-                   form += "<td>" + lastName + "</td>\n";
-                   form += "</tr>\n";
-                   form += "</tbody>\n";
-                   form += "</table>\n";
-                   form += "</div>\n";
-        
+            
+        String form = "<div class=\"row\">\n" +
+                    "            <div class=\"col-md-4\">\n" +
+                    "                <p> </p>\n" +
+                    "                <img class=\"img-responsive img-rounded\"  src=\"img/students/" + StudentID + ".jpg\" alt=\"\">\n" +
+                    "            </div>\n" +
+                    "            <!-- /.col-md-8 -->\n" +
+                    "            <div class=\"col-md-4\">\n" +
+                    "                <h2>Welcome " + firstName + " " + lastName + "</h2>\n" +
+                    "                <p>Please click on this link to see an <a href=\"studentGradeView.jsp\">analysis</a> of your results. To view the marking structure, please take a look at the <a href=\"markingDescriptors.jsp\">marking descriptors</a>.</p>   \n" +
+                    "            </div>\n" +
+                    "            <!-- /.col-md-4 -->\n" +
+                    "        </div>";
          return form;
     }
     
@@ -231,8 +214,6 @@ public class GUI {
             "                    <div class=\"panel-body\">\n" +
             "                        <ul class=\"nav navbar-nav\">\n" +
             "                            <li><a href=\"summaryData/summaryData.jsp\">All Students</a></li>\n" +
-            "                            <li><a href=\"student-years/2015.jsp\">2015 Summary Data</a></li>\n" +
-            "                            <li><a href=\"student-years/2016.jsp\">2016 Summary Data</a></li>\n" +
             "\n" +
             "                            <!-- Dropdown level 2 -->\n" +
             "                            <li class=\"panel panel-default\" id=\"dropdown\">\n" +
@@ -298,7 +279,14 @@ public class GUI {
             "                <span class=\"icon-bar\"></span>\n" +
             "                <span class=\"icon-bar\"></span>\n" +
             "            </button>\n" +
-            "\n" +       
+            "\n" +
+            "            <!-- Brand -->\n" +
+            "            <div class=\"brand-name-wrapper\">\n" +
+            "                <a class=\"navbar-brand\" href=\"../index.jsp\">\n" +
+            "                 <span class=\"glyphicon glyphicon-repeat\">   Logout\n" +
+            "                </a>\n" +
+            "            </div>\n" +
+            "\n" +   
             "        </div>\n" +
             "\n" +
             "    </div>\n" +
@@ -388,9 +376,7 @@ public class GUI {
             "                <div id=\"dropdown-lvl1\" class=\"panel-collapse collapse\">\n" +
             "                    <div class=\"panel-body\">\n" +
             "                        <ul class=\"nav navbar-nav\">\n" +
-            "                            <li><a href=\"../summaryData/summaryData.jsp\">All Students</a></li>\n" +
-            "                            <li><a href=\"../student-years/2015.jsp\">2015 Summary Data</a></li>\n" +
-            "                            <li><a href=\"../student-years/2016.jsp\">2016 Summary Data</a></li>\n" +        
+            "                            <li><a href=\"../summaryData/summaryData.jsp\">All Students</a></li>\n" +       
             "\n" +
             "                            <!-- Dropdown level 2 -->\n" +
             "                            <li class=\"panel panel-default\" id=\"dropdown\">\n" +
@@ -501,8 +487,6 @@ public class GUI {
             "                    <div class=\"panel-body\">\n" +
             "                        <ul class=\"nav navbar-nav\">\n" +
             "                            <li><a href=\"summaryData.jsp\">All Students</a></li>\n" +
-            "                            <li><a href=\"../student-years/2015.jsp\">2015 Summary Data</a></li>\n" +
-            "                            <li><a href=\"../student-years/2016.jsp\">2016 Summary Data</a></li>\n" +
             "\n" +
             "                            <!-- Dropdown level 2 -->\n" +
             "                            <li class=\"panel panel-default\" id=\"dropdown\">\n" +

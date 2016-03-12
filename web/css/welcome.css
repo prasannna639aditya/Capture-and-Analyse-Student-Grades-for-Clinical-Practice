@@ -38,10 +38,15 @@ input[type=submit] {
 	text-shadow:1px 1px 0px #ffffff;
         position:relative;
 	top:1px;
+        margin-left: 15%;
 }
 
 #groups{
     margin-top: 5%;
+}
+
+#custom-search-input{
+    margin-left: -6%;
 }
 
 input[type=submit]:hover {
@@ -94,6 +99,7 @@ h2{
 img{
     width: 200px;
     height: 200px;
+    
 }
 
 .btn-style{
@@ -144,4 +150,16 @@ img{
 
 .indicate{
     background-color: red; 
+}
+
+#greyed{
+    background-color: #EDEDED;
+    color: white;
+    margin-right: 3%;
+    margin-top: 2%;
+}
+
+img{
+    width: 190px;
+    height: 50px;
 }

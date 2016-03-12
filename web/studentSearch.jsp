@@ -67,6 +67,7 @@
             <ul class="nav nav-tabs">
                 <li class="nav active"><a href="#A" data-toggle="tab">Domain Summary Data</a></li>
                 <li class="nav"><a href="#B" data-toggle="tab">Treatment Summary Data</a></li>
+                <li class="nav"><a href="#C" data-toggle="tab">Treatment Scores</a></li>
             </ul>
         <div class="tab-content">
                 <div class="tab-pane fade in active" id="A">
@@ -75,13 +76,14 @@
         %>
         <p id="top">
         <%
-             out.println("See the summary data for" + name.fetchStudentName(search.getStudentID()));
-             out.print( search.toBarChart(search.getStudentID()));
+             out.println("See the domain summary data for " + name.fetchStudentName(search.getStudentID()));
+             
         %>
         </p>
         <p>
         <%
              out.print(search.studentData(search.getStudentID()));
+             out.print( search.toBarChart(search.getStudentID()));
         %>
         </p>
                 </div>
@@ -95,7 +97,16 @@
           }
         %>
                     </p>
-                </div>    
+                </div>  
+                <div class="tab-pane fade" id="C">
+                
+        <%
+             out.print(name.fetchMyTreatments(search.getStudentID()));
+              
+              
+        %>
+                   
+                </div>            
             </div>
         </div>      
         <%

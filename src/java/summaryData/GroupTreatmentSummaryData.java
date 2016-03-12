@@ -26,8 +26,8 @@ public class GroupTreatmentSummaryData extends Applet {
     }
     
     public String showAbilToEstDiag( int score, String group) throws SQLException {
-        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
-        
+        //Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
+        Connection conn = DriverManager.getConnection("jdbc:mysql://ec2-52-31-7-122.eu-west-1.compute.amazonaws.com/final_year_project","root","IPNTclyv43");
         String query =( "SELECT SUM(AbilityToEstablishDiagnosis = " + score + ") AS AbilToEstDiagCount "
                       + "FROM TBICoreSkills AS tb JOIN Students JOIN StudentGroups JOIN StudentClass JOIN CourseYear"
                       + " ON Students.StudentID = StudentClass.StudentID AND StudentClass.GroupID = StudentGroups.GroupID AND StudentClass.YearID = CourseYear.YearID"
@@ -49,8 +49,8 @@ public class GroupTreatmentSummaryData extends Applet {
     }
     
     public String showAbilityToFormulateATreatmentPlan( int score, String group) throws SQLException {
-        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
-        
+        //Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
+        Connection conn = DriverManager.getConnection("jdbc:mysql://ec2-52-31-7-122.eu-west-1.compute.amazonaws.com/final_year_project","root","IPNTclyv43");
         String query =( "SELECT SUM(AbilityToFormulateATreatmentPlan = " + score + ") AS AbilityToFormulateATreatmentPlanCount "
                       + "FROM TBICoreSkills AS tb JOIN Students JOIN StudentGroups JOIN StudentClass JOIN CourseYear"
                       + " ON Students.StudentID = StudentClass.StudentID AND StudentClass.GroupID = StudentGroups.GroupID AND StudentClass.YearID = CourseYear.YearID"
@@ -72,8 +72,8 @@ public class GroupTreatmentSummaryData extends Applet {
     }
     
     public String showEnsuringInformedConsent( int score, String group) throws SQLException {
-        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
-        
+        //Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
+        Connection conn = DriverManager.getConnection("jdbc:mysql://ec2-52-31-7-122.eu-west-1.compute.amazonaws.com/final_year_project","root","IPNTclyv43");
         String query =( "SELECT SUM(EnsuringInformedConsent = " + score + ") AS EnsuringInformedConsentCount "
                       + "FROM TBICoreSkills AS tb JOIN Students JOIN StudentGroups JOIN StudentClass JOIN CourseYear"
                       + " ON Students.StudentID = StudentClass.StudentID AND StudentClass.GroupID = StudentGroups.GroupID AND StudentClass.YearID = CourseYear.YearID"
@@ -96,8 +96,8 @@ public class GroupTreatmentSummaryData extends Applet {
     }
     
     public String showEquipmentPreparationSelection( int score, String group) throws SQLException {
-        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
-        
+        //Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
+        Connection conn = DriverManager.getConnection("jdbc:mysql://ec2-52-31-7-122.eu-west-1.compute.amazonaws.com/final_year_project","root","IPNTclyv43");
         String query =( "SELECT SUM(EquipmentPreparationSelection = " + score + ") AS EquipmentPreparationSelectionCount "
                       + "FROM TBICoreSkills AS tb JOIN Students JOIN StudentGroups JOIN StudentClass JOIN CourseYear"
                       + " ON Students.StudentID = StudentClass.StudentID AND StudentClass.GroupID = StudentGroups.GroupID AND StudentClass.YearID = CourseYear.YearID"
@@ -120,8 +120,8 @@ public class GroupTreatmentSummaryData extends Applet {
     }
     
     public String showExaminationIntraOralHardTissues( int score, String group) throws SQLException {
-        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
-        
+        //Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
+        Connection conn = DriverManager.getConnection("jdbc:mysql://ec2-52-31-7-122.eu-west-1.compute.amazonaws.com/final_year_project","root","IPNTclyv43");
         String query =( "SELECT SUM(ExaminationIntraOralHardTissues = " + score + ") AS ExaminationIntraOralHardTissuesCount "
                       + "FROM TBICoreSkills AS tb JOIN Students JOIN StudentGroups JOIN StudentClass JOIN CourseYear"
                       + " ON Students.StudentID = StudentClass.StudentID AND StudentClass.GroupID = StudentGroups.GroupID AND StudentClass.YearID = CourseYear.YearID"
@@ -144,8 +144,8 @@ public class GroupTreatmentSummaryData extends Applet {
     }
     
     public String showExaminationIntraOralSoftTissues( int score, String group) throws SQLException {
-        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
-        
+        //Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
+        Connection conn = DriverManager.getConnection("jdbc:mysql://ec2-52-31-7-122.eu-west-1.compute.amazonaws.com/final_year_project","root","IPNTclyv43");
         String query =( "SELECT SUM(ExaminationIntraOralSoftTissues = " + score + ") AS ExaminationIntraOralSoftTissuesCount "
                       + "FROM TBICoreSkills AS tb JOIN Students JOIN StudentGroups JOIN StudentClass JOIN CourseYear"
                       + " ON Students.StudentID = StudentClass.StudentID AND StudentClass.GroupID = StudentGroups.GroupID AND StudentClass.YearID = CourseYear.YearID"
@@ -168,8 +168,8 @@ public class GroupTreatmentSummaryData extends Applet {
     }
     
     public String showExtraOralExamination( int score, String group) throws SQLException {
-        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
-        
+        //Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
+        Connection conn = DriverManager.getConnection("jdbc:mysql://ec2-52-31-7-122.eu-west-1.compute.amazonaws.com/final_year_project","root","IPNTclyv43");
         String query =( "SELECT SUM(ExtraOralExamination = " + score + ") AS ExtraOralExaminationCount "
                       + "FROM TBICoreSkills AS tb JOIN Students JOIN StudentGroups JOIN StudentClass JOIN CourseYear"
                       + " ON Students.StudentID = StudentClass.StudentID AND StudentClass.GroupID = StudentGroups.GroupID AND StudentClass.YearID = CourseYear.YearID"
@@ -192,8 +192,8 @@ public class GroupTreatmentSummaryData extends Applet {
     }
     
     public String showInfectionControl( int score, String group) throws SQLException {
-        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
-        
+        //Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
+        Connection conn = DriverManager.getConnection("jdbc:mysql://ec2-52-31-7-122.eu-west-1.compute.amazonaws.com/final_year_project","root","IPNTclyv43");
         String query =( "SELECT SUM(InfectionControl = " + score + ") AS InfectionControlCount "
                       + "FROM TBICoreSkills AS tb JOIN Students JOIN StudentGroups JOIN StudentClass JOIN CourseYear"
                       + " ON Students.StudentID = StudentClass.StudentID AND StudentClass.GroupID = StudentGroups.GroupID AND StudentClass.YearID = CourseYear.YearID"
@@ -216,8 +216,8 @@ public class GroupTreatmentSummaryData extends Applet {
     }
     
     public String showInterpretationOfSpeciaInvestigations( int score, String group) throws SQLException {
-        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
-        
+        //Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
+        Connection conn = DriverManager.getConnection("jdbc:mysql://ec2-52-31-7-122.eu-west-1.compute.amazonaws.com/final_year_project","root","IPNTclyv43");
         String query =( "SELECT SUM(InterpretationOfSpeciaInvestigations = " + score + ") AS InterpretationOfSpeciaInvestigationsCount "
                       + "FROM TBICoreSkills AS tb JOIN Students JOIN StudentGroups JOIN StudentClass JOIN CourseYear"
                       + " ON Students.StudentID = StudentClass.StudentID AND StudentClass.GroupID = StudentGroups.GroupID AND StudentClass.YearID = CourseYear.YearID"
@@ -240,8 +240,8 @@ public class GroupTreatmentSummaryData extends Applet {
     }
     
     public String showLocalAnaesthesiaBlock( int score, String group) throws SQLException {
-        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
-        
+        //Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
+        Connection conn = DriverManager.getConnection("jdbc:mysql://ec2-52-31-7-122.eu-west-1.compute.amazonaws.com/final_year_project","root","IPNTclyv43");
         String query =( "SELECT SUM(LocalAnaesthesiaBlock = " + score + ") AS LocalAnaesthesiaBlockCount "
                       + "FROM TBICoreSkills AS tb JOIN Students JOIN StudentGroups JOIN StudentClass JOIN CourseYear"
                       + " ON Students.StudentID = StudentClass.StudentID AND StudentClass.GroupID = StudentGroups.GroupID AND StudentClass.YearID = CourseYear.YearID"
@@ -264,8 +264,8 @@ public class GroupTreatmentSummaryData extends Applet {
     }
     
     public String showLocalAnaesthesiaInfiltration( int score, String group) throws SQLException {
-        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
-        
+        //Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
+        Connection conn = DriverManager.getConnection("jdbc:mysql://ec2-52-31-7-122.eu-west-1.compute.amazonaws.com/final_year_project","root","IPNTclyv43");
         String query =( "SELECT SUM(LocalAnaesthesiaInfiltration = " + score + ") AS LocalAnaesthesiaInfiltrationCount "
                       + "FROM TBICoreSkills AS tb JOIN Students JOIN StudentGroups JOIN StudentClass JOIN CourseYear"
                       + " ON Students.StudentID = StudentClass.StudentID AND StudentClass.GroupID = StudentGroups.GroupID AND StudentClass.YearID = CourseYear.YearID"
@@ -287,8 +287,8 @@ public class GroupTreatmentSummaryData extends Applet {
     }
     
     public String showManagementOfComplications( int score, String group) throws SQLException {
-        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
-        
+        //Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
+        Connection conn = DriverManager.getConnection("jdbc:mysql://ec2-52-31-7-122.eu-west-1.compute.amazonaws.com/final_year_project","root","IPNTclyv43");
         String query =( "SELECT SUM(ManagementOfComplications = " + score + ") AS ManagementOfComplicationsCount "
                       + "FROM TBICoreSkills AS tb JOIN Students JOIN StudentGroups JOIN StudentClass JOIN CourseYear"
                       + " ON Students.StudentID = StudentClass.StudentID AND StudentClass.GroupID = StudentGroups.GroupID AND StudentClass.YearID = CourseYear.YearID"
@@ -311,8 +311,8 @@ public class GroupTreatmentSummaryData extends Applet {
     }
     
     public String showMaterialSelectionAndHandling( int score, String group) throws SQLException {
-        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
-        
+        //Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
+        Connection conn = DriverManager.getConnection("jdbc:mysql://ec2-52-31-7-122.eu-west-1.compute.amazonaws.com/final_year_project","root","IPNTclyv43");
         String query =( "SELECT SUM(MaterialSelectionAndHandling = " + score + ") AS MaterialSelectionAndHandlingCount "
                       + "FROM TBICoreSkills AS tb JOIN Students JOIN StudentGroups JOIN StudentClass JOIN CourseYear"
                       + " ON Students.StudentID = StudentClass.StudentID AND StudentClass.GroupID = StudentGroups.GroupID AND StudentClass.YearID = CourseYear.YearID"
@@ -335,8 +335,8 @@ public class GroupTreatmentSummaryData extends Applet {
     }
     
     public String showAppropriatePatientPosition( int score, String group) throws SQLException {
-        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
-        
+        //Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
+        Connection conn = DriverManager.getConnection("jdbc:mysql://ec2-52-31-7-122.eu-west-1.compute.amazonaws.com/final_year_project","root","IPNTclyv43");
         String query =( "SELECT SUM(AppropriatePatientPosition = " + score + ") AS AppropriatePatientPositionCount "
                       + "FROM TBICoreSkills AS tb JOIN Students JOIN StudentGroups JOIN StudentClass JOIN CourseYear"
                       + " ON Students.StudentID = StudentClass.StudentID AND StudentClass.GroupID = StudentGroups.GroupID AND StudentClass.YearID = CourseYear.YearID"
@@ -359,8 +359,8 @@ public class GroupTreatmentSummaryData extends Applet {
     }
     
     public String showAppropriateOperatorPosition( int score, String group) throws SQLException {
-        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
-        
+        //Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
+        Connection conn = DriverManager.getConnection("jdbc:mysql://ec2-52-31-7-122.eu-west-1.compute.amazonaws.com/final_year_project","root","IPNTclyv43");
         String query =( "SELECT SUM(AppropriateOperatorPosition = " + score + ") AS AppropriateOperatorPositionCount "
                       + "FROM TBICoreSkills AS tb JOIN Students JOIN StudentGroups JOIN StudentClass JOIN CourseYear"
                       + " ON Students.StudentID = StudentClass.StudentID AND StudentClass.GroupID = StudentGroups.GroupID AND StudentClass.YearID = CourseYear.YearID"
@@ -383,8 +383,8 @@ public class GroupTreatmentSummaryData extends Applet {
     }
     
     public String showAppropriateLightPosition( int score, String group) throws SQLException {
-        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
-        
+        //Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
+        Connection conn = DriverManager.getConnection("jdbc:mysql://ec2-52-31-7-122.eu-west-1.compute.amazonaws.com/final_year_project","root","IPNTclyv43");
         String query =( "SELECT SUM(AppropriateLightPosition = " + score + ") AS AppropriateLightPositionCount "
                       + "FROM TBICoreSkills AS tb JOIN Students JOIN StudentGroups JOIN StudentClass JOIN CourseYear"
                       + " ON Students.StudentID = StudentClass.StudentID AND StudentClass.GroupID = StudentGroups.GroupID AND StudentClass.YearID = CourseYear.YearID"
@@ -407,8 +407,8 @@ public class GroupTreatmentSummaryData extends Applet {
     }
     
     public String showAppropriateUseOfMirror( int score, String group) throws SQLException {
-        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
-        
+        //Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
+        Connection conn = DriverManager.getConnection("jdbc:mysql://ec2-52-31-7-122.eu-west-1.compute.amazonaws.com/final_year_project","root","IPNTclyv43");
         String query =( "SELECT SUM(AppropriateUseOfMirror = " + score + ") AS AppropriateUseOfMirrorCount "
                       + "FROM TBICoreSkills AS tb JOIN Students JOIN StudentGroups JOIN StudentClass JOIN CourseYear"
                       + " ON Students.StudentID = StudentClass.StudentID AND StudentClass.GroupID = StudentGroups.GroupID AND StudentClass.YearID = CourseYear.YearID"
@@ -431,8 +431,8 @@ public class GroupTreatmentSummaryData extends Applet {
     }
     
     public String showAppropriateFingerSupport( int score, String group) throws SQLException {
-        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
-        
+        //Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
+        Connection conn = DriverManager.getConnection("jdbc:mysql://ec2-52-31-7-122.eu-west-1.compute.amazonaws.com/final_year_project","root","IPNTclyv43");
         String query =( "SELECT SUM(AppropriateFingerSupport = " + score + ") AS AppropriateFingerSupportCount "
                       + "FROM TBICoreSkills AS tb JOIN Students JOIN StudentGroups JOIN StudentClass JOIN CourseYear"
                       + " ON Students.StudentID = StudentClass.StudentID AND StudentClass.GroupID = StudentGroups.GroupID AND StudentClass.YearID = CourseYear.YearID"
@@ -455,8 +455,8 @@ public class GroupTreatmentSummaryData extends Applet {
     }
     
     public String showProfessionalism( int score, String group) throws SQLException {
-        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
-        
+        //Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
+        Connection conn = DriverManager.getConnection("jdbc:mysql://ec2-52-31-7-122.eu-west-1.compute.amazonaws.com/final_year_project","root","IPNTclyv43");
         String query =( "SELECT SUM(Professionalism = " + score + ") AS ProfessionalismCount "
                       + "FROM TBICoreSkills AS tb JOIN Students JOIN StudentGroups JOIN StudentClass JOIN CourseYear"
                       + " ON Students.StudentID = StudentClass.StudentID AND StudentClass.GroupID = StudentGroups.GroupID AND StudentClass.YearID = CourseYear.YearID"
@@ -482,8 +482,8 @@ public class GroupTreatmentSummaryData extends Applet {
     }
     
     public String showCommunication( int score, String group) throws SQLException {
-        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
-        
+        //Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
+        Connection conn = DriverManager.getConnection("jdbc:mysql://ec2-52-31-7-122.eu-west-1.compute.amazonaws.com/final_year_project","root","IPNTclyv43");
         String query =( "SELECT SUM(Communication = " + score + ") AS CommunicationCount "
                       + "FROM TBICoreSkills AS tb JOIN Students JOIN StudentGroups JOIN StudentClass JOIN CourseYear"
                       + " ON Students.StudentID = StudentClass.StudentID AND StudentClass.GroupID = StudentGroups.GroupID AND StudentClass.YearID = CourseYear.YearID"
@@ -509,8 +509,8 @@ public class GroupTreatmentSummaryData extends Applet {
     }
     
     public String showKnowledge( int score, String group) throws SQLException {
-        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
-        
+        //Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
+        Connection conn = DriverManager.getConnection("jdbc:mysql://ec2-52-31-7-122.eu-west-1.compute.amazonaws.com/final_year_project","root","IPNTclyv43");
         String query =( "SELECT SUM(Knowledge= " + score + ") AS KnowledgeCount "
                       + "FROM TBICoreSkills AS tb JOIN Students JOIN StudentGroups JOIN StudentClass JOIN CourseYear"
                       + " ON Students.StudentID = StudentClass.StudentID AND StudentClass.GroupID = StudentGroups.GroupID AND StudentClass.YearID = CourseYear.YearID"

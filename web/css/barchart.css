@@ -13,6 +13,6 @@ img{
     height:10px;
 }
 
-li{
+#list>ul>li{
     padding:5px;
 }

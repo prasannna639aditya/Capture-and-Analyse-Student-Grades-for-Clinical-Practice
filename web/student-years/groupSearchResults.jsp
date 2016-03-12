@@ -45,7 +45,6 @@
           String groupID = search.getGroupID();
           
           if(search.checkGroupDescriptor(groupID) == true){
-            out.println("Add students who are not in group " + groupID + ".");
             out.print(search.addStudents(groupID));
             out.print(look.startTable());
             out.print(look.fetchGroupNames(groupID));
@@ -53,8 +52,13 @@
           }
           
           else{
-              out.println("Please enter a valid Group.");
+        %> 
+        <p> </p>
+        <%
               out.println(search.groupSearchBox());
+        %>
+        <p><h4 id="left"> Please enter a valid group </h4></p>
+        <%
           }
           
           out.print(gui.footer());

@@ -96,8 +96,8 @@ public class StudentLogin {
     
     public boolean loginStudent( HttpServletRequest request ) throws NoSuchAlgorithmException, InvalidKeySpecException, Exception {
         DatabaseClass database = new DatabaseClass( );
-        database.setup( "localhost", "final_year_project", "root", "" );
-        //database.setup( "ec2-52-31-84-76.eu-west-1.compute.amazonaws.com", "final_year_project", "root", "IPNTclyv43" );
+        database.setup( "ec2-52-31-7-122.eu-west-1.compute.amazonaws.com", "final_year_project", "root", "IPNTclyv43" );
+        //database.setup( "localhost", "final_year_project", "root", "IPNTclyv43" );
         PasswordHash hash = new PasswordHash();
  
 
@@ -124,7 +124,7 @@ public class StudentLogin {
             return false;
         }
         
-        //database.Close();
+        database.Close();
   
         return result.length != 0;
         
