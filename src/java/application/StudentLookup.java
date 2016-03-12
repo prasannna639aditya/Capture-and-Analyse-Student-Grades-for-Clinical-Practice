@@ -52,8 +52,8 @@ public class StudentLookup {
 
     
     public String fetchNames() throws SQLException{
-            Connection conn = DriverManager.getConnection("jdbc:mysql://ec2-52-31-7-122.eu-west-1.compute.amazonaws.com/final_year_project","root","IPNTclyv43");
-            //Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
+            //Connection conn = DriverManager.getConnection("jdbc:mysql://ec2-52-31-7-122.eu-west-1.compute.amazonaws.com/final_year_project","root","IPNTclyv43");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
             //System.out.println("successful");
             String query = ("SELECT Students.StudentID, Students.FirstName, Students.LastName, Students.Picture, CourseYear.ProgrammeYear, StudentGroups.GroupDescriptor"
                             + " FROM Students JOIN StudentGroups JOIN StudentClass JOIN CourseYear"
@@ -134,8 +134,8 @@ public class StudentLookup {
     }
     
     public String fetchGroupNames(String group) throws SQLException{
-            Connection conn = DriverManager.getConnection("jdbc:mysql://ec2-52-31-7-122.eu-west-1.compute.amazonaws.com/final_year_project","root","IPNTclyv43");
-            //Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
+            //Connection conn = DriverManager.getConnection("jdbc:mysql://ec2-52-31-7-122.eu-west-1.compute.amazonaws.com/final_year_project","root","IPNTclyv43");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
             //System.out.println("successful");
             String query = ("SELECT Students.StudentID, Students.FirstName, Students.LastName, Students.Picture, CourseYear.ProgrammeYear, StudentGroups.GroupDescriptor"
                             + " FROM Students JOIN StudentGroups JOIN StudentClass JOIN CourseYear"
@@ -167,8 +167,8 @@ public class StudentLookup {
     }
     
     public String fetchYearNames(String year) throws SQLException{
-            Connection conn = DriverManager.getConnection("jdbc:mysql://ec2-52-31-7-122.eu-west-1.compute.amazonaws.com/final_year_project","root","IPNTclyv43");
-            //Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
+            //Connection conn = DriverManager.getConnection("jdbc:mysql://ec2-52-31-7-122.eu-west-1.compute.amazonaws.com/final_year_project","root","IPNTclyv43");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
             //System.out.println("successful");
             String query = ("SELECT Students.StudentID, Students.FirstName, Students.LastName, Students.Picture, CourseYear.ProgrammeYear, StudentGroups.GroupDescriptor"
                             + " FROM Students JOIN StudentGroups JOIN StudentClass JOIN CourseYear"
@@ -222,8 +222,8 @@ public class StudentLookup {
     
     
     public String fetchExtraStudent(String studentID) throws SQLException{
-            Connection conn = DriverManager.getConnection("jdbc:mysql://ec2-52-31-7-122.eu-west-1.compute.amazonaws.com/final_year_project","root","IPNTclyv43");
-            //Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
+            //Connection conn = DriverManager.getConnection("jdbc:mysql://ec2-52-31-7-122.eu-west-1.compute.amazonaws.com/final_year_project","root","IPNTclyv43");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
             //System.out.println("successful");
             String query = ("SELECT Students.StudentID, Students.FirstName, Students.LastName, Students.Picture, CourseYear.ProgrammeYear, StudentGroups.GroupDescriptor"
                             + " FROM Students JOIN StudentGroups JOIN StudentClass JOIN CourseYear"

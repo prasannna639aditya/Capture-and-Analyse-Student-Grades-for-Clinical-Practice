@@ -104,8 +104,8 @@ public class CoreSkills {
         this.result = new String[10];
         errors = new ArrayList<>( );
         database = new DatabaseClass( );
-        database.setup( "ec2-52-31-7-122.eu-west-1.compute.amazonaws.com", "final_year_project", "root", "IPNTclyv43" );
-        //database.setup( "localhost", "final_year_project", "root", "" );
+        //database.setup( "ec2-52-31-7-122.eu-west-1.compute.amazonaws.com", "final_year_project", "root", "IPNTclyv43" );
+        database.setup( "localhost", "final_year_project", "root", "" );
     }
     
     public String getStudentID( ) {
@@ -502,8 +502,8 @@ public class CoreSkills {
     }
 
     public String markingForm( String TutorID, String StudentID, String TreatmentID, String cdsNumber) throws SQLException {
-        //Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
-        Connection conn = DriverManager.getConnection("jdbc:mysql://ec2-52-31-7-122.eu-west-1.compute.amazonaws.com/final_year_project","root","IPNTclyv43");
+        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
+        //Connection conn = DriverManager.getConnection("jdbc:mysql://ec2-52-31-7-122.eu-west-1.compute.amazonaws.com/final_year_project","root","IPNTclyv43");
         Statement stmt = conn.createStatement();
         ResultSet rsPatient; 
         TreatmentItems treatment = new TreatmentItems();
@@ -953,8 +953,8 @@ public class CoreSkills {
     
     public boolean validateStudent(HttpServletRequest request) throws Exception{
         DatabaseClass database = new DatabaseClass( );
-        //database.setup( "localhost", "final_year_project", "root", "" );
-        database.setup( "ec2-52-31-7-122.eu-west-1.compute.amazonaws.com", "final_year_project", "root", "IPNTclyv43" );
+        database.setup( "localhost", "final_year_project", "root", "" );
+        //database.setup( "ec2-52-31-7-122.eu-west-1.compute.amazonaws.com", "final_year_project", "root", "IPNTclyv43" );
         PasswordHash hash = new PasswordHash();
  
         password = request.getParameter( "password" );

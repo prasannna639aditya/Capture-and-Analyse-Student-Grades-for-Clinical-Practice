@@ -43,9 +43,6 @@ public class GUI {
             form += "<div class=\"collapse navbar-collapse\" id=\"bs-example-navbar-collapse-1\">\n";  
             form += "<ul class=\"nav navbar-nav navbar-right\">\n";
             form += "<li>\n";
-            form += "<a href=\"#about\">About</a>\n";
-            form += "</li>\n";
-            form += "<li>\n";
             form += "<a href='admin/adminLogin.jsp'>Admin</a>\n";
             form += "</li>\n";
             form += "<li>\n";

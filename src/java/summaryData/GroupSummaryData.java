@@ -31,8 +31,8 @@ public class GroupSummaryData {
     }
     
     public String showCore( int score, String group ) throws SQLException {
-        //Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
-        Connection conn = DriverManager.getConnection("jdbc:mysql://ec2-52-31-7-122.eu-west-1.compute.amazonaws.com/final_year_project","root","IPNTclyv43");
+        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
+        //Connection conn = DriverManager.getConnection("jdbc:mysql://ec2-52-31-7-122.eu-west-1.compute.amazonaws.com/final_year_project","root","IPNTclyv43");
         String query =( "SELECT tb.StudentID, "
                 + "SUM(AbilityToEstablishDiagnosis = " + score + ") AS AbilToEstDiagCount, "
                 + "SUM(AbilityToFormulateATreatmentPlan = " + score + " ) AS AbilToFormATreatmentPlanCount, "
@@ -86,8 +86,8 @@ public class GroupSummaryData {
     }
     
     public String showBasic( int score, String group ) throws SQLException {
-        //Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
-        Connection conn = DriverManager.getConnection("jdbc:mysql://ec2-52-31-7-122.eu-west-1.compute.amazonaws.com/final_year_project","root","IPNTclyv43");
+        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
+        //Connection conn = DriverManager.getConnection("jdbc:mysql://ec2-52-31-7-122.eu-west-1.compute.amazonaws.com/final_year_project","root","IPNTclyv43");
         String query =( "SELECT SUM(AppropriatePatientPosition = 1) AS AppropriatePatientPositionCount,"
                 + "SUM(AppropriateOperatorPosition = " + score + " ) AS AppropriateOperatorPositionCount, "
                 + "SUM(AppropriateLightPosition = " + score + " ) AS AppropriateLightPositionCount, "
@@ -121,8 +121,8 @@ public class GroupSummaryData {
     
     
     public String showProfessionalism( int score, String group ) throws SQLException {
-        //Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
-        Connection conn = DriverManager.getConnection("jdbc:mysql://ec2-52-31-7-122.eu-west-1.compute.amazonaws.com/final_year_project","root","IPNTclyv43");
+        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
+        //Connection conn = DriverManager.getConnection("jdbc:mysql://ec2-52-31-7-122.eu-west-1.compute.amazonaws.com/final_year_project","root","IPNTclyv43");
         String query =( "SELECT SUM(Professionalism = " + score + ") AS ProfessionalismCount "
                 + "FROM TBICoreSkills AS tb JOIN Students JOIN StudentGroups JOIN StudentClass JOIN CourseYear"
                             + " ON Students.StudentID = StudentClass.StudentID AND StudentClass.GroupID = StudentGroups.GroupID AND StudentClass.YearID = CourseYear.YearID"
@@ -147,8 +147,8 @@ public class GroupSummaryData {
     }
     
     public String showCommunication( int score, String group ) throws SQLException {
-        //Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
-        Connection conn = DriverManager.getConnection("jdbc:mysql://ec2-52-31-7-122.eu-west-1.compute.amazonaws.com/final_year_project","root","IPNTclyv43");
+        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
+        //Connection conn = DriverManager.getConnection("jdbc:mysql://ec2-52-31-7-122.eu-west-1.compute.amazonaws.com/final_year_project","root","IPNTclyv43");
         String query =( "SELECT SUM(Communication = " + score + ") AS CommunicationCount "
                 + "FROM TBICoreSkills AS tb JOIN Students JOIN StudentGroups JOIN StudentClass JOIN CourseYear"
                             + " ON Students.StudentID = StudentClass.StudentID AND StudentClass.GroupID = StudentGroups.GroupID AND StudentClass.YearID = CourseYear.YearID"
@@ -173,8 +173,8 @@ public class GroupSummaryData {
     }
     
     public String showKnowledge( int score, String group ) throws SQLException {
-        //Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
-        Connection conn = DriverManager.getConnection("jdbc:mysql://ec2-52-31-7-122.eu-west-1.compute.amazonaws.com/final_year_project","root","IPNTclyv43");
+        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
+        //Connection conn = DriverManager.getConnection("jdbc:mysql://ec2-52-31-7-122.eu-west-1.compute.amazonaws.com/final_year_project","root","IPNTclyv43");
         String query =( "SELECT SUM(Knowledge= " + score + ") AS KnowledgeCount "
                 + "FROM TBICoreSkills AS tb JOIN Students JOIN StudentGroups JOIN StudentClass JOIN CourseYear"
                             + " ON Students.StudentID = StudentClass.StudentID AND StudentClass.GroupID = StudentGroups.GroupID AND StudentClass.YearID = CourseYear.YearID"

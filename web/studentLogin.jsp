@@ -47,26 +47,25 @@
                         <!-- /.container -->
 
                     </div>
-                    <div class="content-section-a">
-
-        <div class="container">
-
-            <div class="row">
-                <div class="col-lg-5 col-sm-6">
-                    <hr class="section-heading-spacer">
-                    <div class="clearfix"></div>
-                    <h2 class="section-heading">Google Web Fonts and<br>Font Awesome Icons</h2>
-                    <p class="lead">This template features the 'Lato' font, part of the <a target="_blank" href="http://www.google.com/fonts">Google Web Font library</a>, as well as <a target="_blank" href="http://fontawesome.io">icons from Font Awesome</a>.</p>
-                </div>
-                <div class="col-lg-5 col-lg-offset-2 col-sm-6">
-                    <img class="img-responsive" src="img/phones.png" alt="">
-                </div>
-            </div>
-
-        </div>
-        <!-- /.container -->
-
-    </div>       
+                    <!-- Page Content -->
+                    <footer>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <ul class="list-inline">
+                                        <li>
+                                            <a href="index.jsp">Home</a>
+                                        </li>
+                                        <li class="footer-menu-divider">&sdot;</li>
+                                        <li>
+                                            <a href="https://www.ucc.ie/en/dentalschool/about/contact/">Contact</a>
+                                        </li>
+                                    </ul>
+                                    <p class="copyright text-muted small">Copyright &copy; University College Cork 2016. All Rights Reserved</p>
+                                </div>
+                            </div>
+                        </div>
+                    </footer>       
                 <%
                 }
                 else{
@@ -102,26 +101,25 @@
                         <!-- /.container -->
 
                     </div>
-                    <div class="content-section-a">
-
-                    <div class="container">
-
-                        <div class="row">
-                            <div class="col-lg-5 col-sm-6">
-                                <hr class="section-heading-spacer">
-                                <div class="clearfix"></div>
-                                <h2 class="section-heading">Google Web Fonts and<br>Font Awesome Icons</h2>
-                                <p class="lead">This template features the 'Lato' font, part of the <a target="_blank" href="http://www.google.com/fonts">Google Web Font library</a>, as well as <a target="_blank" href="http://fontawesome.io">icons from Font Awesome</a>.</p>
-                            </div>
-                            <div class="col-lg-5 col-lg-offset-2 col-sm-6">
-                                <img class="img-responsive" src="img/phones.png" alt="">
+                    <!-- Page Content -->
+                    <footer>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <ul class="list-inline">
+                                        <li>
+                                            <a href="index.jsp">Home</a>
+                                        </li>
+                                        <li class="footer-menu-divider">&sdot;</li>
+                                        <li>
+                                            <a href="https://www.ucc.ie/en/dentalschool/about/contact/">Contact</a>
+                                        </li>
+                                    </ul>
+                                    <p class="copyright text-muted small">Copyright &copy; University College Cork 2016. All Rights Reserved</p>
+                                </div>
                             </div>
                         </div>
-
-                    </div>
-                    <!-- /.container -->
-
-                </div>
+                    </footer> 
                 <%                    
                        
          %>

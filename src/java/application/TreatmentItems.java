@@ -46,8 +46,8 @@ public class TreatmentItems {
         this.dateAdded = "";
         this.result = new String[10];
         database = new DatabaseClass( );
-        database.setup( "ec2-52-31-7-122.eu-west-1.compute.amazonaws.com", "final_year_project", "root", "IPNTclyv43" );
-        //database.setup( "localhost", "final_year_project", "root", "" );
+        //database.setup( "ec2-52-31-7-122.eu-west-1.compute.amazonaws.com", "final_year_project", "root", "IPNTclyv43" );
+        database.setup( "localhost", "final_year_project", "root", "" );
     }
     
     public String getStudentID() {
@@ -124,8 +124,8 @@ public class TreatmentItems {
     
     public boolean hasBeenGraded( String StudentID, String TreatmentID ) {
         DatabaseClass database = new DatabaseClass( );
-        database.setup( "ec2-52-31-7-122.eu-west-1.compute.amazonaws.com", "final_year_project", "root", "IPNTclyv43" );
-        //database.setup( "localhost", "final_year_project", "root", "" );
+        //database.setup( "ec2-52-31-7-122.eu-west-1.compute.amazonaws.com", "final_year_project", "root", "IPNTclyv43" );
+        database.setup( "localhost", "final_year_project", "root", "" );
         boolean isGraded = false;
         
         
@@ -145,8 +145,8 @@ public class TreatmentItems {
     
     public boolean hasPerformedTreatments( String StudentID) {
         DatabaseClass database = new DatabaseClass( );
-        database.setup( "ec2-52-31-7-122.eu-west-1.compute.amazonaws.com", "final_year_project", "root", "IPNTclyv43" );
-        //database.setup( "localhost", "final_year_project", "root", "" );
+        //database.setup( "ec2-52-31-7-122.eu-west-1.compute.amazonaws.com", "final_year_project", "root", "IPNTclyv43" );
+        database.setup( "localhost", "final_year_project", "root", "" );
         boolean isGraded = true;
         
         result = database.SelectRow( "SELECT TreatmentID FROM TBICoreSkills WHERE StudentID=" + StudentID + ";" );
@@ -163,8 +163,8 @@ public class TreatmentItems {
     
     public String showGrade( String StudentID, String TreatmentID ) {
         DatabaseClass database = new DatabaseClass( );
-        database.setup( "ec2-52-31-7-122.eu-west-1.compute.amazonaws.com", "final_year_project", "root", "IPNTclyv43" );
-        //database.setup( "localhost", "final_year_project", "root", "" );
+        //database.setup( "ec2-52-31-7-122.eu-west-1.compute.amazonaws.com", "final_year_project", "root", "IPNTclyv43" );
+        database.setup( "localhost", "final_year_project", "root", "" );
         String grade = "";
         
         result = database.SelectRow( "SELECT * FROM TBICoreSkills WHERE StudentID = '" + StudentID + "' AND TreatmentID = '" + TreatmentID + "';" );
@@ -197,8 +197,8 @@ public class TreatmentItems {
     public String showScore( String StudentID, String TreatmentID, String PatientID, String DateAdded ) throws SQLException {
         TreatmentItems treatment = new TreatmentItems();
         DatabaseClass database = new DatabaseClass( );
-        database.setup( "ec2-52-31-7-122.eu-west-1.compute.amazonaws.com", "final_year_project", "root", "IPNTclyv43" );
-        //database.setup( "localhost", "final_year_project", "root", "" );
+        //database.setup( "ec2-52-31-7-122.eu-west-1.compute.amazonaws.com", "final_year_project", "root", "IPNTclyv43" );
+        database.setup( "localhost", "final_year_project", "root", "" );
         String dateAdded = "";
         String time = "";
         String patientID = "";
@@ -417,8 +417,8 @@ public class TreatmentItems {
     }
     
     public String fetchTreatments( String StudentID, String domain, String cdsNumber) throws SQLException{
-            Connection conn = DriverManager.getConnection("jdbc:mysql://ec2-52-31-7-122.eu-west-1.compute.amazonaws.com/final_year_project","root","IPNTclyv43");
-            //Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
+            //Connection conn = DriverManager.getConnection("jdbc:mysql://ec2-52-31-7-122.eu-west-1.compute.amazonaws.com/final_year_project","root","IPNTclyv43");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
             //System.out.println("successful");
             String query = ("SELECT TreatmentItems.TreatmentItemID, TreatmentItems.TreatmentName, TreatmentItems.DomainID, TreatmentItems.RequirementsGroupID, TreatmentItems.RequirementsWeighting"
                             + " FROM TreatmentItems WHERE TreatmentItems.DomainID=" + domain + "");
@@ -514,8 +514,8 @@ public class TreatmentItems {
     }
     
     public String fetchMyTreatments( String StudentID) throws SQLException{
-            Connection conn = DriverManager.getConnection("jdbc:mysql://ec2-52-31-7-122.eu-west-1.compute.amazonaws.com/final_year_project","root","IPNTclyv43");
-            //Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
+            //Connection conn = DriverManager.getConnection("jdbc:mysql://ec2-52-31-7-122.eu-west-1.compute.amazonaws.com/final_year_project","root","IPNTclyv43");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
             //System.out.println("successful");
             String query = ("SELECT TBICoreSkills.PatientID, TBICoreSkills.TreatmentID, TBICoreSkills.DateAdded, TreatmentItems.TreatmentName, TreatmentItems.DomainID"
                             + " FROM TreatmentItems JOIN TBICoreSkills ON TBICoreSkills.TreatmentID = TreatmentItems.TreatmentItemID"
@@ -574,8 +574,8 @@ public class TreatmentItems {
     }
     
     public String fetchMyTreatments2( String StudentID) throws SQLException{
-            Connection conn = DriverManager.getConnection("jdbc:mysql://ec2-52-31-7-122.eu-west-1.compute.amazonaws.com/final_year_project","root","IPNTclyv43");
-            //Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
+            //Connection conn = DriverManager.getConnection("jdbc:mysql://ec2-52-31-7-122.eu-west-1.compute.amazonaws.com/final_year_project","root","IPNTclyv43");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
             //System.out.println("successful");
             String query = ("SELECT TBICoreSkills.PatientID, TBICoreSkills.TreatmentID, TBICoreSkills.DateAdded, TreatmentItems.TreatmentName, TreatmentItems.DomainID"
                             + " FROM TreatmentItems JOIN TBICoreSkills ON TBICoreSkills.TreatmentID = TreatmentItems.TreatmentItemID"
@@ -637,8 +637,8 @@ public class TreatmentItems {
     
     
     public String fetchStudentName( String StudentID) throws SQLException{
-            Connection conn = DriverManager.getConnection("jdbc:mysql://ec2-52-31-7-122.eu-west-1.compute.amazonaws.com/final_year_project","root","IPNTclyv43");
-            //Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
+            //Connection conn = DriverManager.getConnection("jdbc:mysql://ec2-52-31-7-122.eu-west-1.compute.amazonaws.com/final_year_project","root","IPNTclyv43");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
             //System.out.println("successful");
             String query = ("SELECT FirstName, LastName FROM Students WHERE StudentID=" + StudentID + ";");
             Statement stmt = conn.createStatement();
@@ -668,8 +668,8 @@ public class TreatmentItems {
     }
     
     public String fetchClinicalAlert( String treatmentName, String studentID) throws SQLException{
-            Connection conn = DriverManager.getConnection("jdbc:mysql://ec2-52-31-7-122.eu-west-1.compute.amazonaws.com/final_year_project","root","IPNTclyv43");
-            //Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
+            //Connection conn = DriverManager.getConnection("jdbc:mysql://ec2-52-31-7-122.eu-west-1.compute.amazonaws.com/final_year_project","root","IPNTclyv43");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
             //System.out.println("successful");
             String query = ("SELECT ClinicalAlert FROM TreatmentPlanEntries JOIN TreatmentPlans "
                             + "ON TreatmentPlanEntries.PlanEntryID = TreatmentPlans.PlanID "
@@ -687,8 +687,8 @@ public class TreatmentItems {
     }
     
     public String fetchTutorName( String TutorID) throws SQLException{
-            Connection conn = DriverManager.getConnection("jdbc:mysql://ec2-52-31-7-122.eu-west-1.compute.amazonaws.com/final_year_project","root","IPNTclyv43");
-            //Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
+            //Connection conn = DriverManager.getConnection("jdbc:mysql://ec2-52-31-7-122.eu-west-1.compute.amazonaws.com/final_year_project","root","IPNTclyv43");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
             //System.out.println("successful");
             String query = ("SELECT FirstName, LastName FROM TutorsWHERE TutorID=" + TutorID + ";");
             Statement stmt = conn.createStatement();
@@ -703,8 +703,8 @@ public class TreatmentItems {
     }
     
     public String fetchTreatmentName( String TreatmentID) throws SQLException{
-            Connection conn = DriverManager.getConnection("jdbc:mysql://ec2-52-31-7-122.eu-west-1.compute.amazonaws.com/final_year_project","root","IPNTclyv43");
-            //Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
+            //Connection conn = DriverManager.getConnection("jdbc:mysql://ec2-52-31-7-122.eu-west-1.compute.amazonaws.com/final_year_project","root","IPNTclyv43");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
             //System.out.println("successful");
             String query = ("SELECT TreatmentName FROM TreatmentItems WHERE TreatmentItemID=" + TreatmentID + ";");
             Statement stmt = conn.createStatement();

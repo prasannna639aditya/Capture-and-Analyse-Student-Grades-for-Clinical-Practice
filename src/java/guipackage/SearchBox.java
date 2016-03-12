@@ -46,8 +46,8 @@ public class SearchBox {
         group = "";
         
         this.result = new String[10];
-        database.setup( "ec2-52-31-7-122.eu-west-1.compute.amazonaws.com", "final_year_project", "root", "IPNTclyv43" );
-        //database.setup( "localhost", "final_year_project", "root", "" );
+        //database.setup( "ec2-52-31-7-122.eu-west-1.compute.amazonaws.com", "final_year_project", "root", "IPNTclyv43" );
+        database.setup( "localhost", "final_year_project", "root", "" );
     }
     
     public String getStudentID() {
@@ -96,8 +96,8 @@ public class SearchBox {
     }
     
     public String showCore( int score, String studentID) throws SQLException {
-        //Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
-        Connection conn = DriverManager.getConnection("jdbc:mysql://ec2-52-31-7-122.eu-west-1.compute.amazonaws.com/final_year_project","root","IPNTclyv43");
+        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
+        //Connection conn = DriverManager.getConnection("jdbc:mysql://ec2-52-31-7-122.eu-west-1.compute.amazonaws.com/final_year_project","root","IPNTclyv43");
         String query =( "SELECT SUM(AbilityToEstablishDiagnosis = " + score + ") AS AbilToEstDiagCount,"
                 + "SUM(AbilityToFormulateATreatmentPlan = " + score + " ) AS AbilToFormATreatmentPlanCount, "
                 + "SUM(EnsuringInformedConsent = " + score + " ) AS EnsuringInfConCount, "
@@ -145,8 +145,8 @@ public class SearchBox {
     }
     
     public String showBasic( int score, String studentID ) throws SQLException {
-        //Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
-        Connection conn = DriverManager.getConnection("jdbc:mysql://ec2-52-31-7-122.eu-west-1.compute.amazonaws.com/final_year_project","root","IPNTclyv43");
+        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
+        //Connection conn = DriverManager.getConnection("jdbc:mysql://ec2-52-31-7-122.eu-west-1.compute.amazonaws.com/final_year_project","root","IPNTclyv43");
         String query =( "SELECT SUM(AppropriatePatientPosition = " + score + ") AS AppropriatePatientPositionCount,"
                 + "SUM(AppropriateOperatorPosition = " + score + " ) AS AppropriateOperatorPositionCount, "
                 + "SUM(AppropriateLightPosition = " + score + " ) AS AppropriateLightPositionCount, "
@@ -177,8 +177,8 @@ public class SearchBox {
     
     
     public String showProfessionalism( int score, String studentID ) throws SQLException {
-        //Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
-        Connection conn = DriverManager.getConnection("jdbc:mysql://ec2-52-31-7-122.eu-west-1.compute.amazonaws.com/final_year_project","root","IPNTclyv43");
+        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
+        //Connection conn = DriverManager.getConnection("jdbc:mysql://ec2-52-31-7-122.eu-west-1.compute.amazonaws.com/final_year_project","root","IPNTclyv43");
         String query =( "SELECT SUM(Professionalism = " + score + ") AS ProfessionalismCount "
                 + "FROM TBICoreSkills WHERE StudentID= " + studentID + ";" );
         
@@ -201,8 +201,8 @@ public class SearchBox {
     } 
     
     public String showCommunication( int score, String studentID ) throws SQLException {
-        //Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
-        Connection conn = DriverManager.getConnection("jdbc:mysql://ec2-52-31-7-122.eu-west-1.compute.amazonaws.com/final_year_project","root","IPNTclyv43");
+        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
+        //Connection conn = DriverManager.getConnection("jdbc:mysql://ec2-52-31-7-122.eu-west-1.compute.amazonaws.com/final_year_project","root","IPNTclyv43");
         String query =( "SELECT SUM(Communication = " + score + ") AS CommunicationCount "
                 + "FROM TBICoreSkills WHERE StudentID= " + studentID + ";" );
         
@@ -224,8 +224,8 @@ public class SearchBox {
     }
     
     public String showKnowledge( int score, String studentID ) throws SQLException {
-        //Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
-        Connection conn = DriverManager.getConnection("jdbc:mysql://ec2-52-31-7-122.eu-west-1.compute.amazonaws.com/final_year_project","root","IPNTclyv43");
+       Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
+        //Connection conn = DriverManager.getConnection("jdbc:mysql://ec2-52-31-7-122.eu-west-1.compute.amazonaws.com/final_year_project","root","IPNTclyv43");
         String query =( "SELECT SUM(Knowledge= " + score + ") AS KnowledgeCount "
                 + "FROM TBICoreSkills WHERE StudentID= " + studentID + ";" );
         
@@ -470,6 +470,7 @@ public class SearchBox {
     
     public String showTutorsGroups(String tutorID) throws SQLException{
         Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
+        //Connection conn = DriverManager.getConnection("jdbc:mysql://ec2-52-31-7-122.eu-west-1.compute.amazonaws.com/final_year_project","root","IPNTclyv43");
         
         String query =( "SELECT * FROM GroupExtras "
                 + "WHERE TutorID= " + tutorID + ";" );
@@ -512,6 +513,7 @@ public class SearchBox {
         String date = new SimpleDateFormat("dd-MM-yyyy").format(Calendar.getInstance().getTime());
         
         Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
+        //Connection conn = DriverManager.getConnection("jdbc:mysql://ec2-52-31-7-122.eu-west-1.compute.amazonaws.com/final_year_project","root","IPNTclyv43");
         
         String query =( "SELECT * FROM GroupExtras WHERE GroupExtras.GroupName= " + groupName + ";" );
         

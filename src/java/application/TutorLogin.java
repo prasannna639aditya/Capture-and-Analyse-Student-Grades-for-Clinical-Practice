@@ -98,8 +98,8 @@ public class TutorLogin {
      */
     public boolean loginTutor( HttpServletRequest request ) throws NoSuchAlgorithmException, InvalidKeySpecException, Exception  {
         DatabaseClass database = new DatabaseClass( );
-        database.setup( "ec2-52-31-7-122.eu-west-1.compute.amazonaws.com", "final_year_project", "root", "IPNTclyv43" );
-        //database.setup( "localhost", "final_year_project", "root", "IPNTclyv43" );
+        //database.setup( "ec2-52-31-7-122.eu-west-1.compute.amazonaws.com", "final_year_project", "root", "IPNTclyv43" );
+        database.setup( "localhost", "final_year_project", "root", "" );
 
         
         
@@ -153,8 +153,8 @@ public class TutorLogin {
     
     public Boolean doesTutorExist(String tutorID){
         DatabaseClass database = new DatabaseClass( );
-        database.setup( "ec2-52-31-7-122.eu-west-1.compute.amazonaws.com", "final_year_project", "root", "IPNTclyv43" );
-        //database.setup( "localhost", "final_year_project", "root", "" );
+        //database.setup( "ec2-52-31-7-122.eu-west-1.compute.amazonaws.com", "final_year_project", "root", "IPNTclyv43" );
+        database.setup( "localhost", "final_year_project", "root", "" );
         result = database.SelectRow( "SELECT * FROM Tutors WHERE TutorID = '" + tutorID + "';" );
         Boolean isTutor = false;
         
