@@ -74,6 +74,27 @@ input[type=text]:focus {
     box-shadow: 0 0 0 1px #E8C291 inset;
 }
 
+#add{
+    margin-top:2.5%;
+    padding-bottom:30px;
+    margin-left:-2%;
+}
+
+
+#add input[type=text]{
+    width:225px;
+    background-image: none;
+}
+
+#add h4{
+    color: #0085CC;
+    margin-left:2.5%;
+}
+
+#away{
+    margin-top: 2%;
+}
+
 
 #groups{
     margin-top: 5%;

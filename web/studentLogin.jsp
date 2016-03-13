@@ -47,25 +47,7 @@
                         <!-- /.container -->
 
                     </div>
-                    <!-- Page Content -->
-                    <footer>
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <ul class="list-inline">
-                                        <li>
-                                            <a href="index.jsp">Home</a>
-                                        </li>
-                                        <li class="footer-menu-divider">&sdot;</li>
-                                        <li>
-                                            <a href="https://www.ucc.ie/en/dentalschool/about/contact/">Contact</a>
-                                        </li>
-                                    </ul>
-                                    <p class="copyright text-muted small">Copyright &copy; University College Cork 2016. All Rights Reserved</p>
-                                </div>
-                            </div>
-                        </div>
-                    </footer>       
+                        
                 <%
                 }
                 else{
@@ -101,7 +83,11 @@
                         <!-- /.container -->
 
                     </div>
-                    <!-- Page Content -->
+                    
+                <%                    
+                       
+         %>
+       <!-- Page Content -->
                     <footer>
                         <div class="container">
                             <div class="row">
@@ -119,10 +105,6 @@
                                 </div>
                             </div>
                         </div>
-                    </footer> 
-                <%                    
-                       
-         %>
-       
+                    </footer>   
     </body>
 </html>

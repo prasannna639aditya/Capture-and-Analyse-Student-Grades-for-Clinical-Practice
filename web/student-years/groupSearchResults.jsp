@@ -45,20 +45,23 @@
           String groupID = search.getGroupID();
           
           if(search.checkGroupDescriptor(groupID) == true){
-            out.print(search.addStudents(groupID));
-            out.print(look.startTable());
-            out.print(look.fetchGroupNames(groupID));
+            out.println(search.addStudents(groupID));
+            %>
+            
+            <p id="away">
+           <%
+            out.println(look.startTable());
+            out.println(look.fetchGroupNames(groupID));
             out.print(look.endTable());
           }
           
           else{
         %> 
+            </p>
         <p> </p>
         <%
-              out.println(search.groupSearchBox());
-        %>
-        <p><h4 id="left"> Please enter a valid group </h4></p>
-        <%
+              out.print( gui.paragraph3("<p><h4 id='left'> Please enter a valid group. </h4></p>"));
+        
           }
           
           out.print(gui.footer());

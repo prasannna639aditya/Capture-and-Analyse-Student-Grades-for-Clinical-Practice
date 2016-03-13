@@ -43,7 +43,7 @@
                 else {
                     if( register.validateRegForm( ) ) {
                         session.setAttribute( "Authenticated", register.getTutorID( ) );
-                        out.print( gui.paragraph2("<p>You have successfully registered " + register.getTutorID() +  "as a tutor.</p>") );
+                        out.print( gui.paragraph2("<p>You have successfully registered " + register.getTutorID() +  " as a tutor.</p>") );
                         out.print( "<p id=\"home\"><a href='adminWelcome.jsp'>Back to home!</a></p>" );
                     }
                     else{

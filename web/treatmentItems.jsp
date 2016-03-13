@@ -99,7 +99,7 @@
                  %>
                  <p>
                  <%
-                 out.print(gui.paragraph("This patient does not exist. Please re-select your group and enter in the correct patient CDS number"));
+                 out.print(gui.paragraph("This patient does not exist. Please re-select your group and re-enter the correct patient CDS number"));
                  %>
                  </p>
                  <%

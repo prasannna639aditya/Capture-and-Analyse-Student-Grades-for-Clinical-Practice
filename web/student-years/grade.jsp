@@ -51,7 +51,7 @@
           
             if(search.checkStudentID(search.getStudentID()) == true){
              if(search.checkGroup(search.getStudentID(), groupID) == false){
-               out.println( name.fetchStudentName(search.getStudentID()) + " has been added to session with group " + groupID + ".");
+               out.println( gui.paragraph2(name.fetchStudentName(search.getStudentID()) + " has been added to session with group " + groupID + "."));
                out.print(look.startTable());
                out.print(look.fetchGroupNames(groupID));
                out.print(look.fetchExtraStudent(search.getStudentID()));
@@ -60,7 +60,7 @@
              }
 
              else{
-              out.println("Please select a student who is not in group " + groupID + ".");
+              out.print(gui.paragraph3("Please select a student who is not in group " + groupID + "."));
               out.print(search.addStudents(groupID));
               out.print(look.startTable());
               out.println(look.fetchGroupNames(groupID));
@@ -69,7 +69,7 @@
             }
 
             else{
-              out.println("Please enter a valid student ID.");
+              out.print(gui.paragraph3("Please enter a valid student ID."));
               out.print(search.addStudents(groupID));
               out.print(look.startTable());
               out.println(look.fetchGroupNames(groupID));

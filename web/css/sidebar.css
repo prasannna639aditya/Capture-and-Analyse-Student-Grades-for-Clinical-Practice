@@ -31,13 +31,14 @@
 
 #low{
     margin-top:3%;
-    margin-left:-1%;
+    margin-left:-0.5%;
     font-size:18px;
 }
 
 #home{
     font-size:18px;
     margin-left:1%;
+    margin-top:1%;
 }
 
 #left{

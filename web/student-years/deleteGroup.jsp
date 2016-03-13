@@ -46,7 +46,7 @@
           
           search.deleteGroup(groupDeleted, TutorID);
           
-          out.print(gui.paragraph("You have successfully deleted the group called<b> "  + groupDeleted + "</b>."));
+          out.print(gui.paragraph3("You have successfully deleted the group called<b> "  + groupDeleted + "</b>."));
           out.print( "<p id=\"home\"><a href='../tutorWelcome.jsp'>Back to home!</a></p>" );
         
           out.print(gui.footer());

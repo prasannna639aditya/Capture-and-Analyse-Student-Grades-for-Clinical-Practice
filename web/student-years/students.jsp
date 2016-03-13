@@ -35,6 +35,11 @@
         
     </head>
     <body>
+        <% 
+            GUI gui = new GUI();
+            out.print(gui.tutorStudentYearsNav());
+        %>
+        
         <p>
         <div class="container">
             <ul class="nav nav-tabs">
@@ -51,7 +56,8 @@
         <p>
         <%   
              StudentLookup look = new StudentLookup();
-             GUI gui = new GUI();
+             
+             
              out.print(look.fetchNames());
         %>
         </p>
@@ -80,7 +86,7 @@
               
         %>
                 </div>
-                      <div class="tab-pane fade" id="D">
+                      <div class="tab-pane fade" id="E">
                 
         <%
              out.print(look.fetchYearNames("4"));
@@ -89,7 +95,7 @@
         %>
                    
                 </div>   
-                <div class="tab-pane fade" id="E">
+                <div class="tab-pane fade" id="F">
                 
         <%
              out.print(look.fetchYearNames("5"));
@@ -98,6 +104,7 @@
         %>
                    
                 </div>    
+            </div>
             </div>
         </div>      
         <%

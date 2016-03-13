@@ -48,7 +48,7 @@
         if( request.getParameter( "submit" ) == null ) {
              out.print(gui.tutorNavigation());
              //out.print( treatmentItem.fetchScore( lookup.getStudentID(), treatmentItem.fetchStudentName(lookup.getStudentID()), treatmentItem.getTreatmentID()) );       
-             out.print( treatmentItem.showScore(lookup.getStudentID(),treatmentItem.getTreatmentID()));
+             out.print( treatmentItem.showScore(lookup.getStudentID(),treatmentItem.getTreatmentID(), treatmentItem.getPatientID(), treatmentItem.getDateAdded()));
         }             
         out.print(gui.footer());
         %>

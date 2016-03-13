@@ -94,7 +94,7 @@ public class GUI {
                     "            <!-- /.col-md-8 -->\n" +
                     "            <div class=\"col-md-4\">\n" +
                     "                <h2>Welcome " + firstName + " " + lastName + "</h2>\n" +
-                    "                <p>Please search for a group below that you would like to grade. Enter in the group ID. You will then have the option to add another student to this group session.</p>   \n";
+                    "                <p>Please search for a group below that you would like to grade. Once you enter in the group ID, you will then have the option to add another student to this session who is not a member of the current group.</p>   \n";
                    form +=       search.groupSearchBox2() +
                     "            </div>\n" +
                     "            <!-- /.col-md-4 -->\n" +
@@ -108,6 +108,18 @@ public class GUI {
                     "            <div class=\"col-md-10\">\n" +
                     "                <p> " + input + "</p>   \n";
                     form +=       "<div id=\"leftbox\"> " + search.groupSearchBox2() + "</div>\n" +
+                    "            </div>\n" +
+                    "            <!-- /.col-md-4 -->\n" +
+                    "        </div>";
+         return form;
+    }
+    
+    public String paragraph3(String input) {
+            SearchBox search = new SearchBox();
+            String form = "<div id=\"low\" class=\"row\">\n" +
+                    "            <div class=\"col-md-10\">\n" +
+                    "                <p> " + input + "</p>   \n";
+                    form +=       "<div id=\"leftbox\"> " + search.groupSearchBox() + "</div>\n" +
                     "            </div>\n" +
                     "            <!-- /.col-md-4 -->\n" +
                     "        </div>";
@@ -132,6 +144,19 @@ public class GUI {
                     "                <p>Please search for a group below that you would like to grade. Enter in the group ID. You will then have the option to add another student to this group session.</p>   \n" +
                     "                <p>Or you can browse through all of the students by clicking <a href=\"students.jsp\">here</a>.</p>\n";
                    form +=      "<div id=\"leftbox\"> " + search.groupSearchBox2() + "</div>\n" +
+                    "            </div>\n" +
+                    "            <!-- /.col-md-4 -->\n" +
+                    "        </div>";
+         return form;
+    }
+    
+    public String searchPage2() {
+            SearchBox search = new SearchBox();
+            String form = "<div class=\"row\">\n" +
+                    "            <div class=\"col-md-8\">\n" +
+                    "                <p>Please search for a group below that you would like to grade. Enter in the group ID. You will then have the option to add another student to this group session.</p>   \n" +
+                    "                <p>Or you can browse through all of the students by clicking <a href=\"students.jsp\">here</a>.</p>\n";
+                   form +=      "<div id=\"leftbox\"> " + search.groupSearchBox() + "</div>\n" +
                     "            </div>\n" +
                     "            <!-- /.col-md-4 -->\n" +
                     "        </div>";
@@ -276,7 +301,7 @@ public class GUI {
             "                            <li><a href=\"summaryData/summaryData.jsp\">All Students</a></li>\n" +
             "\n" +
             "                            <!-- Dropdown level 2 -->\n" +
-            "                            <li class=\"panel panel-default\" id=\"dropdown\">\n" +
+          /**  "                            <li class=\"panel panel-default\" id=\"dropdown\">\n" +
             "                                <a data-toggle=\"collapse\" href=\"#dropdown-lvl2\">\n" +
             "                                    <span class=\"glyphicon glyphicon-list-alt\"></span> Group Summary Data <span class=\"caret\"></span>\n" +
             "                                </a>\n" +
@@ -301,7 +326,7 @@ public class GUI {
             "                                        </ul>\n" +
             "                                    </div>\n" +
             "                                </div>\n" +
-            "                            </li>\n" +
+            "                            </li>\n" + **/
             "                        </ul>\n" +
             "                    </div>\n" +
             "                </div>\n" +
@@ -355,7 +380,7 @@ public class GUI {
             "    <div class=\"side-menu-container\">\n" +
             "        <ul class=\"nav navbar-nav\">\n" +
             "\n" +
-            "            <li class=\"active\"><a href=\"../adminWelcome.jsp\"><span class=\"glyphicon glyphicon-home\"></span> Home</a></li>\n" +  
+            "            <li class=\"active\"><a href=\"adminWelcome.jsp\"><span class=\"glyphicon glyphicon-home\"></span> Home</a></li>\n" +  
             "            <li class=\"active\"><a href=\"registerStudent.jsp\"><span class=\"glyphicon glyphicon-pencil\"></span> Register Student</a></li>\n" + 
             "            <li class=\"active\"><a href=\"registerTutor.jsp\"><span class=\"glyphicon glyphicon-edit\"></span> Register Tutor</a></li>\n" +
             "            <li class=\"active\"><a href=\"registerPatient.jsp\"><span class=\"glyphicon glyphicon-plus\"></span> Create Patient</a></li>\n" +
@@ -439,32 +464,32 @@ public class GUI {
             "                            <li><a href=\"../summaryData/summaryData.jsp\">All Students</a></li>\n" +       
             "\n" +
             "                            <!-- Dropdown level 2 -->\n" +
-            "                            <li class=\"panel panel-default\" id=\"dropdown\">\n" +
+          /**  "                            <li class=\"panel panel-default\" id=\"dropdown\">\n" +
             "                                <a data-toggle=\"collapse\" href=\"#dropdown-lvl2\">\n" +
-            "                                    <span class=\"glyphicon glyphicon-list-alt\"></span> Groups <span class=\"caret\"></span>\n" +
+            "                                    <span class=\"glyphicon glyphicon-list-alt\"></span> Group Summary Data <span class=\"caret\"></span>\n" +
             "                                </a>\n" +
             "                                <div id=\"dropdown-lvl2\" class=\"panel-collapse collapse\">\n" +
             "                                    <div class=\"panel-body\">\n" +
             "                                        <ul class=\"nav navbar-nav\">\n" +
-            "                                            <li><a href=\"../summaryData/3.1.jsp\">3.1</a></li>\n" +
-            "                                            <li><a href=\"../summaryData/3.2.jsp\">3.2</a></li>\n" +
-            "                                            <li><a href=\"../summaryData/3.3.jsp\">3.3</a></li>\n" +
-            "                                            <li><a href=\"../summaryData/3.4.jsp\">3.4</a></li>\n" +
-            "                                            <li><a href=\"../summaryData/3.5.jsp\">3.5</a></li>\n" +
-            "                                            <li><a href=\"../summaryData/4.1.jsp\">4.1</a></li>\n" +
-            "                                            <li><a href=\"../summaryData/4.2.jsp\">4.2</a></li>\n" +
-            "                                            <li><a href=\"../summaryData/4.3.jsp\">4.3</a></li>\n" +
-            "                                            <li><a href=\"../summaryData/4.4.jsp\">4.4</a></li>\n" +
-            "                                            <li><a href=\"../summaryData/4.5.jsp\">4.5</a></li>\n" +
-            "                                            <li><a href=\"../summaryData/5.1.jsp\">5.1</a></li>\n" +
-            "                                            <li><a href=\"../summaryData/5.2.jsp\">5.2</a></li>\n" +
-            "                                            <li><a href=\"../summaryData/5.3.jsp\">5.3</a></li>\n" +
-            "                                            <li><a href=\"../summaryData/5.4.jsp\">5.4</a></li>\n" +
-            "                                            <li><a href=\"../summaryData/5.5.jsp\">5.5</a></li>\n" +
+            "                                            <li><a href=\"summaryData/3.1.jsp\">3.1</a></li>\n" +
+            "                                            <li><a href=\"summaryData/3.2.jsp\">3.2</a></li>\n" +
+            "                                            <li><a href=\"summaryData/3.3.jsp\">3.3</a></li>\n" +
+            "                                            <li><a href=\"summaryData/3.4.jsp\">3.4</a></li>\n" +
+            "                                            <li><a href=\"summaryData/3.5.jsp\">3.5</a></li>\n" +
+            "                                            <li><a href=\"summaryData/4.1.jsp\">4.1</a></li>\n" +
+            "                                            <li><a href=\"summaryData/4.2.jsp\">4.2</a></li>\n" +
+            "                                            <li><a href=\"summaryData/4.3.jsp\">4.3</a></li>\n" +
+            "                                            <li><a href=\"summaryData/4.4.jsp\">4.4</a></li>\n" +
+            "                                            <li><a href=\"summaryData/4.5.jsp\">4.5</a></li>\n" +
+            "                                            <li><a href=\"summaryData/5.1.jsp\">5.1</a></li>\n" +
+            "                                            <li><a href=\"summaryData/5.2.jsp\">5.2</a></li>\n" +
+            "                                            <li><a href=\"summaryData/5.3.jsp\">5.3</a></li>\n" +
+            "                                            <li><a href=\"summaryData/5.4.jsp\">5.4</a></li>\n" +
+            "                                            <li><a href=\"summaryData/5.5.jsp\">5.5</a></li>\n" +
             "                                        </ul>\n" +
             "                                    </div>\n" +
             "                                </div>\n" +
-            "                            </li>\n" +
+            "                            </li>\n" + **/
             "                        </ul>\n" +
             "                    </div>\n" +
             "                </div>\n" +
@@ -549,32 +574,32 @@ public class GUI {
             "                            <li><a href=\"summaryData.jsp\">All Students</a></li>\n" +
             "\n" +
             "                            <!-- Dropdown level 2 -->\n" +
-            "                            <li class=\"panel panel-default\" id=\"dropdown\">\n" +
+              /**  "                            <li class=\"panel panel-default\" id=\"dropdown\">\n" +
             "                                <a data-toggle=\"collapse\" href=\"#dropdown-lvl2\">\n" +
-            "                                    <span class=\"glyphicon glyphicon-list-alt\"></span> Groups <span class=\"caret\"></span>\n" +
+            "                                    <span class=\"glyphicon glyphicon-list-alt\"></span> Group Summary Data <span class=\"caret\"></span>\n" +
             "                                </a>\n" +
             "                                <div id=\"dropdown-lvl2\" class=\"panel-collapse collapse\">\n" +
             "                                    <div class=\"panel-body\">\n" +
             "                                        <ul class=\"nav navbar-nav\">\n" +
-            "                                            <li><a href=\"3.1.jsp\">3.1</a></li>\n" +
-            "                                            <li><a href=\"3.2.jsp\">3.2</a></li>\n" +
-            "                                            <li><a href=\"3.3.jsp\">3.3</a></li>\n" +
-            "                                            <li><a href=\"3.4.jsp\">3.4</a></li>\n" +
-            "                                            <li><a href=\"3.5.jsp\">3.5</a></li>\n" +
-            "                                            <li><a href=\"4.1.jsp\">4.1</a></li>\n" +
-            "                                            <li><a href=\"4.2.jsp\">4.2</a></li>\n" +
-            "                                            <li><a href=\"4.3.jsp\">4.3</a></li>\n" +
-            "                                            <li><a href=\"4.4.jsp\">4.4</a></li>\n" +
-            "                                            <li><a href=\"4.5.jsp\">4.5</a></li>\n" +
-            "                                            <li><a href=\"5.1.jsp\">5.1</a></li>\n" +
-            "                                            <li><a href=\"5.2.jsp\">5.2</a></li>\n" +
-            "                                            <li><a href=\"5.3.jsp\">5.3</a></li>\n" +
-            "                                            <li><a href=\"5.4.jsp\">5.4</a></li>\n" +
-            "                                            <li><a href=\"5.5.jsp\">5.5</a></li>\n" +
+            "                                            <li><a href=\"summaryData/3.1.jsp\">3.1</a></li>\n" +
+            "                                            <li><a href=\"summaryData/3.2.jsp\">3.2</a></li>\n" +
+            "                                            <li><a href=\"summaryData/3.3.jsp\">3.3</a></li>\n" +
+            "                                            <li><a href=\"summaryData/3.4.jsp\">3.4</a></li>\n" +
+            "                                            <li><a href=\"summaryData/3.5.jsp\">3.5</a></li>\n" +
+            "                                            <li><a href=\"summaryData/4.1.jsp\">4.1</a></li>\n" +
+            "                                            <li><a href=\"summaryData/4.2.jsp\">4.2</a></li>\n" +
+            "                                            <li><a href=\"summaryData/4.3.jsp\">4.3</a></li>\n" +
+            "                                            <li><a href=\"summaryData/4.4.jsp\">4.4</a></li>\n" +
+            "                                            <li><a href=\"summaryData/4.5.jsp\">4.5</a></li>\n" +
+            "                                            <li><a href=\"summaryData/5.1.jsp\">5.1</a></li>\n" +
+            "                                            <li><a href=\"summaryData/5.2.jsp\">5.2</a></li>\n" +
+            "                                            <li><a href=\"summaryData/5.3.jsp\">5.3</a></li>\n" +
+            "                                            <li><a href=\"summaryData/5.4.jsp\">5.4</a></li>\n" +
+            "                                            <li><a href=\"summaryData/5.5.jsp\">5.5</a></li>\n" +
             "                                        </ul>\n" +
             "                                    </div>\n" +
             "                                </div>\n" +
-            "                            </li>\n" +       
+            "                            </li>\n" + **/       
             "                        </ul>\n" +
             "                    </div>\n" +
             "                </div>\n" +

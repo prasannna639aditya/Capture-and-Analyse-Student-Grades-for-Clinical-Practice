@@ -49,10 +49,10 @@
               
                   if( request.getParameter( "submit" ) == null ) {
                         treatment.markStudentAbsent(treatment.getStudentID(), TutorID, treatment.getTreatmentID());
-                        out.print( "<p>You have marked </p>" + treatment.fetchStudentName(treatment.getStudentID()) + " absent.</p>"  );
+                        out.print( gui.paragraph2("<p>You have marked " + treatment.fetchStudentName(treatment.getStudentID()) + " absent.</p>" ) );
                         //out.print( "<p>Treatment </p>" + treatment.fetchTreatmentName(treatment.getTreatmentID()) + ".</p>"  );
                        // out.print( treatment.clinicalAlert(core.getStudentID(),treatment.getTreatmentID()));
-                        out.print( "<p><a href='tutorWelcome.jsp'>Back to home!</a></p>" );
+                        out.print( "<p id=\"home\"><a href='tutorWelcome.jsp'>Back to home!</a></p>" );
                   
                 }
                 out.print(gui.footer());  

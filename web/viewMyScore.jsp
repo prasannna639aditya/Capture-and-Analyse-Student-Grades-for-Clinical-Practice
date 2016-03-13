@@ -26,10 +26,6 @@
         <title>View Score</title>
     </head>
     <body>
-        
-        <div class="login-card">          
-         
-         
         <jsp:useBean id="lookup" class="application.StudentLookup" scope="request" />
         <jsp:setProperty name="lookup" property="*" />
         <jsp:useBean id="treatmentItem" class="application.TreatmentItems" scope="request" />
@@ -45,11 +41,5 @@
         }                 
         out.print(gui.footer());
         %>
-           
-        </div>    
-        </div>
-        </div>
-        </div>
-        </div>
     </body>
 </html>

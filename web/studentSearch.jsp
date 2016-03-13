@@ -57,7 +57,7 @@
           }
           else{
             if( name.hasPerformedTreatments(studentID) == false){
-                out.println(name.fetchStudentName(gui.getStudentID()) + " has not performed any treatments yet.");
+                out.print(gui.paragraph2(name.fetchStudentName(gui.getStudentID()) + " has not performed any treatments yet."));
             }
 
             else{
@@ -68,13 +68,14 @@
                 <li class="nav active"><a href="#A" data-toggle="tab">Domain Summary Data</a></li>
                 <li class="nav"><a href="#B" data-toggle="tab">Treatment Summary Data</a></li>
                 <li class="nav"><a href="#C" data-toggle="tab">Treatment Scores</a></li>
+                <li class="nav"><a href="#D" data-toggle="tab">Patients Treated</a></li>
             </ul>
         <div class="tab-content">
                 <div class="tab-pane fade in active" id="A">
         <%
               //String student = (String)request.getParameter("student");
         %>
-        <p id="top">
+        <p>
         <%
              out.println("See the domain summary data for " + name.fetchStudentName(search.getStudentID()));
              
@@ -93,11 +94,11 @@
              out.print(data.studentData(search.getStudentID()));
               // out.println(search.getStudentID());
              
-              }
-          }
+          
         %>
                     </p>
                 </div>  
+                    <p>
                 <div class="tab-pane fade" id="C">
                 
         <%
@@ -106,7 +107,20 @@
               
         %>
                    
-                </div>            
+                </div>  
+        </p>
+        <p>
+                <div class="tab-pane fade" id="D">
+                
+        <%
+             out.print(name.selectAllPatients(search.getStudentID()));
+              
+                }
+          }  
+        %>
+                   
+                </div> 
+        </p>
             </div>
         </div>      
         <%

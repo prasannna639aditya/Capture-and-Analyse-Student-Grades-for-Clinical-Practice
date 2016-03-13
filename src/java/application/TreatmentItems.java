@@ -632,6 +632,50 @@ public class TreatmentItems {
         conn.close();
         return form;
     }
+   
+    public String selectAllPatients( String studentID) throws SQLException{
+        //Connection conn = DriverManager.getConnection("jdbc:mysql://ec2-52-31-7-122.eu-west-1.compute.amazonaws.com/final_year_project","root","IPNTclyv43");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
+            //System.out.println("successful");
+            String query = ("SELECT TBICoreSkills.PatientID, TBICoreSkills.Time, TBICoreSkills.DateAdded, TreatmentItems.TreatmentName"
+                            + " FROM TreatmentItems JOIN TBICoreSkills ON TBICoreSkills.TreatmentID = TreatmentItems.TreatmentItemID"
+                            + " WHERE TBICoreSkills.StudentID=" + studentID + "");
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+
+            
+            
+            String form = "<div class=\"table-responsive\">\n";
+                   form += "<table class=\"table\">\n";
+                   form += "<thead>\n";
+                   form += "<tr>\n";
+                   form += "<th>Treatment Name</th>\n";
+                   form += "<th>Patient CDS</th>\n";
+                   form += "<th>Treatment Date</th>\n";
+                   form += "<th>Time Graded</th>\n";
+                   form += "</tr>\n";
+                   form += "<tbody>\n";
+               
+            while(rs.next()){
+                
+                    form += "<tr>\n";
+                    form += "<td>" + rs.getString("TreatmentItems.TreatmentName") + "</td>\n";
+                    form += "<td>" + rs.getString("TBICoreSkills.PatientID") + "</td>\n";
+                    form += "<td>" + rs.getString("TBICoreSkills.DateAdded") + "</td>\n";
+                    form += "<td>" + rs.getString("TBICoreSkills.Time") + "</td>\n";
+                    form += "</tr>\n";
+                
+                
+            }
+        
+            
+            form += "</tbody>\n";
+            form += "</table>\n";
+            form += "</div>\n";
+            
+        conn.close();
+        return form;
+    }
     
     public boolean doesPatientExist( String patientID){
         DatabaseClass database = new DatabaseClass( );

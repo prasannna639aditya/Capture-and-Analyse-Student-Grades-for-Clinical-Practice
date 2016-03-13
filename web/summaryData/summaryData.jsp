@@ -53,7 +53,7 @@
         %>
         <p id="top">
         <%
-             out.println("All Student catagorical data summarised");
+             out.println("All Student data summarised");
         %>
         </p>
         <p>

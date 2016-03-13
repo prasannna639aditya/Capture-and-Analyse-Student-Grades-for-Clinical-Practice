@@ -43,7 +43,7 @@
         %>
         <p>
         <%
-          out.println(gui.searchPage());
+          out.println(gui.searchPage2());
         %>
         </p>
         <%

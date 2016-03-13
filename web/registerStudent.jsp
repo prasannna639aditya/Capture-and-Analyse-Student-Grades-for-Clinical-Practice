@@ -20,7 +20,7 @@
         <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
         <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
         <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
-        <title>JSP Page</title>
+        <title>Register a student</title>
     </head>
     <body>
         
@@ -41,8 +41,8 @@
                 else {
                     if( register.validateRegForm( ) ) {
                         session.setAttribute( "Authenticated", register.getStudentID( ) );
-                        out.print( "<p>You have successfully registered a student!</p>" );
-                        out.print( "<p><a href='tutorWelcome.jsp'>Back to home!</a></p>" );
+                        out.print(gui.paragraph2( "<p>You have successfully registered a student!</p>") );
+                        out.print( "<p id=\"home\"><a href='tutorWelcome.jsp'>Back to home!</a></p>" );
                     }
                     else{
                         out.print( register.registrationForm( ) );

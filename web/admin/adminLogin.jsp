@@ -52,27 +52,8 @@
                         <!-- /.container -->
 
                     </div>
-                    <div class="content-section-a">
 
-        <!-- Page Content -->
-                    <footer>
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <ul class="list-inline">
-                                        <li>
-                                            <a href="index.jsp">Home</a>
-                                        </li>
-                                        <li class="footer-menu-divider">&sdot;</li>
-                                        <li>
-                                            <a href="https://www.ucc.ie/en/dentalschool/about/contact/">Contact</a>
-                                        </li>
-                                    </ul>
-                                    <p class="copyright text-muted small">Copyright &copy; University College Cork 2016. All Rights Reserved</p>
-                                </div>
-                            </div>
-                        </div>
-                    </footer>       
+                   
                 <%
                 }
                 else{
@@ -85,7 +66,7 @@
                         response.sendRedirect( "adminWelcome.jsp" );
                     }
                     else{
-                        out.print( loginHeader.loginHeader( ) );    
+                        out.print( loginHeader.adminLoginHeader( ) );    
                         %>
                     
                     <div class="intro-header">
@@ -108,7 +89,12 @@
                         <!-- /.container -->
 
                     </div>
-                    <!-- Page Content -->
+                    
+                <%                    
+                       
+         %>
+         
+           <!-- Page Content -->
                     <footer>
                         <div class="container">
                             <div class="row">
@@ -116,7 +102,7 @@
                                     <ul class="list-inline">
                                         <li>
                                             <a href="index.jsp">Home</a>
-                                        </li>
+                                        </li
                                         <li class="footer-menu-divider">&sdot;</li>
                                         <li>
                                             <a href="https://www.ucc.ie/en/dentalschool/about/contact/">Contact</a>
@@ -126,11 +112,12 @@
                                 </div>
                             </div>
                         </div>
-                    </footer> 
-                <%                    
-                       
-         %>
-         
-       
+                    </footer>
+
+                    <!-- jQuery -->
+                    <script src="js/jquery.js"></script>
+
+                    <!-- Bootstrap Core JavaScript -->
+                    <script src="js/bootstrap.min.js"></script>
     </body>
 </html>

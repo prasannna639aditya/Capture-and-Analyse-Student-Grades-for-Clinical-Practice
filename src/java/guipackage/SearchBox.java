@@ -395,14 +395,34 @@ public class SearchBox {
     
     public String addStudents( String groupId){
         
-        String form = "<form id='form-id' name='add_student' action='grade.jsp' method='POST'>" +
-                "      <div class=\"ui action left icon input\">\n" +
-                "      <i class=\"search icon\"></i>\n" +
-                "      <input type=\"hidden\" name='groupID' value='" + groupID + "' placeholder=\"Search...\">\n" +
-                "      <input type=\"text\" name='studentID' placeholder=\"Add an extra student to the group\"><br/>\n" +
-                "      <div><input type=\"text\" name='name' placeholder=\"Please name this group\"></div><br/>\n" +
-                "      <input type='submit' value='Add' name='submit' /><br />\n" +
-                "    </div></form>\n";
+        
+        String form = "<div id=\"add\"><div class=\"form-group\">\n" +
+                    "<h4>Add a student to this group session.</h4>\n" +
+                    "  <form id='form-id' name='add_student' action='grade.jsp' method='POST'>" +
+                    "  <div class=\"col-lg-9\">\n" +
+                    "    <div class=\"form-inline\">\n" +
+                    "      <div class=\"form-group \">\n" +
+                    "        <div class=\"col-lg-12\">\n" +
+                    "      <input id=\"add\" type=\"hidden\" name='groupID' value='" + groupID + "' placeholder=\"Search...\">\n" +
+                    "          <label class=\"sr-only\" for=\"studentID\">Student ID:</label> \n" +
+                    "          <input type=\"text\" name='studentID' class=\"form-control \" placeholder=\"Add an extra student\"><br/>\n" +
+                    "        </div>\n" +
+                    "      </div> \n" +
+                    "      <div class=\"form-group \">\n" +
+                    "        <div class=\"col-lg-12\">\n" +
+                    "          <label class=\"sr-only\" for=\"name\">Group Name</label> \n" +
+                    "          <input type=\"text\" name='name' class=\"form-control \" placeholder=\"Please name this group\"><br/>\n" +
+                    "        </div>\n" +
+                    "      </div>\n" +
+                    "      <div class=\"form-group \">\n" +
+                    "        <div class=\"col-lg-12\">\n" +
+                    "          <label class=\"sr-only\" for=\"submit\"></label> \n" +
+                    "          <input type='submit' value='Add' name='submit' /><br />\n" +
+                    "        </div>\n" +
+                    "      </div>\n" +
+                    "    </div>\n" +
+                    "  </div></form>\n" +
+                    "</div></div>\n";
         return form;
     }
     
@@ -493,7 +513,7 @@ public class SearchBox {
         Statement stmt = conn.createStatement();
         ResultSet rs = stmt.executeQuery(query);
         
-        String form = "<div id=\"groups\"><h3>My Groups</h3>\n";
+        String form = "<div id=\"groups\"><h3>My Group Sessions</h3>\n";
                form += "<div class=\"table-responsive\">\n";
                form += "<table class=\"table table-hover\">\n";
                form += "<thead>\n";
