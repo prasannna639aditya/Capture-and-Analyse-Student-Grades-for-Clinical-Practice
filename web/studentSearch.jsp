@@ -89,16 +89,15 @@
         </p>
                 </div>
                 <div class="tab-pane fade" id="B">
-                    <p>
         <%
              out.print(data.studentData(search.getStudentID()));
               // out.println(search.getStudentID());
              
           
         %>
-                    </p>
+                
                 </div>  
-                    <p>
+                  
                 <div class="tab-pane fade" id="C">
                 
         <%
@@ -108,8 +107,7 @@
         %>
                    
                 </div>  
-        </p>
-        <p>
+       
                 <div class="tab-pane fade" id="D">
                 
         <%
@@ -120,7 +118,7 @@
         %>
                    
                 </div> 
-        </p>
+        
             </div>
         </div>      
         <%

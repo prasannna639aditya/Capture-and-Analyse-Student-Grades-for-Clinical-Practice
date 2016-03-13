@@ -141,8 +141,8 @@ public class GUI {
             SearchBox search = new SearchBox();
             String form = "<div class=\"row\">\n" +
                     "            <div class=\"col-md-8\">\n" +
-                    "                <p>Please search for a group below that you would like to grade. Enter in the group ID. You will then have the option to add another student to this group session.</p>   \n" +
-                    "                <p>Or you can browse through all of the students by clicking <a href=\"students.jsp\">here</a>.</p>\n";
+                    "                <p id=\"justified\">Please search for a group below that you would like to grade. Enter in the group ID. You will then have the option to add another student to this group session.</p>   \n" +
+                    "                <p id=\"justified\">Or you can browse through all of the students by clicking <a href=\"students.jsp\">here</a>.</p>\n";
                    form +=      "<div id=\"leftbox\"> " + search.groupSearchBox2() + "</div>\n" +
                     "            </div>\n" +
                     "            <!-- /.col-md-4 -->\n" +
@@ -154,8 +154,8 @@ public class GUI {
             SearchBox search = new SearchBox();
             String form = "<div class=\"row\">\n" +
                     "            <div class=\"col-md-8\">\n" +
-                    "                <p>Please search for a group below that you would like to grade. Enter in the group ID. You will then have the option to add another student to this group session.</p>   \n" +
-                    "                <p>Or you can browse through all of the students by clicking <a href=\"students.jsp\">here</a>.</p>\n";
+                    "                <p id=\"justified\">Please search for a group below that you would like to grade. Enter in the group ID. You will then have the option to add another student to this group session.</p>   \n" +
+                    "                <p id=\"justified\">Or you can browse through all of the students by clicking <a href=\"students.jsp\">here</a>.</p>\n";
                    form +=      "<div id=\"leftbox\"> " + search.groupSearchBox() + "</div>\n" +
                     "            </div>\n" +
                     "            <!-- /.col-md-4 -->\n" +

@@ -41,12 +41,24 @@
     margin-top:1%;
 }
 
+
+
+#justified{
+    margin-left:2%;
+}
+
 #left{
     margin-left: 8.5%;
 }
 
 #leftbox{
     margin-left: -2%;
+}
+
+@media ( min-width: 800px) and (max-width: 1280px){
+#leftbox{
+    margin-left: -9%;
+}
 }
 
 

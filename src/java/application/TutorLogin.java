@@ -161,7 +161,8 @@ public class TutorLogin {
         if( result.length != 0 ) {
           isTutor = true;  
         }
-        
+       
+      database.Close();
       return isTutor;  
     }
     

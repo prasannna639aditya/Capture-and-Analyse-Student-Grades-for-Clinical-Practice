@@ -17,6 +17,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
         <link href="css/sidebar.css" rel="stylesheet">
+        <link href="css/table.css" rel="stylesheet">
         <link href="css/dropdown.css" rel="stylesheet">
         <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
         <script src="js/sidebar.js"></script>
@@ -45,6 +46,7 @@
                 <li class="nav active"><a href="#A" data-toggle="tab">Domain Summary Data</a></li>
                 <li class="nav"><a href="#B" data-toggle="tab">Treatment Summary Data</a></li>
                 <li class="nav"><a href="#C" data-toggle="tab">Treatment Scores</a></li>
+                <li class="nav"><a href="#D" data-toggle="tab">Patients Treated</a></li>
             </ul>
         <div class="tab-content">
                 <div class="tab-pane fade in active" id="A">
@@ -61,12 +63,12 @@
         </p>
                 </div>
                 <div class="tab-pane fade" id="B">
-                <p>
+               
         <%
              out.print(data.studentData( StudentID ));
              
         %>
-                    </p>
+               
                 </div>  
                 <div class="tab-pane fade" id="C">
                   
@@ -76,7 +78,18 @@
               
         %>
                    
-                </div>            
+                </div> 
+        
+                <div class="tab-pane fade" id="D">
+                
+        <%
+             out.print(treatmentItem.selectAllPatients( StudentID ));
+              
+                
+        %>
+                   
+                </div> 
+       
             </div>
         </div>      
         <%
