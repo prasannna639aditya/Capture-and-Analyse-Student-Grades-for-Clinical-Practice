@@ -29,8 +29,23 @@
     border-right: 1px solid #e7e7e7;
 }
 
+#low{
+    margin-top:3%;
+    margin-left:-1%;
+    font-size:18px;
+}
+
+#home{
+    font-size:18px;
+    margin-left:1%;
+}
+
 #left{
     margin-left: 8.5%;
+}
+
+#leftbox{
+    margin-left: -2%;
 }
 
 

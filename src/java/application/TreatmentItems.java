@@ -633,6 +633,23 @@ public class TreatmentItems {
         return form;
     }
     
+    public boolean doesPatientExist( String patientID){
+        DatabaseClass database = new DatabaseClass( );
+        database.setup( "localhost", "final_year_project", "root", "" );
+        //database.setup( "ec2-52-31-7-122.eu-west-1.compute.amazonaws.com", "final_year_project", "root", "IPNTclyv43" );
+       
+        boolean isPatient = false;
+        
+        result = database.SelectRow( "SELECT * FROM Patients WHERE CDSNumber =" + patientID + ";" );
+        
+        if( result.length != 0 ) {
+            isPatient = true;
+        }
+        
+        return isPatient;
+        
+    }
+    
    
     
     

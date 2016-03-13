@@ -134,7 +134,7 @@
         
         
 	var barChartData = {
-		labels : ["Score 1","Score 2","Score 3","Score 4","Score 5", "Score "],
+		labels : ["Score 1","Score 2","Score 3","Score 4","Score 5", "Score 6"],
 		datasets : [
 			{
 				fillColor : "rgb(125,200,251)",

@@ -42,8 +42,8 @@
                 }
                 else {
                     if( register.validateRegForm( ) ) {
-                        out.print( "<p>You have successfully registered " + register.getFirstName() + " " +  register.getLastName() + ".</p>" );
-                        out.print( "<p><a href='adminWelcome.jsp'>Back to home!</a></p>" );
+                        out.print(gui.paragraph2( "<p>You have successfully registered " + register.getFirstName() + " " +  register.getLastName() + " as a patient.</p>" ) );
+                        out.print( "<p id=\"home\"><a href='adminWelcome.jsp'>Back to home!</a></p>" );
                     }
                     else{
                         out.print( register.registrationForm( ) );

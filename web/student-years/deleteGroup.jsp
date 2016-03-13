@@ -42,11 +42,12 @@
           TreatmentItems name = new TreatmentItems();
           String TutorID = (String) session.getAttribute( "TutorID" );
           
-          String group = search.getGroup();
+          String groupDeleted = search.getGroup();
           
-          search.deleteGroup(group, TutorID);
+          search.deleteGroup(groupDeleted, TutorID);
           
-          out.println("You have deleted the group: "  + group + ".");
+          out.print(gui.paragraph("You have successfully deleted the group called<b> "  + groupDeleted + "</b>."));
+          out.print( "<p id=\"home\"><a href='../tutorWelcome.jsp'>Back to home!</a></p>" );
         
           out.print(gui.footer());
           

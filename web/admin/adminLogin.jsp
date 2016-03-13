@@ -31,7 +31,7 @@
                 GUI loginHeader = new GUI( );
                 
                 if( request.getParameter( "submit" ) == null ){
-                    out.print( loginHeader.loginHeader( ) );
+                    out.print( loginHeader.adminLoginHeader( ) );
                     %>
                     
                     <div class="intro-header">

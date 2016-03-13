@@ -38,12 +38,39 @@ public class GUI {
             form += "<span class=\"icon-bar\"></span>\n";
             form += "<span class=\"icon-bar\"></span>\n";
             form += "</button>\n";        
-            form += "<a class=\"navbar-brand topnav\" href=\"#\">Cork University Dental Hospital</a>\n";
+            form += "<a class=\"navbar-brand topnav\" href=\"index.jsp\">Cork University Dental Hospital</a>\n";
             form += "</div>\n";
             form += "<div class=\"collapse navbar-collapse\" id=\"bs-example-navbar-collapse-1\">\n";  
             form += "<ul class=\"nav navbar-nav navbar-right\">\n";
             form += "<li>\n";
             form += "<a href='admin/adminLogin.jsp'>Admin</a>\n";
+            form += "</li>\n";
+            form += "<li>\n";
+            form += "<a href=\"https://www.ucc.ie/en/dentalschool/about/contact/\">Contact</a>\n";
+            form += "</li>\n";
+            form += "</ul>\n";
+            form += "</div>\n";
+            form += "</div>\n";
+            form += "</nav>\n";
+        return form;
+    }
+    
+    public String adminLoginHeader( ) {
+     String form = "<nav class=\"navbar navbar-default navbar-fixed-top topnav\" role=\"navigation\">\n";
+            form += "<div class=\"container topnav\">\n";
+            form += "<div class=\"navbar-header\">\n";
+            form += "<button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\"#bs-example-navbar-collapse-1\">\n"; 
+            form += "<span class=\"sr-only\">Toggle navigation</span>\n";
+            form += "<span class=\"icon-bar\"></span>\n";
+            form += "<span class=\"icon-bar\"></span>\n";
+            form += "<span class=\"icon-bar\"></span>\n";
+            form += "</button>\n";        
+            form += "<a class=\"navbar-brand topnav\" href=\"../index.jsp\">Cork University Dental Hospital</a>\n";
+            form += "</div>\n";
+            form += "<div class=\"collapse navbar-collapse\" id=\"bs-example-navbar-collapse-1\">\n";  
+            form += "<ul class=\"nav navbar-nav navbar-right\">\n";
+            form += "<li>\n";
+            form += "<a href='adminLogin.jsp'>Admin</a>\n";
             form += "</li>\n";
             form += "<li>\n";
             form += "<a href=\"https://www.ucc.ie/en/dentalschool/about/contact/\">Contact</a>\n";
@@ -69,6 +96,42 @@ public class GUI {
                     "                <h2>Welcome " + firstName + " " + lastName + "</h2>\n" +
                     "                <p>Please search for a group below that you would like to grade. Enter in the group ID. You will then have the option to add another student to this group session.</p>   \n";
                    form +=       search.groupSearchBox2() +
+                    "            </div>\n" +
+                    "            <!-- /.col-md-4 -->\n" +
+                    "        </div>";
+         return form;
+    }
+    
+    public String paragraph(String input) {
+            SearchBox search = new SearchBox();
+            String form = "<div id=\"low\" class=\"row\">\n" +
+                    "            <div class=\"col-md-10\">\n" +
+                    "                <p> " + input + "</p>   \n";
+                    form +=       "<div id=\"leftbox\"> " + search.groupSearchBox2() + "</div>\n" +
+                    "            </div>\n" +
+                    "            <!-- /.col-md-4 -->\n" +
+                    "        </div>";
+         return form;
+    }
+    
+    public String paragraph2(String input) {
+            SearchBox search = new SearchBox();
+            String form = "<div id=\"low\" class=\"row\">\n" +
+                    "            <div class=\"col-md-10\">\n" +
+                    "                <p> " + input + "</p>   \n" +
+                    "            </div>\n" +
+                    "            <!-- /.col-md-4 -->\n" +
+                    "        </div>";
+         return form;
+    }
+    
+    public String searchPage() {
+            SearchBox search = new SearchBox();
+            String form = "<div class=\"row\">\n" +
+                    "            <div class=\"col-md-8\">\n" +
+                    "                <p>Please search for a group below that you would like to grade. Enter in the group ID. You will then have the option to add another student to this group session.</p>   \n" +
+                    "                <p>Or you can browse through all of the students by clicking <a href=\"students.jsp\">here</a>.</p>\n";
+                   form +=      "<div id=\"leftbox\"> " + search.groupSearchBox2() + "</div>\n" +
                     "            </div>\n" +
                     "            <!-- /.col-md-4 -->\n" +
                     "        </div>";

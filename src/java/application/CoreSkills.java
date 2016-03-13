@@ -414,6 +414,12 @@ public class CoreSkills {
             password = "";
         }
         
+        if( password == null ) {
+            errors.add( "Please get the student to re-enter their password." );
+            isValid = false;
+            password = "";
+        }
+        
         if( PasswordHash.check( password, passwordToCheck) == false){
            errors.add( "Students password is incorrect. Please get the student to re-enter their password." );
            isValid = false;

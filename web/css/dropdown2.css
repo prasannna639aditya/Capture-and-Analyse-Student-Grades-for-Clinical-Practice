@@ -1,0 +1,161 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 13-Mar-2016, 17:28:27
+    Author     : Delaney
+*/
+
+input[type=submit] {
+	-moz-box-shadow:inset -50px 1px 0px 50px #ffffff;
+	-webkit-box-shadow:inset -50px 1px 0px 50px #ffffff;
+	box-shadow:inset -50px 1px 0px 50px #ffffff;
+	background-color:transparent;
+	-webkit-border-top-left-radius:0px;
+	-moz-border-radius-topleft:0px;
+	border-top-left-radius:0px;
+	-webkit-border-top-right-radius:0px;
+	-moz-border-radius-topright:0px;
+	border-top-right-radius:0px;
+	-webkit-border-bottom-right-radius:0px;
+	-moz-border-radius-bottomright:0px;
+	border-bottom-right-radius:0px;
+	-webkit-border-bottom-left-radius:0px;
+	-moz-border-radius-bottomleft:0px;
+	border-bottom-left-radius:0px;
+	text-indent:0;
+	border:2px solid #dcdcdc;
+	display:inline-block;
+	color:#666666;
+	font-family:Trebuchet MS;
+	font-size:12px;
+	font-style:normal;
+        width: 120px;
+	height:35px;
+	text-decoration:none;
+	text-align:center;
+	text-shadow:1px 1px 0px #ffffff;
+        position:relative;
+	top:1px;
+}
+input[type=text]:focus {
+    background-color: #FFF;
+    border-color: #E8C291;
+    outline: none;
+    -moz-box-shadow: 0 0 0 1px #e8c291 inset;
+    -webkit-box-shadow: 0 0 0 1px #E8C291 inset;
+    box-shadow: 0 0 0 1px #E8C291 inset;
+}
+
+
+#groups{
+    margin-top: 5%;
+}
+
+#welcome{
+    padding-left:30px;
+}
+input[type=submit]:hover {
+    color: #404040;
+    font-weight: bold; 
+}
+
+label {
+    color: #888;
+    font-weight: bold;
+    display: block;
+    width: 150px;
+    float: left;
+}
+
+h2{
+    color: #999;
+    font-family: Candara, Calibri, Segoe, 'Segoe UI', Optima, Arial, sans-serif;
+    text-decoration: underline;
+    font-size: 20px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 500;
+    line-height: 15.4px;
+    padding-top:20px;
+    padding-left:16px;
+    padding-bottom: 5px;
+}
+
+.img-circle {
+    border-radius: 20%;
+    border: 2px solid #e1e1e1;
+}
+
+#dropdown{
+   font-size: 1em;
+   margin-bottom: 3%;
+   margin-top: 2%;
+   -webkit-appearance: none;
+   -moz-appearance: none;
+   appearance: none;
+   border: none;
+   background: transparent url("http://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/br_down.png")
+   no-repeat right center;
+   -moz-appearance:window;
+   background-image: url('images/select_arrow.gif');
+   background-repeat: no-repeat;
+   background-position: right center;
+}
+
+img{
+    width: 200px;
+    height: 200px;
+}
+
+.btn-style{
+	border : solid 1px #e6e6e6;
+	border-radius : 3px;
+	moz-border-radius : 3px;
+	-webkit-box-shadow : 0px 0px 2px rgba(0,0,0,1.0);
+	-moz-box-shadow : 0px 0px 2px rgba(0,0,0,1.0);
+	box-shadow : 0px 0px 2px rgba(0,0,0,1.0);
+	font-size : 12px;
+	color : #696869;
+	padding : 1px 10px;
+	background : #ffffff;
+	background : -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(49%,#f1f1f1), color-stop(51%,#e1e1e1), color-stop(100%,#f6f6f6));
+	background : -moz-linear-gradient(top, #ffffff 0%, #f1f1f1 49%, #e1e1e1 51%, #f6f6f6 100%);
+	background : -webkit-linear-gradient(top, #ffffff 0%, #f1f1f1 49%, #e1e1e1 51%, #f6f6f6 100%);
+	background : -o-linear-gradient(top, #ffffff 0%, #f1f1f1 49%, #e1e1e1 51%, #f6f6f6 100%);
+	background : -ms-linear-gradient(top, #ffffff 0%, #f1f1f1 49%, #e1e1e1 51%, #f6f6f6 100%);
+	background : linear-gradient(top, #ffffff 0%, #f1f1f1 49%, #e1e1e1 51%, #f6f6f6 100%);
+	filter : progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f6f6f6',GradientType=0 );
+
+}
+
+.red
+{
+    text-align: center;
+}
+
+.graded
+{
+    background-color:#31b0d5;
+    color:white;
+}
+
+.years_container ul{
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+.years_container ul li{
+    text-decoration: none;
+}
+
+#indicate{
+    background-color: red; 
+}
+
+.indicate{
+    background-color: red; 
+}

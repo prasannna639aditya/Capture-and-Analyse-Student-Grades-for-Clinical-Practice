@@ -21,7 +21,6 @@
         <link href="../css/sidebar.css" rel="stylesheet">
         <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
         <script src="../js/sidebar.js"></script>
-        <link href="../css/dropdown.css" rel="stylesheet">
         <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
         <link href="../font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
         <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
@@ -44,7 +43,7 @@
         %>
         <p>
         <%
-          out.println(search.groupSearchBox());
+          out.println(gui.searchPage());
         %>
         </p>
         <%

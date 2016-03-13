@@ -468,6 +468,21 @@ public class SearchBox {
       return isInGroup;  
     }
     
+    public String showGroup( String tutorID ){
+        DatabaseClass database = new DatabaseClass( );
+        //database.setup( "ec2-52-48-85-26.eu-west-1.compute.amazonaws.com", "final_year_project", "root", "IPNTclyv43" );
+        database.setup( "localhost", "final_year_project", "root", "" );
+        result = database.SelectRow( "SELECT * FROM GroupExtras "
+                + "WHERE TutorID= " + tutorID + ";" );
+        String group = "";
+        
+        if( result.length != 0 ) {
+          group = result[2];  
+        }
+        
+      return group;  
+    }
+    
     public String showTutorsGroups(String tutorID) throws SQLException{
         Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
         //Connection conn = DriverManager.getConnection("jdbc:mysql://ec2-52-31-7-122.eu-west-1.compute.amazonaws.com/final_year_project","root","IPNTclyv43");
@@ -483,7 +498,7 @@ public class SearchBox {
                form += "<table class=\"table table-hover\">\n";
                form += "<thead>\n";
                form += "<tbody>\n";
-        if(rs.next()){
+        
           while(rs.next()){ 
                form += "<tr>\n";
                form += "<form name='grade' action='student-years/showGroups.jsp' method='POST'>";
@@ -497,11 +512,11 @@ public class SearchBox {
                form += "<td class='delete'><input type=\"submit\" value=\"Delete Group\" class=\"btn-style\"></td></form>\n";
                form += "</tr>\n";
           }
-        }
             form += "</tbody>\n";
             form += "</table>\n";
             form += "</div>";
             form += "</div>";
+            
         return form;
     }
     

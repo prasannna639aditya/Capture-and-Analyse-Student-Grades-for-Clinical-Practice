@@ -4,6 +4,7 @@
     Author     : Delaney
 --%>
 
+<%@page import="guipackage.SearchBox"%>
 <%@page import="application.TreatmentItems"%>
 <%@page import="application.StudentLookup"%>
 <%@page import="guipackage.GUI"%>
@@ -16,7 +17,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
         <link href="css/sidebar.css" rel="stylesheet">
-        <link href="css/dropdown.css" rel="stylesheet">
+        <link href="css/dropdown2.css" rel="stylesheet">
         <link href="css/table2.css" rel="stylesheet">
         <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
         <script src="js/sidebar.js"></script>
@@ -33,12 +34,17 @@
         <%
           GUI gui = new GUI( );
           TreatmentItems treatmentItem = new TreatmentItems( );
+          SearchBox search = new SearchBox();
+          String TutorID = (String) session.getAttribute( "TutorID" );
             if( session.getAttribute( "Authenticated" ) == null ) {
                 response.sendRedirect( "index.jsp" );
             }
             else {
                 out.print(gui.tutorNavigation());
-                %>
+                
+                
+             if( treatmentItem.doesPatientExist( lookup.getCdsNumber()) == true){
+             %>
                 <p>
                 <div class="container">
                         <ul class="nav nav-tabs">
@@ -88,8 +94,18 @@
                 </div>
                 </p>
                 <%
-              
-              }
+             }
+             else{
+                 %>
+                 <p>
+                 <%
+                 out.print(gui.paragraph("This patient does not exist. Please re-select your group and enter in the correct patient CDS number"));
+                 %>
+                 </p>
+                 <%
+                 out.print(search.showTutorsGroups(TutorID));
+             }
+            }
                         
               session.setAttribute("attendance", treatmentItem.getAttendance( ) );
               out.print(gui.footer());

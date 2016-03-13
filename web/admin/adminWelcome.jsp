@@ -44,7 +44,7 @@
                 String lastName = (String) session.getAttribute( "lastName" );
                 String department = (String) session.getAttribute( "department" );
                 
-                out.println("Welcome " + firstName + " " + lastName + "." );
+                out.print(gui.paragraph2("Welcome " + firstName + " " + lastName + ".") );
                 out.print(gui.footer());
           }
         %>

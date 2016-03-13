@@ -35,73 +35,75 @@
         
     </head>
     <body>
+        <p>
+        <div class="container">
+            <ul class="nav nav-tabs">
+                <li class="nav active"><a href="#A" data-toggle="tab">All Students</a></li>
+                <li class="nav"><a href="#B" data-toggle="tab">BDS3</a></li>
+                <li class="nav"><a href="#C" data-toggle="tab">BDS4</a></li>
+                <li class="nav"><a href="#D" data-toggle="tab">BDS5</a></li>
+                <li class="nav"><a href="#E" data-toggle="tab">HYG1</a></li>
+                <li class="nav"><a href="#F" data-toggle="tab">HYG2</a></li>
+            </ul>
+        <div class="tab-content">
+                <div class="tab-pane fade in active" id="A">
         
-        <%
-          GUI gui = new GUI( );
-          out.print(gui.tutorStudentYearsNav());
-          StudentLookup look = new StudentLookup();
+        <p>
+        <%   
+             StudentLookup look = new StudentLookup();
+             GUI gui = new GUI();
+             out.print(look.fetchNames());
         %>
-         <div id="tabs">
-         <ul>
-           <li><a href="#tabs-1">All Students</a></li>
-           <li><a href="#tabs-2">BDS3</a></li>
-           <li><a href="#tabs-3">BDS4</a></li>
-           <li><a href="#tabs-4">BDS5</a></li>
-           <li><a href="#tabs-5">HYG1</a></li>
-           <li><a href="#tabs-6">HYG2</a></li>
-         </ul>
-         <div id="tabs-1">
-           <p>
-            <% 
-                out.print(look.fetchNames());
-            %> 
-           </p>
-         </div>
-           
-         <div id="tabs-2">
-           <p>
-            <% 
-                out.print(look.fetchYearNames("1"));
-            %> 
-           </p>
-         </div>
-         
-         <div id="tabs-3">
-           <p>
-            <%
-                out.print(look.fetchYearNames("2"));
-            %> 
-           </p>
-         </div>
-           
-         <div id="tabs-4">
-           <p>
-            <%
-                out.print(look.fetchYearNames("3"));
-            %>
-           </p>
-         </div>
-           
-         <div id="tabs-5">
-           <p>
-            <%
-                out.print(look.fetchYearNames("4"));
-            %>
-           </p>
-         </div>
-           
-         <div id="tabs-6">
-           <p>
-            <%
-                out.print(look.fetchYearNames("5"));
-            %>
-           </p>
-         </div>
-           
-        </div> 
+        </p>
+                </div>
+                <div class="tab-pane fade" id="B">
+                    <p>
         <%
-                out.print(gui.footer());
+             out.print(look.fetchYearNames("1"));
         %>
-        
+                    </p>
+                </div>  
+                <div class="tab-pane fade" id="C">
+                
+        <%
+             out.print(look.fetchYearNames("2"));
+              
+              
+        %>
+                   
+                </div>    
+                <div class="tab-pane fade" id="D">
+                
+        <%
+             out.print(look.fetchYearNames("3"));
+              
+              
+        %>
+                </div>
+                      <div class="tab-pane fade" id="D">
+                
+        <%
+             out.print(look.fetchYearNames("4"));
+              
+              
+        %>
+                   
+                </div>   
+                <div class="tab-pane fade" id="E">
+                
+        <%
+             out.print(look.fetchYearNames("5"));
+              
+              
+        %>
+                   
+                </div>    
+            </div>
+        </div>      
+        <%
+          
+          out.print(gui.footer());
+        %> 
+    </p>
     </body>
 </html>

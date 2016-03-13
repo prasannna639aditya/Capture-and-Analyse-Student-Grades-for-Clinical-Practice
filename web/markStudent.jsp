@@ -68,10 +68,8 @@
                    if(core.getPassword() != ""){
                     if( core.validateStudent( request ) ) {
                         core.markStudent();
-                        out.print( "<p>You have successfully graded </p>" + treatment.fetchStudentName(core.getStudentID()) + ".</p>"  );
-                        //out.print( "<p>Treatment </p>" + treatment.fetchTreatmentName(treatment.getTreatmentID()) + ".</p>"  );
-                       // out.print( treatment.clinicalAlert(core.getStudentID(),treatment.getTreatmentID()));
-                        out.print( "<p><a href='tutorWelcome.jsp'>Back to home!</a></p>" );
+                        out.print(gui.paragraph("<p>You have successfully graded </p>" + treatment.fetchStudentName(core.getStudentID()) + ".</p>"));
+                        out.print( "<p id=\"home\"><a href='tutorWelcome.jsp'>Back to home!</a></p>" );
                     }
                    }
                     else{
