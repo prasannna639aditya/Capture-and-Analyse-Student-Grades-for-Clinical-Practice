@@ -168,7 +168,7 @@ public class RegisterPatient {
         database.Insert( "INSERT INTO Patients( DOB, FirstName, LastName, Gender, CDSNumber, Ethenticity)" +
                          "VALUES( '" + dob + "','" + firstName + "', '" + lastName + "', '" + gender + "', '" + cdsNumber + "', '" + ethenticity + "');" );
         
-        database.Close();
+        //database.Close();
     }
     /**
      * Function to print any error messages that may have been collected throughout the 

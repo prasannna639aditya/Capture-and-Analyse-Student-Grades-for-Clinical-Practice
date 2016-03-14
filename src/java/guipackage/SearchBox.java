@@ -431,7 +431,7 @@ public class SearchBox {
         String time = new SimpleDateFormat("HH:mm:ss").format(Calendar.getInstance().getTime());
         database.Insert( "INSERT INTO GroupExtras( TutorID, GroupDescriptor, StudentID, DateAdded, Time, GroupName)" +
                          "VALUES( '" + tutorID + "','" + groupId + "','" + studentID + "','" + date + "','" + time + "','" + name + "' );" );
-        database.Close();
+        
     }
     
     public boolean checkStudentID( String studentID ){
@@ -441,8 +441,6 @@ public class SearchBox {
         if( result.length != 0 ) {
           isStudent = true;  
         }
-      
-      database.Close();
       return isStudent;  
     }
     
@@ -453,7 +451,7 @@ public class SearchBox {
             return true;
         }
         
-        database.Close();
+        //database.Close();
         return false;
     }
     
@@ -465,7 +463,7 @@ public class SearchBox {
           isDescriptor = true;  
         }
         
-      database.Close();
+      //database.Close();
       return isDescriptor;
       
     }
@@ -481,7 +479,7 @@ public class SearchBox {
           isInGroup = true;  
         }
       
-      database.Close();
+      //database.Close();
       return isInGroup;  
     }
     
@@ -493,7 +491,7 @@ public class SearchBox {
         if( result.length != 0 ) {
           group = result[2];  
         }
-      database.Close();  
+      //database.Close();  
       return group;  
     }
     
@@ -536,7 +534,7 @@ public class SearchBox {
     
     public void deleteGroup( String groupName, String tutorID){
         database.Insert( "DELETE FROM GroupExtras WHERE GroupName = '" + groupName + "' AND TutorID = " + tutorID + ";" );
-        database.Close();
+        //database.Close();
     }
     public String selectTodaysGroup( String groupName ) throws SQLException{
         String date = new SimpleDateFormat("dd-MM-yyyy").format(Calendar.getInstance().getTime());

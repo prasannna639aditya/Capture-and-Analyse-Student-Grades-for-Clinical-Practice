@@ -17,6 +17,12 @@ body, html, h1 {
     font-weight: 700;
 }
 
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px white inset;
+    
+}
+
+
 input[type=submit] {
   width:100%;
   position: relative;
@@ -323,6 +329,7 @@ html {
 footer {
     padding: 50px 0;
     background-color: #f8f8f8;
+    height:40%;
 }
 
 p.copyright {

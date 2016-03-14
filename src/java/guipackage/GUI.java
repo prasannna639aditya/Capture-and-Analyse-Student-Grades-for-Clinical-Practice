@@ -87,7 +87,7 @@ public class GUI {
     public String tutorDisplay(String TutorID, String firstName, String lastName) {
             SearchBox search = new SearchBox();
             String form = "<div class=\"row\">\n" +
-                    "            <div class=\"col-md-4\">\n" +
+                    "            <div class=\"col-md-2\">\n" +
                     "                <p> </p>\n" +
                     "                <img class=\"img-responsive img-rounded\"  src=\"img/tutors/" + TutorID + ".jpg\" alt=\"\">\n" +
                     "            </div>\n" +
@@ -168,7 +168,7 @@ public class GUI {
         
             
         String form = "<div class=\"row\">\n" +
-                    "            <div class=\"col-md-4\">\n" +
+                    "            <div class=\"col-md-2\">\n" +
                     "                <p> </p>\n" +
                     "                <img class=\"img-responsive img-rounded\"  src=\"img/students/" + StudentID + ".jpg\" alt=\"\">\n" +
                     "            </div>\n" +

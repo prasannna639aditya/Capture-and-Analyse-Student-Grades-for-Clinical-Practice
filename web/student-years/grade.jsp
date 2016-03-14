@@ -69,13 +69,19 @@
             }
 
             else{
-              out.print(gui.paragraph3("Please enter a valid student ID."));
-              out.print(search.addStudents(groupID));
-              out.print(look.startTable());
-              out.println(look.fetchGroupNames(groupID));
-              out.print(look.endTable());
+              out.print(gui.paragraph2("Please enter a valid student ID."));
+              out.println(search.addStudents(groupID));
+            %>
+            
+            <p id="away">
+           <%
+            out.println(look.startTable());
+            out.println(look.fetchGroupNames(groupID));
+            out.print(look.endTable());
             }
-           
+           %>
+            <p>
+            <%
            out.print(gui.footer());
           
           

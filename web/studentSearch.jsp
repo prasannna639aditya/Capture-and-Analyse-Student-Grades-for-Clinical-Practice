@@ -53,7 +53,7 @@
           
           String studentID = search.getStudentID();
           if( search.getStudentID() == null || studentID.length() != 9) {
-           out.println("Please enter a valid student ID.");
+           out.print(gui.paragraph2("Please enter a valid student ID."));
           }
           else{
             if( name.hasPerformedTreatments(studentID) == false){
@@ -99,13 +99,13 @@
                 </div>  
                   
                 <div class="tab-pane fade" id="C">
-                
+                    <div id="closer">
         <%
              out.print(name.fetchMyTreatments(search.getStudentID()));
               
               
         %>
-                   
+                    </div> 
                 </div>  
        
                 <div class="tab-pane fade" id="D">

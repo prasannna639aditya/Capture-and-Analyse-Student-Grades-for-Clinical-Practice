@@ -53,8 +53,7 @@
         <%
               //String student = (String)request.getParameter("student");
         %>
-        <p id="top">
-        </p>
+        
         <p>
         <%
              out.print(search.studentData( StudentID ));
@@ -71,13 +70,14 @@
                
                 </div>  
                 <div class="tab-pane fade" id="C">
+                    <div id="closer">
                   
         <%
              out.print( treatmentItem.fetchMyTreatments2( StudentID ) );
               
               
         %>
-                   
+                    </div> 
                 </div> 
         
                 <div class="tab-pane fade" id="D">

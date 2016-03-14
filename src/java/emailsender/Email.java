@@ -97,7 +97,7 @@ public class Email {
                     
                               "text/html; charset=utf-8" );
             Transport.send( message );
-            database.Close( );
+            //database.Close( );
         } 
         catch( MessagingException exception ) {
             return false;

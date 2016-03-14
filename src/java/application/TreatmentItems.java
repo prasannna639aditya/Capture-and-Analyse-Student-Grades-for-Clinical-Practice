@@ -132,7 +132,7 @@ public class TreatmentItems {
         }
         
         
-        //database.Close();
+        ////database.Close();
   
         return isGraded;
     }
@@ -147,7 +147,7 @@ public class TreatmentItems {
         }
         
         
-        //database.Close();
+        ////database.Close();
   
         return isGraded;
     }
@@ -160,7 +160,7 @@ public class TreatmentItems {
         if( result.length != 0 ) {
             grade = result[25];
         }
-        //database.Close();
+        ////database.Close();
   
         return grade;
     }
@@ -272,7 +272,7 @@ public class TreatmentItems {
                    form += "</tr>\n";
                    form += "<tr>\n";
                    form += "<th>Treatment</th>\n";
-                   form += "<td>" + score.fetchTreatmentName(treatmentID) + "</td>\n";
+                   form += "<td>" + fetchTreatmentName(treatmentID) + "</td>\n";
                    form += "</tr>\n";
                    form += "<tr>\n";
                    form += "<th>Tutors Comments</th>\n";
@@ -398,7 +398,7 @@ public class TreatmentItems {
             form += "</table>\n";
             form += "</div>\n";
 
-        database.Close(); 
+        //database.Close(); 
         return form; 
     }
     
@@ -496,7 +496,7 @@ public class TreatmentItems {
                 +"VALUES( '" + studentID + "', '" + cdsNumber + "', '" + tutorID + "', '0', '0', '0', '0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','" + date + "','" + treatmentID + "','" + time + "','Absent from session','0','0','0','','" + hour + "' );" );
         
         
-        database.Close();
+        //database.Close();
     }
     
     public String fetchMyTreatments( String StudentID) throws SQLException{
@@ -555,7 +555,6 @@ public class TreatmentItems {
             form += "</table>\n";
             form += "</div>\n";
             
-        conn.close();
         return form;
     }
     
@@ -623,7 +622,7 @@ public class TreatmentItems {
         //Connection conn = DriverManager.getConnection("jdbc:mysql://ec2-52-31-7-122.eu-west-1.compute.amazonaws.com/final_year_project","root","IPNTclyv43");
             Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/final_year_project","root","");
             //System.out.println("successful");
-            String query = ("SELECT TBICoreSkills.PatientID, TBICoreSkills.Time, TBICoreSkills.DateAdded, TreatmentItems.TreatmentName"
+            String query = ("SELECT TBICoreSkills.TreatmentID, TBICoreSkills.PatientID, TBICoreSkills.Time, TBICoreSkills.DateAdded, TreatmentItems.TreatmentName"
                             + " FROM TreatmentItems JOIN TBICoreSkills ON TBICoreSkills.TreatmentID = TreatmentItems.TreatmentItemID"
                             + " WHERE TBICoreSkills.StudentID=" + studentID + "");
             Statement stmt = conn.createStatement();
@@ -636,8 +635,8 @@ public class TreatmentItems {
                    form += "<thead>\n";
                    form += "<tr>\n";
                    form += "<th>Treatment Name</th>\n";
-                   form += "<th>Patient CDS</th>\n";
                    form += "<th>Treatment Date</th>\n";
+                   form += "<th>Patient CDS</th>\n";
                    form += "<th>Time Graded</th>\n";
                    form += "</tr>\n";
                    form += "<tbody>\n";
@@ -646,9 +645,15 @@ public class TreatmentItems {
                 
                     form += "<tr>\n";
                     form += "<td>" + rs.getString("TreatmentItems.TreatmentName") + "</td>\n";
-                    form += "<td>" + rs.getString("TBICoreSkills.PatientID") + "</td>\n";
-                    form += "<td>" + rs.getString("TBICoreSkills.DateAdded") + "</td>\n";
+                    form += "<td><select name=\"dateAdded\" id='dropdown'>"
+                         + "<option value=\"" + rs.getString("TBICoreSkills.DateAdded") + "\" selected>" + rs.getString("TBICoreSkills.DateAdded") + "</option>"
+                         + "</select><br /></td>"
+                         + "<td><select name=\"patientID\" id='dropdown'>"
+                         + "<option value=\"" + rs.getString("TBICoreSkills.PatientID") + "\" selected>" + rs.getString("TBICoreSkills.PatientID") + "</option>"
+                         + "</select><br /></td>";
                     form += "<td>" + rs.getString("TBICoreSkills.Time") + "</td>\n";
+                    form += "<input type=\"hidden\" name=\"studentID\" value=\"" + studentID + "\">\n";
+                    form += "<input type=\"hidden\" name=\"treatmentID\" value=\"" + rs.getString("TBICoreSkills.TreatmentID") + "\">\n";
                     form += "</tr>\n";
                 
                 
@@ -672,7 +677,7 @@ public class TreatmentItems {
             isPatient = true;
         }
         
-        database.Close();
+        //database.Close();
         return isPatient;
     }
     

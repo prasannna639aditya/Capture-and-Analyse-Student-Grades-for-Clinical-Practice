@@ -213,7 +213,7 @@ public class RegisterStudent {
             return true;
         }
         
-        database.Close();
+        //database.Close();
         return false;
     }
     /**
@@ -227,7 +227,7 @@ public class RegisterStudent {
         database.Insert( "INSERT INTO StudentClass( StudentID, YearID, GroupID )" +
                          "VALUES( '" + studentID + "', '" + yearID + "','" + groupID + "' );" );
         
-        database.Close();
+        //database.Close();
     }
     /**
      * Function to print any error messages that may have been collected throughout the 

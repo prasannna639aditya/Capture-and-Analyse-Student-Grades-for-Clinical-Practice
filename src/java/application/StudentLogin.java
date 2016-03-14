@@ -42,6 +42,7 @@ public class StudentLogin {
         database = new DatabaseClass( );
         //database.setup( "ec2-52-31-7-122.eu-west-1.compute.amazonaws.com", "final_year_project", "root", "IPNTclyv43" );
         database.setup( "localhost", "final_year_project", "root", "" );
+        //database.setup( "cs1.ucc.ie", "2016_jd11", "jd11", "sohghahn" );
         this.result = new String[10];
         errors = new ArrayList<>( );
     }
@@ -125,7 +126,7 @@ public class StudentLogin {
             return false;
         }
         
-        database.Close();
+        //database.Close();
   
         return result.length != 0;
         

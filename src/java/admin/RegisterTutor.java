@@ -207,7 +207,7 @@ public class RegisterTutor {
             return true;
         }
         
-        database.Close();
+        //database.Close();
         return false;
     }
     /**
@@ -218,7 +218,7 @@ public class RegisterTutor {
         database.Insert( "INSERT INTO Tutors( TutorID, FirstName, LastName, Department, Password, Email )" +
                          "VALUES( '" + tutorID + "', '" + firstName + "', '" + lastName+ "', '" + department + "', '" + PasswordHash.getSaltedHash(password2)  + "', '" + email + "');" );
         
-        database.Close();
+        //database.Close();
     }
     /**
      * Function to print any error messages that may have been collected throughout the 

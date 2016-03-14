@@ -393,6 +393,21 @@ public class CoreSkills {
         this.cdsNumber = cdsNumber;
     }
     
+    public String validateStudent(String studentID) throws Exception{
+        String passwordChecked = "";
+        
+        result = database.SelectRow( "SELECT * FROM Students WHERE StudentID = " + studentID  + ";" );
+        
+            
+        
+        if( result.length != 0 ) {
+            passwordChecked = result[1];
+        }
+  
+        return passwordChecked;
+        
+    }
+    
     
     
     public boolean validateMarkingForm( ) throws Exception {
@@ -420,7 +435,7 @@ public class CoreSkills {
             password = "";
         }
         
-        if( PasswordHash.check( password, passwordToCheck) == false){
+        if( PasswordHash.check( password, validateStudent(studentID)) == false){
            errors.add( "Students password is incorrect. Please get the student to re-enter their password." );
            isValid = false;
            password = "";
@@ -466,7 +481,6 @@ public class CoreSkills {
     public String[] getStudent( String studentID ) {
         String[] dbResult = database.SelectRow( "SELECT * FROM Students WHERE StudentID = '" + studentID + "';" );
         
-        database.Close();
         return dbResult;
     }
     
@@ -488,7 +502,7 @@ public class CoreSkills {
         database.Insert( "INSERT INTO TreatmentPlans( TutorID, PatientID, StudentID)" +
                          "VALUES( '" + tutorID + "','" + cdsNumber + "','" + studentID + "' );" );
         
-        database.Close();
+        //database.Close();
     }
     
     public String buttonNav(){
@@ -957,27 +971,5 @@ public class CoreSkills {
         return form;
     }
     
-    public boolean validateStudent(HttpServletRequest request) throws Exception{
-        PasswordHash hash = new PasswordHash();
- 
-        password = request.getParameter( "password" );
-        boolean isValid = true;
-        
-        result = database.SelectRow( "SELECT * FROM Students WHERE StudentID = 119876543;" );
-        
-            
-        
-        if( result.length != 0 ) {
-            passwordToCheck = result[1];
-        }
-        
-        if( ! validateMarkingForm( ) ){
-            return false;
-        }
-        
-        database.Close();
-  
-        return result.length != 0;
-        
-    }
+    
 }

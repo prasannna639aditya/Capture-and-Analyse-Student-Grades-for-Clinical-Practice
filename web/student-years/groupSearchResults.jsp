@@ -60,7 +60,8 @@
             </p>
         <p> </p>
         <%
-              out.print( gui.paragraph3("<p><h4 id='left'> Please enter a valid group. </h4></p>"));
+              out.print("<h4>Please enter a valid group</p>");
+              out.print( gui.paragraph3(""));
         
           }
           

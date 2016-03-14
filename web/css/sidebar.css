@@ -41,6 +41,10 @@
     margin-top:1%;
 }
 
+#low #leftbox{
+    margin-left:-10%;
+}
+
 
 
 #justified{
@@ -63,7 +67,7 @@
 
 
 .side-menu {
-  position: absolute;
+  position: fixed;
   width: 300px;
   height: 100%;
   background-color: #f8f8f8;

@@ -137,7 +137,7 @@ public class updateStudentPassword {
         String query = ("UPDATE Students SET Password = " + PasswordHash.getSaltedHash(password2) + " WHERE Students.StudentID = " + studentID + ";");
         Statement stmt = conn.createStatement();
         stmt.executeUpdate(query);
-        database.Close();
+        //database.Close();
     }
     /**
      * Function to print any error messages that may have been collected throughout the 

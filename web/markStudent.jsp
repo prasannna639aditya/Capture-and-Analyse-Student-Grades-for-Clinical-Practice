@@ -53,9 +53,11 @@
                   if( request.getParameter( "submit" ) == null ) {
                    out.print( core.buttonNav()); 
             %>
-            <div>
-            <p>Please refer to the <a href="markingDescriptors.jsp">Marking Descriptors</a> if you are unsure of what score to assign the student.<p>
-            </div>
+                <div>
+                    <p id="top">
+                <p>Please refer to the <a href="markingDescriptors.jsp">Marking Descriptors</a> if you are unsure of what score to assign the student.<p>
+                </p>
+                </div>
             <%
                    out.print( core.markingForm( TutorID, treatment.getStudentID(), treatment.getTreatmentID(), treatment.getCdsNumber()) );
                    if(treatment.isAbsent(attendance) == true)
@@ -65,18 +67,16 @@
                    
                 }
                 else {
-                   if(core.getPassword() != ""){
-                    if( core.validateStudent( request ) ) {
+                    if( core.validateMarkingForm() ) {
                         core.markStudent();
                         out.print(gui.paragraph2("<p>You have successfully graded " + treatment.fetchStudentName(core.getStudentID()) + ".</p>"));
                         out.print( "<p id=\"home\"><a href='tutorWelcome.jsp'>Back to home!</a></p>" );
                     }
-                   }
+                  
                     else{
                         out.print( core.buttonNav()); 
-                        out.print( core.printErrors( ) );
                         out.print( core.markingForm( TutorID, treatment.getStudentID(),treatment.getTreatmentID(), treatment.getCdsNumber() ) );
-                        
+                        out.print( core.printErrors( ) );
                     }
                 }
                out.print(gui.footer());   

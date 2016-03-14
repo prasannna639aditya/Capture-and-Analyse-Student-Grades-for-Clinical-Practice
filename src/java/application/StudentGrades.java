@@ -59,7 +59,7 @@ public class StudentGrades {
         }
         
         
-        //database.Close();
+        ////database.Close();
   
         return isGraded;
     }
@@ -74,7 +74,7 @@ public class StudentGrades {
         }
         
         
-        //database.Close();
+        ////database.Close();
   
         return grade;
     }
