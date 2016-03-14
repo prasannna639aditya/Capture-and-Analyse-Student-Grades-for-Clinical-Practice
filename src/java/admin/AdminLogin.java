@@ -34,6 +34,7 @@ public class AdminLogin {
     private String department;
     private String passwordToCheck;
     private String[] result;
+    private final DatabaseClass database;
     private final ArrayList<String> errors;
     /**
      * Constructor for the class
@@ -46,6 +47,10 @@ public class AdminLogin {
         this.department = "";
         this.passwordToCheck = "";
         this.result = new String[10];
+        
+        database = new DatabaseClass( );
+        //database.setup( "ec2-52-31-7-122.eu-west-1.compute.amazonaws.com", "final_year_project", "root", "IPNTclyv43" );
+        database.setup( "localhost", "final_year_project", "root", "" );
         errors = new ArrayList<>( );
     }
     /**
@@ -95,12 +100,6 @@ public class AdminLogin {
      * @return true if logged in and false if otherwise.
      */
     public boolean loginAdmin( HttpServletRequest request ) throws NoSuchAlgorithmException, InvalidKeySpecException, Exception  {
-        DatabaseClass database = new DatabaseClass( );
-        //database.setup( "ec2-52-31-7-122.eu-west-1.compute.amazonaws.com", "final_year_project", "root", "IPNTclyv43" );
-        database.setup( "localhost", "final_year_project", "root", "" );
-
-        
-        
         AdminID = request.getParameter( "AdminID" );
         password = request.getParameter( "password" );
         
@@ -119,7 +118,7 @@ public class AdminLogin {
             return false;
         }
         
-        //database.Close();
+        database.Close();
   
         return result.length != 0;
     }

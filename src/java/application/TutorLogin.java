@@ -29,6 +29,7 @@ public class TutorLogin {
     private String department;
     private String picture;
     private String passwordToCheck;
+    private final DatabaseClass database;
     private String[] result;
     private final ArrayList<String> errors;
     /**
@@ -42,6 +43,9 @@ public class TutorLogin {
         this.department = "";
         this.picture = "";
         this.passwordToCheck = "";
+        database = new DatabaseClass( );
+        //database.setup( "ec2-52-31-7-122.eu-west-1.compute.amazonaws.com", "final_year_project", "root", "IPNTclyv43" );
+        database.setup( "localhost", "final_year_project", "root", "" );
         this.result = new String[10];
         errors = new ArrayList<>( );
     }
@@ -97,12 +101,6 @@ public class TutorLogin {
      * @return true if logged in and false if otherwise.
      */
     public boolean loginTutor( HttpServletRequest request ) throws NoSuchAlgorithmException, InvalidKeySpecException, Exception  {
-        DatabaseClass database = new DatabaseClass( );
-        //database.setup( "ec2-52-31-7-122.eu-west-1.compute.amazonaws.com", "final_year_project", "root", "IPNTclyv43" );
-        database.setup( "localhost", "final_year_project", "root", "" );
-
-        
-        
         TutorID = request.getParameter( "TutorID" );
         password = request.getParameter( "password" );
         
@@ -152,9 +150,6 @@ public class TutorLogin {
     }  
     
     public Boolean doesTutorExist(String tutorID){
-        DatabaseClass database = new DatabaseClass( );
-        //database.setup( "ec2-52-31-7-122.eu-west-1.compute.amazonaws.com", "final_year_project", "root", "IPNTclyv43" );
-        database.setup( "localhost", "final_year_project", "root", "" );
         result = database.SelectRow( "SELECT * FROM Tutors WHERE TutorID = '" + tutorID + "';" );
         Boolean isTutor = false;
         

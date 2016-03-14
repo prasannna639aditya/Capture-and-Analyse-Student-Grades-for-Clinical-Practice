@@ -206,6 +206,8 @@ public class RegisterTutor {
         if(dbResult.length != 0) {
             return true;
         }
+        
+        database.Close();
         return false;
     }
     /**

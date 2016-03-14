@@ -123,13 +123,7 @@ public class TreatmentItems {
     }
     
     public boolean hasBeenGraded( String StudentID, String TreatmentID ) {
-        DatabaseClass database = new DatabaseClass( );
-        //database.setup( "ec2-52-31-7-122.eu-west-1.compute.amazonaws.com", "final_year_project", "root", "IPNTclyv43" );
-        database.setup( "localhost", "final_year_project", "root", "" );
         boolean isGraded = false;
-        
-        
-        
         
         result = database.SelectRow( "SELECT * FROM TBICoreSkills WHERE StudentID = '" + StudentID + "' AND TreatmentID = '" + TreatmentID + "';" );
         
@@ -144,9 +138,6 @@ public class TreatmentItems {
     }
     
     public boolean hasPerformedTreatments( String StudentID) {
-        DatabaseClass database = new DatabaseClass( );
-        //database.setup( "ec2-52-31-7-122.eu-west-1.compute.amazonaws.com", "final_year_project", "root", "IPNTclyv43" );
-        database.setup( "localhost", "final_year_project", "root", "" );
         boolean isGraded = true;
         
         result = database.SelectRow( "SELECT TreatmentID FROM TBICoreSkills WHERE StudentID=" + StudentID + ";" );
@@ -162,9 +153,6 @@ public class TreatmentItems {
     }
     
     public String showGrade( String StudentID, String TreatmentID ) {
-        DatabaseClass database = new DatabaseClass( );
-        //database.setup( "ec2-52-31-7-122.eu-west-1.compute.amazonaws.com", "final_year_project", "root", "IPNTclyv43" );
-        database.setup( "localhost", "final_year_project", "root", "" );
         String grade = "";
         
         result = database.SelectRow( "SELECT * FROM TBICoreSkills WHERE StudentID = '" + StudentID + "' AND TreatmentID = '" + TreatmentID + "';" );
@@ -196,9 +184,7 @@ public class TreatmentItems {
     
     public String showScore( String StudentID, String TreatmentID, String PatientID, String DateAdded ) throws SQLException {
         TreatmentItems treatment = new TreatmentItems();
-        DatabaseClass database = new DatabaseClass( );
-        //database.setup( "ec2-52-31-7-122.eu-west-1.compute.amazonaws.com", "final_year_project", "root", "IPNTclyv43" );
-        database.setup( "localhost", "final_year_project", "root", "" );
+        
         String dateAdded = "";
         String time = "";
         String patientID = "";
@@ -412,7 +398,7 @@ public class TreatmentItems {
             form += "</table>\n";
             form += "</div>\n";
 
-        //conn.close(); 
+        database.Close(); 
         return form; 
     }
     
@@ -678,10 +664,6 @@ public class TreatmentItems {
     }
     
     public boolean doesPatientExist( String patientID){
-        DatabaseClass database = new DatabaseClass( );
-        database.setup( "localhost", "final_year_project", "root", "" );
-        //database.setup( "ec2-52-31-7-122.eu-west-1.compute.amazonaws.com", "final_year_project", "root", "IPNTclyv43" );
-       
         boolean isPatient = false;
         
         result = database.SelectRow( "SELECT * FROM Patients WHERE CDSNumber =" + patientID + ";" );
@@ -690,8 +672,8 @@ public class TreatmentItems {
             isPatient = true;
         }
         
+        database.Close();
         return isPatient;
-        
     }
     
    
@@ -710,6 +692,7 @@ public class TreatmentItems {
                 form += rs.getString("FirstName") + " " + rs.getString("LastName") + "\n";
             }
             
+            conn.close();
             return form;
     }
     
@@ -744,6 +727,7 @@ public class TreatmentItems {
                 form += rs.getString("ClinicalAlert") + "\n";
             }
             
+            conn.close();
             return form;
     }
     
@@ -760,6 +744,7 @@ public class TreatmentItems {
                 form += rs.getString("FirstName") + " " + rs.getString("LastName") + "\n";
             }
             
+            conn.close();
             return form;
     }
     
@@ -776,6 +761,7 @@ public class TreatmentItems {
                 form += rs.getString("TreatmentName") + "\n";
             }
             
+            conn.close();
             return form;       
     }
     

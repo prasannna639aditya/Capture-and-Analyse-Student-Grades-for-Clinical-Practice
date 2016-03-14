@@ -212,6 +212,8 @@ public class RegisterStudent {
         if(dbResult.length != 0) {
             return true;
         }
+        
+        database.Close();
         return false;
     }
     /**

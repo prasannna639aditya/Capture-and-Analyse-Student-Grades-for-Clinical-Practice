@@ -22,11 +22,14 @@ import javax.servlet.http.HttpServletRequest;
 public class StudentGrades {
     private String studentID;
     private String treatmentID;
+    private final DatabaseClass database;
     private String [] result;
     
     public StudentGrades(){
         this.treatmentID = "";
         this.studentID = "";
+        database = new DatabaseClass( );
+        database.setup( "localhost", "final_year_project", "root", "" );
         this.result = new String[10];
     }
     
@@ -47,9 +50,6 @@ public class StudentGrades {
     }
     
     public boolean hasBeenGraded( String StudentID, String TreatmentID ) {
-        DatabaseClass database = new DatabaseClass( );
-        //database.setup( "ec2-52-31-7-122.eu-west-1.compute.amazonaws.com", "final_year_project", "root", "IPNTclyv43" );
-        database.setup( "localhost", "final_year_project", "root", "" );
         boolean isGraded = false;
         
         result = database.SelectRow( "SELECT * FROM TBICoreSkills WHERE StudentID = '" + StudentID + "' AND TreatmentID = '" + TreatmentID + "';" );
@@ -65,9 +65,6 @@ public class StudentGrades {
     }
     
     public String showGrade( String StudentID, String TreatmentID ) {
-        DatabaseClass database = new DatabaseClass( );
-        //database.setup( "ec2-52-31-7-122.eu-west-1.compute.amazonaws.com", "final_year_project", "root", "IPNTclyv43" );
-        database.setup( "localhost", "final_year_project", "root", "" );
         String grade = "";
         
         result = database.SelectRow( "SELECT * FROM TBICoreSkills WHERE StudentID = '" + StudentID + "' AND TreatmentID = '" + TreatmentID + "';" );

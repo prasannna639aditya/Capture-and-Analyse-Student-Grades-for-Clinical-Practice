@@ -466,7 +466,7 @@ public class CoreSkills {
     public String[] getStudent( String studentID ) {
         String[] dbResult = database.SelectRow( "SELECT * FROM Students WHERE StudentID = '" + studentID + "';" );
         
-        
+        database.Close();
         return dbResult;
     }
     
@@ -958,9 +958,6 @@ public class CoreSkills {
     }
     
     public boolean validateStudent(HttpServletRequest request) throws Exception{
-        DatabaseClass database = new DatabaseClass( );
-        database.setup( "localhost", "final_year_project", "root", "" );
-        //database.setup( "ec2-52-31-7-122.eu-west-1.compute.amazonaws.com", "final_year_project", "root", "IPNTclyv43" );
         PasswordHash hash = new PasswordHash();
  
         password = request.getParameter( "password" );
@@ -978,7 +975,7 @@ public class CoreSkills {
             return false;
         }
         
-        //database.Close();
+        database.Close();
   
         return result.length != 0;
         

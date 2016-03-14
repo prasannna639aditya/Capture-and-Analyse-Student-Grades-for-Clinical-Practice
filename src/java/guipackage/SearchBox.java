@@ -435,16 +435,14 @@ public class SearchBox {
     }
     
     public boolean checkStudentID( String studentID ){
-        DatabaseClass database = new DatabaseClass( );
-        //database.setup( "ec2-52-48-85-26.eu-west-1.compute.amazonaws.com", "final_year_project", "root", "IPNTclyv43" );
-        database.setup( "localhost", "final_year_project", "root", "" );
         result = database.SelectRow( "SELECT * FROM Students WHERE StudentID = '" + studentID + "';" );
         Boolean isStudent = false;
         
         if( result.length != 0 ) {
           isStudent = true;  
         }
-        
+      
+      database.Close();
       return isStudent;  
     }
     
@@ -454,27 +452,25 @@ public class SearchBox {
         if(dbResult.length != 0) {
             return true;
         }
+        
+        database.Close();
         return false;
     }
     
     public boolean checkGroupDescriptor( String descriptor){
-        DatabaseClass database = new DatabaseClass( );
-        //database.setup( "ec2-52-48-85-26.eu-west-1.compute.amazonaws.com", "final_year_project", "root", "IPNTclyv43" );
-        database.setup( "localhost", "final_year_project", "root", "" );
         result = database.SelectRow( "SELECT * FROM StudentGroups WHERE GroupDescriptor = '" + descriptor + "';" );
         Boolean isDescriptor = false;
         
         if( result.length != 0 ) {
           isDescriptor = true;  
         }
+        
+      database.Close();
       return isDescriptor;
       
     }
     
     public boolean checkGroup( String studentID, String groupID ){
-        DatabaseClass database = new DatabaseClass( );
-        //database.setup( "ec2-52-48-85-26.eu-west-1.compute.amazonaws.com", "final_year_project", "root", "IPNTclyv43" );
-        database.setup( "localhost", "final_year_project", "root", "" );
         result = database.SelectRow("SELECT Students.StudentID, Students.FirstName, Students.LastName, Students.Picture, CourseYear.ProgrammeYear, StudentGroups.GroupDescriptor"
                             + " FROM Students JOIN StudentGroups JOIN StudentClass JOIN CourseYear"
                             + " ON Students.StudentID = StudentClass.StudentID AND StudentClass.GroupID = StudentGroups.GroupID AND StudentClass.YearID = CourseYear.YearID"
@@ -484,14 +480,12 @@ public class SearchBox {
         if( result.length != 0 ) {
           isInGroup = true;  
         }
-        
+      
+      database.Close();
       return isInGroup;  
     }
     
     public String showGroup( String tutorID ){
-        DatabaseClass database = new DatabaseClass( );
-        //database.setup( "ec2-52-48-85-26.eu-west-1.compute.amazonaws.com", "final_year_project", "root", "IPNTclyv43" );
-        database.setup( "localhost", "final_year_project", "root", "" );
         result = database.SelectRow( "SELECT * FROM GroupExtras "
                 + "WHERE TutorID= " + tutorID + ";" );
         String group = "";
@@ -499,7 +493,7 @@ public class SearchBox {
         if( result.length != 0 ) {
           group = result[2];  
         }
-        
+      database.Close();  
       return group;  
     }
     
