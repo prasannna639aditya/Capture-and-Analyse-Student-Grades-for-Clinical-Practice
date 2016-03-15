@@ -162,6 +162,20 @@ public class GUI {
                 + "        </div>";
         return form;
     }
+    
+    public String searchPage3() {
+        SearchBox search = new SearchBox();
+        String form = "<div class=\"row\">\n"
+                + "            <div class=\"col-md-8\">\n"
+                + "                <p id=\"justified\">Please search for a group below that you would like to grade. Enter in the group ID. You will then have the option to add another student to this group session.</p>   \n"
+                + "                <p id=\"justified\">Or you can browse through all of the students by clicking <a href=\"students.jsp\">here</a>.</p>\n";
+        form += "<div id=\"leftbox\"> " + search.groupSearchBox() + "</div>\n"
+                + "                <p id=\"justified\">Please enter a valid group.</p>   \n"
+                + "            </div>\n"
+                + "            <!-- /.col-md-4 -->\n"
+                + "        </div>";
+        return form;
+    }
 
     public String studentPrint(String StudentID, String firstName, String lastName) {
 

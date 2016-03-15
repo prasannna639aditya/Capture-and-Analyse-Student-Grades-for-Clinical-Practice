@@ -60,8 +60,7 @@
         </p>
         <p> </p>
         <%
-              out.print("<h4>Please enter a valid group</p>");
-              out.print( gui.paragraph3(""));
+              out.print( gui.searchPage3());
         
             }
           

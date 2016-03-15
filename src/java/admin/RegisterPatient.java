@@ -243,7 +243,7 @@ public class RegisterPatient {
                 + "</div>\n"
                 + "</div>\n";
         form += "<div class=\"form-group row\">";
-        form += "<label class=\"col-sm-2 form-control-label\" for='ethenticity'>Gender:</label>\n";
+        form += "<label class=\"col-sm-2 form-control-label\" for='ethenticity'>Ethnicity:</label>\n";
         form += "<div class=\"col-sm-10\">";
         form += "<input class=\"form-control\" type='text' id='ethenticity' name='ethenticity' value='" + ethenticity + "' placeholder='Irish' /><br />\n"
                 + "</div>\n"
