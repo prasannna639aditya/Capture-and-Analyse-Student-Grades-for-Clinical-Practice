@@ -22,7 +22,7 @@
         <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
         <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
         <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
-    
+
         <title>View Score</title>
     </head>
     <body>
@@ -30,7 +30,7 @@
         <jsp:setProperty name="lookup" property="*" />
         <jsp:useBean id="treatmentItem" class="application.TreatmentItems" scope="request" />
         <jsp:setProperty name="treatmentItem" property="*" />
-        
+
         <%
           GUI gui = new GUI( );
           String StudentID = (String) session.getAttribute( "StudentID" );

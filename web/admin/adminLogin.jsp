@@ -21,103 +21,103 @@
         <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
         <title>Administrator Login</title>
     </head>
-   
+
     <body>
 
-        
-        
+
+
         <%
                 AdminLogin login = new AdminLogin();
                 GUI loginHeader = new GUI( );
                 
                 if( request.getParameter( "submit" ) == null ){
                     out.print( loginHeader.adminLoginHeader( ) );
-                    %>
-                    
-                    <div class="intro-header">
-                        <div class="container">
+        %>
 
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="intro-message">
-                                       <% 
+        <div class="intro-header">
+            <div class="container">
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="intro-message">
+                            <% 
                    
-                                        out.print( login.adminLoginForm() );
-                                       %>
-                                    </div>
-                                </div>
-                            </div>
-
+                             out.print( login.adminLoginForm() );
+                            %>
                         </div>
-                        <!-- /.container -->
-
                     </div>
+                </div>
 
-                   
-                <%
-                }
-                else{
-                    if( login.loginAdmin( request )) {
-                        session.setAttribute( "Authenticated", login.getAdminID( ) );
-                        session.setAttribute("TutorID", login.getAdminID( ) );
-                        session.setAttribute("firstName", login.getFirstName( ) );
-                        session.setAttribute("lastName", login.getLastName( ) );
-                        session.setAttribute("department", login.getDepartment( ) );
-                        response.sendRedirect( "adminWelcome.jsp" );
-                    }
-                    else{
-                        out.print( loginHeader.adminLoginHeader( ) );    
-                        %>
-                    
-                    <div class="intro-header">
-                        <div class="container">
+            </div>
+            <!-- /.container -->
 
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="intro-message">
-                                       <% 
-                                        out.print( login.adminLoginForm() );
-                                         out.print( login.printErrors( ) );
-                    }
-                }
-                                       %>
-                                    </div>
-                                </div>
-                            </div>
+        </div>
 
+
+        <%
+        }
+        else{
+            if( login.loginAdmin( request )) {
+                session.setAttribute( "Authenticated", login.getAdminID( ) );
+                session.setAttribute("TutorID", login.getAdminID( ) );
+                session.setAttribute("firstName", login.getFirstName( ) );
+                session.setAttribute("lastName", login.getLastName( ) );
+                session.setAttribute("department", login.getDepartment( ) );
+                response.sendRedirect( "adminWelcome.jsp" );
+            }
+            else{
+                out.print( loginHeader.adminLoginHeader( ) );    
+        %>
+
+        <div class="intro-header">
+            <div class="container">
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="intro-message">
+                            <% 
+                             out.print( login.adminLoginForm() );
+                              out.print( login.printErrors( ) );
+         }
+     }
+                            %>
                         </div>
-                        <!-- /.container -->
-
                     </div>
-                    
-                <%                    
+                </div>
+
+            </div>
+            <!-- /.container -->
+
+        </div>
+
+        <%                    
                        
-         %>
-         
-           <!-- Page Content -->
-                    <footer>
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <ul class="list-inline">
-                                        <li>
-                                            <a href="index.jsp">Home</a>
-                                        </li
-                                        <li class="footer-menu-divider">&sdot;</li>
-                                        <li>
-                                            <a href="https://www.ucc.ie/en/dentalschool/about/contact/">Contact</a>
-                                        </li>
-                                    </ul>
-                                    <p class="copyright text-muted small">Copyright &copy; University College Cork 2016. All Rights Reserved</p>
-                                </div>
-                            </div>
-                        </div>
-                    </footer>
+        %>
 
-                    <!-- jQuery -->
-                    <script src="js/jquery.js"></script>
+        <!-- Page Content -->
+        <footer>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <ul class="list-inline">
+                            <li>
+                                <a href="index.jsp">Home</a>
+                            </li
+                            <li class="footer-menu-divider">&sdot;</li>
+                            <li>
+                                <a href="https://www.ucc.ie/en/dentalschool/about/contact/">Contact</a>
+                            </li>
+                        </ul>
+                        <p class="copyright text-muted small">Copyright &copy; University College Cork 2016. All Rights Reserved</p>
+                    </div>
+                </div>
+            </div>
+        </footer>
 
-                    <!-- Bootstrap Core JavaScript -->
-                    <script src="js/bootstrap.min.js"></script>
+        <!-- jQuery -->
+        <script src="js/jquery.js"></script>
+
+        <!-- Bootstrap Core JavaScript -->
+        <script src="js/bootstrap.min.js"></script>
     </body>
 </html>

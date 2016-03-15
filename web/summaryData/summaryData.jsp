@@ -30,7 +30,7 @@
         <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css"> 
     </head>
     <body>
-     
+
         <%
           GUI gui = new GUI( );
           out.print(gui.tutorSummaryNavigation2());
@@ -46,28 +46,28 @@
                 <li class="nav active"><a href="#A" data-toggle="tab">Domain Summary Data</a></li>
                 <li class="nav"><a href="#B" data-toggle="tab">Treatment Summary Data</a></li>
             </ul>
-        <div class="tab-content">
+            <div class="tab-content">
                 <div class="tab-pane fade in active" id="A">
-        <%
-              //String student = (String)request.getParameter("student");
-        %>
-        <p id="top">
-        <%
-             out.println("All Student data summarised");
-        %>
-        </p>
-        <p>
-        <%
-             out.print(check.studentData());
-             out.print( search.toAllBarChart());
-        %>
-        </p>
+                    <%
+                          //String student = (String)request.getParameter("student");
+                    %>
+                    <p id="top">
+                        <%
+                             out.println("All Student data summarised");
+                        %>
+                    </p>
+                    <p>
+                        <%
+                             out.print(check.studentData());
+                             out.print( search.toAllBarChart());
+                        %>
+                    </p>
                 </div>
                 <div class="tab-pane fade" id="B">
                     <p>
-        <%
-             out.print(data.studentData());
-        %>
+                        <%
+                             out.print(data.studentData());
+                        %>
                     </p>
                 </div>    
             </div>
@@ -75,7 +75,7 @@
         <%
           out.print(gui.footer());
         %> 
-        </p>
-        
-    </body>
+    </p>
+
+</body>
 </html>

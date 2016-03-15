@@ -1,213 +1,185 @@
 package dbpackage;
+
 /**
  * @author - Dr Colin McCormac
  */
 import java.sql.*;
 import java.io.*;
- 
+
 public class DatabaseClass {
+
     private Statement statementObject;
     private Connection connectionObject;
-   
+
     private String dbserver;
     private String DSN;
     private String username;
     private String password;
-    private boolean setup=false;
-    
-    public String setup( String dbserver, String DSN, String username, String password )
-    {
+    private boolean setup = false;
+
+    public String setup(String dbserver, String DSN, String username, String password) {
         this.dbserver = dbserver;
         this.DSN = DSN;
-        this.username=username;
-        this.password=password;
+        this.username = username;
+        this.password = password;
         String URL = "jdbc:mysql://" + dbserver + "/" + DSN;
-        
+
         try // Initialiase drivers
         {
-            Class.forName( "com.mysql.jdbc.Driver" );
+            Class.forName("com.mysql.jdbc.Driver");
+        } catch (Exception exceptionObject) {
+            writeLogSQL(URL + " caused error " + exceptionObject.getMessage() + " Error dbclass.setup.1. ");
+            return ("Failed to load JDBC/ODBC driver. Error dbclass.setup.1 PLEASE report this error");
         }
-        catch( Exception exceptionObject ) 
-        {
-            writeLogSQL( URL + " caused error " + exceptionObject.getMessage( ) + " Error dbclass.setup.1. " );
-            return( "Failed to load JDBC/ODBC driver. Error dbclass.setup.1 PLEASE report this error" );
-        }
-        try 
-        {
+        try {
             // Establish connection to database
-            connectionObject = DriverManager.getConnection( URL, username, password );
+            connectionObject = DriverManager.getConnection(URL, username, password);
             setup = true;
-        } 
-        catch( SQLException exceptionObject ) 
-        {
-            writeLogSQL( URL + " caused error " + exceptionObject.getMessage( ) + " Error dbclass.setup.2" );
-            return( "Problem with setting up " + URL + " Error dbclass.setup.2 PLEASE report this error" );
+        } catch (SQLException exceptionObject) {
+            writeLogSQL(URL + " caused error " + exceptionObject.getMessage() + " Error dbclass.setup.2");
+            return ("Problem with setting up " + URL + " Error dbclass.setup.2 PLEASE report this error");
         }
 
         return "";
     } // DatabaseConnectorNew constructor
 
-    public boolean issetup( )
-    {
+    public boolean issetup() {
         return setup;
     }
-    
-    public void Close( )
-    {
-        try 
-        {
+
+    public void Close() {
+        try {
             // Establish connection to database
-            connectionObject.close( ); 
-        }
-        catch( SQLException exceptionObject )
-        {
-            System.out.println( "Problem with closing up " );
-            writeLogSQL( "closing caused error " + exceptionObject.getMessage( ) );
+            connectionObject.close();
+        } catch (SQLException exceptionObject) {
+            System.out.println("Problem with closing up ");
+            writeLogSQL("closing caused error " + exceptionObject.getMessage());
         }
     } //CloseDatabaseConnection
 
-    public void Insert(String SQLinsert)
-    {
+    public void Insert(String SQLinsert) {
         // Setup database connection details
-        try 
-        {
+        try {
             // Setup statement object
             statementObject = connectionObject.createStatement();
             // execute SQL commands to insert data
-            statementObject.executeUpdate( SQLinsert );
-            writeLogSQL( SQLinsert + " Executed OK" );
-        }
-        catch (SQLException exceptionObject) 
-        {
-            System.out.println( SQLinsert + " - Problem is : " + exceptionObject.getMessage( ) );
-            writeLogSQL( SQLinsert + " caused error " + exceptionObject.getMessage( ) );
+            statementObject.executeUpdate(SQLinsert);
+            writeLogSQL(SQLinsert + " Executed OK");
+        } catch (SQLException exceptionObject) {
+            System.out.println(SQLinsert + " - Problem is : " + exceptionObject.getMessage());
+            writeLogSQL(SQLinsert + " caused error " + exceptionObject.getMessage());
         }
     } // End Insert
 
-    public String[] SelectRow( String SQLquery )
-    {
+    public String[] SelectRow(String SQLquery) {
         String Result[];
         // Send an SQL query to a database and return the *single column* result in an array of strings
         try // Make connection to database
         {
-            statementObject = connectionObject.createStatement( );
-            ResultSet statementResult = statementObject.executeQuery( SQLquery ); //Should connection be left open?
-            ResultSetMetaData rsmd = statementResult.getMetaData( );
-            int nrOfColumns = rsmd.getColumnCount( );
+            statementObject = connectionObject.createStatement();
+            ResultSet statementResult = statementObject.executeQuery(SQLquery); //Should connection be left open?
+            ResultSetMetaData rsmd = statementResult.getMetaData();
+            int nrOfColumns = rsmd.getColumnCount();
             Result = new String[nrOfColumns];
-            statementResult.next( );
-            
+            statementResult.next();
+
             int currentCounter = 0;
-            while( currentCounter<nrOfColumns ) // While there are rows to process
+            while (currentCounter < nrOfColumns) // While there are rows to process
             {
                 // Get the first cell in the current row
-                Result[currentCounter] = statementResult.getString(currentCounter+1);
+                Result[currentCounter] = statementResult.getString(currentCounter + 1);
                 currentCounter++;
             }
             // Close the link to the database when finished 
-        } 
-        catch( Exception e ) 
-        {
-            System.err.println( "Select problems with SQL " + SQLquery );
-            System.err.println( "Select problem is " + e.getMessage( ) );
+        } catch (Exception e) {
+            System.err.println("Select problems with SQL " + SQLquery);
+            System.err.println("Select problem is " + e.getMessage());
             Result = new String[0]; //Need to setup result array to avoid initialisation error
-            writeLogSQL( SQLquery + " caused error " + e.getMessage( ) );
+            writeLogSQL(SQLquery + " caused error " + e.getMessage());
         }
-        
-        writeLogSQL( SQLquery + "worked " );
+
+        writeLogSQL(SQLquery + "worked ");
         return Result;
     } // End SelectRow
-   
-    public String[] SelectColumn( String SQLquery )
-    {
+
+    public String[] SelectColumn(String SQLquery) {
         String Result[];
         // Send an SQL query to a database and return the *single column* result in an array of strings
         try // Make connection to database
         {
-            statementObject = connectionObject.createStatement( ); //Should connection be left open?
-            ResultSet statementResult = statementObject.executeQuery( SQLquery );
+            statementObject = connectionObject.createStatement(); //Should connection be left open?
+            ResultSet statementResult = statementObject.executeQuery(SQLquery);
 
             // Start solution from http://www.coderanch.com/t/303346/JDBC/java/find-number-rows-resultset
             int rowcount = 0;
-            if( statementResult.last( ) ) 
-            {
-                rowcount = statementResult.getRow( );
-                statementResult.beforeFirst( ); // not rs.first() because the rs.next() below will move on, missing the first element
+            if (statementResult.last()) {
+                rowcount = statementResult.getRow();
+                statementResult.beforeFirst(); // not rs.first() because the rs.next() below will move on, missing the first element
             }
             // End solution from http://www.coderanch.com/t/303346/JDBC/java/find-number-rows-resultset
             Result = new String[rowcount];
-            
+
             int currentCounter = 0;
-            while( statementResult.next( ) ) // While there are rows to process
+            while (statementResult.next()) // While there are rows to process
             {
                 // Get the first cell in the current row
-                Result[currentCounter] = statementResult.getString( 1 );
+                Result[currentCounter] = statementResult.getString(1);
                 currentCounter++;
             }
             // Close the link to the database when finished
-        } 
-        catch( Exception e ) 
-        {
-            System.err.println( "Select problems with SQL " + SQLquery );
-            System.err.println( "Select problem is " + e.getMessage( ) );
+        } catch (Exception e) {
+            System.err.println("Select problems with SQL " + SQLquery);
+            System.err.println("Select problem is " + e.getMessage());
             Result = new String[0]; //Need to setup result array to avoid initialisation error
-            writeLogSQL( SQLquery + " caused error " + e.getMessage( ) );
+            writeLogSQL(SQLquery + " caused error " + e.getMessage());
         }
-        writeLogSQL( SQLquery + "worked " );
+        writeLogSQL(SQLquery + "worked ");
         return Result;
     } // End Select
 
-    public int[] SelectIntColumn( String SQLquery )
-    {
+    public int[] SelectIntColumn(String SQLquery) {
         int Result[];
         // Send an SQL query to a database and return the *single column* result in an array of strings
         try // Make connection to database
         {
-            statementObject = connectionObject.createStatement( ); //Should connection be left open?
-            ResultSet statementResult = statementObject.executeQuery( SQLquery );
- 
+            statementObject = connectionObject.createStatement(); //Should connection be left open?
+            ResultSet statementResult = statementObject.executeQuery(SQLquery);
+
             // Start solution from http://www.coderanch.com/t/303346/JDBC/java/find-number-rows-resultset
             int rowcount = 0;
-            if( statementResult.last( ) ) 
-            {
-                rowcount = statementResult.getRow( );
-                statementResult.beforeFirst( ); // not rs.first() because the rs.next() below will move on, missing the first element
+            if (statementResult.last()) {
+                rowcount = statementResult.getRow();
+                statementResult.beforeFirst(); // not rs.first() because the rs.next() below will move on, missing the first element
             }
             // End solution from http://www.coderanch.com/t/303346/JDBC/java/find-number-rows-resultset
             Result = new int[rowcount];
-             
+
             int currentCounter = 0;
-            while( statementResult.next( ) ) // While there are rows to process
+            while (statementResult.next()) // While there are rows to process
             {
                 // Get the first cell in the current row
-                Result[currentCounter] = statementResult.getInt( 1 );
+                Result[currentCounter] = statementResult.getInt(1);
                 currentCounter++;
             }
             // Close the link to the database when finished
-        } 
-        catch( Exception e ) 
-        {
-            System.err.println( "Select problems with SQL " + SQLquery );
-            System.err.println( "Select problem is " + e.getMessage( ) );
+        } catch (Exception e) {
+            System.err.println("Select problems with SQL " + SQLquery);
+            System.err.println("Select problem is " + e.getMessage());
             Result = new int[0]; //Need to setup result array to avoid initialisation error
-            writeLogSQL( SQLquery + " caused error " + e.getMessage( ) );
+            writeLogSQL(SQLquery + " caused error " + e.getMessage());
         }
-        writeLogSQL( SQLquery + "worked " );
+        writeLogSQL(SQLquery + "worked ");
         return Result;
     } // End Select
-    
-    public void writeLogSQL(String message) 
-    {
+
+    public void writeLogSQL(String message) {
         PrintStream output;
-        try 
-        {
-            output = new PrintStream( new FileOutputStream( "sql-logfile.txt", true ) );
-            output.println( new java.util.Date( ) + " " + message );
-            System.out.println( new java.util.Date( ) + " " + message );
-            output.close( );
-        } 
-        catch( IOException ieo ) 
-        {
+        try {
+            output = new PrintStream(new FileOutputStream("sql-logfile.txt", true));
+            output.println(new java.util.Date() + " " + message);
+            System.out.println(new java.util.Date() + " " + message);
+            output.close();
+        } catch (IOException ieo) {
 
         }
     } // End writeLog

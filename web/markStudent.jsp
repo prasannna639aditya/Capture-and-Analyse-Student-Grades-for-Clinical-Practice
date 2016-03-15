@@ -28,7 +28,7 @@
         <title>Grade Student</title>
     </head>
     <body>
-        
+
         <div class="login-card">          
             <jsp:useBean id="core" class="application.CoreSkills" scope="request" />
             <jsp:setProperty name="core" property="*" />
@@ -38,9 +38,9 @@
             <jsp:setProperty name="treatment" property="*" />
             <jsp:useBean id="search" class="guipackage.SearchBox" scope="request" />
             <jsp:setProperty name="search" property="*" />
-            
-            
-        
+
+
+
             <%
                 GUI gui = new GUI( );
                 StudentLookup studentLookup = new StudentLookup();
@@ -53,11 +53,11 @@
                   if( request.getParameter( "submit" ) == null ) {
                    out.print( core.buttonNav()); 
             %>
-                <div>
-                    <p id="top">
+            <div>
+                <p id="top">
                 <p>Please refer to the <a href="markingDescriptors.jsp">Marking Descriptors</a> if you are unsure of what score to assign the student.<p>
                 </p>
-                </div>
+            </div>
             <%
                    out.print( core.markingForm( TutorID, treatment.getStudentID(), treatment.getTreatmentID(), treatment.getCdsNumber()) );
                    if(treatment.isAbsent(attendance) == true)

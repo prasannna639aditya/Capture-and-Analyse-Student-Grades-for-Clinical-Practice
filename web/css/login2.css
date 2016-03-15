@@ -19,15 +19,15 @@ body, html, h1 {
 
 input:-webkit-autofill {
     -webkit-box-shadow: 0 0 0px 1000px white inset;
-    
+
 }
 
 
 input[type=submit] {
-  width:100%;
-  position: relative;
-  margin-top: 10%;
-  
+    width:100%;
+    position: relative;
+    margin-top: 10%;
+
     -moz-box-shadow:inset -50px 1px 0px 50px #ffffff;
     -webkit-box-shadow:inset -50px 1px 0px 50px #ffffff;
     box-shadow:inset -50px 1px 0px 50px #ffffff;
@@ -60,7 +60,7 @@ input[type=submit] {
 }
 
 input[type=submit]:hover {
-  color: #000;
+    color: #000;
 }
 
 .intro-header {

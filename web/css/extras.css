@@ -9,26 +9,26 @@ and open the template in the editor.
 */
 
 input[type=submit] {
-	-moz-box-shadow:inset -50px 1px 0px 50px #ffffff;
-	-webkit-box-shadow:inset -50px 1px 0px 50px #ffffff;
-	box-shadow:inset -50px 1px 0px 50px #ffffff;
-	background-color:transparent;
-	border-radius:0px;
-	text-indent:0;
-	border:2px solid #348EED;
-	display:inline-block;
-	color:#666666;
-	font-family:Trebuchet MS;
-	font-size:12px;
-	font-style:normal;
-        width: 120px;
-	height:35px;
-	text-decoration:none;
-	text-align:center;
-	text-shadow:1px 1px 0px #ffffff;
-        position:relative;
-	top:1px;
-        color:#348EED;
+    -moz-box-shadow:inset -50px 1px 0px 50px #ffffff;
+    -webkit-box-shadow:inset -50px 1px 0px 50px #ffffff;
+    box-shadow:inset -50px 1px 0px 50px #ffffff;
+    background-color:transparent;
+    border-radius:0px;
+    text-indent:0;
+    border:2px solid #348EED;
+    display:inline-block;
+    color:#666666;
+    font-family:Trebuchet MS;
+    font-size:12px;
+    font-style:normal;
+    width: 120px;
+    height:35px;
+    text-decoration:none;
+    text-align:center;
+    text-shadow:1px 1px 0px #ffffff;
+    position:relative;
+    top:1px;
+    color:#348EED;
 }
 
 input[type=submit]:hover {

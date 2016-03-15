@@ -33,14 +33,14 @@
         <link href="../font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
         <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
         <title>Groups</title>
-        
-        
+
+
     </head>
     <body>
-        
+
         <jsp:useBean id="search" class="guipackage.SearchBox" scope="request" />
         <jsp:setProperty name="search" property="*" />
-        
+
         <%
           GUI gui = new GUI( );
           StudentLookup look = new StudentLookup();
@@ -63,7 +63,7 @@
           out.print(gui.footer());
 
         %> 
-        
+
     </body>
 </html>
 

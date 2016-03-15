@@ -22,41 +22,36 @@
         <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
         <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
         <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
-    
+
         <title>View Score</title>
     </head>
     <body>
-        
+
         <div class="login-card">          
-         
-         
-        <jsp:useBean id="lookup" class="application.StudentLookup" scope="request" />
-        <jsp:setProperty name="lookup" property="*" />
-        <jsp:useBean id="treatmentItem" class="application.TreatmentItems" scope="request" />
-        <jsp:setProperty name="treatmentItem" property="*" />
-        
-        <%
-          GUI gui = new GUI( );
-          //TreatmentItems treatmentItem = new TreatmentItems( );
-            /**if( session.getAttribute( "Authenticated" ) == null ) {
-                response.sendRedirect( "index.jsp" );
-            }
-            else {
-                out.print(gui.tutorNavigation());
-                out.print( treatmentItem.fetchScore( lookup.getStudentID(), treatmentItem.fetchStudentName(lookup.getStudentID()), treatmentItem.getTreatmentID()) );
-            }**/
-        if( request.getParameter( "submit" ) == null ) {
-             out.print(gui.tutorNavigation());
-             //out.print( treatmentItem.fetchScore( lookup.getStudentID(), treatmentItem.fetchStudentName(lookup.getStudentID()), treatmentItem.getTreatmentID()) );       
-             out.print( treatmentItem.showScore(lookup.getStudentID(),treatmentItem.getTreatmentID(), treatmentItem.getPatientID(), treatmentItem.getDateAdded()));
-        }             
-        out.print(gui.footer());
-        %>
-           
-        </div>    
-        </div>
-        </div>
-        </div>
-        </div>
+
+
+            <jsp:useBean id="lookup" class="application.StudentLookup" scope="request" />
+            <jsp:setProperty name="lookup" property="*" />
+            <jsp:useBean id="treatmentItem" class="application.TreatmentItems" scope="request" />
+            <jsp:setProperty name="treatmentItem" property="*" />
+
+            <%
+                GUI gui = new GUI();
+                //TreatmentItems treatmentItem = new TreatmentItems( );
+                /**
+                 * if( session.getAttribute( "Authenticated" ) == null ) {
+                 * response.sendRedirect( "index.jsp" ); } else {
+                 * out.print(gui.tutorNavigation()); out.print(
+                 * treatmentItem.fetchScore( lookup.getStudentID(),
+                 * treatmentItem.fetchStudentName(lookup.getStudentID()),
+                 * treatmentItem.getTreatmentID()) ); }*
+                 */
+                if (request.getParameter("submit") == null) {
+                    out.print(gui.tutorNavigation());
+                    //out.print( treatmentItem.fetchScore( lookup.getStudentID(), treatmentItem.fetchStudentName(lookup.getStudentID()), treatmentItem.getTreatmentID()) );       
+                    out.print(treatmentItem.showScore(lookup.getStudentID(), treatmentItem.getTreatmentID(), treatmentItem.getPatientID(), treatmentItem.getDateAdded()));
+                }
+                out.print(gui.footer());
+            %>
     </body>
 </html>

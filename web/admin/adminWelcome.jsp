@@ -25,8 +25,8 @@
         <link href="../font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
         <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
         <title>Welcome Admin</title>
-        
-        
+
+
     </head>
     <body>
         <%
@@ -48,6 +48,6 @@
                 out.print(gui.footer());
           }
         %>
-        
+
     </body>
 </html>

@@ -30,11 +30,11 @@
         <title>Group 4.1 Summary Data</title>
     </head>
     <body>
-        
+
         <jsp:useBean id="search" class="guipackage.SearchBox" scope="request" />
         <jsp:setProperty name="search" property="*" />
-        
-        
+
+
         <%
           GUI gui = new GUI( );
           StudentLookup look = new StudentLookup();
@@ -46,49 +46,49 @@
           String studentID = search.getStudentID();
           
         %>
-        
+
         <p>
-         <div class="container">
+        <div class="container">
             <ul class="nav nav-tabs">
                 <li class="nav active"><a href="#A" data-toggle="tab">Domain Summary Data</a></li>
                 <li class="nav"><a href="#B" data-toggle="tab">Treatment Summary Data</a></li>
             </ul>
             <div class="tab-content">
-                   <div class="tab-pane fade in active" id="A">
-                       
-        <%
-              //String student = (String)request.getParameter("student");
-        %>
+                <div class="tab-pane fade in active" id="A">
+
+                    <%
+                          //String student = (String)request.getParameter("student");
+                    %>
                     <p id="top">
-        <%
-             out.println("See the summary data for group 4.1");
-        %>
+                        <%
+                             out.println("See the summary data for group 4.1");
+                        %>
                     </p>
                     <p>
-        <%
-             out.print(group.studentData("4.1"));
-        %>
+                        <%
+                             out.print(group.studentData("4.1"));
+                        %>
                     </p>
-                    </div>
-                    <div class="tab-pane fade" id="B">
+                </div>
+                <div class="tab-pane fade" id="B">
                     <p id="top">
-            <%
-             out.println("See the treatment summary data for group 4.1");
-        %>
+                        <%
+                         out.println("See the treatment summary data for group 4.1");
+                        %>
                     </p>
                     <p>
-        <%
-             out.print(data.studentData("4.1"));
+                        <%
+                             out.print(data.studentData("4.1"));
             
-        %>
+                        %>
                     </p>
                 </div>
             </div>
-         </div>      
+        </div>      
         <%
           
           out.print(gui.footer());
         %> 
-        </p>
-    </body>
+    </p>
+</body>
 </html>

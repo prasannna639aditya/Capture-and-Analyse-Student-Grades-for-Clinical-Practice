@@ -24,13 +24,13 @@
         <title>Register a student</title>
     </head>
     <body>
-        
+
         <div class="login-card">          
             <jsp:useBean id="register" class="application.RegisterStudent" scope="request" />
             <jsp:setProperty name="register" property="*" />
-            
-            
-        
+
+
+
             <%
                 GUI gui = new GUI( );
                 out.print( gui.tutorNavigation( ));
@@ -52,11 +52,11 @@
                 }
                 out.print(gui.footer());
             %>
-           
+
         </div>    
-        </div>
-       </div>
-     </div>
     </div>
-    </body>
+</div>
+</div>
+</div>
+</body>
 </html>

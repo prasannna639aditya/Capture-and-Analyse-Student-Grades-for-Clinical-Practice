@@ -29,10 +29,10 @@
         <title>Grade Students</title>
     </head>
     <body>
-        
+
         <jsp:useBean id="search" class="guipackage.SearchBox" scope="request" />
         <jsp:setProperty name="search" property="*" />
-        
+
         <%
           GUI gui = new GUI( );
           StudentLookup look = new StudentLookup();
@@ -71,23 +71,19 @@
             else{
               out.print(gui.paragraph2("Please enter a valid student ID."));
               out.println(search.addStudents(groupID));
-            %>
-            
-            <p id="away">
-           <%
-            out.println(look.startTable());
-            out.println(look.fetchGroupNames(groupID));
-            out.print(look.endTable());
-            }
-           %>
-            <p>
+        %>
+
+        <p id="away">
             <%
-           out.print(gui.footer());
-          
-          
-          
-          
-        %> 
-        
+             out.println(look.startTable());
+             out.println(look.fetchGroupNames(groupID));
+             out.print(look.endTable());
+             }
+            %>
+        <p>
+            <%
+             out.print(gui.footer());
+            %> 
+
     </body>
 </html>

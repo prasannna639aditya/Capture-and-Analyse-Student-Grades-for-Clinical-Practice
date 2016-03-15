@@ -25,7 +25,7 @@
         <title>Absent</title>
     </head>
     <body>
-        
+
         <div class="login-card">          
             <jsp:useBean id="core" class="application.CoreSkills" scope="request" />
             <jsp:setProperty name="core" property="*" />
@@ -35,34 +35,26 @@
             <jsp:setProperty name="treatment" property="*" />
             <jsp:useBean id="search" class="guipackage.SearchBox" scope="request" />
             <jsp:setProperty name="search" property="*" />
-            
-            
-        
+
+
+
             <%
-                GUI gui = new GUI( );
+                GUI gui = new GUI();
                 StudentLookup studentLookup = new StudentLookup();
-                out.print( gui.tutorNavigation( ));
-                String TutorID = (String) session.getAttribute( "TutorID" );
+                out.print(gui.tutorNavigation());
+                String TutorID = (String) session.getAttribute("TutorID");
                 String attendance = treatment.getAttendance();
                 String absent = "absent";
-                
-              
-                  if( request.getParameter( "submit" ) == null ) {
-                        treatment.markStudentAbsent(treatment.getStudentID(), TutorID, treatment.getTreatmentID());
-                        out.print( gui.paragraph2("<p>You have marked " + treatment.fetchStudentName(treatment.getStudentID()) + " absent.</p>" ) );
+
+                if (request.getParameter("submit") == null) {
+                    treatment.markStudentAbsent(treatment.getStudentID(), TutorID, treatment.getTreatmentID());
+                    out.print(gui.paragraph2("<p>You have marked " + treatment.fetchStudentName(treatment.getStudentID()) + " absent.</p>"));
                         //out.print( "<p>Treatment </p>" + treatment.fetchTreatmentName(treatment.getTreatmentID()) + ".</p>"  );
-                       // out.print( treatment.clinicalAlert(core.getStudentID(),treatment.getTreatmentID()));
-                        out.print( "<p id=\"home\"><a href='tutorWelcome.jsp'>Back to home!</a></p>" );
-                  
+                    // out.print( treatment.clinicalAlert(core.getStudentID(),treatment.getTreatmentID()));
+                    out.print("<p id=\"home\"><a href='tutorWelcome.jsp'>Back to home!</a></p>");
+
                 }
-                out.print(gui.footer());  
+                out.print(gui.footer());
             %>
-        
-        
-        </div>    
-        </div>
-        </div>
-</div>
-</div>
     </body>
 </html>

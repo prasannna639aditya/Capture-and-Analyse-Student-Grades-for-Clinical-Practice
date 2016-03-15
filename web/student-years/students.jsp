@@ -22,24 +22,24 @@
         <link href="../font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
         <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
         <title>Students</title>
-        
+
         <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
         <script src="//code.jquery.com/jquery-1.10.2.js"></script>
         <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
         <link rel="stylesheet" href="/resources/demos/style.css">
         <script>
-        $(function() {
-          $( "#tabs" ).tabs();
-        });
+            $(function () {
+                $("#tabs").tabs();
+            });
         </script>
-        
+
     </head>
     <body>
         <% 
             GUI gui = new GUI();
             out.print(gui.tutorStudentYearsNav());
         %>
-        
+
         <p>
         <div class="container">
             <ul class="nav nav-tabs">
@@ -50,67 +50,67 @@
                 <li class="nav"><a href="#E" data-toggle="tab">HYG1</a></li>
                 <li class="nav"><a href="#F" data-toggle="tab">HYG2</a></li>
             </ul>
-        <div class="tab-content">
+            <div class="tab-content">
                 <div class="tab-pane fade in active" id="A">
-        
-        <p>
-        <%   
-             StudentLookup look = new StudentLookup();
+
+                    <p>
+                        <%   
+                             StudentLookup look = new StudentLookup();
              
              
-             out.print(look.fetchNames());
-        %>
-        </p>
+                             out.print(look.fetchNames());
+                        %>
+                    </p>
                 </div>
                 <div class="tab-pane fade" id="B">
                     <p>
-        <%
-             out.print(look.fetchYearNames("1"));
-        %>
+                        <%
+                             out.print(look.fetchYearNames("1"));
+                        %>
                     </p>
                 </div>  
                 <div class="tab-pane fade" id="C">
-                
-        <%
-             out.print(look.fetchYearNames("2"));
+
+                    <%
+                         out.print(look.fetchYearNames("2"));
               
               
-        %>
-                   
+                    %>
+
                 </div>    
                 <div class="tab-pane fade" id="D">
-                
-        <%
-             out.print(look.fetchYearNames("3"));
+
+                    <%
+                         out.print(look.fetchYearNames("3"));
               
               
-        %>
+                    %>
                 </div>
-                      <div class="tab-pane fade" id="E">
-                
-        <%
-             out.print(look.fetchYearNames("4"));
+                <div class="tab-pane fade" id="E">
+
+                    <%
+                         out.print(look.fetchYearNames("4"));
               
               
-        %>
-                   
+                    %>
+
                 </div>   
                 <div class="tab-pane fade" id="F">
-                
-        <%
-             out.print(look.fetchYearNames("5"));
+
+                    <%
+                         out.print(look.fetchYearNames("5"));
               
               
-        %>
-                   
+                    %>
+
                 </div>    
             </div>
-            </div>
-        </div>      
-        <%
+        </div>
+    </div>      
+    <%
           
-          out.print(gui.footer());
-        %> 
+      out.print(gui.footer());
+    %> 
     </p>
-    </body>
+  </body>
 </html>

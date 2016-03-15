@@ -22,21 +22,21 @@
         <link href="../font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
         <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
     <tite> Group Summary Data</title>
-    </head>
-    <body
-        
-        <%
-          GUI gui = new GUI( );
-          StudentLookup look = new StudentLookup();
-          GroupSummaryData group = new GroupSummaryData();
-          out.print(gui.tutorSummaryNavigation2());
-                out.print(group.studentData("3.1"));
-                out.print(group.studentData("3.2"));
-                out.print(group.studentData("3.3"));
-                out.print(group.studentData("3.4"));
-                out.print(group.studentData("3.5"));
-          out.print(gui.footer());  
-        %>   
-        
-    </body>
+</head>
+<body
+
+    <%
+      GUI gui = new GUI( );
+      StudentLookup look = new StudentLookup();
+      GroupSummaryData group = new GroupSummaryData();
+      out.print(gui.tutorSummaryNavigation2());
+            out.print(group.studentData("3.1"));
+            out.print(group.studentData("3.2"));
+            out.print(group.studentData("3.3"));
+            out.print(group.studentData("3.4"));
+            out.print(group.studentData("3.5"));
+      out.print(gui.footer());  
+    %>   
+
+</body>
 </html>

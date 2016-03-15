@@ -27,10 +27,10 @@
         <title>View your current grades</title>
     </head>
     <body>
-        
+
         <jsp:useBean id="treatmentItem" class="application.TreatmentItems" scope="request" />
         <jsp:setProperty name="treatmentItem" property="*" />
-        
+
         <%
                 GUI gui = new GUI( );
                 StudentGrades grades = new StudentGrades(); 
@@ -48,48 +48,48 @@
                 <li class="nav"><a href="#C" data-toggle="tab">Treatment Scores</a></li>
                 <li class="nav"><a href="#D" data-toggle="tab">Patients Treated</a></li>
             </ul>
-        <div class="tab-content">
+            <div class="tab-content">
                 <div class="tab-pane fade in active" id="A">
-        <%
-              //String student = (String)request.getParameter("student");
-        %>
-        
-        <p>
-        <%
-             out.print(search.studentData( StudentID ));
-             out.print( search.toStudentBarChart( StudentID ));
-        %>
-        </p>
+                    <%
+                          //String student = (String)request.getParameter("student");
+                    %>
+
+                    <p>
+                        <%
+                             out.print(search.studentData( StudentID ));
+                             out.print( search.toStudentBarChart( StudentID ));
+                        %>
+                    </p>
                 </div>
                 <div class="tab-pane fade" id="B">
-               
-        <%
-             out.print(data.studentData( StudentID ));
+
+                    <%
+                         out.print(data.studentData( StudentID ));
              
-        %>
-               
+                    %>
+
                 </div>  
                 <div class="tab-pane fade" id="C">
                     <div id="closer">
-                  
-        <%
-             out.print( treatmentItem.fetchMyTreatments2( StudentID ) );
+
+                        <%
+                             out.print( treatmentItem.fetchMyTreatments2( StudentID ) );
               
               
-        %>
+                        %>
                     </div> 
                 </div> 
-        
+
                 <div class="tab-pane fade" id="D">
-                
-        <%
-             out.print(treatmentItem.selectAllPatients( StudentID ));
+
+                    <%
+                         out.print(treatmentItem.selectAllPatients( StudentID ));
               
                 
-        %>
-                   
+                    %>
+
                 </div> 
-       
+
             </div>
         </div>      
         <%
@@ -97,5 +97,5 @@
           out.print(gui.footer());
         %> 
     </p>
-    </body>
+</body>
 </html>

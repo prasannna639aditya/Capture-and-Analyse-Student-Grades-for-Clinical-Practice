@@ -29,10 +29,10 @@
         <title>Delete Group</title>
     </head>
     <body>
-        
+
         <jsp:useBean id="search" class="guipackage.SearchBox" scope="request" />
         <jsp:setProperty name="search" property="*" />
-        
+
         <%
           GUI gui = new GUI( );
           StudentLookup look = new StudentLookup();
@@ -50,11 +50,7 @@
           out.print( "<p id=\"home\"><a href='../tutorWelcome.jsp'>Back to home!</a></p>" );
         
           out.print(gui.footer());
-          
-          
-          
-          
         %> 
-        
+
     </body>
 </html>

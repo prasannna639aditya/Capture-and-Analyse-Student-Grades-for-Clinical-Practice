@@ -31,15 +31,15 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 
         <title>Student Summary Data</title>
-        
-        
+
+
     </head>
     <body>
-        
+
         <jsp:useBean id="search" class="guipackage.SearchBox" scope="request" />
         <jsp:setProperty name="search" property="*" />
-        
-        
+
+
         <%
           GUI gui = new GUI( );
           StudentLookup look = new StudentLookup();
@@ -70,55 +70,55 @@
                 <li class="nav"><a href="#C" data-toggle="tab">Treatment Scores</a></li>
                 <li class="nav"><a href="#D" data-toggle="tab">Patients Treated</a></li>
             </ul>
-        <div class="tab-content">
+            <div class="tab-content">
                 <div class="tab-pane fade in active" id="A">
-        <%
-              //String student = (String)request.getParameter("student");
-        %>
-        <p>
-        <%
-             out.println("See the domain summary data for " + name.fetchStudentName(search.getStudentID()));
+                    <%
+                          //String student = (String)request.getParameter("student");
+                    %>
+                    <p>
+                        <%
+                             out.println("See the domain summary data for " + name.fetchStudentName(search.getStudentID()));
              
-        %>
-        </p>
-        <p>
-        <%
-             out.print(search.studentData(search.getStudentID()));
-             out.print( search.toBarChart(search.getStudentID()));
-        %>
-        </p>
+                        %>
+                    </p>
+                    <p>
+                        <%
+                             out.print(search.studentData(search.getStudentID()));
+                             out.print( search.toBarChart(search.getStudentID()));
+                        %>
+                    </p>
                 </div>
                 <div class="tab-pane fade" id="B">
-        <%
-             out.print(data.studentData(search.getStudentID()));
-              // out.println(search.getStudentID());
+                    <%
+                         out.print(data.studentData(search.getStudentID()));
+                          // out.println(search.getStudentID());
              
           
-        %>
-                
+                    %>
+
                 </div>  
-                  
+
                 <div class="tab-pane fade" id="C">
                     <div id="closer">
-        <%
-             out.print(name.fetchMyTreatments(search.getStudentID()));
+                        <%
+                             out.print(name.fetchMyTreatments(search.getStudentID()));
               
               
-        %>
+                        %>
                     </div> 
                 </div>  
-       
+
                 <div class="tab-pane fade" id="D">
-                
-        <%
-             out.print(name.selectAllPatients(search.getStudentID()));
+
+                    <%
+                         out.print(name.selectAllPatients(search.getStudentID()));
               
-                }
-          }  
-        %>
-                   
+                            }
+                      }  
+                    %>
+
                 </div> 
-        
+
             </div>
         </div>      
         <%
@@ -126,5 +126,5 @@
           out.print(gui.footer());
         %> 
     </p>
-    </body>
+</body>
 </html>

@@ -26,14 +26,14 @@
         <link href="../font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
         <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
         <title>Group Search Results</title>
-        
-        
+
+
     </head>
     <body>
-        
+
         <jsp:useBean id="search" class="guipackage.SearchBox" scope="request" />
         <jsp:setProperty name="search" property="*" />
-        
+
         <%
           GUI gui = new GUI( );
           StudentLookup look = new StudentLookup();
@@ -46,24 +46,24 @@
           
           if(search.checkGroupDescriptor(groupID) == true){
             out.println(search.addStudents(groupID));
-            %>
-            
-            <p id="away">
-           <%
-            out.println(look.startTable());
-            out.println(look.fetchGroupNames(groupID));
-            out.print(look.endTable());
-          }
+        %>
+
+        <p id="away">
+            <%
+             out.println(look.startTable());
+             out.println(look.fetchGroupNames(groupID));
+             out.print(look.endTable());
+           }
           
-          else{
-        %> 
-            </p>
+           else{
+            %> 
+        </p>
         <p> </p>
         <%
               out.print("<h4>Please enter a valid group</p>");
               out.print( gui.paragraph3(""));
         
-          }
+            }
           
           out.print(gui.footer());
           //String studentID = search.getStudentID();

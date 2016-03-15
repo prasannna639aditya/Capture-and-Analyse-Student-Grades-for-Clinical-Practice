@@ -22,36 +22,36 @@ table{
 }
 
 @media ( min-width: 800px) and (max-width: 1280px){
-.container{
-    width:90%;
-}
+    .container{
+        width:90%;
+    }
 }
 
- 
+
 .table-striped>tbody>tr:nth-child(odd)>th {
-   background-color: #26B1FC;
-   color:white;
-   font-weight: 220;
- }
- .table-striped>tbody>tr:nth-child(even)>td, 
+    background-color: #26B1FC;
+    color:white;
+    font-weight: 220;
+}
+.table-striped>tbody>tr:nth-child(even)>td, 
 .table-striped>tbody>tr:nth-child(even)>th {
-   background-color: #EDEDED;
-   font-weight: 220;
- }
- 
- p{
-     padding: 5px;
- }
- 
- #top{
-     margin-top:3%;
- }
+    background-color: #EDEDED;
+    font-weight: 220;
+}
+
+p{
+    padding: 5px;
+}
+
+#top{
+    margin-top:3%;
+}
 input[type=submit] {
-	border:0.4px solid #31b0d5;
-	display:inline-block;
-	font-weight: 400;
-        font-size:14px;
-        color: #0085CC;
+    border:0.4px solid #31b0d5;
+    display:inline-block;
+    font-weight: 400;
+    font-size:14px;
+    color: #0085CC;
 }
 
 th{

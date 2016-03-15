@@ -26,19 +26,19 @@
         <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
         <title>Register a student</title>
-        
-        
+
+
     </head>
     <body>
-        
-            <jsp:useBean id="register" class="application.RegisterStudent" scope="request" />
-            <jsp:setProperty name="register" property="*" />
-            
+
+        <jsp:useBean id="register" class="application.RegisterStudent" scope="request" />
+        <jsp:setProperty name="register" property="*" />
+
         <%      
                 GUI gui = new GUI();
                 out.print(gui.adminNavigation());
                 if( request.getParameter( "submit" ) == null ) {
-
+                    out.print(gui.paragraph2("<p><b>Register a student</b></p>"));
                     out.print( register.registrationForm( ) );
                 }
                 else {
@@ -54,6 +54,6 @@
                 }
                 out.print(gui.footer());
         %>
-        
+
     </body>
 </html>
